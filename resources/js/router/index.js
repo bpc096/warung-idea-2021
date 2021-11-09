@@ -1,0 +1,55 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+
+// Components
+import HelloWorld from '../components/HelloWorld.vue'
+import HaloGuys from '../components/HaloGuys.vue'
+
+// Views
+import LandingPage from '../views/LandingPage.vue'
+import HomePage from '../views/HomePage.vue'
+import AboutUsPage from '../views/AboutUsPage.vue'
+import DiscoveryPage from '../views/DiscoveryPage.vue'
+import CategoryPage from '../views/CategoryPage.vue'
+
+Vue.use(Router)
+
+const routes = [
+  {
+    path: '/',
+    name: 'LandingPage',
+    component: LandingPage,
+  },
+  {
+    path: '/home',
+    name: 'HomePage',
+    component: HomePage,
+  },
+  {
+    path: '/aboutus',
+    name: 'AboutUsPage',
+    component: AboutUsPage,
+  },
+  {
+    path: '/discover',
+    name: 'DiscoveryPage',
+    component: DiscoveryPage,
+  },
+  {
+    path: '/category/:categoryId',
+    name: 'CategoryId',
+    component: CategoryPage
+  },
+  {
+    path: '/haloguys',
+    name: 'HaloGuys',
+    component: HaloGuys,
+  },
+  {
+    path: '/helloworld',
+    name: 'HelloWorld',
+    component: HelloWorld,
+  }
+]
+
+export default new Router({ mode: 'history', routes: routes})
