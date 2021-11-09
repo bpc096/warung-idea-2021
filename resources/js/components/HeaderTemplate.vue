@@ -2,8 +2,8 @@
   <div class="header-wrapper">
     <div class="logo-wrap">
       <a href="/">
-        <img 
-          src="../assets/images/icon/light-bulb.png" 
+        <img
+          src="../assets/images/icon/light-bulb.png"
           alt="bright-lamp"
         >
         <div class="text-image">
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-export default {  
+export default {
   name: "HeaderTemplate",
   computed: {
     currentRouteName () {
@@ -49,7 +49,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
 
 .header-wrapper {
   border-bottom: 1px solid grey;

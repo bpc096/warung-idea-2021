@@ -17,8 +17,4 @@ import store from './store'
 
 Vue .use(Axios)
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app")
+new Vue(Vue.util.extend({ router, store }, App)).$mount("#app");

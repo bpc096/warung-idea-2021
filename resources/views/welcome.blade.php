@@ -4,19 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>WarungIdea2021</title>
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <!-- Styles -->
-        <style>
-            body {
-                padding: 0;
-                margin: 0;
-                background-color: white;
-            }
-        </style>
+        <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
+        <script src="{{ mix('js/app.js') }}" type="text/javascript" defer></script>
     </head>
-    <body>
-       <div class="app">
+    <body style="background-color: white; margin: 0; padding: 0;">
+       <div id="app">
        </div>
     </body>
 </html>

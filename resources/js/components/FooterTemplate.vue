@@ -42,13 +42,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Zen+Antique+Soft&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
-
 .footer-wrapper {
   background-color: rgba(0,0,0,.05);
   border: 1px solid grey;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   height: 25rem;
   align-items: center;
@@ -56,7 +53,7 @@ export default {
 
   .text-question {
     font-family: 'Inter', sans-serif;
-    font-family: 'Zen Antique Soft', serif; 
+    font-family: 'Zen Antique Soft', serif;
     font-size: 48px;
     font-style: italic;
     width: 40%;
@@ -105,7 +102,7 @@ export default {
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
-      
+
       .text-image {
         margin-left: .7rem;
         font-size: 1.2rem;

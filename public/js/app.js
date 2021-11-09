@@ -7143,9 +7143,17 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FooterTemplate.vue?vue&type=style&index=0&id=1a8be3e0&lang=less&scoped=true& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".footer-wrapper[data-v-1a8be3e0] {\n  background-color: rgba(0, 0, 0, 0.05);\n  border: 1px solid grey;\n  display: flex;\n  flex-direction: column;\n  height: 25rem;\n  align-items: center;\n  justify-content: space-around;\n}\n.footer-wrapper .text-question[data-v-1a8be3e0] {\n  font-family: 'Inter', sans-serif;\n  font-family: 'Zen Antique Soft', serif;\n  font-size: 48px;\n  font-style: italic;\n  width: 40%;\n}\n.footer-wrapper .field-email[data-v-1a8be3e0] {\n  margin: 2rem 0;\n}\n.footer-wrapper .field-email input[data-v-1a8be3e0] {\n  width: 300px;\n  height: 46px;\n  margin-right: 1rem;\n  border-radius: 20px;\n  text-align: center;\n}\n.footer-wrapper .field-email button[data-v-1a8be3e0] {\n  margin-left: 1rem;\n  border-radius: 10px;\n  width: 136px;\n  height: 48px;\n}\n.footer-wrapper .field-email button[data-v-1a8be3e0]:hover {\n  background-color: #D8F2FF;\n  color: #F57F73;\n}\n.footer-wrapper .info-app[data-v-1a8be3e0] {\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n  justify-content: space-between;\n}\n.footer-wrapper .info-app .love-text > a[data-v-1a8be3e0] {\n  text-decoration: none;\n  color: black;\n}\n.footer-wrapper .info-app .love-text > a[data-v-1a8be3e0]:hover {\n  color: #4FE3CA;\n}\n.footer-wrapper .info-app .logo-image[data-v-1a8be3e0] {\n  margin-left: 3rem;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-around;\n}\n.footer-wrapper .info-app .logo-image .text-image[data-v-1a8be3e0] {\n  margin-left: 0.7rem;\n  font-size: 1.2rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.footer-wrapper .info-app .logo-image img[data-v-1a8be3e0] {\n  height: 34px;\n  width: 28px;\n}\n.footer-wrapper .info-app .logo-socmed[data-v-1a8be3e0] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-right: 3rem;\n  width: 10%;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7154,9 +7162,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HaloGuys.vue?vue&type=style&index=0&id=61655b62&lang=less&scoped=true& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".cool[data-v-61655b62] {\n  color: salmon;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7165,9 +7181,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/HeaderTemplate.vue?vue&type=style&index=0&id=ed47945c&lang=less&scoped=true& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid grey;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: pink;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 15%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-left: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7176,9 +7200,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=style&index=0&id=5cf787ee&lang=less&scoped=true& ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".article-card-wrapper[data-v-5cf787ee] {\n  height: 70%;\n  width: 20%;\n  margin: 0 2rem;\n  border: 1px solid black;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.article-card-wrapper .article-image[data-v-5cf787ee] {\n  background-color: pink;\n  height: 50%;\n}\n.article-card-wrapper .article-info[data-v-5cf787ee] {\n  height: 50%;\n  text-align: left;\n}\n.article-card-wrapper .article-info .article-title[data-v-5cf787ee] {\n  padding: 10px 10px;\n  color: black;\n  font-size: 24px;\n  font-weight: 600;\n}\n.article-card-wrapper .article-info .article-desc[data-v-5cf787ee] {\n  padding: 10px 10px;\n  color: black;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7187,9 +7219,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cardComponent/ProjectCardFeature.vue?vue&type=style&index=0&id=336cb14c&lang=less&scoped=true& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".feature-card-wrapper[data-v-336cb14c] {\n  background-color: white;\n  height: 100%;\n  width: 100%;\n  border: 1px solid black;\n  border-radius: 30px;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.feature-card-wrapper .content-image[data-v-336cb14c] {\n  border-top-left-radius: 29px;\n  border-top-right-radius: 29px;\n  height: 50%;\n  background-color: salmon;\n}\n.feature-card-wrapper .content-info[data-v-336cb14c] {\n  padding: 0.5rem;\n  height: 47%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-title[data-v-336cb14c] {\n  font-size: 30px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  color: black;\n  text-align: left;\n}\n.feature-card-wrapper .content-info .content-description[data-v-336cb14c] {\n  width: 70%;\n  font-size: 16px;\n  text-align: left;\n  color: rgba(0, 0, 0, 0.8);\n}\n.feature-card-wrapper .content-info .content-addition[data-v-336cb14c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-addition .total-funded-label[data-v-336cb14c] {\n  color: green;\n  font-weight: bold;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label[data-v-336cb14c] {\n  display: flex;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love[data-v-336cb14c] {\n  margin: 0 10px;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark a[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love a[data-v-336cb14c] {\n  text-decoration: none;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark img[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love img[data-v-336cb14c] {\n  height: 24px;\n  width: 24px;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7198,9 +7238,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cardComponent/ProjectCardMain.vue?vue&type=style&index=0&id=02533af6&lang=less&scoped=true& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".project-main-card[data-v-02533af6] {\n  height: 340px;\n  width: 620px;\n  display: flex;\n  flex-direction: row;\n  margin: 0 20px;\n  border: 1px solid rgba(0, 0, 0, 0.5);\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.project-main-card .card-image[data-v-02533af6] {\n  width: 40%;\n  height: 100%;\n  background-color: pink;\n}\n.project-main-card .card-content[data-v-02533af6] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  margin-left: 10px;\n}\n.project-main-card .card-content .card-title[data-v-02533af6] {\n  margin-top: 2rem;\n  font-size: 28px;\n  font-weight: bold;\n}\n.project-main-card .card-content .card-description[data-v-02533af6] {\n  margin: 2rem 0;\n  width: 20rem;\n}\n.project-main-card .card-content .card-additional[data-v-02533af6] {\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: flex-end;\n}\n.project-main-card .card-content .card-additional .creator-info[data-v-02533af6] {\n  text-align: center;\n  margin-bottom: 8px;\n}\n.project-main-card .card-content .card-additional .icon-info[data-v-02533af6] {\n  display: flex;\n  flex-direction: row;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love[data-v-02533af6] {\n  margin: 0 6px;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark a[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love a[data-v-02533af6] {\n  text-decoration: none;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark img[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love img[data-v-02533af6] {\n  height: 24px;\n  width: 24px;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7209,9 +7257,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cardComponent/ProjectListFeature.vue?vue&type=style&index=0&id=f0e7e5e8&lang=less&scoped=true& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".project-list-wrapper[data-v-f0e7e5e8] {\n  padding: 0.9rem;\n  margin: 20px 0;\n}\n.project-list-wrapper .card-list[data-v-f0e7e5e8] {\n  border-radius: 30px;\n  width: 100%;\n  height: 6rem;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n}\n.project-list-wrapper .card-list .list-image[data-v-f0e7e5e8] {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n  background-color: salmon;\n  width: 40%;\n}\n.project-list-wrapper .card-list .list-content[data-v-f0e7e5e8] {\n  text-align: left;\n  padding: 0.5rem;\n}\n.project-list-wrapper .card-list .list-content .content-title[data-v-f0e7e5e8] {\n  font-weight: bold;\n}\n.project-list-wrapper .card-list .list-content .content-description[data-v-f0e7e5e8] {\n  font-weight: lighter;\n  margin-top: 0.2rem;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7220,9 +7276,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/AboutUsPage.vue?vue&type=style&index=0&id=75164aeb&lang=less&scoped=true& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".aboutus-wrapper[data-v-75164aeb] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-bottom: 2rem;\n}\n.aboutus-wrapper .image-wrapper[data-v-75164aeb] {\n  margin-bottom: 2rem;\n}\n.aboutus-wrapper .image-wrapper img[data-v-75164aeb] {\n  width: 33rem;\n  height: 33rem;\n}\n.aboutus-wrapper .text-wrapper[data-v-75164aeb] {\n  margin-top: 5rem;\n  width: 50%;\n  font-size: 26px;\n  font-weight: 500;\n  text-align: center;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7231,9 +7295,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/CategoryPage.vue?vue&type=style&index=0&id=fe10a268&lang=less&scoped=true& ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".category-wrapper[data-v-fe10a268] {\n  height: 90vh;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7242,9 +7314,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/DiscoveryPage.vue?vue&type=style&index=0&id=283e0b60&lang=less&scoped=true& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".discover-wrapper[data-v-283e0b60] {\n  display: grid;\n  grid-template-columns: 50% 50%;\n}\n.discover-wrapper .category-area[data-v-283e0b60] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 50vh;\n}\n.discover-wrapper .category-area a[data-v-283e0b60] {\n  text-decoration: none;\n  color: white;\n}\n.discover-wrapper .category-area .category-button[data-v-283e0b60] {\n  background-color: black;\n  border-radius: 20px;\n  height: 30%;\n  width: 80%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 30px;\n  font-weight: bold;\n  letter-spacing: 10px;\n  background-repeat: no-repeat;\n  background-size: 100%;\n  background-position: center;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n  transition: 0.5s;\n}\n.discover-wrapper .category-area .category-button[data-v-283e0b60]:hover {\n  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7253,9 +7333,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/HomePage.vue?vue&type=style&index=0&id=9872dda6&lang=less&scoped=true& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".home-wrapper[data-v-9872dda6] {\n  margin-bottom: 5rem;\n  display: flex;\n  justify-content: center;\n}\n.home-wrapper .section[data-v-9872dda6] {\n  padding: 0 4rem;\n  width: 80%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.home-wrapper .section .feature-section[data-v-9872dda6] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  flex-direction: row;\n  margin-top: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card[data-v-9872dda6] {\n  width: 100%;\n  padding: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card a[data-v-9872dda6] {\n  text-decoration: none;\n}\n.home-wrapper .section .feature-section .project-feature-list[data-v-9872dda6] {\n  width: 100%;\n}\n.home-wrapper .section .feature-section .project-feature-list a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6] {\n  margin: 20px 0 0 0;\n  height: 70vh;\n}\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  height: 70vh;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6],\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.home-wrapper .section .popular-section .section-title[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .popular-section .section-content[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content[data-v-9872dda6] {\n  display: flex;\n  flex-direction: row;\n  height: 70%;\n  width: 100%;\n  align-items: center;\n}\n.home-wrapper .section .popular-section .section-content a[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .article-section[data-v-9872dda6] {\n  height: 70vh;\n  width: 100%;\n  margin-top: 4rem;\n}\n.home-wrapper .section .article-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .article-section .section-content[data-v-9872dda6] {\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  margin-top: 4rem;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7264,9 +7352,17 @@ throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.j
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/LandingPage.vue?vue&type=style&index=0&id=ff0b8c12&lang=less&scoped=true& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".landingPageWrapper .section[data-v-ff0b8c12] {\n  height: 95vh;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n}\n.landingPageWrapper .section .image-info img[data-v-ff0b8c12] {\n  border-radius: 20px;\n  width: 25rem;\n  height: 25rem;\n}\n.landingPageWrapper .section h1[data-v-ff0b8c12] {\n  font-size: 64px;\n}\n.landingPageWrapper .section h3[data-v-ff0b8c12] {\n  font-size: 18px;\n}\n.landingPageWrapper .first-section .text-info > h3[data-v-ff0b8c12] {\n  font-size: 48px;\n  font-style: italic;\n  font-weight: lighter;\n}\n.landingPageWrapper .first-section[data-v-ff0b8c12],\n.landingPageWrapper .third-section[data-v-ff0b8c12],\n.landingPageWrapper .team-section[data-v-ff0b8c12] {\n  background-color: #D8F2FF;\n}\n.landingPageWrapper .second-section .text-info[data-v-ff0b8c12],\n.landingPageWrapper .third-section .text-info[data-v-ff0b8c12],\n.landingPageWrapper .four-section .text-info[data-v-ff0b8c12] {\n  width: 35rem;\n}\n.landingPageWrapper .team-section[data-v-ff0b8c12] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  height: 95vh;\n}\n.landingPageWrapper .team-section h1[data-v-ff0b8c12] {\n  font-size: 4rem;\n}\n.landingPageWrapper .team-section .member-section[data-v-ff0b8c12] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n  width: 100%;\n  height: 55%;\n}\n.landingPageWrapper .team-section .member-section .member[data-v-ff0b8c12] {\n  margin: 0 20px;\n  width: 23rem;\n  height: 28rem;\n  border-radius: 20px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n  transition: 0.3s;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  background-color: white;\n}\n.landingPageWrapper .team-section .member-section .member[data-v-ff0b8c12]:hover {\n  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);\n}\n.landingPageWrapper .team-section .member-section .member .member-image[data-v-ff0b8c12] {\n  width: 100%;\n  height: 60%;\n}\n.landingPageWrapper .team-section .member-section .member .member-image img[data-v-ff0b8c12] {\n  height: 100%;\n  border-radius: 10px;\n}\n.landingPageWrapper .team-section .member-section .member .member-name[data-v-ff0b8c12] {\n  font-weight: 500;\n  margin-top: 2rem;\n  color: black;\n  font-style: italic;\n  font-size: 18px;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 
@@ -7282,7 +7378,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n#app {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  text-align: center;\n  color: #2c3e50;\n  margin-top: 60px;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+exports.push([module.i, "\n.container {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  text-align: center;\n  color: #2c3e50;\n  margin-top: 60px;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  max-width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -39561,7 +39657,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { attrs: { id: "container" } },
+    { staticClass: "container" },
     [
       _c("HeaderTemplate"),
       _vm._v(" "),
@@ -57587,13 +57683,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(axios__WEBPACK_IMPORTED_MODULE_1___default.a);
-new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
+new vue__WEBPACK_IMPORTED_MODULE_2___default.a(vue__WEBPACK_IMPORTED_MODULE_2___default.a.util.extend({
   router: _router__WEBPACK_IMPORTED_MODULE_3__["default"],
-  store: _store__WEBPACK_IMPORTED_MODULE_4__["default"],
-  render: function render(h) {
-    return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  }
-}).$mount("#app");
+  store: _store__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, _App_vue__WEBPACK_IMPORTED_MODULE_0__["default"])).$mount("#app");
 
 /***/ }),
 
@@ -59069,7 +59162,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/less-loader/dist/cjs.js):\nTypeError: this.getOptions is not a function\n    at Object.lessLoader (D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\less-loader\\dist\\index.js:19:24)\n    at D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at D:\\coolyeah.kulyah\\BINUS\\SKRIPSI\\laravel-warungide\\warung-idea-2021\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
