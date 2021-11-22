@@ -11,6 +11,7 @@ import HomePage from '../views/HomePage.vue'
 import AboutUsPage from '../views/AboutUsPage.vue'
 import DiscoveryPage from '../views/DiscoveryPage.vue'
 import CategoryPage from '../views/CategoryPage.vue'
+import ProjectDetailPage from '../views/ProjectDetailPage.vue'
 
 Vue.use(Router)
 
@@ -37,8 +38,13 @@ const routes = [
   },
   {
     path: '/category/:categoryId',
-    name: 'CategoryId',
+    name: 'CategoryPage',
     component: CategoryPage
+  },
+  {
+    path: '/projectdetail/:projectId',
+    name: 'ProjectDetail',
+    component: ProjectDetailPage
   },
   {
     path: '/haloguys',

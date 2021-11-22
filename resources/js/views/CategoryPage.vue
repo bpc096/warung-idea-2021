@@ -6,7 +6,7 @@
     </div>
     <div class="content-category">
       <div v-for="(project, idx) in projectList" class="project-card-wrap" :key="idx">
-        <a href="#hehe">
+        <a :href="'/projectdetail/'+ projectId">
           <ProjectCard
           :articleData="testDataProject"
           />
@@ -28,6 +28,7 @@ export default {
     return {
       isExist: true,
       projectList: 7,
+      projectId: 'id-sekian',
       testDataProject: {
         imageUrl: '/project-img-url',
         titleText: 'Project Title',
