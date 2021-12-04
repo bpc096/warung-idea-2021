@@ -6,9 +6,11 @@
     </div>
     <div class="wrap-main-section">
       <div class="project-detail-section">
-        <div class="progress-bar"></div>
+        <div class="progress-bar-custom">
+          <div class="progress-color-custom"></div>
+        </div>
         <div class="total-donate-info">
-          Rp 1.000.000 dari Rp 10.000.000 (10%)
+          Rp 1.000.000 dari Rp 10.000.000
         </div>
         <div class="supporter-info">
           270 Penyumbang
@@ -58,19 +60,77 @@ export default {
     flex-direction: row;
     width: 100%;
     .project-detail-section{
-      width: 50%;
-      height: 50vh;
+      width: 100%;
+      height: 40vh;
       text-align: left;
+      margin: 3rem 0 3rem 3rem;
+      font-size: 1.5rem;
+
+      .progress-bar-custom{
+        width: 20rem;
+        height: 1.5rem;
+        border: 2px solid black;
+        margin-bottom: 30px;
+
+        .progress-color-custom{
+          width: 50%;
+          height: 100%;
+          background-color: green;
+        }
+      }
+
+      .total-donate-info{
+        margin-bottom: 30px;
+      }
+
+      .supporter-info{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 30px;
+      }
+
+      .day-left-info{
+        margin-bottom: 30px;
+      }
+
+      .button-wrapper {
+        display: flex;
+        flex-direction: row;
+
+        .btn-support{
+          border: 1px solid black;
+          border-radius: 25px;
+          padding: 10px;
+          margin-right: 1rem;
+          &:hover{
+            background-color: black;
+            color: white;
+          }
+        }
+
+        .btn-remind{
+          margin: 0 .5rem;
+          border: 1px solid black;
+          border-radius: 25px;
+          padding: 10px;
+
+          &:hover{
+            background-color: black;
+            color: white;
+          }
+        }
+
+      }
     }
     .project-image-section{
-      width: 50%;
-      height:50vh;
+      width: 100%;
+      height: 50vh;
       display: flex;
       justify-content: center;
       align-items: center;
       .image {
-        width: 50px;
-        height: 50px;
+        width: 80%;
+        height: 80%;
         background-color: blue;
       }
     }
