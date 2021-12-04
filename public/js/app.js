@@ -2992,6 +2992,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CampaignTab'
 });
@@ -41663,11 +41680,40 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrap-campaign-tab" }, [
-    _vm._v("\n  campaign tab\n"),
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wrap-campaign-tab" }, [
+      _c("div", { staticClass: "background-section" }, [
+        _c("div", { staticClass: "background-title" }, [
+          _vm._v("\n      Background Project\n    "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "background-content" }, [
+          _vm._v(
+            "\n      Lorem ipsum dolor sit amet consectetur, adipisicing elit.\n      Cumque ad voluptatem officia modi ea aperiam molestias ducimus accusantium laudantium enim?\n    "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "design-plan-section" }, [
+        _c("div", { staticClass: "design-plan-title" }, [
+          _vm._v("\n      Project Design & Plan\n    "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "design-plan-content" }, [
+          _vm._v(
+            "\n      Lorem ipsum dolor sit amet consectetur, adipisicing elit.\n       Voluptates consequatur ipsum optio repellendus tempore iure nostrum quasi ipsa eius laboriosam.\n    "
+          ),
+        ]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
