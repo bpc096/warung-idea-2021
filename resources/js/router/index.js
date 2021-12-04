@@ -13,6 +13,10 @@ import DiscoveryPage from '../views/DiscoveryPage.vue'
 import CategoryPage from '../views/CategoryPage.vue'
 import ProjectDetailPage from '../views/ProjectDetailPage.vue'
 
+// Views Tab
+import CampaignTab from '../views/tabViews/CampaignTab.vue'
+import UpdateTab from '../views/tabViews/UpdateTab.vue'
+
 Vue.use(Router)
 
 const routes = [
@@ -39,7 +43,17 @@ const routes = [
   {
     path: '/category/:categoryId',
     name: 'CategoryPage',
-    component: CategoryPage
+    component: CategoryPage,
+    children: [
+      {
+        path: 'campaigntab',
+        component: CampaignTab,
+      },
+      {
+        path: 'updatestab',
+        component: UpdateTab,
+      }
+    ]
   },
   {
     path: '/projectdetail/:projectId',

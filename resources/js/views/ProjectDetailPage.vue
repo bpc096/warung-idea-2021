@@ -32,21 +32,45 @@
       </div>
     </div>
     <div class="wrap-tab-section">
-      Tab
+      <tabs>
+        <tab name="Campaign" :selected="true">
+          <campaignTab />
+        </tab>
+        <tab name="Updates">
+          <updateTab />
+        </tab>
+        <tab name="FAQ">
+          <faqTab />
+        </tab>
+      </tabs>
     </div>
   </div>
 </template>
 
 <script>
+// Tab Component
+import tab from  '../components/tabComponent/tabComponent.vue'
+import tabs from '../components/tabComponent/tabsComponent.vue'
+
+// Content Tab Component
+import campaignTab from '../views/tabViews/CampaignTab.vue'
+import updateTab from '../views/tabViews/UpdateTab.vue'
+import faqTab from '../views/tabViews/FaqTab.vue'
+
 export default {
   name: 'ProjectDetail',
-
+  components: {
+    tab,
+    tabs,
+    campaignTab,
+    updateTab,
+    faqTab,
+  }
 }
 </script>
 
 <style lang="less" scoped>
 .project-detail-page {
-  height: 90vh;
   .wrap-title {
     margin-bottom: 2rem;
     .main-title {
@@ -119,7 +143,6 @@ export default {
             color: white;
           }
         }
-
       }
     }
     .project-image-section{
@@ -135,6 +158,5 @@ export default {
       }
     }
   }
-
 }
 </style>
