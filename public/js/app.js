@@ -3028,6 +3028,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FaqTab'
 });
@@ -7734,7 +7752,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-faq-tab[data-v-119d3486] {\n  height: 70vh;\n}\n", ""]);
+exports.push([module.i, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 70vh;\n  text-align: left;\n  padding: 3rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin-bottom: 2rem;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 2rem 0;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n", ""]);
 
 // exports
 
@@ -41748,11 +41766,44 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrap-faq-tab" }, [
-    _vm._v("\n  FAQ Section\n"),
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wrap-faq-tab" }, [
+      _c("div", { staticClass: "faq-title" }, [
+        _vm._v("\n    Frequently Asked Question\n  "),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "faq-content" }, [
+        _c("div", { staticClass: "question-content" }, [
+          _vm._v("\n      Lorem ipsum dolor sit amet ?\n    "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "answer-content" }, [
+          _vm._v(
+            "\n      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, vel.\n    "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "faq-content" }, [
+        _c("div", { staticClass: "question-content" }, [
+          _vm._v("\n      Lorem ipsum dolor sit amet ?\n    "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "answer-content" }, [
+          _vm._v(
+            "\n      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates molestiae atque optio consequuntur, cumque magnam quis accusantium recusandae ut cupiditate!\n    "
+          ),
+        ]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
