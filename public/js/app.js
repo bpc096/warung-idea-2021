@@ -3007,8 +3007,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CampaignTab'
 });
@@ -7704,7 +7702,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-campaign-tab[data-v-8fa6fde4] {\n  height: 70vh;\n  text-align: left;\n  padding: 0 5rem;\n}\n", ""]);
+exports.push([module.i, ".wrap-campaign-tab[data-v-8fa6fde4] {\n  height: 70vh;\n  text-align: left;\n  padding: 0 5rem;\n}\n.wrap-campaign-tab .background-section[data-v-8fa6fde4] {\n  margin: 2rem 0;\n}\n.wrap-campaign-tab .background-section .background-title[data-v-8fa6fde4] {\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-campaign-tab .design-plan-section[data-v-8fa6fde4] {\n  margin: 2rem 0;\n}\n.wrap-campaign-tab .design-plan-section .design-plan-title[data-v-8fa6fde4] {\n  font-size: 30px;\n  font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -41697,7 +41695,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "background-content" }, [
           _vm._v(
-            "\n      Lorem ipsum dolor sit amet consectetur, adipisicing elit.\n      Cumque ad voluptatem officia modi ea aperiam molestias ducimus accusantium laudantium enim?\n    "
+            "\n      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae obcaecati esse, culpa dolor tempora consequuntur quisquam corporis nesciunt vel adipisci laboriosam optio ratione maxime, quod reprehenderit commodi laudantium. Ut vero illum ipsa porro ratione officia corporis, delectus voluptatibus debitis perspiciatis aperiam omnis quo corrupti earum expedita quae, impedit reprehenderit? Illo nemo, inventore laboriosam sit tempora in quisquam voluptates sunt ratione numquam delectus facere magnam quibusdam quo nulla, obcaecati perferendis facilis aperiam accusantium soluta explicabo. Autem nihil explicabo quos ea, repellat doloremque itaque ipsam consectetur asperiores ab quae, totam magni doloribus nobis vitae labore nulla fugit dolorem officiis a! Vitae, ad!\n    "
           ),
         ]),
       ]),
@@ -41709,7 +41707,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "design-plan-content" }, [
           _vm._v(
-            "\n      Lorem ipsum dolor sit amet consectetur, adipisicing elit.\n       Voluptates consequatur ipsum optio repellendus tempore iure nostrum quasi ipsa eius laboriosam.\n    "
+            "\n      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab a consequatur sint hic fuga quidem repellendus assumenda tempora odit molestiae voluptatibus eos quod voluptate provident nobis rem cum error vitae amet eum ipsum, ipsam, reiciendis pariatur laudantium. Pariatur omnis magni mollitia veritatis incidunt ullam dolor voluptatem illo facere earum! Non adipisci deserunt aliquid, laudantium nisi molestias ullam atque corrupti? Inventore architecto deleniti eveniet accusantium corrupti commodi obcaecati! Laboriosam a ut accusamus. Cum minus atque corrupti quisquam consectetur accusantium enim ab facere, sunt aliquid commodi nesciunt quod tempora, vel voluptate fugit. Maxime ea animi consequuntur saepe natus, officiis unde sint aperiam sequi. Suscipit accusamus, modi, iste aliquam magnam dolor commodi molestias vitae nobis sapiente ut, inventore placeat quisquam nihil architecto ipsum esse officiis. Vel laborum quidem sit cumque reiciendis impedit doloribus placeat earum, nihil, itaque eum excepturi neque eligendi rerum blanditiis natus voluptas laudantium quod adipisci numquam nemo provident fugit deleniti. Nihil quos aut pariatur molestias, eos natus! Rem aut dolorum enim praesentium illo consequuntur quas reiciendis minus quibusdam dolore modi, sed illum nam iusto quaerat possimus? Voluptate ea rem nobis, quos illum ratione tempore sed totam, ipsa, iure at praesentium pariatur quibusdam accusantium? Voluptas, tempora? Architecto saepe repudiandae veniam molestias.\n    "
           ),
         ]),
       ]),
