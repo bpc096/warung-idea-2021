@@ -3051,6 +3051,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UpdateTab'
 });
@@ -7740,7 +7753,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-update-tab[data-v-0f7a7116] {\n  height: 70vh;\n}\n", ""]);
+exports.push([module.i, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border: 1px solid black;\n  width: 60rem;\n  height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -41770,7 +41783,27 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "wrap-update-tab" }, [
       _c("div", { staticClass: "update-card" }, [
-        _vm._v("\n    Update Tab\n  "),
+        _c("div", { staticClass: "title-update" }, [
+          _vm._v("\n      Lorem ipsum dolor sit amet.\n    "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content-update" }, [
+          _vm._v(
+            "\n      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, saepe reiciendis exercitationem, voluptas ipsam, rerum quam omnis adipisci quia quisquam ducimus veritatis. Natus aut dignissimos esse ad odit, dolorum, maxime nemo nam qui excepturi ducimus, corrupti ullam minima quibusdam quas ratione expedita tempore rem? Ipsa dolor excepturi, dolorem tempore doloribus eos! Similique nemo ex perferendis eligendi, at, quibusdam doloribus totam mollitia excepturi voluptas vitae deserunt suscipit dolor rem ratione ad veritatis iusto corporis dicta in maxime enim ipsam quam? Obcaecati, aperiam alias unde fugit quidem quasi quia dolorum dicta officia! Magnam, laudantium! Exercitationem eaque velit impedit doloremque. Odit, doloribus culpa.\n    "
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "update-card" }, [
+        _c("div", { staticClass: "title-update" }, [
+          _vm._v("\n      Lorem ipsum dolor sit amet.\n    "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content-update" }, [
+          _vm._v(
+            "\n      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, saepe reiciendis exercitationem, voluptas ipsam, rerum quam omnis adipisci quia quisquam ducimus veritatis. Natus aut dignissimos esse ad odit, dolorum, maxime nemo nam qui excepturi ducimus, corrupti ullam minima quibusdam quas ratione expedita tempore rem? Ipsa dolor excepturi, dolorem tempore doloribus eos! Similique nemo ex perferendis eligendi, at, quibusdam doloribus totam mollitia excepturi voluptas vitae deserunt suscipit dolor rem ratione ad veritatis iusto corporis dicta in maxime enim ipsam quam? Obcaecati, aperiam alias unde fugit quidem quasi quia dolorum dicta officia! Magnam, laudantium! Exercitationem eaque velit impedit doloremque. Odit, doloribus culpa.\n    "
+          ),
+        ]),
       ]),
     ])
   },
