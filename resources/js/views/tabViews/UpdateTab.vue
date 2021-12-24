@@ -1,6 +1,8 @@
 <template>
   <div class="wrap-update-tab">
-    update tab content
+    <div class="update-card">
+      Update Tab
+    </div>
   </div>
 </template>
 

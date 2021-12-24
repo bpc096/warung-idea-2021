@@ -3051,6 +3051,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UpdateTab'
 });
@@ -7702,7 +7704,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-campaign-tab[data-v-8fa6fde4] {\n  height: 70vh;\n}\n", ""]);
+exports.push([module.i, ".wrap-campaign-tab[data-v-8fa6fde4] {\n  height: 70vh;\n  text-align: left;\n  padding: 0 5rem;\n}\n", ""]);
 
 // exports
 
@@ -41761,11 +41763,20 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrap-update-tab" }, [
-    _vm._v("\n  update tab content\n"),
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wrap-update-tab" }, [
+      _c("div", { staticClass: "update-card" }, [
+        _vm._v("\n    Update Tab\n  "),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

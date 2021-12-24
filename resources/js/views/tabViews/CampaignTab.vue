@@ -30,5 +30,7 @@ export default {
 <style lang="less" scoped>
 .wrap-campaign-tab{
   height: 70vh;
+  text-align: left;
+  padding: 0 5rem;
 }
 </style>
