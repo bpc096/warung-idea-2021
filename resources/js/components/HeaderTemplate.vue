@@ -24,12 +24,12 @@
       <router-link to="/category/movies">Movie</router-link>
     </div>
     <div class="button-wrap">
-      <a class="button-register" href="#register">
+      <router-link to="/register" class="button-register">
         Register
-      </a>
-      <a class="button-login" href="#login">
+      </router-link>
+      <router-link to="/login" class="button-login">
         Login
-      </a>
+      </router-link>
     </div>
   </div>
 </template>

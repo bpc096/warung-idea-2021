@@ -12,6 +12,8 @@ import AboutUsPage from '../views/AboutUsPage.vue'
 import DiscoveryPage from '../views/DiscoveryPage.vue'
 import CategoryPage from '../views/CategoryPage.vue'
 import ProjectDetailPage from '../views/ProjectDetailPage.vue'
+import LoginPage from '../views/LoginPage.vue'
+import RegisterPage from '../views/RegisterPage.vue'
 
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
@@ -24,6 +26,16 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LandingPage,
+  },
+  {
+    path: '/register',
+    name: 'RegisterPage',
+    component: RegisterPage,
+  },
+  {
+    path: '/login',
+    name: 'LoginPage',
+    component: LoginPage,
   },
   {
     path: '/home',
