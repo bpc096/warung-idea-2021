@@ -7808,7 +7808,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".wrap-login-page[data-v-15dcef89] {\n  height: 90vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n", ""]);
+exports.push([module.i, ".wrap-login-page[data-v-15dcef89] {\n  height: 90vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n.wrap-login-page .login-card[data-v-15dcef89] {\n  max-width: 30%;\n}\n", ""]);
 
 // exports
 
@@ -7846,7 +7846,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".wrap-register-page[data-v-30ebab71] {\n  height: 90vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n", ""]);
+exports.push([module.i, ".wrap-register-page[data-v-30ebab71] {\n  height: 90vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrap-register-page .register-card[data-v-30ebab71] {\n  max-width: 30%;\n}\n", ""]);
 
 // exports
 
@@ -42579,7 +42579,7 @@ var staticRenderFns = [
       "div",
       { staticClass: "row justify-content-md-center wrap-login-page" },
       [
-        _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "col-md-6 login-card" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v("Login WarungIdea"),
@@ -42612,7 +42612,7 @@ var staticRenderFns = [
                 _c(
                   "button",
                   { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Submit")]
+                  [_vm._v("Login")]
                 ),
               ]),
             ]),
@@ -42755,7 +42755,7 @@ var staticRenderFns = [
       "div",
       { staticClass: "row justify-content-md-center wrap-register-page" },
       [
-        _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "col-md-6 register-card" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v("\n        Register WarungIdea\n      "),
@@ -42797,7 +42797,7 @@ var staticRenderFns = [
                 _c(
                   "button",
                   { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Submit")]
+                  [_vm._v("Register")]
                 ),
               ]),
             ]),

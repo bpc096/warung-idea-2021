@@ -1,6 +1,6 @@
 <template>
 <div class="row justify-content-md-center wrap-login-page">
-    <div class="col-md-6">
+    <div class="col-md-6 login-card">
       <div class="card">
         <div class="card-header">Login WarungIdea</div>
         <div class="card-body">
@@ -13,7 +13,7 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" placeholder="Password..">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Login</button>
           </form>
         </div>
       </div>
@@ -35,5 +35,9 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  .login-card {
+    max-width: 30%;
+  }
 }
 </style>

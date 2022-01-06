@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-content-md-center wrap-register-page">
-    <div class="col-md-6">
+    <div class="col-md-6 register-card">
       <div class="card">
         <div class="card-header">
           Register WarungIdea
@@ -19,7 +19,7 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" placeholder="Password..">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Register</button>
           </form>
         </div>
       </div>
@@ -39,5 +39,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  .register-card {
+    max-width: 30%;
+  }
 }
 </style>
