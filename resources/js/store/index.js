@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Axios from 'axios'
+import axios from 'axios'
 import {
   ADDING_NUMBER,
   SUBTRACT_NUMBER,

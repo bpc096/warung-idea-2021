@@ -2938,8 +2938,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'LoginPage'
+  name: 'LoginPage',
+  data: function data() {
+    return {
+      form: {
+        email: '',
+        password: ''
+      },
+      errors: ''
+    };
+  },
+  methods: {
+    userLogin: function userLogin() {
+      var _this = this;
+
+      console.log(this.form);
+      this.$store.dispatch('login', this.form).then(function (res) {
+        console.log(res);
+
+        _this.$router.push({
+          name: 'HomePage',
+          path: '/home'
+        });
+      })["catch"](function (err) {
+        console.log(err.response);
+        _this.errors = err.response.data.message;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -42568,33 +42611,61 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "row justify-content-md-center wrap-login-page" },
-      [
-        _c("div", { staticClass: "col-md-6 login-card" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Login WarungIdea"),
-            ]),
+  return _c(
+    "div",
+    { staticClass: "row justify-content-md-center wrap-login-page" },
+    [
+      _c("div", { staticClass: "col-md-6 login-card" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("\n          Login WarungIdea\n        "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm.errors.length > 0
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.errors) + "\n          "
+                  ),
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("form", [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.userLogin.apply(null, arguments)
+                  },
+                },
+              },
+              [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "username" } }, [
                     _vm._v("Username"),
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.email,
+                        expression: "form.email",
+                      },
+                    ],
                     staticClass: "form-control",
                     attrs: { type: "text", placeholder: "Username.." },
+                    domProps: { value: _vm.form.email },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "email", $event.target.value)
+                      },
+                    },
                   }),
                 ]),
                 _vm._v(" "),
@@ -42604,8 +42675,25 @@ var staticRenderFns = [
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.password,
+                        expression: "form.password",
+                      },
+                    ],
                     staticClass: "form-control",
-                    attrs: { type: "password", placeholder: "Password.." },
+                    attrs: { type: "password", placeholder: "Password..." },
+                    domProps: { value: _vm.form.password },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "password", $event.target.value)
+                      },
+                    },
                   }),
                 ]),
                 _vm._v(" "),
@@ -42614,14 +42702,15 @@ var staticRenderFns = [
                   { staticClass: "btn btn-primary", attrs: { type: "submit" } },
                   [_vm._v("Login")]
                 ),
-              ]),
-            ]),
+              ]
+            ),
           ]),
         ]),
-      ]
-    )
-  },
-]
+      ]),
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -60946,7 +61035,7 @@ var actions = {
     var dispatch = _ref3.dispatch,
         commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      axios.post('login-api', data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('login-api', data).then(function (response) {
         var token = response.data.token;
         localStorage.setItem('token', token);
         setHeaderToken(token);
@@ -60978,7 +61067,7 @@ var actions = {
             case 3:
               _context.prev = 3;
               _context.next = 6;
-              return axios.get('user-api');
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('user-api');
 
             case 6:
               response = _context.sent;

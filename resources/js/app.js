@@ -8,13 +8,36 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import App from './App.vue'
-
 import Axios from 'axios'
 import Vue from 'vue'
-
 import router from './router'
 import store from './store'
 
-Vue .use(Axios)
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-new Vue(Vue.util.extend({ router, store }, App)).$mount("#app");
+import { setHeaderToken } from '../utils/auth'
+import { axios } from 'vue/types/umd';
+
+Axios.defaults.baseURL = 'http://localhost:8000/api/'
+
+Vue.config.productionTip = false
+Vue.use(Axios)
+
+const token = localStorage.getItem('token')
+
+if(token) {
+  setHeaderToken(token)
+}
+
+
+store.dispatch('get_user', token)
+.then( () => {
+  new Vue(Vue.util.extend({ router, store }, App)).$mount("#app");
+})
+.catch(err => {
+  console.error(err)
+})
+
+
+
