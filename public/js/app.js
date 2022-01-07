@@ -61065,14 +61065,72 @@ var routes = [{
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var _modules_authStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/authStore */ "./resources/js/store/modules/authStore.js");
+var _mutations__;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var state__ = {
+  number: 1
+};
+var actions__ = {
+  addingNumber: function addingNumber(_ref) {
+    var commit = _ref.commit,
+        state = _ref.state;
+    commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["ADDING_NUMBER"], 1);
+  },
+  subtractNumber: function subtractNumber(_ref2) {
+    var commit = _ref2.commit,
+        state = _ref2.state;
+    commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["SUBTRACT_NUMBER"], 1);
+  }
+};
+var mutations__ = (_mutations__ = {}, _defineProperty(_mutations__, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["ADDING_NUMBER"], function (state, data) {
+  state.number = state.number + data;
+}), _defineProperty(_mutations__, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["SUBTRACT_NUMBER"], function (state, data) {
+  state.number = state.number - data;
+}), _mutations__);
+var getters__ = {};
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  state: _objectSpread(_objectSpread({}, state__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].state),
+  actions: _objectSpread(_objectSpread({}, actions__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].actions),
+  mutations: _objectSpread(_objectSpread({}, mutations__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].mutations),
+  getters: _objectSpread(_objectSpread({}, getters__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].getters)
+});
+/* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/authStore.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/modules/authStore.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/auth */ "./resources/js/utils/auth.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -61088,34 +61146,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var state = {
-  number: 1,
   user: null,
   isLoggedIn: false
 };
 var actions = {
-  addingNumber: function addingNumber(_ref) {
-    var commit = _ref.commit,
-        state = _ref.state;
-    commit(_mutation_types__WEBPACK_IMPORTED_MODULE_4__["ADDING_NUMBER"], 1);
-  },
-  subtractNumber: function subtractNumber(_ref2) {
-    var commit = _ref2.commit,
-        state = _ref2.state;
-    commit(_mutation_types__WEBPACK_IMPORTED_MODULE_4__["SUBTRACT_NUMBER"], 1);
-  },
-  login: function login(_ref3, data) {
-    var dispatch = _ref3.dispatch,
-        commit = _ref3.commit;
+  login: function login(_ref, data) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('login-api', data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('login-api', data).then(function (response) {
         var token = response.data.token;
         localStorage.setItem('token', token);
-        setHeaderToken(token);
+        Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["setHeaderToken"])(token);
         dispatch('get_user');
         resolve(response);
       })["catch"](function (err) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_4__["RESET_USER"]);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__["RESET_USER"]);
         localStorage.removeItem('token');
+        reject(err);
+      });
+    });
+  },
+  logout: function logout(_ref2) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve) {
+      commit('reset_user');
+      localStorage.removeItem('token');
+      Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["removeHeaderToken"])();
+      resolve();
+    });
+  },
+  register: function register(_ref3, data) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('register', data).then(function (res) {
+        resolve(res);
+      })["catch"](function (err) {
+        commit('reset_user');
         reject(err);
       });
     });
@@ -61139,19 +61206,19 @@ var actions = {
             case 3:
               _context.prev = 3;
               _context.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('user-api');
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('user-api');
 
             case 6:
               response = _context.sent;
-              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_4__["SET_USER"], response.data.data);
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__["SET_USER"], response.data.data);
               _context.next = 16;
               break;
 
             case 10:
               _context.prev = 10;
               _context.t0 = _context["catch"](3);
-              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_4__["RESET_USER"]);
-              removeHeaderToken();
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__["RESET_USER"]);
+              Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["removeHeaderToken"])();
               localStorage.removeItem('token');
               return _context.abrupt("return", _context.t0);
 
@@ -61164,14 +61231,10 @@ var actions = {
     }))();
   }
 };
-var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_4__["ADDING_NUMBER"], function (state, data) {
-  state.number = state.number + data;
-}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_4__["SUBTRACT_NUMBER"], function (state, data) {
-  state.number = state.number - data;
-}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_4__["SET_USER"], function (state, data) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_3__["SET_USER"], function (state, data) {
   state.user = data;
   state.isLoggedIn = true;
-}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_4__["RESET_USER"], function (state) {
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_3__["RESET_USER"], function (state) {
   state.user = null;
   state.isLoggedIn = false;
 }), _mutations);
@@ -61183,14 +61246,12 @@ var getters = {
     return state.user;
   }
 };
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
+/* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
   actions: actions,
   mutations: mutations,
   getters: getters
 });
-/* harmony default export */ __webpack_exports__["default"] = (store);
 
 /***/ }),
 
