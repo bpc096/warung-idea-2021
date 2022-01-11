@@ -16,15 +16,15 @@
           <form @submit.prevent="register">
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" placeholder="Name..">
+              <input v-model="name" type="text" class="form-control" placeholder="Name..">
             </div>
             <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-control" placeholder="Email..">
+              <input v-model="email" type="email" class="form-control" placeholder="Email..">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" placeholder="Password..">
+              <input v-model="password" type="password" class="form-control" placeholder="Password..">
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
           </form>
