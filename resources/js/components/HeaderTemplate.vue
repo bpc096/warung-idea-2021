@@ -23,6 +23,11 @@
       <router-link to="/category/books">Books</router-link>
       <router-link to="/category/movies">Movie</router-link>
     </div>
+    <div v-if="isLoggedIn">
+      <router-link to="/profile" class="button-profile">
+        Profile
+      </router-link>
+    </div>
     <div class="button-wrap">
       <router-link to="/register" class="button-register">
         Register
@@ -35,9 +40,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: "HeaderTemplate",
   computed: {
+    ...mapGetters({
+      isLoggedIn: 'isLoggedIn',
+      user: 'user',
+    }),
     currentRouteName () {
       return this.$route.name
     },
@@ -121,6 +132,21 @@ export default {
       }
     }
     .button-register {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      margin-right: 1rem;
+      width: 40%;
+      height: 2rem;
+      border-radius: 20px;
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+
+    .button-profile {
       display: flex;
       align-items: center;
       justify-content: center;

@@ -14,6 +14,7 @@ import CategoryPage from '../views/CategoryPage.vue'
 import ProjectDetailPage from '../views/ProjectDetailPage.vue'
 import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
+import CheckoutPage from '../views/CheckoutPage.vue'
 
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
@@ -71,6 +72,11 @@ const routes = [
     path: '/projectdetail/:projectId',
     name: 'ProjectDetail',
     component: ProjectDetailPage
+  },
+  {
+    path: '/checkout/:checkoutId',
+    name: 'CheckoutPage',
+    component: CheckoutPage,
   },
   {
     path: '/haloguys',
