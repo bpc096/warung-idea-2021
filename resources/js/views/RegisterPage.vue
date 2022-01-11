@@ -6,7 +6,14 @@
           Register WarungIdea
         </div>
         <div class="card-body">
-          <form>
+          <div
+            class="alert alert-danger"
+            v-for="(error, index) in errors"
+            :key="index"
+          >
+            {{ error[0] }}
+          </div>
+          <form @submit.prevent="register">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" class="form-control" placeholder="Name..">
@@ -29,7 +36,35 @@
 
 <script>
 export default {
-  name: 'RegisterPage'
+  name: 'RegisterPage',
+  data() {
+    return {
+      name: '',
+      email: '',
+      password: '',
+      errors: null
+    }
+  },
+  methods: {
+    register () {
+      let data = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      }
+      this.$store
+        .dispatch("register", data)
+        .then(res => {
+          console.log(res)
+          this.$router.push({
+            name: 'Login'
+          })
+        })
+        .catch(err => {
+          this.errors = error.response.data.errors
+        })
+    }
+  }
 }
 </script>
 
