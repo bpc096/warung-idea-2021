@@ -3263,13 +3263,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      showRewardModal: true
+      showRewardModal: false
     };
   },
   methods: {
     btnSupportHandle: function btnSupportHandle() {
       console.log('CLICK SUPPORT');
-      this.showRewardModal = true;
+      this.showRewardModal = true; // CHECK USER AUTH BEFORE SHOW MODAL
+      // IF USER NOT LOGGED IN REDIRECT TO LOGIN OR REGISTER PAGE
     },
     closeModal: function closeModal() {
       this.showRewardModal = false;

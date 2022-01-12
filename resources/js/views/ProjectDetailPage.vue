@@ -82,13 +82,16 @@ export default {
   },
   data: () => {
     return {
-      showRewardModal: true,
+      showRewardModal: false,
     }
   },
   methods: {
     btnSupportHandle () {
       console.log('CLICK SUPPORT')
       this.showRewardModal = true
+
+      // CHECK USER AUTH BEFORE SHOW MODAL
+      // IF USER NOT LOGGED IN REDIRECT TO LOGIN OR REGISTER PAGE
     },
     closeModal () {
       this.showRewardModal = false
