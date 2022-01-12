@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessageCreated;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    // MessageCreated::dispatch('lorem ipsum dolor sit amet');
+
     return view('welcome');
 });
 
-Auth::routes();
+// Route::view('/{any?}', 'app')->where('any', '.*');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
