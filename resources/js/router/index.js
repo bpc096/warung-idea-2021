@@ -74,7 +74,7 @@ const routes = [
     component: ProjectDetailPage
   },
   {
-    path: '/checkout/:checkoutId',
+    path: '/checkout',
     name: 'CheckoutPage',
     component: CheckoutPage,
   },

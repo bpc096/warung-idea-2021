@@ -1,5 +1,9 @@
 <template>
   <div class="project-detail-page">
+    <RewardModal
+      v-if="showRewardModal"
+      @close="closeModal"
+    />
     <div class="wrap-title">
       <div class="main-title">Project Title</div>
       <div class="main-desc">Project Description</div>
@@ -19,12 +23,18 @@
           25 Hari lagi
         </div>
         <div class="button-wrapper">
-          <div class="btn-support">
+          <button
+            class="btn-support"
+            @click="btnSupportHandle"
+          >
             Support Now
-          </div>
-          <div class="btn-remind">
+          </button>
+          <button
+            class="btn-remind"
+            @click="btnRemindMeHandle"
+          >
             Remind Me Later
-          </div>
+          </button>
         </div>
       </div>
       <div class="project-image-section">
@@ -57,6 +67,9 @@ import campaignTab from '../views/tabViews/CampaignTab.vue'
 import updateTab from '../views/tabViews/UpdateTab.vue'
 import faqTab from '../views/tabViews/FaqTab.vue'
 
+// Modal
+import RewardModal from '../components/RewardModal.vue'
+
 export default {
   name: 'ProjectDetail',
   components: {
@@ -65,6 +78,24 @@ export default {
     campaignTab,
     updateTab,
     faqTab,
+    RewardModal,
+  },
+  data: () => {
+    return {
+      showRewardModal: true,
+    }
+  },
+  methods: {
+    btnSupportHandle () {
+      console.log('CLICK SUPPORT')
+      this.showRewardModal = true
+    },
+    closeModal () {
+      this.showRewardModal = false
+    },
+    btnRemindMeHandle () {
+      console.log('CLICK REMIND ME')
+    }
   }
 }
 </script>
