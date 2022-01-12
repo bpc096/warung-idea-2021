@@ -19,6 +19,7 @@ import CheckoutPage from '../views/CheckoutPage.vue'
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
 import UpdateTab from '../views/tabViews/UpdateTab.vue'
+import store from '../store'
 
 Vue.use(Router)
 
@@ -90,4 +91,30 @@ const routes = [
   }
 ]
 
-export default new Router({ mode: 'history', routes: routes})
+const router = new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.auth)) {
+    if(store.getters.isLoggedIn && store.getters.user) {
+      next()
+      return
+    }
+    next('/login')
+  }
+
+  if(to.matched.some(record => record.meta.guest)) {
+    if(!store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/profile')
+  }
+
+  next()
+})
+
+export default router

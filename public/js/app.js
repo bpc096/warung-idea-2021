@@ -61741,7 +61741,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_HelloWorld_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/HelloWorld.vue */ "./resources/js/components/HelloWorld.vue");
@@ -61757,6 +61757,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_CheckoutPage_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../views/CheckoutPage.vue */ "./resources/js/views/CheckoutPage.vue");
 /* harmony import */ var _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../views/tabViews/CampaignTab.vue */ "./resources/js/views/tabViews/CampaignTab.vue");
 /* harmony import */ var _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../views/tabViews/UpdateTab.vue */ "./resources/js/views/tabViews/UpdateTab.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
 
  // Components
 
@@ -61772,6 +61773,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // Views Tab
+
 
 
 
@@ -61828,10 +61830,38 @@ var routes = [{
   name: 'HelloWorld',
   component: _components_HelloWorld_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }];
-/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
+  base: process.env.BASE_URL,
   routes: routes
-}));
+});
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.auth;
+  })) {
+    if (_store__WEBPACK_IMPORTED_MODULE_15__["default"].getters.isLoggedIn && _store__WEBPACK_IMPORTED_MODULE_15__["default"].getters.user) {
+      next();
+      return;
+    }
+
+    next('/login');
+  }
+
+  if (to.matched.some(function (record) {
+    return record.meta.guest;
+  })) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_15__["default"].getters.isLoggedIn) {
+      next();
+      return;
+    }
+
+    next('/profile');
+  }
+
+  next();
+});
+/* harmony default export */ __webpack_exports__["default"] = (router);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
