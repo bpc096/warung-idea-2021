@@ -4,7 +4,10 @@ import {
   ADDING_NUMBER,
   SUBTRACT_NUMBER,
 } from './mutation-types'
+
+// Module Store
 import authStore from './modules/authStore'
+import profileStore from './modules/profileStore'
 
 const state__ = {
   number: 1,
@@ -37,18 +40,22 @@ const store = new Vuex.Store({
   state: {
     ...state__,
     ...authStore.state,
+    ...profileStore.state
   },
   actions: {
     ...actions__,
     ...authStore.actions,
+    ...profileStore.actions,
   },
   mutations: {
     ...mutations__,
     ...authStore.mutations,
+    ...profileStore.mutations,
   },
   getters: {
     ...getters__,
     ...authStore.getters,
+    ...profileStore.getters,
   },
 })
 

@@ -12,4 +12,8 @@
        <div id="app">
        </div>
     </body>
+    <script
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-clientkey="isi_dengan_client_key_midtrans">
+    </script>
 </html>

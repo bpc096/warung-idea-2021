@@ -16,6 +16,12 @@ import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
 import CheckoutPage from '../views/CheckoutPage.vue'
 
+// Views Campaign
+import CreateCampaign from '../views/campaignViews/CreateCampaign.vue'
+
+// Views User
+import UserProfile from '../views/UserProfile.vue'
+
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
 import UpdateTab from '../views/tabViews/UpdateTab.vue'
@@ -80,6 +86,20 @@ const routes = [
     path: '/checkout',
     name: 'CheckoutPage',
     component: CheckoutPage,
+  },
+  {
+    path: '/profile/:userId',
+    name: 'UserProfile',
+    component: UserProfile,
+    meta: {
+      // TODO: change auth to true after development
+      auth: false,
+    }
+  },
+  {
+    path: '/campaign/create',
+    name: 'CreateCampaign',
+    component: CreateCampaign,
   },
   {
     path: '/haloguys',
