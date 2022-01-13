@@ -43258,15 +43258,13 @@ var render = function () {
       _c("div", { staticClass: "col-md-6 login-card" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _vm._v("\n          Login WarungIdea\n        "),
+            _vm._v("\n        Login WarungIdea\n      "),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _vm.errors.length > 0
               ? _c("div", { staticClass: "alert alert-danger" }, [
-                  _vm._v(
-                    "\n            " + _vm._s(_vm.errors) + "\n          "
-                  ),
+                  _vm._v("\n          " + _vm._s(_vm.errors) + "\n        "),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -61776,6 +61774,7 @@ __webpack_require__.r(__webpack_exports__);
  // Views Tab
 
 
+ // store
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);

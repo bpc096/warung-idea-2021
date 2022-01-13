@@ -19,6 +19,8 @@ import CheckoutPage from '../views/CheckoutPage.vue'
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
 import UpdateTab from '../views/tabViews/UpdateTab.vue'
+
+// store
 import store from '../store'
 
 Vue.use(Router)

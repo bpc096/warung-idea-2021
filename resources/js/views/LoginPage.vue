@@ -1,5 +1,5 @@
 <template>
-<div class="row justify-content-md-center wrap-login-page">
+  <div class="row justify-content-md-center wrap-login-page">
     <div class="col-md-6 login-card">
       <div class="card">
         <div class="card-header">
@@ -62,7 +62,6 @@ export default {
       })
     }
   }
-
 }
 </script>
 
