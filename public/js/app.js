@@ -2196,6 +2196,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RewardModal',
   data: function data() {
@@ -2225,12 +2235,33 @@ __webpack_require__.r(__webpack_exports__);
         rewardPrice: 'Rp10.000.000',
         rewardTitle: 'Reward 05',
         rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }]
+      }],
+      amountDonation: '0'
     };
+  },
+  computed: {
+    amountDonationToNumber: function amountDonationToNumber() {
+      return parseInt(this.amountDonation);
+    },
+    checkRegexAlphabet: function checkRegexAlphabet() {
+      var pattern = /^[0-9]*$/g;
+      return !pattern.test(this.amountDonation);
+    }
   },
   methods: {
     closeModal: function closeModal() {
       this.$emit('close');
+    },
+    donateAmount: function donateAmount() {
+      if (this.checkRegexAlphabet) return;
+      var totalAmount = this.amountDonationToNumber;
+      this.$router.push({
+        name: 'CheckoutPage',
+        params: {
+          checkoutId: 'testingId01',
+          totalAmount: totalAmount
+        }
+      });
     }
   }
 });
@@ -8042,7 +8073,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".modal-mask[data-v-f15166ba] {\n  position: fixed;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.3s ease;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper[data-v-f15166ba] {\n  display: flex;\n  flex-direction: column;\n}\n.modal-mask .modal-wrapper .modal-container[data-v-f15166ba] {\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 20px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-mask .modal-wrapper .modal-container .modal-scroll[data-v-f15166ba] {\n  width: 700px;\n  height: 700px;\n  overflow: auto;\n}\n.modal-mask .modal-wrapper .modal-container div > a[data-v-f15166ba] {\n  text-decoration: none;\n  color: black;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward[data-v-f15166ba] {\n  display: flex;\n  flex-direction: row;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .text-label[data-v-f15166ba] {\n  margin: 0 10px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .input-amount[data-v-f15166ba] {\n  margin: 0 10px;\n  width: 300px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-f15166ba] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-f15166ba]:hover {\n  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price[data-v-f15166ba] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-image[data-v-f15166ba] {\n  background-color: black;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-text-price[data-v-f15166ba] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-title[data-v-f15166ba] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-desc[data-v-f15166ba] {\n  font-size: 15px;\n}\n", ""]);
+exports.push([module.i, ".modal-mask[data-v-f15166ba] {\n  position: fixed;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.3s ease;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper[data-v-f15166ba] {\n  display: flex;\n  flex-direction: column;\n}\n.modal-mask .modal-wrapper .modal-container[data-v-f15166ba] {\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 20px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-mask .modal-wrapper .modal-container .modal-scroll[data-v-f15166ba] {\n  width: 700px;\n  height: 700px;\n  overflow: auto;\n}\n.modal-mask .modal-wrapper .modal-container div > a[data-v-f15166ba] {\n  text-decoration: none;\n  color: black;\n}\n.modal-mask .modal-wrapper .modal-container .text-error[data-v-f15166ba] {\n  color: red;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward[data-v-f15166ba] {\n  display: flex;\n  flex-direction: row;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .text-label[data-v-f15166ba] {\n  margin: 0 10px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .input-amount[data-v-f15166ba] {\n  margin: 0 10px;\n  width: 300px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-f15166ba] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-f15166ba]:hover {\n  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price[data-v-f15166ba] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-image[data-v-f15166ba] {\n  background-color: black;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-text-price[data-v-f15166ba] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-title[data-v-f15166ba] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-desc[data-v-f15166ba] {\n  font-size: 15px;\n}\n", ""]);
 
 // exports
 
@@ -42374,7 +42405,58 @@ var render = function () {
           "div",
           { staticClass: "modal-scroll" },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "modal-non-reward" }, [
+              _c("div", { staticClass: "text-label" }, [
+                _vm._v("Donasi Sukarela"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function ($event) {
+                      $event.preventDefault()
+                      return _vm.donateAmount.apply(null, arguments)
+                    },
+                  },
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.amountDonation,
+                        expression: "amountDonation",
+                      },
+                    ],
+                    staticClass: "input-amount",
+                    attrs: { type: "text", id: "amount", name: "amount" },
+                    domProps: { value: _vm.amountDonation },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.amountDonation = $event.target.value
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "btn-donate", attrs: { type: "submit" } },
+                    [_vm._v("Donate!")]
+                  ),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _vm.checkRegexAlphabet
+              ? _c("div", { staticClass: "text-error" }, [
+                  _vm._v("Please Input Valid Number!"),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _vm._l(_vm.data, function (d, idx) {
               return _c(
@@ -42454,23 +42536,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-non-reward" }, [
-      _c("div", { staticClass: "text-label" }, [_vm._v("Donasi Sukarela")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "input-amount",
-        attrs: { type: "text", id: "amount", name: "amount" },
-      }),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn-donate" }, [_vm._v("Donate!")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

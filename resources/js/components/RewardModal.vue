@@ -5,9 +5,19 @@
         <div class="modal-scroll">
           <div class="modal-non-reward">
             <div class="text-label">Donasi Sukarela</div>
-            <input class="input-amount" type="text" id="amount" name="amount">
-            <button class="btn-donate">Donate!</button>
+            <form @submit.prevent="donateAmount">
+              <input
+                v-model="amountDonation"
+                class="input-amount"
+                type="text"
+                id="amount"
+                name="amount"
+              >
+              <button class="btn-donate" type="submit">Donate!</button>
+            </form>
           </div>
+          <div v-if="checkRegexAlphabet" class="text-error">Please Input Valid Number!</div>
+
           <div v-for="(d, idx) in data" :key="idx">
             <router-link :to="{path: '/checkout', query: { checkoutId: d.rewardId }}">
               <div class="reward-card-container">
@@ -78,12 +88,34 @@ export default {
           rewardTitle: 'Reward 05',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         }
-      ]
+      ],
+      amountDonation: '0',
     }
+  },
+  computed: {
+    amountDonationToNumber () {
+      return  parseInt(this.amountDonation)
+    },
+    checkRegexAlphabet () {
+      const pattern = /^[0-9]*$/g
+      return !pattern.test(this.amountDonation)
+    },
   },
   methods: {
     closeModal () {
       this.$emit('close')
+    },
+    donateAmount () {
+      if(this.checkRegexAlphabet) return
+
+      const totalAmount = this.amountDonationToNumber
+      this.$router.push({
+        name: 'CheckoutPage',
+        params: {
+          checkoutId: 'testingId01',
+          totalAmount: totalAmount,
+        }
+      })
     }
   }
 }
@@ -126,6 +158,10 @@ export default {
      div > a {
        text-decoration: none;
        color: black;
+     }
+
+     .text-error {
+       color: red;
      }
 
       .modal-non-reward {
