@@ -11,7 +11,7 @@ const state = {
 const actions = {
   login({ dispatch, commit }, data) {
     return new Promise((resolve, reject) => {
-      axios.post('login-api', data)
+      axios.post('login', data)
        .then(response => {
          const token = response.data.token
          localStorage.setItem('token', token)

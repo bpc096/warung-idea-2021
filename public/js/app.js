@@ -8472,7 +8472,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.container-vue {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  text-align: center;\n  color: #2c3e50;\n  margin-top: 60px;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  max-width: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.container-vue {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  color: #2c3e50;\r\n  margin-top: 60px;\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 100%;\r\n  max-width: 100%;\n}\r\n", ""]);
 
 // exports
 
@@ -8491,7 +8491,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nh3[data-v-1d11828b] {\n  margin: 40px 0 0;\n}\nul[data-v-1d11828b] {\n  list-style-type: none;\n  padding: 0;\n}\nli[data-v-1d11828b] {\n  display: inline-block;\n  margin: 0 10px;\n}\na[data-v-1d11828b] {\n  color: #42b983;\n}\n", ""]);
+exports.push([module.i, "\nh3[data-v-1d11828b] {\r\n  margin: 40px 0 0;\n}\nul[data-v-1d11828b] {\r\n  list-style-type: none;\r\n  padding: 0;\n}\nli[data-v-1d11828b] {\r\n  display: inline-block;\r\n  margin: 0 10px;\n}\na[data-v-1d11828b] {\r\n  color: #42b983;\n}\r\n", ""]);
 
 // exports
 
@@ -43568,7 +43568,7 @@ var render = function () {
               [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "username" } }, [
-                    _vm._v("Username"),
+                    _vm._v("Email"),
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -43581,7 +43581,7 @@ var render = function () {
                       },
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Username.." },
+                    attrs: { type: "email", placeholder: "Email.." },
                     domProps: { value: _vm.form.email },
                     on: {
                       input: function ($event) {
@@ -61010,7 +61010,7 @@ module.exports = "/images/bookmark.svg?6c239341fd815328685a369a919dd41c";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/facebook.svg?fe27b50c59168a62b1ab319abb7627a5";
+module.exports = "/images/facebook.svg?6c9aa8960e4e5891c67ee6444f6ea41f";
 
 /***/ }),
 
@@ -61021,7 +61021,7 @@ module.exports = "/images/facebook.svg?fe27b50c59168a62b1ab319abb7627a5";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/instagram.svg?775015b8a4daf811f73f33b491c6ad37";
+module.exports = "/images/instagram.svg?13129c9a0b7ad66373e92e1127d26c80";
 
 /***/ }),
 
@@ -61054,7 +61054,7 @@ module.exports = "/images/love.png?53c28de79b7d33443c5af7bb0658c1af";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/twitter.svg?d5568c0926eb8bbfeb690db30c5166ff";
+module.exports = "/images/twitter.svg?f2152b0e939b2b7f1b5afed5eb99d353";
 
 /***/ }),
 
@@ -62372,7 +62372,7 @@ var actions = {
     var dispatch = _ref.dispatch,
         commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('login-api', data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('login', data).then(function (response) {
         var token = response.data.token;
         localStorage.setItem('token', token);
         Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["setHeaderToken"])(token);
@@ -63786,9 +63786,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\less\app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

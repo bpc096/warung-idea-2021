@@ -13,12 +13,12 @@
           </div>
           <form @submit.prevent="userLogin">
             <div class="form-group">
-              <label for="username">Username</label>
+              <label for="username">Email</label>
               <input
                 v-model="form.email"
-                type="text"
+                type="email"
                 class="form-control"
-                placeholder="Username.." >
+                placeholder="Email.." >
             </div>
             <div class="form-group">
               <label for="password">Password</label>
