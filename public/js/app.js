@@ -3563,14 +3563,91 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ChangePassword'
+  name: 'EditProfile',
+  data: function data() {
+    return {
+      passwordConfirmation: '',
+      newPassword: ''
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    user: 'user'
+  })), {}, {
+    imageUrl: function imageUrl() {
+      return this.previewImage ? this.previewImage : this.user.avatar; // return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+    }
+  }),
+  methods: {
+    submitPassword: function submitPassword() {
+      var _this = this;
+
+      if (!this.newPassword || !this.passwordConfirmation) return;
+      var data = {
+        password: this.newPassword,
+        password_confirmation: this.passwordConfirmation
+      };
+      this.$store.dispatch('updatePassword', data).then(function (res) {
+        _this.$router.push({
+          name: 'UserProfile'
+        });
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3584,14 +3661,107 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'EditProfile'
+  name: 'EditProfile',
+  data: function data() {
+    return {
+      name: '',
+      username: '',
+      email: '',
+      gender: '',
+      phonenumber: '',
+      previewImage: null,
+      image: null
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    user: 'user'
+  })), {}, {
+    imageUrl: function imageUrl() {
+      return this.previewImage ? this.previewImage : this.user.avatar; // return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+    }
+  }),
+  methods: {
+    submitEdit: function submitEdit() {
+      var _this = this;
+
+      console.log('Submit Edit');
+      var data = new FormData();
+      data.append('avatar', this.image);
+      data.append('name', this.name);
+      this.$store.dispatch('updateProfile', data).then(function () {
+        _this.$router.push({
+          name: 'UserProfile'
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    uploadImage: function uploadImage(e) {
+      var _this2 = this;
+
+      this.image = e.target.files[0];
+      var image = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(image);
+
+      reader.onload = function (e) {
+        _this2.previewImage = e.target.result;
+      };
+    }
+  }
 });
 
 /***/ }),
@@ -8522,7 +8692,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".change-password-page[data-v-2d923194] {\n  height: 90vh;\n}\n", ""]);
+exports.push([module.i, ".user-profile-edit-page[data-v-2d923194] {\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card[data-v-2d923194] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-2d923194] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-2d923194] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-2d923194] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-2d923194],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-2d923194] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-2d923194],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-2d923194] {\n  margin-left: 3rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-2d923194],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-2d923194] {\n  margin-right: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-2d923194] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-2d923194] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-2d923194]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-2d923194] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-2d923194] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 
 // exports
 
@@ -8541,7 +8711,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".edit-profile-wrap[data-v-11fba484] {\n  height: 90vh;\n}\n", ""]);
+exports.push([module.i, ".user-profile-edit-page[data-v-11fba484] {\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card[data-v-11fba484] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-11fba484] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-11fba484] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-11fba484] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-11fba484],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-11fba484] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-11fba484],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-11fba484] {\n  margin-left: 3rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-11fba484],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-11fba484] {\n  margin-right: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-11fba484] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-11fba484] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-11fba484]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-11fba484] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-11fba484] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 
 // exports
 
@@ -44355,11 +44525,111 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "change-password-page" }, [
-    _vm._v("\n  change password\n"),
+  return _c("div", { staticClass: "user-profile-edit-page" }, [
+    _c("div", { staticClass: "user-profile-card" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.submitPassword.apply(null, arguments)
+            },
+          },
+        },
+        [
+          _c("div", { staticClass: "user-profile-content" }, [
+            _c("div", { staticClass: "user-image" }, [
+              _c("img", {
+                staticClass: "image",
+                attrs: { src: _vm.imageUrl, alt: "icon-user-image" },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-avatar" }, [
+              _c("div", { staticClass: "text-label" }, [
+                _vm._v("New Password"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-value" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newPassword,
+                      expression: "newPassword",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "password", placeholder: "New Password.." },
+                  domProps: { value: _vm.newPassword },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newPassword = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-name" }, [
+              _c("div", { staticClass: "text-label" }, [
+                _vm._v("New Password Confirmation"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-value" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.passwordConfirmation,
+                      expression: "passwordConfirmation",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "password",
+                    placeholder: "Password Confirmation..",
+                  },
+                  domProps: { value: _vm.passwordConfirmation },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.passwordConfirmation = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+        ]
+      ),
+    ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "button-wrap" }, [
+      _c(
+        "button",
+        { staticClass: "button-edit-profile", attrs: { type: "submit" } },
+        [_vm._v("\n          Submit Changes\n        ")]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -44381,11 +44651,91 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "edit-profile-wrap" }, [
-    _vm._v("\n  edit profile\n"),
+  return _c("div", { staticClass: "user-profile-edit-page" }, [
+    _c("div", { staticClass: "user-profile-card" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.submitEdit.apply(null, arguments)
+            },
+          },
+        },
+        [
+          _c("div", { staticClass: "user-profile-content" }, [
+            _c("div", { staticClass: "user-image" }, [
+              _c("img", {
+                staticClass: "image",
+                attrs: { src: _vm.imageUrl, alt: "icon-user-image" },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-avatar" }, [
+              _c("div", { staticClass: "text-label" }, [_vm._v("Avatar")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-value" }, [
+                _c("input", {
+                  attrs: {
+                    type: "file",
+                    name: "image-upload",
+                    accept: "image/*",
+                  },
+                  on: { change: _vm.uploadImage },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-name" }, [
+              _c("div", { staticClass: "text-label" }, [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-value" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Name.." },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+        ]
+      ),
+    ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "button-wrap" }, [
+      _c(
+        "button",
+        { staticClass: "button-edit-profile", attrs: { type: "submit" } },
+        [_vm._v("\n          Submit Edit\n        ")]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -62772,14 +63122,37 @@ var actions = {
       });
     });
   },
-  get_user: function get_user(_ref4) {
+  updateProfile: function updateProfile(_ref4, data) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('profile', data).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__["SET_USER"], res.data.data);
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  updatePassword: function updatePassword(_ref5, data) {
+    var commit = _ref5.commit;
+    return new Promise(function (resolve, reject) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('profile/password', data).then(function (res) {
+        resolve(res);
+        console.log('res', res);
+      })["catch"](function (err) {
+        reject(err);
+        console.log('err', err);
+      });
+    });
+  },
+  get_user: function get_user(_ref6) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var commit, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref4.commit;
+              commit = _ref6.commit;
 
               if (localStorage.getItem('token')) {
                 _context.next = 3;

@@ -46,6 +46,31 @@ const actions = {
       })
     })
   },
+  updateProfile({commit}, data) {
+    return new Promise((resolve, reject) => {
+      axios.post('profile', data)
+        .then(res => {
+          commit(SET_USER, res.data.data)
+          resolve(res)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  },
+  updatePassword({commit}, data) {
+    return new Promise((resolve, reject) => {
+      axios.post('profile/password', data)
+        .then(res => {
+          resolve(res)
+          console.log('res', res)
+        })
+        .catch(err => {
+          reject(err)
+          console.log('err', err)
+        })
+    })
+  },
   async get_user({commit}){
     if(!localStorage.getItem('token')) {
       return
