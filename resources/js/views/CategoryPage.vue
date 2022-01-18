@@ -30,9 +30,9 @@ export default {
       projectList: 7,
       projectId: 'id-sekian',
       testDataProject: {
-        imageUrl: '/project-img-url',
-        titleText: 'Project Title',
-        descText: `Project ipsum dolor sit amet, consectetur adipiscing elit.
+        image: '/project-img-url',
+        title: 'Project Title',
+        description: `Project ipsum dolor sit amet, consectetur adipiscing elit.
           Aenean orci e diam sapien, finibus eu metus ac,
           porttitor feugiat elit. Vestibulum varius ultricies ante,
           in convallis justo varius a.`

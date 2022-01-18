@@ -15,7 +15,7 @@
         </div>
         <div class="project-feature-card">
           <router-link to="/projectDetail">
-            <ProjectCardFeature 
+            <ProjectCardFeature
               :projectData="projectFeatureSingle"
             />
           </router-link>
@@ -26,7 +26,7 @@
           Popular Project
         </div>
         <div v-if="isPopularContentMore" class="section-content-more">
-          <carousel 
+          <carousel
             :scrollPerPage="false"
             :navigationEnabled="false"
           >
@@ -55,7 +55,7 @@
         <div v-else class="section-content">
           <div v-for="(project, index) in projectPopular" :key="index + project.contentId">
             <router-link to="/projectDetail">
-              <ProjectMainCard 
+              <ProjectMainCard
                 :projectData="project"
               />
             </router-link>
@@ -69,7 +69,7 @@
         <div class="section-content">
           <div v-for="(project, index) in projectMostFunding" :key="index + project.contentId">
             <router-link :to="{ path: '/projectDetail', query: { projectId: project.contentId }}">
-              <ProjectMainCard 
+              <ProjectMainCard
                 :projectData="project"
               />
             </router-link>
@@ -81,9 +81,9 @@
           Article and News
         </div>
         <div class="section-content">
-          <ArticleCard 
-            v-for="(article, index) in articleAndNews"
-            :key="index + article.contentId"
+          <ArticleCard
+            v-for="(article, index) in articleAndNews.data"
+            :key="index + article.id"
             :articleData="article"
           />
         </div>
@@ -101,6 +101,7 @@ import ArticleCard from '../components/cardComponent/ArticleCard.vue'
 
 // Utils
 import { Carousel, Slide } from 'vue-carousel'
+import { mapGetters } from 'vuex'
 
 
 export default {
@@ -118,7 +119,7 @@ export default {
       isPopularContentMore: false,
       isFundingContentMore: false,
       projectFeatureSingle: {},
-      projectFeatureList: [],      
+      projectFeatureList: [],
       projectPopular: [],
       projectMostFunding: [],
       articleAndNews: [],
@@ -126,6 +127,11 @@ export default {
   },
   created () {
     this.checkAvailableContent()
+  },
+  computed: {
+    ...mapGetters({
+      articles: 'articles'
+    })
   },
   methods: {
     checkAvailableContent () {
@@ -197,37 +203,11 @@ export default {
     },
     checkAvailableArticleAndNews () {
       // CHECKING API FOR AVAILABLE ARTICLE AND NEWS
-      const tempContentArticle = [
-        {
-          contentId: 4,
-          contentImageURL: '/article-foure',
-          contentTitle: 'News Four',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci e diam sapien, finibus eu metus ac, porttitor feugiat elit. Vestibulum varius ultricies ante, in convallis justo varius a.',
-          contentCreator: 'Mister Four',
-        },
-        {
-          contentId: 9,
-          contentImageURL: '/article-nine',
-          contentTitle: 'News Nine',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci e diam sapien, finibus eu metus ac, porttitor feugiat elit. Vestibulum varius ultricies ante, in convallis justo varius a.',
-          contentCreator: 'Mister Nine',
-        },
-        {
-          contentId: 10,
-          contentImageURL: '/article-ten',
-          contentTitle: 'News Ten',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci e diam sapien, finibus eu metus ac, porttitor feugiat elit. Vestibulum varius ultricies ante, in convallis justo varius a.',
-          contentCreator: 'Mister Ten',
-        },
-        {
-          contentId: 11,
-          contentImageURL: '/article-eleven',
-          contentTitle: 'News Eleven',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci e diam sapien, finibus eu metus ac, porttitor feugiat elit. Vestibulum varius ultricies ante, in convallis justo varius a.',
-          contentCreator: 'Mister Eleven',
-        },
-      ]
-      this.articleAndNews = tempContentArticle
+      this.$store.dispatch('initArticle')
+        .then(res => {
+          this.articleAndNews = this.articles
+        })
+      // this.articleAndNews = tempContentArticle
     },
   }
 }

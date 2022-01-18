@@ -47,11 +47,11 @@ const actions = {
     })
   },
   async get_user({commit}){
-    if(!localStorage.getItem('token')){
+    if(!localStorage.getItem('token')) {
       return
     }
     try{
-      let response = await axios.get('user-api')
+      let response = await axios.get('profile')
         commit(SET_USER, response.data.data)
     } catch (error){
         commit(RESET_USER)

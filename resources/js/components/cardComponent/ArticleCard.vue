@@ -1,14 +1,14 @@
 <template>
   <div class="article-card-wrapper">
     <div class="article-image">
-      {{ urlImage }}
+      <img :src="urlImage" alt="image-dummy-article">
     </div>
     <div class="article-info">
       <div class="article-title">
-       {{ titleText }}
+       {{ titleText.slice(0,30) }} ...
       </div>
       <div class="article-desc">
-        {{ descText }}
+        {{ descText.slice(0,120) }} ...
       </div>
     </div>
   </div>
@@ -34,13 +34,13 @@ export default {
   },
   computed: {
     urlImage () {
-      return this.articleData.imageUrl
+      return this.articleData.image
     },
     titleText () {
-      return this.articleData.titleText
+      return this.articleData.title
     },
     descText () {
-      return this.articleData.descText
+      return this.articleData.description
     }
   }
 }
@@ -57,6 +57,11 @@ export default {
   .article-image {
     background-color: pink;
     height: 50%;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
   }
 
   .article-info {

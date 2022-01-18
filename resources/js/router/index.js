@@ -20,7 +20,9 @@ import CheckoutPage from '../views/CheckoutPage.vue'
 import CreateCampaign from '../views/campaignViews/CreateCampaign.vue'
 
 // Views User
-import UserProfile from '../views/UserProfile.vue'
+import UserProfile from '../views/userViews/UserProfile.vue'
+import ChangePassword from '../views/userViews/ChangePassword.vue'
+import EditProfile from '../views/userViews/EditProfile.vue'
 
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
@@ -88,12 +90,30 @@ const routes = [
     component: CheckoutPage,
   },
   {
-    path: '/profile/:userId',
+    path: '/profile',
     name: 'UserProfile',
     component: UserProfile,
     meta: {
       // TODO: change auth to true after development
       auth: false,
+    }
+  },
+  {
+    path: '/profile/changepassword',
+    name: 'ChangePassword',
+    component: ChangePassword,
+    meta: {
+      // TODO: Change auth to true after ddevelopment
+      auth: false
+    }
+  },
+  {
+    path: '/profile/editProfile',
+    name: 'EditProfile',
+    component: EditProfile,
+    meta: {
+      // TODO: Change auth to true
+      auth: false
     }
   },
   {

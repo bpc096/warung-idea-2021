@@ -24,10 +24,10 @@
       <router-link to="/category/movies">Movie</router-link>
     </div>
     <div v-if="isLoggedIn" class="button-wrap">
-      <router-link to="/profile/123" class="button-profile">
+      <router-link to="/profile" class="button-profile">
         Profile
       </router-link>
-      <a class="button-logout">
+      <a @click="logout" class="button-logout">
         Logout
       </a>
     </div>
@@ -193,6 +193,7 @@ export default {
       &:hover {
         background-color: black;
         color: white;
+        cursor: pointer;
       }
     }
   }
