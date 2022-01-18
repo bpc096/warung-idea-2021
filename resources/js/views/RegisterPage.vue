@@ -26,6 +26,10 @@
               <label for="password">Password</label>
               <input v-model="password" type="password" class="form-control" placeholder="Password..">
             </div>
+            <div class="form-group">
+              <label for="pass-confirmation">Password Confirmation</label>
+              <input v-model="passwordConfirmation" type="password" class="form-control" placeholder="Password Confirmation...">
+            </div>
             <button type="submit" class="btn btn-primary">Register</button>
           </form>
         </div>
@@ -42,7 +46,8 @@ export default {
       name: '',
       email: '',
       password: '',
-      errors: null
+      passwordConfirmation: '',
+      errors: null,
     }
   },
   methods: {
@@ -51,17 +56,17 @@ export default {
         name: this.name,
         email: this.email,
         password: this.password,
+        password_confirmation: this.passwordConfirmation,
       }
       this.$store
         .dispatch("register", data)
         .then(res => {
-          console.log(res)
           this.$router.push({
-            name: 'Login'
+            name: 'LoginPage'
           })
         })
         .catch(err => {
-          this.errors = error.response.data.errors
+          this.errors = err.response.data.errors || [['Register Failed Please Try Again!']]
         })
     }
   }

@@ -28,7 +28,7 @@ const actions = {
   },
   logout({commit}) {
     return new Promise(resolve => {
-      commit('reset_user')
+      commit(RESET_USER)
       localStorage.removeItem('token')
       removeHeaderToken()
       resolve()
@@ -41,7 +41,7 @@ const actions = {
         resolve(res)
       })
       .catch(err => {
-        commit('reset_user')
+        commit(RESET_USER)
         reject(err)
       })
     })

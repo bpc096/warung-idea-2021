@@ -51,13 +51,10 @@ export default {
   },
   methods: {
     userLogin() {
-      console.log(this.form)
       this.$store.dispatch('login', this.form)
       .then(res => {
-        console.log(res)
         this.$router.push({name: 'HomePage', path: '/home'})
       }).catch(err => {
-        console.log(err.response)
         this.errors = err.response.data.message
       })
     }

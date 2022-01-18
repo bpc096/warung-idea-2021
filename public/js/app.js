@@ -2072,9 +2072,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderTemplate",
+  data: function data() {
+    return {
+      loginMock: true
+    };
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     isLoggedIn: 'isLoggedIn',
     user: 'user'
@@ -2084,8 +2092,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     isInLanding: function isInLanding() {
       return this.$route.name === 'LandingPage' || this.$route.name === 'AboutUsPage';
+    },
+    isUserLoggedIn: function isUserLoggedIn() {
+      return this.loginMock;
     }
-  })
+  }),
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      this.$store.dispatch('logout').then(function () {
+        _this.$router.push('/');
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3200,16 +3220,12 @@ __webpack_require__.r(__webpack_exports__);
     userLogin: function userLogin() {
       var _this = this;
 
-      console.log(this.form);
       this.$store.dispatch('login', this.form).then(function (res) {
-        console.log(res);
-
         _this.$router.push({
           name: 'HomePage',
           path: '/home'
         });
       })["catch"](function (err) {
-        console.log(err.response);
         _this.errors = err.response.data.message;
       });
     }
@@ -3378,6 +3394,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RegisterPage',
   data: function data() {
@@ -3385,6 +3405,7 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       email: '',
       password: '',
+      passwordConfirmation: '',
       errors: null
     };
   },
@@ -3395,16 +3416,15 @@ __webpack_require__.r(__webpack_exports__);
       var data = {
         name: this.name,
         email: this.email,
-        password: this.password
+        password: this.password,
+        password_confirmation: this.passwordConfirmation
       };
       this.$store.dispatch("register", data).then(function (res) {
-        console.log(res);
-
         _this.$router.push({
-          name: 'Login'
+          name: 'LoginPage'
         });
       })["catch"](function (err) {
-        _this.errors = error.response.data.errors;
+        _this.errors = err.response.data.errors || [['Register Failed Please Try Again!']];
       });
     }
   }
@@ -8054,7 +8074,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid grey;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: pink;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 15%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-left: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n", ""]);
+exports.push([module.i, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid grey;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: pink;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 15%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-left: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n", ""]);
 
 // exports
 
@@ -42070,35 +42090,38 @@ var render = function () {
     _vm.isLoggedIn
       ? _c(
           "div",
+          { staticClass: "button-wrap" },
           [
             _c(
               "router-link",
-              { staticClass: "button-profile", attrs: { to: "/profile" } },
+              { staticClass: "button-profile", attrs: { to: "/profile/123" } },
               [_vm._v("\n      Profile\n    ")]
             ),
+            _vm._v(" "),
+            _c("a", { staticClass: "button-logout" }, [
+              _vm._v("\n      Logout\n    "),
+            ]),
           ],
           1
         )
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "button-wrap" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "button-register", attrs: { to: "/register" } },
-          [_vm._v("\n      Register\n    ")]
+      : _c(
+          "div",
+          { staticClass: "button-wrap" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "button-register", attrs: { to: "/register" } },
+              [_vm._v("\n      Register\n    ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "button-login", attrs: { to: "/login" } },
+              [_vm._v("\n      Login\n    ")]
+            ),
+          ],
+          1
         ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          { staticClass: "button-login", attrs: { to: "/login" } },
-          [_vm._v("\n      Login\n    ")]
-        ),
-      ],
-      1
-    ),
   ])
 }
 var staticRenderFns = [
@@ -43893,6 +43916,37 @@ var render = function () {
                             return
                           }
                           _vm.password = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "pass-confirmation" } }, [
+                      _vm._v("Password Confirmation"),
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.passwordConfirmation,
+                          expression: "passwordConfirmation",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        placeholder: "Password Confirmation...",
+                      },
+                      domProps: { value: _vm.passwordConfirmation },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.passwordConfirmation = $event.target.value
                         },
                       },
                     }),
@@ -62388,7 +62442,7 @@ var actions = {
   logout: function logout(_ref2) {
     var commit = _ref2.commit;
     return new Promise(function (resolve) {
-      commit('reset_user');
+      commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__["RESET_USER"]);
       localStorage.removeItem('token');
       Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["removeHeaderToken"])();
       resolve();
@@ -62400,7 +62454,7 @@ var actions = {
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('register', data).then(function (res) {
         resolve(res);
       })["catch"](function (err) {
-        commit('reset_user');
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__["RESET_USER"]);
         reject(err);
       });
     });
