@@ -1,5 +1,8 @@
 <template>
   <div class="user-profile-edit-page">
+    <div class="title-page">
+      CREATE CAMPAIGN
+    </div>
     <div class="user-profile-card">
       <form @submit.prevent="submitCampaign">
         <div class="user-profile-content">
@@ -108,8 +111,8 @@ export default {
   methods: {
     submitcampaign() {
       let data = new FormData()
-      data.append('avatar', this.image)
-      data.append('name', this.name)
+      data.append('image', this.image)
+      data.append('title', this.title)
 
       this.$store
         .dispatch('updateProfile', data)
@@ -140,9 +143,16 @@ export default {
 .user-profile-edit-page {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 5rem 0;
+
+  .title-page {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
 
 
   .user-profile-card {

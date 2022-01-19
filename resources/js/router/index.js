@@ -18,6 +18,8 @@ import CheckoutPage from '../views/CheckoutPage.vue'
 
 // Views Campaign
 import CreateCampaign from '../views/campaignViews/CreateCampaign.vue'
+import EditCampaign from '../views/campaignViews/EditCampaign.vue'
+import HistoryCampaign from '../views/campaignViews/HistoryCampaign.vue'
 
 // Views User
 import UserProfile from '../views/userViews/UserProfile.vue'
@@ -120,6 +122,16 @@ const routes = [
     path: '/campaign/create',
     name: 'CreateCampaign',
     component: CreateCampaign,
+  },
+  {
+    path: '/campaign/history',
+    name: 'HistoryCampaign',
+    component: HistoryCampaign,
+  },
+  {
+    path: '/campaign/edit',
+    name: 'EditCampaign',
+    component: EditCampaign,
   },
   {
     path: '/haloguys',
