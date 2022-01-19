@@ -9,6 +9,7 @@ import {
 import authStore from './modules/authStore'
 import profileStore from './modules/profileStore'
 import articleStore from './modules/articleStore'
+import campaignStore from './modules/campaignStore'
 
 const state__ = {
   number: 1,
@@ -42,25 +43,29 @@ const store = new Vuex.Store({
     ...state__,
     ...authStore.state,
     ...profileStore.state,
-    ...articleStore.state
+    ...articleStore.state,
+    ...campaignStore.state,
   },
   actions: {
     ...actions__,
     ...authStore.actions,
     ...profileStore.actions,
     ...articleStore.actions,
+    ...campaignStore.actions,
   },
   mutations: {
     ...mutations__,
     ...authStore.mutations,
     ...profileStore.mutations,
     ...articleStore.mutations,
+    ...campaignStore.mutations,
   },
   getters: {
     ...getters__,
     ...authStore.getters,
     ...profileStore.getters,
     ...articleStore.getters,
+    ...campaignStore.getters
   },
 })
 
