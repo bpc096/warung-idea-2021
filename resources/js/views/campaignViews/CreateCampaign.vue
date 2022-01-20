@@ -32,11 +32,13 @@
             </div>
           </div>
           <div class="user-name">
-            <div class="text-label">Campaign Cateogry</div>
-            <div class="text-value">
+            <div class="text-label">Campaign Category</div>
+            <div class="text-category">
               <input
                 v-model="categoryId"
-                type="text"
+                type="number"
+                min="1"
+                max="6"
                 class="form-control"
                 placeholder="Cateogry.."
               >
@@ -103,8 +105,8 @@ export default {
     return {
       image: null,
       title: '',
-      categoryId: 0,
-      targetDonation: 0,
+      categoryId: 1,
+      targetDonation: 1,
       maxDate: null,
       description: '',
       previewImage: null,
@@ -135,7 +137,7 @@ export default {
     }
   },
   methods: {
-    submitcampaign() {
+    submitCampaign() {
       let data = new FormData()
       data.append('image', this.image)
       data.append('title', this.title)
@@ -176,7 +178,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5rem 0;
+  margin: 10rem 0;
 
   .title-page {
     font-size: 30px;
@@ -221,6 +223,11 @@ export default {
 
       .text-value {
         margin-right: 2rem;
+      }
+
+      .text-category {
+        margin-right: 2rem;
+        min-width: 13.5rem;
       }
     }
 

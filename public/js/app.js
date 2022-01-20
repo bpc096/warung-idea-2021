@@ -3541,6 +3541,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CreateCampaign',
@@ -3548,8 +3550,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       image: null,
       title: '',
-      categoryId: 0,
-      targetDonation: 0,
+      categoryId: 1,
+      targetDonation: 1,
       maxDate: null,
       description: '',
       previewImage: null,
@@ -3582,7 +3584,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: {
-    submitcampaign: function submitcampaign() {
+    submitCampaign: function submitCampaign() {
       var _this = this;
 
       var data = new FormData();
@@ -8980,7 +8982,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".user-profile-edit-page[data-v-3070b13c] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 5rem 0;\n}\n.user-profile-edit-page .title-page[data-v-3070b13c] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-3070b13c] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-3070b13c] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-3070b13c] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-3070b13c] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-3070b13c] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-3070b13c] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-3070b13c]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-3070b13c] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-3070b13c] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+exports.push([module.i, ".user-profile-edit-page[data-v-3070b13c] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-3070b13c] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-3070b13c] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-3070b13c] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-3070b13c] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-3070b13c] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-3070b13c] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-3070b13c] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-3070b13c] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-3070b13c]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-3070b13c] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-3070b13c] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 
 // exports
 
@@ -8999,7 +9001,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".user-profile-edit-page[data-v-f69cd16c] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 5rem 0;\n}\n.user-profile-edit-page .title-page[data-v-f69cd16c] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-f69cd16c] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-f69cd16c] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-f69cd16c] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-f69cd16c] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-f69cd16c] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-f69cd16c] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-f69cd16c]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-f69cd16c] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-f69cd16c] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+exports.push([module.i, ".user-profile-edit-page[data-v-f69cd16c] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-f69cd16c] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-f69cd16c] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-f69cd16c] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-f69cd16c] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-f69cd16c] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-f69cd16c] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-f69cd16c] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-f69cd16c]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-f69cd16c] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-f69cd16c] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 
 // exports
 
@@ -44868,10 +44870,10 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "user-name" }, [
               _c("div", { staticClass: "text-label" }, [
-                _vm._v("Campaign Cateogry"),
+                _vm._v("Campaign Category"),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "text-value" }, [
+              _c("div", { staticClass: "text-category" }, [
                 _c("input", {
                   directives: [
                     {
@@ -44882,7 +44884,12 @@ var render = function () {
                     },
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "Cateogry.." },
+                  attrs: {
+                    type: "number",
+                    min: "1",
+                    max: "6",
+                    placeholder: "Cateogry..",
+                  },
                   domProps: { value: _vm.categoryId },
                   on: {
                     input: function ($event) {

@@ -147,7 +147,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5rem 0;
+  margin: 10rem 0;
 
   .title-page {
     font-size: 30px;
