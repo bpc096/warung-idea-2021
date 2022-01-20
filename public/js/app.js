@@ -2291,6 +2291,79 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'CampaignCard',
+  data: function data() {
+    return {
+      progress: '59'
+    };
+  },
+  computed: {
+    progressPercentage: function progressPercentage() {
+      if (parseInt(this.progress) <= 0) {
+        return '1';
+      } else if (parseInt(this.progress) >= 100) {
+        return '100';
+      } else {
+        return this.progress;
+      }
+    },
+    checkEligibleToEdit: function checkEligibleToEdit() {
+      // TODO : Check Eligiblelity to edit campaign
+      return true;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=script&lang=js& ***!
@@ -2316,9 +2389,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ArticleCardWrapper',
   props: {
+    isCampaign: {
+      type: Boolean,
+      "default": false
+    },
     articleData: {
       type: Object,
       "default": function _default() {
@@ -2628,6 +2708,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/cardComponent/ArticleCard.vue */ "./resources/js/components/cardComponent/ArticleCard.vue");
+//
 //
 //
 //
@@ -3797,6 +3878,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/campaignComponent/CampaignCard */ "./resources/js/components/campaignComponent/CampaignCard.vue");
 //
 //
 //
@@ -3814,42 +3896,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HistoryCampaign',
+  components: {
+    CampaignCard: _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       progress: '59'
@@ -8841,6 +8893,25 @@ exports.push([module.i, ".modal-mask[data-v-f15166ba] {\n  position: fixed;\n  z
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=style&index=0&id=5cf787ee&lang=less&scoped=true&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=style&index=0&id=5cf787ee&lang=less&scoped=true& ***!
@@ -8853,7 +8924,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".article-card-wrapper[data-v-5cf787ee] {\n  height: 25rem;\n  margin: 0 2rem;\n  border: 1px solid #201f1f;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.article-card-wrapper .article-image[data-v-5cf787ee] {\n  background-color: pink;\n  height: 50%;\n}\n.article-card-wrapper .article-image img[data-v-5cf787ee] {\n  height: 100%;\n  width: 100%;\n}\n.article-card-wrapper .article-info[data-v-5cf787ee] {\n  height: 50%;\n  text-align: left;\n}\n.article-card-wrapper .article-info .article-title[data-v-5cf787ee] {\n  padding: 5px 10px;\n  color: black;\n  font-size: 24px;\n  font-weight: 600;\n}\n.article-card-wrapper .article-info .article-desc[data-v-5cf787ee] {\n  padding: 5px 10px;\n  color: black;\n}\n", ""]);
+exports.push([module.i, ".article-card-wrapper[data-v-5cf787ee] {\n  min-height: 24rem;\n  margin: 0 2rem;\n  border: 1px solid #201f1f;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.article-card-wrapper .article-image[data-v-5cf787ee] {\n  background-color: pink;\n  height: 10rem;\n}\n.article-card-wrapper .article-image img[data-v-5cf787ee] {\n  height: 100%;\n  width: 100%;\n}\n.article-card-wrapper .article-info[data-v-5cf787ee] {\n  height: 50%;\n  text-align: left;\n  margin: 10px 0;\n}\n.article-card-wrapper .article-info .article-title[data-v-5cf787ee] {\n  padding: 5px 10px;\n  color: black;\n  font-size: 24px;\n  font-weight: 600;\n}\n.article-card-wrapper .article-info .article-desc[data-v-5cf787ee] {\n  padding: 5px 10px;\n  color: black;\n}\n.article-card-wrapper .article-info .donation-info[data-v-5cf787ee] {\n  padding: 5px 10px;\n  color: green;\n  font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -9024,7 +9095,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".home-wrapper[data-v-9872dda6] {\n  margin-bottom: 5rem;\n  display: flex;\n  justify-content: center;\n}\n.home-wrapper .section[data-v-9872dda6] {\n  padding: 0 4rem;\n  width: 80%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.home-wrapper .section .feature-section[data-v-9872dda6] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  flex-direction: row;\n  margin-top: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card[data-v-9872dda6] {\n  width: 100%;\n  padding: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card a[data-v-9872dda6] {\n  text-decoration: none;\n}\n.home-wrapper .section .feature-section .project-feature-list[data-v-9872dda6] {\n  width: 100%;\n}\n.home-wrapper .section .feature-section .project-feature-list a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6] {\n  margin: 20px 0 0 0;\n  height: 70vh;\n}\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  height: 70vh;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6],\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.home-wrapper .section .popular-section .section-title[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .popular-section .section-content[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content[data-v-9872dda6] {\n  display: flex;\n  flex-direction: row;\n  height: 70%;\n  width: 100%;\n  align-items: center;\n}\n.home-wrapper .section .popular-section .section-content a[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .article-section[data-v-9872dda6] {\n  height: 70vh;\n  width: 100%;\n  margin-top: 4rem;\n}\n.home-wrapper .section .article-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .article-section .section-content[data-v-9872dda6] {\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  margin-top: 4rem;\n}\n", ""]);
+exports.push([module.i, ".home-wrapper[data-v-9872dda6] {\n  margin-bottom: 5rem;\n  display: flex;\n  justify-content: center;\n}\n.home-wrapper .section[data-v-9872dda6] {\n  padding: 0 4rem;\n  width: 80%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.home-wrapper .section .feature-section[data-v-9872dda6] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  flex-direction: row;\n  margin-top: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card[data-v-9872dda6] {\n  width: 100%;\n  padding: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card a[data-v-9872dda6] {\n  text-decoration: none;\n}\n.home-wrapper .section .feature-section .project-feature-list[data-v-9872dda6] {\n  width: 100%;\n}\n.home-wrapper .section .feature-section .project-feature-list a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6] {\n  margin: 20px 0 0 0;\n  height: 70vh;\n}\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  height: 70vh;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6],\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.home-wrapper .section .popular-section .section-title[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .popular-section .section-content[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content[data-v-9872dda6] {\n  display: flex;\n  flex-direction: row;\n  height: 70%;\n  width: 100%;\n  align-items: center;\n}\n.home-wrapper .section .popular-section .section-content a[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .article-section[data-v-9872dda6] {\n  height: 30vh;\n  width: 100%;\n  margin-bottom: 20rem;\n}\n.home-wrapper .section .article-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .article-section .section-content[data-v-9872dda6] {\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  margin-top: 4rem;\n}\n", ""]);
 
 // exports
 
@@ -9157,7 +9228,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".history-campaign-wrap[data-v-3a664ae4] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.history-campaign-wrap .title-page[data-v-3a664ae4] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-3a664ae4] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .campaign-card[data-v-3a664ae4] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-3a664ae4] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-3a664ae4] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-3a664ae4] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-3a664ae4] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-3a664ae4] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-3a664ae4] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-3a664ae4] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-3a664ae4] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-3a664ae4] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
+exports.push([module.i, ".history-campaign-wrap[data-v-3a664ae4] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.history-campaign-wrap .title-page[data-v-3a664ae4] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-3a664ae4] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n", ""]);
 
 // exports
 
@@ -41455,6 +41526,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--10-2!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=style&index=0&id=5cf787ee&lang=less&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=style&index=0&id=5cf787ee&lang=less&scoped=true& ***!
@@ -43563,6 +43664,93 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=template&id=66fc7d6d&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=template&id=66fc7d6d&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "campaign-card" }, [
+    _c("div", { staticClass: "campaign-image" }, [
+      _vm._v("\n      image\n    "),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "campaign-content" }, [
+      _c("div", { staticClass: "campaign-title" }, [
+        _vm._v("\n        Title Campaign\n      "),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "campaign-desc" }, [
+        _vm._v(
+          "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.\n      "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "campaign-donation-status" }, [
+        _vm._v("\n        Donation Target\n        "),
+        _c("div", { staticClass: "shell" }, [
+          _c(
+            "div",
+            {
+              staticClass: "bar-progress",
+              style: { width: _vm.progressPercentage + "%" },
+            },
+            [_c("span", [_vm._v(_vm._s(_vm.progressPercentage) + "%")])]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "campaign-wrap-button" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn-view-campaign",
+          attrs: { href: "/projectdetail/123" },
+        },
+        [_vm._v("\n          View Campaign\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn-edit-campaign", attrs: { href: "/campaign/edit" } },
+        [_vm._v("\n          Edit Campaign\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn-delete-campaign",
+          attrs: { href: "#deleteCampaign" },
+        },
+        [_vm._v("\n          Delete Campaign\n        ")]
+      ),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=template&id=5cf787ee&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/cardComponent/ArticleCard.vue?vue&type=template&id=5cf787ee&scoped=true& ***!
@@ -43591,6 +43779,12 @@ var render = function () {
       _c("div", { staticClass: "article-desc" }, [
         _vm._v("\n      " + _vm._s(_vm.descText.slice(0, 120)) + " ...\n    "),
       ]),
+      _vm._v(" "),
+      _vm.isCampaign
+        ? _c("div", { staticClass: "donation-info" }, [
+            _vm._v("\n      Total Donation 100%\n    "),
+          ])
+        : _vm._e(),
     ]),
   ])
 }
@@ -43971,7 +44165,7 @@ var render = function () {
             { attrs: { href: "/projectdetail/" + _vm.projectId } },
             [
               _c("ProjectCard", {
-                attrs: { articleData: _vm.testDataProject },
+                attrs: { articleData: _vm.testDataProject, isCampaign: true },
               }),
             ],
             1
@@ -45447,100 +45641,42 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "history-campaign-wrap" }, [
-    _c("div", { staticClass: "title-page" }, [
-      _vm._v("\n    History Campaign Page\n  "),
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "button-upper-campaign" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "button-create", attrs: { to: "/campaign/create" } },
-          [_vm._v("\n      + Add New Campaign\n    ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "button-history-donation",
-            attrs: { to: "/campaign/history/donation" },
-          },
-          [_vm._v("\n      History Donation Page\n    ")]
-        ),
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "campaign-card" }, [
-      _c("div", { staticClass: "campaign-image" }, [
-        _vm._v("\n      image\n    "),
+  return _c(
+    "div",
+    { staticClass: "history-campaign-wrap" },
+    [
+      _c("div", { staticClass: "title-page" }, [
+        _vm._v("\n    History Campaign Page\n  "),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "campaign-content" }, [
-        _c("div", { staticClass: "campaign-title" }, [
-          _vm._v("\n        Title Campaign\n      "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "campaign-desc" }, [
-          _vm._v(
-            "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.\n      "
+      _c(
+        "div",
+        { staticClass: "button-upper-campaign" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "button-create", attrs: { to: "/campaign/create" } },
+            [_vm._v("\n      + Add New Campaign\n    ")]
           ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "campaign-donation-status" }, [
-          _vm._v("\n        Donation Target\n        "),
-          _c("div", { staticClass: "shell" }, [
-            _c(
-              "div",
-              {
-                staticClass: "bar-progress",
-                style: { width: _vm.progressPercentage + "%" },
-              },
-              [_c("span", [_vm._v(_vm._s(_vm.progressPercentage) + "%")])]
-            ),
-          ]),
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-      ]),
-    ]),
-  ])
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "button-history-donation",
+              attrs: { to: "/campaign/history/donation" },
+            },
+            [_vm._v("\n      History Donation Page\n    ")]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("CampaignCard"),
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "campaign-wrap-button" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn-view-campaign",
-          attrs: { href: "/projectdetail/123" },
-        },
-        [_vm._v("\n          View Campaign\n        ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "btn-edit-campaign", attrs: { href: "/campaign/edit" } },
-        [_vm._v("\n          Edit Campaign\n        ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn-delete-campaign",
-          attrs: { href: "#deleteCampaign" },
-        },
-        [_vm._v("\n          Delete Campaign\n        ")]
-      ),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -63538,6 +63674,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RewardModal_vue_vue_type_template_id_f15166ba_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RewardModal_vue_vue_type_template_id_f15166ba_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/campaignComponent/CampaignCard.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/campaignComponent/CampaignCard.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CampaignCard_vue_vue_type_template_id_66fc7d6d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CampaignCard.vue?vue&type=template&id=66fc7d6d&scoped=true& */ "./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=template&id=66fc7d6d&scoped=true&");
+/* harmony import */ var _CampaignCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CampaignCard.vue?vue&type=script&lang=js& */ "./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _CampaignCard_vue_vue_type_style_index_0_id_66fc7d6d_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true& */ "./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _CampaignCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CampaignCard_vue_vue_type_template_id_66fc7d6d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CampaignCard_vue_vue_type_template_id_66fc7d6d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "66fc7d6d",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/campaignComponent/CampaignCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true&":
+/*!******************************************************************************************************************************!*\
+  !*** ./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true& ***!
+  \******************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_style_index_0_id_66fc7d6d_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--10-2!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=style&index=0&id=66fc7d6d&lang=less&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_style_index_0_id_66fc7d6d_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_style_index_0_id_66fc7d6d_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_style_index_0_id_66fc7d6d_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_style_index_0_id_66fc7d6d_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=template&id=66fc7d6d&scoped=true&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=template&id=66fc7d6d&scoped=true& ***!
+  \***************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_template_id_66fc7d6d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignCard.vue?vue&type=template&id=66fc7d6d&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/campaignComponent/CampaignCard.vue?vue&type=template&id=66fc7d6d&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_template_id_66fc7d6d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCard_vue_vue_type_template_id_66fc7d6d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

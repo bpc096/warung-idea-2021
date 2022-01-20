@@ -9,6 +9,7 @@
         <a :href="'/projectdetail/'+ projectId">
           <ProjectCard
           :articleData="testDataProject"
+          :isCampaign="true"
           />
         </a>
       </div>

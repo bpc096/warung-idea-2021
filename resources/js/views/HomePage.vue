@@ -302,9 +302,9 @@ export default {
     }
 
     .article-section {
-      height: 70vh;
+      height: 30vh;
       width: 100%;
-      margin-top: 4rem;
+      margin-bottom: 20rem;
 
       .section-title {
         height: 10%;
