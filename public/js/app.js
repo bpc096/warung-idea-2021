@@ -2075,6 +2075,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderTemplate",
@@ -2973,7 +2976,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       projectFeatureList: [],
       projectPopular: [],
       projectMostFunding: [],
-      articleAndNews: []
+      articleAndNews: [],
+      allProjectList: []
     };
   },
   created: function created() {
@@ -2984,11 +2988,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     checkAvailableContent: function checkAvailableContent() {
+      this.getAllProjectList();
       this.checkAvailableProjectFeatureSingle();
       this.checkAvailableProjectFeatureList();
       this.checkAvailableProjectPopular();
       this.checkAvailableProjectMostFunding();
       this.checkAvailableArticleAndNews();
+    },
+    getAllProjectList: function getAllProjectList() {
+      var _this = this;
+
+      this.$store.dispatch('getAllCampaign').then(function (res) {
+        _this.allProjectList = res.data.data.data;
+      })["catch"](function (err) {
+        console.error(err);
+      });
     },
     checkAvailableProjectFeatureList: function checkAvailableProjectFeatureList() {
       var tempContentFeatureList = [{
@@ -3045,11 +3059,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.projectMostFunding = tempContentMostFunding;
     },
     checkAvailableArticleAndNews: function checkAvailableArticleAndNews() {
-      var _this = this;
+      var _this2 = this;
 
       // CHECKING API FOR AVAILABLE ARTICLE AND NEWS
       this.$store.dispatch('initArticle').then(function (res) {
-        _this.articleAndNews = _this.articles;
+        _this2.articleAndNews = _this2.articles;
       }); // this.articleAndNews = tempContentArticle
     }
   }
@@ -3803,8 +3817,131 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'HistoryCampaign'
+  name: 'HistoryCampaign',
+  data: function data() {
+    return {
+      progress: '59'
+    };
+  },
+  computed: {
+    progressPercentage: function progressPercentage() {
+      if (parseInt(this.progress) <= 0) {
+        return '1';
+      } else if (parseInt(this.progress) >= 100) {
+        return '100';
+      } else {
+        return this.progress;
+      }
+    },
+    checkEligibleToEdit: function checkEligibleToEdit() {
+      // TODO : Check Eligiblelity to edit campaign
+      return true;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'HistoryDonationCampaign',
+  data: function data() {
+    return {
+      progress: '59'
+    };
+  },
+  computed: {
+    progressPercentage: function progressPercentage() {
+      if (parseInt(this.progress) <= 0) {
+        return '1';
+      } else if (parseInt(this.progress) >= 100) {
+        return '100';
+      } else {
+        return this.progress;
+      }
+    },
+    checkEligibleToEdit: function checkEligibleToEdit() {
+      // TODO : Check Eligiblelity to edit campaign
+      return true;
+    }
+  }
 });
 
 /***/ }),
@@ -9020,7 +9157,26 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".history-campaign-wrap[data-v-3a664ae4] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card[data-v-3a664ae4] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 5rem;\n  height: 3rem;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-3a664ae4] {\n  display: flex;\n  flex-direction: column;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-3a664ae4] {\n  display: flex;\n  flex-direction: row;\n}\n", ""]);
+exports.push([module.i, ".history-campaign-wrap[data-v-3a664ae4] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.history-campaign-wrap .title-page[data-v-3a664ae4] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-3a664ae4] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .campaign-card[data-v-3a664ae4] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-3a664ae4] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-3a664ae4] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-3a664ae4] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-3a664ae4] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-3a664ae4] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-3a664ae4] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-3a664ae4] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-3a664ae4] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-3a664ae4] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
 
 // exports
 
@@ -41809,6 +41965,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--10-2!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/tabViews/CampaignTab.vue?vue&type=style&index=0&id=8fa6fde4&lang=less&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/tabViews/CampaignTab.vue?vue&type=style&index=0&id=8fa6fde4&lang=less&scoped=true& ***!
@@ -42896,6 +43082,15 @@ var render = function () {
               "router-link",
               { staticClass: "button-profile", attrs: { to: "/profile" } },
               [_vm._v("\n      Profile\n    ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "button-profile",
+                attrs: { to: "/campaign/history" },
+              },
+              [_vm._v("\n      Campaign\n    ")]
             ),
             _vm._v(" "),
             _c(
@@ -45252,34 +45447,175 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "history-campaign-wrap" }, [
+    _c("div", { staticClass: "title-page" }, [
+      _vm._v("\n    History Campaign Page\n  "),
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "button-upper-campaign" },
+      [
+        _c(
+          "router-link",
+          { staticClass: "button-create", attrs: { to: "/campaign/create" } },
+          [_vm._v("\n      + Add New Campaign\n    ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "button-history-donation",
+            attrs: { to: "/campaign/history/donation" },
+          },
+          [_vm._v("\n      History Donation Page\n    ")]
+        ),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "campaign-card" }, [
+      _c("div", { staticClass: "campaign-image" }, [
+        _vm._v("\n      image\n    "),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "campaign-content" }, [
+        _c("div", { staticClass: "campaign-title" }, [
+          _vm._v("\n        Title Campaign\n      "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "campaign-desc" }, [
+          _vm._v(
+            "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.\n      "
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "campaign-donation-status" }, [
+          _vm._v("\n        Donation Target\n        "),
+          _c("div", { staticClass: "shell" }, [
+            _c(
+              "div",
+              {
+                staticClass: "bar-progress",
+                style: { width: _vm.progressPercentage + "%" },
+              },
+              [_c("span", [_vm._v(_vm._s(_vm.progressPercentage) + "%")])]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "history-campaign-wrap" }, [
-      _vm._v("\n  history campaign page\n  "),
-      _c("div", { staticClass: "campaign-card" }, [
-        _c("div", { staticClass: "campaign-image" }, [
-          _vm._v("\n      image\n    "),
+    return _c("div", { staticClass: "campaign-wrap-button" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn-view-campaign",
+          attrs: { href: "/projectdetail/123" },
+        },
+        [_vm._v("\n          View Campaign\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn-edit-campaign", attrs: { href: "/campaign/edit" } },
+        [_vm._v("\n          Edit Campaign\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn-delete-campaign",
+          attrs: { href: "#deleteCampaign" },
+        },
+        [_vm._v("\n          Delete Campaign\n        ")]
+      ),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=template&id=33df5f96&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=template&id=33df5f96&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "history-campaign-wrap" }, [
+    _c("div", { staticClass: "title-page" }, [
+      _vm._v("\n    History Donation List\n  "),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "campaign-card" }, [
+      _c("div", { staticClass: "campaign-image" }, [
+        _vm._v("\n      image\n    "),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "campaign-content" }, [
+        _c("div", { staticClass: "campaign-title" }, [
+          _vm._v("\n        Title Campaign\n      "),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "campaign-content" }, [
-          _c("div", { staticClass: "campaign-desc" }, [
-            _vm._v(
-              "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.\n      "
+        _c("div", { staticClass: "campaign-desc" }, [
+          _vm._v(
+            "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.\n      "
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "campaign-donation-status" }, [
+          _vm._v("\n        Donation Target\n        "),
+          _c("div", { staticClass: "shell" }, [
+            _c(
+              "div",
+              {
+                staticClass: "bar-progress",
+                style: { width: _vm.progressPercentage + "%" },
+              },
+              [_c("span", [_vm._v(_vm._s(_vm.progressPercentage) + "%")])]
             ),
           ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "campaign-donation-status" }, [
-            _c("div", { staticClass: "bar" }, [_vm._v("--")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "bar-text" }, [_vm._v("88%")]),
-          ]),
         ]),
+        _vm._v(" "),
+        _vm._m(0),
       ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "campaign-wrap-button" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn-view-campaign",
+          attrs: { href: "/projectdetail/123" },
+        },
+        [_vm._v("\n          View Campaign\n        ")]
+      ),
     ])
   },
 ]
@@ -63737,12 +64073,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_campaignViews_CreateCampaign_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../views/campaignViews/CreateCampaign.vue */ "./resources/js/views/campaignViews/CreateCampaign.vue");
 /* harmony import */ var _views_campaignViews_EditCampaign_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../views/campaignViews/EditCampaign.vue */ "./resources/js/views/campaignViews/EditCampaign.vue");
 /* harmony import */ var _views_campaignViews_HistoryCampaign_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../views/campaignViews/HistoryCampaign.vue */ "./resources/js/views/campaignViews/HistoryCampaign.vue");
-/* harmony import */ var _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../views/userViews/UserProfile.vue */ "./resources/js/views/userViews/UserProfile.vue");
-/* harmony import */ var _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../views/userViews/ChangePassword.vue */ "./resources/js/views/userViews/ChangePassword.vue");
-/* harmony import */ var _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../views/userViews/EditProfile.vue */ "./resources/js/views/userViews/EditProfile.vue");
-/* harmony import */ var _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../views/tabViews/CampaignTab.vue */ "./resources/js/views/tabViews/CampaignTab.vue");
-/* harmony import */ var _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../views/tabViews/UpdateTab.vue */ "./resources/js/views/tabViews/UpdateTab.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
+/* harmony import */ var _views_campaignViews_HistoryDonationCampaign_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../views/campaignViews/HistoryDonationCampaign.vue */ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue");
+/* harmony import */ var _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../views/userViews/UserProfile.vue */ "./resources/js/views/userViews/UserProfile.vue");
+/* harmony import */ var _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../views/userViews/ChangePassword.vue */ "./resources/js/views/userViews/ChangePassword.vue");
+/* harmony import */ var _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../views/userViews/EditProfile.vue */ "./resources/js/views/userViews/EditProfile.vue");
+/* harmony import */ var _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../views/tabViews/CampaignTab.vue */ "./resources/js/views/tabViews/CampaignTab.vue");
+/* harmony import */ var _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../views/tabViews/UpdateTab.vue */ "./resources/js/views/tabViews/UpdateTab.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
 
  // Components
 
@@ -63758,6 +64095,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // Views Campaign
+
 
 
 
@@ -63802,10 +64140,10 @@ var routes = [{
   component: _views_CategoryPage_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
   children: [{
     path: 'campaigntab',
-    component: _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
+    component: _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
   }, {
     path: 'updatestab',
-    component: _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
+    component: _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
   }]
 }, {
   path: '/projectdetail/:projectId',
@@ -63818,7 +64156,7 @@ var routes = [{
 }, {
   path: '/profile',
   name: 'UserProfile',
-  component: _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_16__["default"],
+  component: _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
   meta: {
     // TODO: change auth to true after development
     auth: false
@@ -63826,7 +64164,7 @@ var routes = [{
 }, {
   path: '/profile/changepassword',
   name: 'ChangePassword',
-  component: _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
+  component: _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
   meta: {
     // TODO: Change auth to true after ddevelopment
     auth: false
@@ -63834,7 +64172,7 @@ var routes = [{
 }, {
   path: '/profile/editProfile',
   name: 'EditProfile',
-  component: _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
+  component: _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_19__["default"],
   meta: {
     // TODO: Change auth to true
     auth: false
@@ -63847,6 +64185,10 @@ var routes = [{
   path: '/campaign/history',
   name: 'HistoryCampaign',
   component: _views_campaignViews_HistoryCampaign_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+}, {
+  path: '/campaign/history/donation',
+  name: 'HistoryDonationCampaign',
+  component: _views_campaignViews_HistoryDonationCampaign_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
   path: '/campaign/edit',
   name: 'EditCampaign',
@@ -63869,7 +64211,7 @@ router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.auth;
   })) {
-    if (_store__WEBPACK_IMPORTED_MODULE_21__["default"].getters.isLoggedIn && _store__WEBPACK_IMPORTED_MODULE_21__["default"].getters.user) {
+    if (_store__WEBPACK_IMPORTED_MODULE_22__["default"].getters.isLoggedIn && _store__WEBPACK_IMPORTED_MODULE_22__["default"].getters.user) {
       next();
       return;
     }
@@ -63880,7 +64222,7 @@ router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.guest;
   })) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_21__["default"].getters.isLoggedIn) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_22__["default"].getters.isLoggedIn) {
       next();
       return;
     }
@@ -64203,7 +64545,7 @@ var actions = {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('campaign').then(function (res) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__["GET_CAMPAIGN"], res.data);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__["GET_CAMPAIGN"], res.data.data);
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -65357,6 +65699,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryCampaign_vue_vue_type_template_id_3a664ae4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryCampaign_vue_vue_type_template_id_3a664ae4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/campaignViews/HistoryDonationCampaign.vue ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HistoryDonationCampaign_vue_vue_type_template_id_33df5f96_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HistoryDonationCampaign.vue?vue&type=template&id=33df5f96&scoped=true& */ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=template&id=33df5f96&scoped=true&");
+/* harmony import */ var _HistoryDonationCampaign_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HistoryDonationCampaign.vue?vue&type=script&lang=js& */ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _HistoryDonationCampaign_vue_vue_type_style_index_0_id_33df5f96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true& */ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _HistoryDonationCampaign_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HistoryDonationCampaign_vue_vue_type_template_id_33df5f96_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _HistoryDonationCampaign_vue_vue_type_template_id_33df5f96_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "33df5f96",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/campaignViews/HistoryDonationCampaign.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./HistoryDonationCampaign.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true&":
+/*!********************************************************************************************************************************!*\
+  !*** ./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true& ***!
+  \********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_style_index_0_id_33df5f96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--10-2!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=style&index=0&id=33df5f96&lang=less&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_style_index_0_id_33df5f96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_style_index_0_id_33df5f96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_style_index_0_id_33df5f96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_style_index_0_id_33df5f96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=template&id=33df5f96&scoped=true&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=template&id=33df5f96&scoped=true& ***!
+  \*****************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_template_id_33df5f96_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./HistoryDonationCampaign.vue?vue&type=template&id=33df5f96&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/campaignViews/HistoryDonationCampaign.vue?vue&type=template&id=33df5f96&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_template_id_33df5f96_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HistoryDonationCampaign_vue_vue_type_template_id_33df5f96_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

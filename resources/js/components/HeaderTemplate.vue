@@ -27,6 +27,9 @@
       <router-link to="/profile" class="button-profile">
         Profile
       </router-link>
+      <router-link to="/campaign/history" class="button-profile">
+        Campaign
+      </router-link>
       <a @click="logout" class="button-logout">
         Logout
       </a>

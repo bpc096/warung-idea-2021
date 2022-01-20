@@ -1,15 +1,7 @@
 <template>
   <div class="history-campaign-wrap">
     <div class="title-page">
-      History Campaign Page
-    </div>
-    <div class="button-upper-campaign">
-      <router-link to="/campaign/create" class="button-create">
-        + Add New Campaign
-      </router-link>
-      <router-link to="/campaign/history/donation" class="button-history-donation">
-        History Donation Page
-      </router-link>
+      History Donation List
     </div>
     <div class="campaign-card">
       <div class="campaign-image">
@@ -37,12 +29,6 @@
           <a href="/projectdetail/123" class="btn-view-campaign">
             View Campaign
           </a>
-          <a href="/campaign/edit" class="btn-edit-campaign">
-            Edit Campaign
-          </a>
-          <a href="#deleteCampaign" class="btn-delete-campaign">
-            Delete Campaign
-          </a>
         </div>
       </div>
     </div>
@@ -51,7 +37,7 @@
 
 <script>
 export default {
-  name: 'HistoryCampaign',
+  name: 'HistoryDonationCampaign',
   data: () => {
     return {
       progress: '59',
@@ -88,41 +74,6 @@ export default {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 2rem;
-  }
-
-  .button-upper-campaign {
-    width: 50rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin: 10px 0;
-
-    .button-create {
-      text-decoration: none;
-      color: black;
-      border: 1px solid green;
-      border-radius: 20px;
-      padding: 10px;
-
-      &:hover {
-        background-color: black;
-        color: white;
-      }
-    }
-
-    .button-history-donation {
-      text-decoration: none;
-      color: black;
-      border: 1px solid green;
-      border-radius: 20px;
-      padding: 10px;
-      margin-left: 10px;
-
-      &:hover {
-        background-color: black;
-        color: white;
-      }
-    }
   }
 
   .campaign-card {
@@ -187,7 +138,7 @@ export default {
       .campaign-wrap-button {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: flex-end;
         margin: 10px 0;
 
         .btn-view-campaign {
@@ -199,24 +150,6 @@ export default {
           background-color: pink;
         }
 
-        .btn-edit-campaign {
-          text-decoration: none;
-          color: black;
-          border: 1px solid blueviolet;
-          border-radius: 10px;
-          padding: 5px;
-          background-color: blueviolet;
-          margin: 0 10px;
-        }
-
-        .btn-delete-campaign {
-          text-decoration: none;
-          color: black;
-          border: 1px solid #FF1700;
-          border-radius: 10px;
-          padding: 5px;
-          background-color: #FF1700;
-        }
       }
     }
   }

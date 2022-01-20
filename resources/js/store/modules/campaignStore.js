@@ -12,7 +12,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       Axios.get('campaign')
         .then(res => {
-          commit(GET_CAMPAIGN, res.data)
+          commit(GET_CAMPAIGN, res.data.data)
           resolve(res)
         })
         .catch(err => {

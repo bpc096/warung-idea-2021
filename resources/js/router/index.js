@@ -20,6 +20,7 @@ import CheckoutPage from '../views/CheckoutPage.vue'
 import CreateCampaign from '../views/campaignViews/CreateCampaign.vue'
 import EditCampaign from '../views/campaignViews/EditCampaign.vue'
 import HistoryCampaign from '../views/campaignViews/HistoryCampaign.vue'
+import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampaign.vue'
 
 // Views User
 import UserProfile from '../views/userViews/UserProfile.vue'
@@ -127,6 +128,11 @@ const routes = [
     path: '/campaign/history',
     name: 'HistoryCampaign',
     component: HistoryCampaign,
+  },
+  {
+    path: '/campaign/history/donation',
+    name: 'HistoryDonationCampaign',
+    component: HistoryDonationCampaign,
   },
   {
     path: '/campaign/edit',

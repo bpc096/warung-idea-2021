@@ -123,6 +123,7 @@ export default {
       projectPopular: [],
       projectMostFunding: [],
       articleAndNews: [],
+      allProjectList: [],
     }
   },
   created () {
@@ -135,11 +136,24 @@ export default {
   },
   methods: {
     checkAvailableContent () {
+      this.getAllProjectList()
+
+
       this.checkAvailableProjectFeatureSingle()
       this.checkAvailableProjectFeatureList()
       this.checkAvailableProjectPopular()
       this.checkAvailableProjectMostFunding()
       this.checkAvailableArticleAndNews()
+    },
+    getAllProjectList() {
+      this.$store
+        .dispatch('getAllCampaign')
+        .then(res => {
+          this.allProjectList = res.data.data.data
+        })
+        .catch(err => {
+          console.error(err)
+        })
     },
     checkAvailableProjectFeatureList () {
       const tempContentFeatureList = [{
