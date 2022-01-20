@@ -53,6 +53,19 @@
               >
             </div>
           </div>
+           <div class="user-name">
+            <div class="text-label">Target Date</div>
+            <div class="text-value">
+              <input
+                id="dateField"
+                :min="setMinimumDate"
+                v-model="maxDate"
+                type="date"
+                class="form-control"
+                placeholder="Target Donation.."
+              >
+            </div>
+          </div>
           <div class="user-name">
             <div class="text-label">Campaign Description</div>
             <div class="text-value">
@@ -67,14 +80,13 @@
               </textarea>
             </div>
           </div>
-
         </div>
         <div class="button-wrap">
           <button
             type="submit"
             class="button-edit-profile"
             >
-            Submit Edit
+            Create Campaign
           </button>
         </div>
        </form>
@@ -106,6 +118,20 @@ export default {
     imageUrl () {
       return this.previewImage ? this.previewImage : this.tempImage
       // return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+    },
+    setMinimumDate() {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+      var yyyy = today.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+      if (mm < 10) {
+        mm = '0' + mm;
+      }
+      today = yyyy + '-' + mm + '-' + dd;
+      return today
     }
   },
   methods: {
@@ -113,12 +139,16 @@ export default {
       let data = new FormData()
       data.append('image', this.image)
       data.append('title', this.title)
+      data.append('category_id', parseInt(this.categoryId))
+      data.append('target_donation', parseInt(this.targetDonation))
+      data.append('max_date', this.maxDate)
+      data.append('description', this.description)
 
       this.$store
-        .dispatch('updateProfile', data)
+        .dispatch('uploadCampaign', data)
         .then(() => {
           this.$router.push({
-            name: 'UserProfile'
+            name: 'HomePage'
           })
         })
         .catch(err => {

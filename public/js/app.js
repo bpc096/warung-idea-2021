@@ -2749,11 +2749,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CheckoutPage',
   computed: {
     dummyImage: function dummyImage() {
       return 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80';
+    }
+  },
+  methods: {
+    payment: function payment() {
+      console.log('Submit Payment');
     }
   }
 });
@@ -3522,6 +3529,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CreateCampaign',
@@ -3542,6 +3561,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })), {}, {
     imageUrl: function imageUrl() {
       return this.previewImage ? this.previewImage : this.tempImage; // return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+    },
+    setMinimumDate: function setMinimumDate() {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+
+      var yyyy = today.getFullYear();
+
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+
+      if (mm < 10) {
+        mm = '0' + mm;
+      }
+
+      today = yyyy + '-' + mm + '-' + dd;
+      return today;
     }
   }),
   methods: {
@@ -3551,9 +3588,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var data = new FormData();
       data.append('image', this.image);
       data.append('title', this.title);
-      this.$store.dispatch('updateProfile', data).then(function () {
+      data.append('category_id', parseInt(this.categoryId));
+      data.append('target_donation', parseInt(this.targetDonation));
+      data.append('max_date', this.maxDate);
+      data.append('description', this.description);
+      this.$store.dispatch('uploadCampaign', data).then(function () {
         _this.$router.push({
-          name: 'UserProfile'
+          name: 'HomePage'
         });
       })["catch"](function (err) {
         console.log(err);
@@ -9129,7 +9170,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.container-vue {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  text-align: center;\n  color: #2c3e50;\n  margin-top: 60px;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  max-width: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.container-vue {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  color: #2c3e50;\r\n  margin-top: 60px;\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 100%;\r\n  max-width: 100%;\n}\r\n", ""]);
 
 // exports
 
@@ -9148,7 +9189,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nh3[data-v-1d11828b] {\n  margin: 40px 0 0;\n}\nul[data-v-1d11828b] {\n  list-style-type: none;\n  padding: 0;\n}\nli[data-v-1d11828b] {\n  display: inline-block;\n  margin: 0 10px;\n}\na[data-v-1d11828b] {\n  color: #42b983;\n}\n", ""]);
+exports.push([module.i, "\nh3[data-v-1d11828b] {\r\n  margin: 40px 0 0;\n}\nul[data-v-1d11828b] {\r\n  list-style-type: none;\r\n  padding: 0;\n}\nli[data-v-1d11828b] {\r\n  display: inline-block;\r\n  margin: 0 10px;\n}\na[data-v-1d11828b] {\r\n  color: #42b983;\n}\r\n", ""]);
 
 // exports
 
@@ -43784,7 +43825,15 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _vm._m(3),
+    _c("div", { staticClass: "content-left" }, [
+      _vm._m(3),
+      _vm._v(" "),
+      _c("div", { staticClass: "btn-checkout" }, [
+        _c("button", { on: { click: _vm.payment } }, [
+          _vm._v("\n        PROCEED TO CHECKOUT\n      "),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -43828,45 +43877,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content-left" }, [
-      _c("div", { staticClass: "content-contribution" }, [
-        _c("div", { staticClass: "title-summary" }, [
-          _vm._v("Contribution Summary"),
+    return _c("div", { staticClass: "content-contribution" }, [
+      _c("div", { staticClass: "title-summary" }, [
+        _vm._v("Contribution Summary"),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "subtotal-text" }, [
+        _c("div", { staticClass: "subtotal-title" }, [
+          _vm._v("\n          Subtotal\n        "),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "subtotal-text" }, [
-          _c("div", { staticClass: "subtotal-title" }, [
-            _vm._v("\n          Subtotal\n        "),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "subtotal-price" }, [
-            _vm._v("\n          Rp123000,-\n        "),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "shipping-text" }, [
-          _c("div", { staticClass: "shipping-title" }, [
-            _vm._v("\n          Shipping\n        "),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "shipping-price" }, [
-            _vm._v("\n          Rp0,-\n        "),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "total-text" }, [
-          _c("div", { staticClass: "total-title" }, [
-            _vm._v("\n          TOTAL\n        "),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "total-price" }, [
-            _vm._v("\n          Rp123000,-\n        "),
-          ]),
+        _c("div", { staticClass: "subtotal-price" }, [
+          _vm._v("\n          Rp123000,-\n        "),
         ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "btn-checkout" }, [
-        _c("button", [_vm._v("\n        PROCEED TO CHECKOUT\n      ")]),
+      _c("div", { staticClass: "shipping-text" }, [
+        _c("div", { staticClass: "shipping-title" }, [
+          _vm._v("\n          Shipping\n        "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "shipping-price" }, [
+          _vm._v("\n          Rp0,-\n        "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "total-text" }, [
+        _c("div", { staticClass: "total-title" }, [
+          _vm._v("\n          TOTAL\n        "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "total-price" }, [
+          _vm._v("\n          Rp123000,-\n        "),
+        ]),
       ]),
     ])
   },
@@ -44884,6 +44927,39 @@ var render = function () {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "user-name" }, [
+              _c("div", { staticClass: "text-label" }, [_vm._v("Target Date")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-value" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.maxDate,
+                      expression: "maxDate",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "dateField",
+                    min: _vm.setMinimumDate,
+                    type: "date",
+                    placeholder: "Target Donation..",
+                  },
+                  domProps: { value: _vm.maxDate },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.maxDate = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-name" }, [
               _c("div", { staticClass: "text-label" }, [
                 _vm._v("Campaign Description"),
               ]),
@@ -44934,7 +45010,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "button-edit-profile", attrs: { type: "submit" } },
-        [_vm._v("\n          Submit Edit\n        ")]
+        [_vm._v("\n          Create Campaign\n        ")]
       ),
     ])
   },
@@ -62519,7 +62595,7 @@ module.exports = "/images/bookmark.svg?6c239341fd815328685a369a919dd41c";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/facebook.svg?fe27b50c59168a62b1ab319abb7627a5";
+module.exports = "/images/facebook.svg?6c9aa8960e4e5891c67ee6444f6ea41f";
 
 /***/ }),
 
@@ -62530,7 +62606,7 @@ module.exports = "/images/facebook.svg?fe27b50c59168a62b1ab319abb7627a5";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/instagram.svg?775015b8a4daf811f73f33b491c6ad37";
+module.exports = "/images/instagram.svg?13129c9a0b7ad66373e92e1127d26c80";
 
 /***/ }),
 
@@ -62563,7 +62639,7 @@ module.exports = "/images/love.png?53c28de79b7d33443c5af7bb0658c1af";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/twitter.svg?d5568c0926eb8bbfeb690db30c5166ff";
+module.exports = "/images/twitter.svg?f2152b0e939b2b7f1b5afed5eb99d353";
 
 /***/ }),
 
@@ -65830,9 +65906,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\less\app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

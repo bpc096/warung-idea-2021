@@ -60,7 +60,9 @@
         </div>
       </div>
       <div class="btn-checkout">
-        <button>
+        <button
+          @click="payment"
+        >
           PROCEED TO CHECKOUT
         </button>
       </div>
@@ -74,6 +76,11 @@ export default {
   computed: {
     dummyImage() {
       return 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    }
+  },
+  methods: {
+    payment() {
+      console.log('Submit Payment');
     }
   }
 }
