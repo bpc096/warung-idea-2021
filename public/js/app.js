@@ -49931,8 +49931,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\BINUSMAYA\Skripsi RASANYA CRISPY\PROJECT WEB SKRIPSI\warung-ide-2021\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\BINUSMAYA\Skripsi RASANYA CRISPY\PROJECT WEB SKRIPSI\warung-ide-2021\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
