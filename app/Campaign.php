@@ -32,7 +32,7 @@ class Campaign extends Model
     }
 
     /**
-     * sumDonation
+     * sumPayment
      *
      * @return void
      */
@@ -40,6 +40,16 @@ class Campaign extends Model
     {
         return $this->hasMany(Payment::class)->selectRaw('payments.campaign_id,SUM(payments.amount) as total')->where('payments.status', 'success')->groupBy('payments.campaign_id');
     }
+
+    /**
+     * mostFunding
+     *
+     * @return void
+     */
+    // public function mostFunding()
+    // {
+    //     return $this->hasMany(Payment::class)->selectRaw('payments.campaign_id,SUM(payments.amount) as total')->where('payments.status', 'success')->groupBy('payments.campaign_id')->orderBy('SUM(payments.amount) as total', 'desc');
+    // }    
 
     public function percent_raised(){
         $raised = $this->hasMany(Payment::class)->selectRaw('payments.campaign_id,SUM(payments.amount) as total')->where('payments.status', 'success')->groupBy('payments.campaign_id');

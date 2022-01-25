@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Midtrans\Snap;
 use App\Payment;
+use App\Campaign;
+use App\Reward;
 
 class PaymentController extends Controller
 {
@@ -29,7 +34,15 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+         //get data donations
+         $payments = Payment::with('campaign')->where('users_id', auth()->guard('api')->user()->id)->latest()->paginate(5);
+
+         //return with response JSON
+         return response()->json([
+             'success' => true,
+             'message' => 'List Data Payments : '. auth()->guard('api')->user()->name,
+             'data'    => $payments,
+         ], 200);
     }
 
     /**
@@ -40,7 +53,85 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::transaction(function($reward_id = 0) use ($request) {
+
+            /**
+             * algorithm create no invoice
+             */
+            $length = 10;
+            $random = '';
+            for ($i = 0; $i < $length; $i++) {
+                $random .= rand(0, 1) ? rand(0, 9) : chr(rand(ord('a'), ord('z')));
+            }
+
+            $no_invoice = 'TRX-'.Str::upper($random);
+
+            if ($reward_id) {
+                # get data reward
+                $reward = Reward::where('id', $request->rewardId)->first();
+                $amount = $request->amount;
+                $campaign = Campaign::find($reward->campaign_id)->where('slug', $request->campaignSlug)->first();
+
+                $donation = Payment::create([
+                    'invoice'       => $no_invoice,
+                    'campaign_id'   => $campaign->id,
+                    'donatur_id'    => auth()->guard('api')->user()->id,
+                    'amount'        => $amount,
+                    'pray'          => $request->pray,
+                    'status'        => 'pending',
+                ]);
+            } else {
+                # get data campaign
+                $campaign = Campaign::where('slug', $request->campaignSlug)->first();
+
+                $donation = Payment::create([
+                    'invoice'       => $no_invoice,
+                    'campaign_id'   => $campaign->id,
+                    'donatur_id'    => auth()->guard('api')->user()->id,
+                    'amount'        => $request->amount,
+                    'pray'          => $request->pray,
+                    'status'        => 'pending',
+                ]);
+            }
+            
+            // // get data campaign
+            // $campaign = Campaign::where('slug', $request->campaignSlug)->first();
+
+            // $donation = Payment::create([
+            //     'invoice'       => $no_invoice,
+            //     'campaign_id'   => $campaign->id,
+            //     'users_id'      => auth()->guard('api')->user()->id,
+            //     'amount'        => $request->amount,
+            //     'status'        => 'pending',
+            // ]);
+
+            // Buat transaksi ke midtrans kemudian save snap tokennya.
+            $payload = [
+                'transaction_details' => [
+                    'order_id'      => $donation->invoice,
+                    'gross_amount'  => $donation->amount,
+                ],
+                'customer_details' => [
+                    'first_name'       => auth()->guard('api')->user()->name,
+                    'email'            => auth()->guard('api')->user()->email,
+                ]
+            ];
+
+            //create snap token
+            $snapToken = Snap::getSnapToken($payload);
+            $donation->snap_token = $snapToken;
+            $donation->save();
+
+            $this->response['snap_token'] = $snapToken;
+
+
+        });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Donasi Berhasil Dibuat!',  
+            $this->response
+        ]);
     }
     
     /**

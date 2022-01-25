@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Campaign;
+use App\Payment;
 
 class CampaignController extends Controller
 {
@@ -18,25 +19,35 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::latest()->when(request()->q, function($campaigns) {
-            $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
-        })->paginate(10);
+        // $campaigns = Campaign::latest()->when(request()->q, function($campaigns) {
+        //     $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
+        // })->paginate(10);
 
+        // if($campaigns){
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'List Data Campaign!',
+        //         'data'    => $campaigns
+        //     ], 200);
+        // }
+        // else{
+        //     return response()->json([
+        //         'status' => 'error'
+        //     ], 400);
+        // }
+
+        //get data campaigns
+        $campaigns = Campaign::with('user')->with('sumPayment')->when(request()->q, function($campaigns) {
+            $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
+        })->latest()->paginate(5);
+
+        //return with response JSON
         return response()->json([
             'success' => true,
-            'message' => 'List Data Campaign!',
-            'data'    => $campaigns
+            'message' => 'List Data Campaigns',
+            'data'    => $campaigns,
         ], 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        
     }
 
     /**
@@ -91,18 +102,28 @@ class CampaignController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        //get detail data campaign
+        $campaign = Campaign::with('user')->with('sumPayment')->where('id', $id)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        //get data donation by campaign
+        $payments = Payment::with('user')->where('campaign_id', $campaign->id)->where('status', 'success')->latest()->get();
+
+        if($campaign) {
+
+            //return with response JSON
+            return response()->json([
+                'success'   => true,
+                'message'   => 'Detail Data Campaign : '. $campaign->title,
+                'data'      => $campaign,
+                'payments'  => $payments
+            ], 200);
+        }
+
+        //return with response JSON
+        return response()->json([
+            'success' => false,
+            'message' => 'Data Campaign Tidak Ditemukan!',
+        ], 404);
     }
 
     /**
