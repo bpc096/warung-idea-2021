@@ -9,11 +9,11 @@
         <script src="{{ mix('js/app.js') }}" type="text/javascript" defer></script>
     </head>
     <body style="background-color: white; margin: 0; padding: 0;">
-       <div id="app">
-       </div>
+       <div id="app"></div>
+       <script
+        type="text/javascript"
+        src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-clientkey="SB-Mid-client-ljOML1mcnbORKUbA">
+      </script>
     </body>
-    <script
-      src="https://app.sandbox.midtrans.com/snap/snap.js"
-      data-clientkey="SB-Mid-client-ljOML1mcnbORKUbA">
-    </script>
-dy>
+</html>

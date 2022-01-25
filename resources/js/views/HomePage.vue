@@ -13,6 +13,7 @@
           <router-link to="/projectdetail/id-sekain">
             <ProjectCardFeature
               :projectData="projectFeatureSingle"
+              :isInHomePage="true"
             />
           </router-link>
         </div>
@@ -87,7 +88,7 @@ export default {
     return {
       dummyTest: 3,
       projectId: 3,
-      projectFeatureSingle: {},
+      projectFeatureSingle: [],
       projectFeatureList: [],
       projectPopular: [],
       projectMostFunding: [],
@@ -107,8 +108,8 @@ export default {
     }
   },
   methods: {
-    checkAvailableContent () {
-      this.getAllProjectList()
+    async checkAvailableContent () {
+      await this.getAllProjectList()
 
 
       this.checkAvailableProjectFeatureSingle()
@@ -128,69 +129,28 @@ export default {
         })
     },
     checkAvailableProjectFeatureList () {
-      const tempContentFeatureList = [{
-        contentId: 5,
-        contentImageURL: '/testing',
-        contentTitle: 'Project Title Here',
-        contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?',
-      }]
-      this.projectFeatureList = tempContentFeatureList
-
       // GET 3 Random Project from project list
-      this.projectFeatureList = this.allProjectList.filter((project, index) => {
-        if(index <= 2) return project
+      this.projectFeatureList = this.allProjectList.filter((project, idx) => {
+        if(idx <= 2) return project
       })
     },
     checkAvailableProjectFeatureSingle () {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
-      const tempContentFeature = {
-        contentId: 1,
-        contentImageURL: '/testing',
-        contentTitle: 'Project Title Here',
-        contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?',
-        contentFundedPercentage: 90,
-      }
-      this.projectFeatureSingle = tempContentFeature
+      this.projectFeatureSingle = this.allProjectList.filter((project, idx) => {
+        if(idx <= 0) return project
+      })
     },
     checkAvailableProjectPopular () {
       // CHECKING API FOR AVAILABLE PROJECT POPULAR
-      const tempContentPopular = [
-        {
-          contentId: 2,
-          contentImageURL: '/testing',
-          contentTitle: 'Project name here',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-          contentCreator: 'Mister Ex',
-        },
-        {
-          contentId: 6,
-          contentImageURL: '/testing-six',
-          contentTitle: 'Project name six',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-          contentCreator: 'Mister Ah',
-        },
-      ]
-      this.projectPopular = tempContentPopular
+      this.projectPopular = this.allProjectList.filter((project, idx) => {
+        if(idx <= 1) return project
+      })
     },
     checkAvailableProjectMostFunding () {
       // CHECKING API FOR AVAILABLE PROJECT MOST FUNDING
-      const tempContentMostFunding = [
-        {
-          contentId: 3,
-          contentImageURL: '/testing-zerothree',
-          contentTitle: 'Project name here',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-          contentCreator: 'Mister Be',
-        },
-        {
-          contentId: 8,
-          contentImageURL: '/testing-eight',
-          contentTitle: 'Project name eight',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-          contentCreator: 'Mister Eight',
-        },
-      ]
-      this.projectMostFunding = tempContentMostFunding
+      this.projectMostFunding = this.allProjectList.filter((project, idx) => {
+        if(idx <= 1) return project
+      })
     },
     checkAvailableArticleAndNews () {
       // CHECKING API FOR AVAILABLE ARTICLE AND NEWS

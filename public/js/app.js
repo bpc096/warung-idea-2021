@@ -2471,25 +2471,50 @@ __webpack_require__.r(__webpack_exports__);
   name: 'ProjectCardFeature',
   props: {
     projectData: {
-      type: Object,
-      "default": {
+      type: Array,
+      "default": []
+    },
+    isInHomePage: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  data: function data() {
+    return {
+      dummyData: {
         contentId: 1,
         contentImageURL: '/testing',
         contentTitle: 'Project Title Here',
         contentDescription: 'Lorem ipsum dua tiga tutup botol',
         contentFundedPercentage: 90
       }
-    }
+    };
   },
   computed: {
     projectName: function projectName() {
-      return this.projectData.contentTitle;
+      var _this$projectData$;
+
+      var projectTitle = (_this$projectData$ = this.projectData[0]) !== null && _this$projectData$ !== void 0 && _this$projectData$.title ? this.projectData[0].title : this.dummyData.contentTitle;
+
+      if (this.isInHomePage) {
+        return projectTitle.slice(0, 30);
+      } else {
+        return projectTitle;
+      }
     },
     projectDesc: function projectDesc() {
-      return this.projectData.contentDescription;
+      var _this$projectData$2;
+
+      var contentDesc = (_this$projectData$2 = this.projectData[0]) !== null && _this$projectData$2 !== void 0 && _this$projectData$2.description ? this.projectData[0].description : this.dummyData.contentDescription;
+
+      if (this.isInHomePage) {
+        return contentDesc.slice(0, 180) + '...';
+      } else {
+        return contentDesc;
+      }
     },
     projectPercentage: function projectPercentage() {
-      return this.projectData.contentFundedPercentage;
+      return 90;
     }
   }
 });
@@ -3008,6 +3033,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 // Component
 
 
@@ -3030,7 +3056,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       dummyTest: 3,
       projectId: 3,
-      projectFeatureSingle: {},
+      projectFeatureSingle: [],
       projectFeatureList: [],
       projectPopular: [],
       projectMostFunding: [],
@@ -3050,14 +3076,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: {
     checkAvailableContent: function checkAvailableContent() {
-      this.getAllProjectList();
-      this.checkAvailableProjectFeatureSingle();
-      this.checkAvailableProjectFeatureList();
-      this.checkAvailableProjectPopular();
-      this.checkAvailableProjectMostFunding();
-      this.checkAvailableArticleAndNews();
-    },
-    getAllProjectList: function getAllProjectList() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -3066,13 +3084,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$store.dispatch('getAllCampaign').then(function (res) {
-                  _this.allProjectList = res.data.data.data;
-                })["catch"](function (err) {
-                  console.error(err);
-                });
+                return _this.getAllProjectList();
 
               case 2:
+                _this.checkAvailableProjectFeatureSingle();
+
+                _this.checkAvailableProjectFeatureList();
+
+                _this.checkAvailableProjectPopular();
+
+                _this.checkAvailableProjectMostFunding();
+
+                _this.checkAvailableArticleAndNews();
+
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -3080,70 +3105,59 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee);
       }))();
     },
-    checkAvailableProjectFeatureList: function checkAvailableProjectFeatureList() {
-      var tempContentFeatureList = [{
-        contentId: 5,
-        contentImageURL: '/testing',
-        contentTitle: 'Project Title Here',
-        contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?'
-      }];
-      this.projectFeatureList = tempContentFeatureList; // GET 3 Random Project from project list
+    getAllProjectList: function getAllProjectList() {
+      var _this2 = this;
 
-      this.projectFeatureList = this.allProjectList.filter(function (project, index) {
-        if (index <= 2) return project;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.$store.dispatch('getAllCampaign').then(function (res) {
+                  _this2.allProjectList = res.data.data.data;
+                })["catch"](function (err) {
+                  console.error(err);
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    checkAvailableProjectFeatureList: function checkAvailableProjectFeatureList() {
+      // GET 3 Random Project from project list
+      this.projectFeatureList = this.allProjectList.filter(function (project, idx) {
+        if (idx <= 2) return project;
       });
     },
     checkAvailableProjectFeatureSingle: function checkAvailableProjectFeatureSingle() {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
-      var tempContentFeature = {
-        contentId: 1,
-        contentImageURL: '/testing',
-        contentTitle: 'Project Title Here',
-        contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?',
-        contentFundedPercentage: 90
-      };
-      this.projectFeatureSingle = tempContentFeature;
+      this.projectFeatureSingle = this.allProjectList.filter(function (project, idx) {
+        if (idx <= 0) return project;
+      });
     },
     checkAvailableProjectPopular: function checkAvailableProjectPopular() {
       // CHECKING API FOR AVAILABLE PROJECT POPULAR
-      var tempContentPopular = [{
-        contentId: 2,
-        contentImageURL: '/testing',
-        contentTitle: 'Project name here',
-        contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-        contentCreator: 'Mister Ex'
-      }, {
-        contentId: 6,
-        contentImageURL: '/testing-six',
-        contentTitle: 'Project name six',
-        contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-        contentCreator: 'Mister Ah'
-      }];
-      this.projectPopular = tempContentPopular;
+      this.projectPopular = this.allProjectList.filter(function (project, idx) {
+        if (idx <= 1) return project;
+      });
     },
     checkAvailableProjectMostFunding: function checkAvailableProjectMostFunding() {
       // CHECKING API FOR AVAILABLE PROJECT MOST FUNDING
-      var tempContentMostFunding = [{
-        contentId: 3,
-        contentImageURL: '/testing-zerothree',
-        contentTitle: 'Project name here',
-        contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-        contentCreator: 'Mister Be'
-      }, {
-        contentId: 8,
-        contentImageURL: '/testing-eight',
-        contentTitle: 'Project name eight',
-        contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-        contentCreator: 'Mister Eight'
-      }];
-      this.projectMostFunding = tempContentMostFunding;
+      this.projectMostFunding = this.allProjectList.filter(function (project, idx) {
+        if (idx <= 1) return project;
+      });
     },
     checkAvailableArticleAndNews: function checkAvailableArticleAndNews() {
-      var _this2 = this;
+      var _this3 = this;
 
       // CHECKING API FOR AVAILABLE ARTICLE AND NEWS
       this.$store.dispatch('initArticle').then(function (res) {
-        _this2.articleAndNews = _this2.articles;
+        _this3.articleAndNews = _this3.articles;
       })["catch"](function (err) {
         console.error(err);
       }); // this.articleAndNews = tempContentArticle
@@ -8944,7 +8958,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".feature-card-wrapper[data-v-336cb14c] {\n  background-color: white;\n  height: 100%;\n  width: 100%;\n  border: 1px solid black;\n  border-radius: 30px;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.feature-card-wrapper .content-image[data-v-336cb14c] {\n  border-top-left-radius: 29px;\n  border-top-right-radius: 29px;\n  height: 50%;\n  background-color: salmon;\n}\n.feature-card-wrapper .content-info[data-v-336cb14c] {\n  padding: 0.5rem;\n  height: 47%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-title[data-v-336cb14c] {\n  font-size: 30px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  color: black;\n  text-align: left;\n}\n.feature-card-wrapper .content-info .content-description[data-v-336cb14c] {\n  width: 70%;\n  font-size: 16px;\n  text-align: left;\n  color: rgba(0, 0, 0, 0.8);\n}\n.feature-card-wrapper .content-info .content-addition[data-v-336cb14c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-addition .total-funded-label[data-v-336cb14c] {\n  color: green;\n  font-weight: bold;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label[data-v-336cb14c] {\n  display: flex;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love[data-v-336cb14c] {\n  margin: 0 10px;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark a[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love a[data-v-336cb14c] {\n  text-decoration: none;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark img[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love img[data-v-336cb14c] {\n  height: 24px;\n  width: 24px;\n}\n", ""]);
+exports.push([module.i, ".feature-card-wrapper[data-v-336cb14c] {\n  background-color: white;\n  height: 100%;\n  width: 100%;\n  border: 1px solid black;\n  border-radius: 30px;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.feature-card-wrapper .content-image[data-v-336cb14c] {\n  border-top-left-radius: 29px;\n  border-top-right-radius: 29px;\n  height: 50%;\n  background-color: salmon;\n}\n.feature-card-wrapper .content-info[data-v-336cb14c] {\n  padding: 0.5rem;\n  height: 47%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-title[data-v-336cb14c] {\n  font-size: 30px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  color: black;\n  text-align: left;\n}\n.feature-card-wrapper .content-info .content-description[data-v-336cb14c] {\n  font-size: 16px;\n  text-align: left;\n  color: rgba(0, 0, 0, 0.8);\n}\n.feature-card-wrapper .content-info .content-addition[data-v-336cb14c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-addition .total-funded-label[data-v-336cb14c] {\n  color: green;\n  font-weight: bold;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label[data-v-336cb14c] {\n  display: flex;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love[data-v-336cb14c] {\n  margin: 0 10px;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark a[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love a[data-v-336cb14c] {\n  text-decoration: none;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark img[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love img[data-v-336cb14c] {\n  height: 24px;\n  width: 24px;\n}\n", ""]);
 
 // exports
 
@@ -44405,7 +44419,10 @@ var render = function () {
               { attrs: { to: "/projectdetail/id-sekain" } },
               [
                 _c("ProjectCardFeature", {
-                  attrs: { projectData: _vm.projectFeatureSingle },
+                  attrs: {
+                    projectData: _vm.projectFeatureSingle,
+                    isInHomePage: true,
+                  },
                 }),
               ],
               1

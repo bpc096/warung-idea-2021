@@ -36,8 +36,17 @@ export default {
   name: 'ProjectCardFeature',
   props: {
     projectData: {
-      type: Object,
-      default: {
+      type: Array,
+      default: []
+    },
+    isInHomePage: {
+      type: Boolean,
+      default: false,
+    }
+  },
+  data: () => {
+    return {
+      dummyData: {
         contentId: 1,
         contentImageURL: '/testing',
         contentTitle: 'Project Title Here',
@@ -48,13 +57,23 @@ export default {
   },
   computed: {
     projectName () {
-      return this.projectData.contentTitle
+      const projectTitle = this.projectData[0]?.title? this.projectData[0].title : this.dummyData.contentTitle
+      if(this.isInHomePage) {
+        return projectTitle.slice(0,30)
+      } else {
+        return projectTitle
+      }
     },
     projectDesc () {
-      return this.projectData.contentDescription
+      const contentDesc = this.projectData[0]?.description? this.projectData[0].description : this.dummyData.contentDescription
+      if(this.isInHomePage) {
+        return contentDesc.slice(0,180) + '...'
+      } else {
+        return contentDesc
+      }
     },
     projectPercentage () {
-      return this.projectData.contentFundedPercentage
+      return 90
     }
   }
 }
@@ -91,13 +110,12 @@ export default {
     }
 
     .content-description {
-      width: 70%;
       font-size: 16px;
       text-align: left;
       color: rgba(0,0,0,0.8);
     }
 
-    .content-addition { 
+    .content-addition {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -107,7 +125,7 @@ export default {
       }
       .icon-label {
         display: flex;
-        
+
         .icon-bookmark, .icon-love {
           margin: 0 10px;
           a {
