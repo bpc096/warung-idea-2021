@@ -2924,23 +2924,27 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_cardComponent_ProjectCardFeature_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/cardComponent/ProjectCardFeature.vue */ "./resources/js/components/cardComponent/ProjectCardFeature.vue");
-/* harmony import */ var _components_cardComponent_ProjectListFeature_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/cardComponent/ProjectListFeature.vue */ "./resources/js/components/cardComponent/ProjectListFeature.vue");
-/* harmony import */ var _components_cardComponent_ProjectCardMain_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/cardComponent/ProjectCardMain.vue */ "./resources/js/components/cardComponent/ProjectCardMain.vue");
-/* harmony import */ var _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/cardComponent/ArticleCard.vue */ "./resources/js/components/cardComponent/ArticleCard.vue");
-/* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
-/* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_cardComponent_ProjectCardFeature_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/cardComponent/ProjectCardFeature.vue */ "./resources/js/components/cardComponent/ProjectCardFeature.vue");
+/* harmony import */ var _components_cardComponent_ProjectListFeature_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/cardComponent/ProjectListFeature.vue */ "./resources/js/components/cardComponent/ProjectListFeature.vue");
+/* harmony import */ var _components_cardComponent_ProjectCardMain_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/cardComponent/ProjectCardMain.vue */ "./resources/js/components/cardComponent/ProjectCardMain.vue");
+/* harmony import */ var _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/cardComponent/ArticleCard.vue */ "./resources/js/components/cardComponent/ArticleCard.vue");
+/* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-carousel */ "./node_modules/vue-carousel/dist/vue-carousel.min.js");
+/* harmony import */ var vue_carousel__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_carousel__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -3015,15 +3019,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomePage",
   components: {
-    ProjectCardFeature: _components_cardComponent_ProjectCardFeature_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    ProjectListFeature: _components_cardComponent_ProjectListFeature_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ProjectMainCard: _components_cardComponent_ProjectCardMain_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ArticleCard: _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Carousel: vue_carousel__WEBPACK_IMPORTED_MODULE_4__["Carousel"],
-    Slide: vue_carousel__WEBPACK_IMPORTED_MODULE_4__["Slide"]
+    ProjectCardFeature: _components_cardComponent_ProjectCardFeature_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ProjectListFeature: _components_cardComponent_ProjectListFeature_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ProjectMainCard: _components_cardComponent_ProjectCardMain_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ArticleCard: _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Carousel: vue_carousel__WEBPACK_IMPORTED_MODULE_5__["Carousel"],
+    Slide: vue_carousel__WEBPACK_IMPORTED_MODULE_5__["Slide"]
   },
   data: function data() {
     return {
+      dummyTest: 3,
+      projectId: 3,
       projectFeatureSingle: {},
       projectFeatureList: [],
       projectPopular: [],
@@ -3035,7 +3041,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.checkAvailableContent();
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])({
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
     articles: 'articles'
   })), {}, {
     totalCampaignProject: function totalCampaignProject() {
@@ -3054,11 +3060,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getAllProjectList: function getAllProjectList() {
       var _this = this;
 
-      this.$store.dispatch('getAllCampaign').then(function (res) {
-        _this.allProjectList = res.data.data.data;
-      })["catch"](function (err) {
-        console.error(err);
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$store.dispatch('getAllCampaign').then(function (res) {
+                  _this.allProjectList = res.data.data.data;
+                })["catch"](function (err) {
+                  console.error(err);
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     checkAvailableProjectFeatureList: function checkAvailableProjectFeatureList() {
       var tempContentFeatureList = [{
@@ -3068,6 +3088,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?'
       }];
       this.projectFeatureList = tempContentFeatureList; // GET 3 Random Project from project list
+
+      this.projectFeatureList = this.allProjectList.filter(function (project, index) {
+        if (index <= 2) return project;
+      });
     },
     checkAvailableProjectFeatureSingle: function checkAvailableProjectFeatureSingle() {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
@@ -44355,29 +44379,21 @@ var render = function () {
         _c(
           "div",
           { staticClass: "project-feature-list" },
-          [
-            _c(
-              "router-link",
-              { attrs: { to: "/projectdetail/id-sekain" } },
-              [_c("ProjectListFeature")],
+          _vm._l(_vm.dummyTest, function (test) {
+            return _c(
+              "div",
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: "/projectdetail/" + _vm.projectId } },
+                  [_c("ProjectListFeature")],
+                  1
+                ),
+              ],
               1
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              { attrs: { to: "/projectdetail/id-sekain" } },
-              [_c("ProjectListFeature")],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              { attrs: { to: "/projectdetail/id-sekain" } },
-              [_c("ProjectListFeature")],
-              1
-            ),
-          ],
-          1
+            )
+          }),
+          0
         ),
         _vm._v(" "),
         _c(
@@ -66488,20 +66504,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\less\app.less */"./resources/less/app.less");
 module.exports = __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-<<<<<<< HEAD
-__webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/sass/app.scss */"./resources/sass/app.scss");
->>>>>>> 38b84f153f9e16a05d11952708bd44aa1664fbfb
->>>>>>> main
 
 
 /***/ })

@@ -3,15 +3,11 @@
     <div class="section">
       <div class="feature-section">
         <div class="project-feature-list">
-          <router-link to="/projectdetail/id-sekain">
-            <ProjectListFeature />
-          </router-link>
-          <router-link to="/projectdetail/id-sekain">
-            <ProjectListFeature />
-          </router-link>
-          <router-link to="/projectdetail/id-sekain">
-            <ProjectListFeature />
-          </router-link>
+          <div v-for="test in dummyTest">
+            <router-link :to="'/projectdetail/'+ projectId">
+              <ProjectListFeature />
+            </router-link>
+          </div>
         </div>
         <div class="project-feature-card">
           <router-link to="/projectdetail/id-sekain">
@@ -89,6 +85,8 @@ export default {
   },
   data: () => {
     return {
+      dummyTest: 3,
+      projectId: 3,
       projectFeatureSingle: {},
       projectFeatureList: [],
       projectPopular: [],
@@ -119,8 +117,8 @@ export default {
       this.checkAvailableProjectMostFunding()
       this.checkAvailableArticleAndNews()
     },
-    getAllProjectList() {
-      this.$store
+    async getAllProjectList() {
+      await this.$store
         .dispatch('getAllCampaign')
         .then(res => {
           this.allProjectList = res.data.data.data
@@ -139,7 +137,9 @@ export default {
       this.projectFeatureList = tempContentFeatureList
 
       // GET 3 Random Project from project list
-
+      this.projectFeatureList = this.allProjectList.filter((project, index) => {
+        if(index <= 2) return project
+      })
     },
     checkAvailableProjectFeatureSingle () {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
