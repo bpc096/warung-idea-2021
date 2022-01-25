@@ -39,7 +39,7 @@ class CampaignController extends Controller
         //get data campaigns
         $campaigns = Campaign::with('user')->with('sumPayment')->when(request()->q, function($campaigns) {
             $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
-        })->latest()->paginate(5);
+        })->latest()->paginate(100);
 
         //return with response JSON
         return response()->json([
