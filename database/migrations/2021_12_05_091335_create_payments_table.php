@@ -17,7 +17,8 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->string('invoice');
             $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('users_id');
+            $table->unsignedInteger('reward_id')->nullable();
             $table->bigInteger('amount');
             $table->string('snap_token')->nullable();
             $table->enum('status', array('pending', 'success', 'expired', 'failed'));

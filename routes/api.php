@@ -25,11 +25,14 @@ Route::post('/login', [LoginController::class, 'login']);
  * APi Category
  */
 Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/{id}', [CategoryController::class, 'show']);
+// Route::get('/category/most-funding', [CategoryController::class, 'most_funding']);
 
 /**
  * Api Campaign
  */
-Route::get('/campaign', [CampaignController::class, 'index'])->middleware('auth:api');
+Route::get('/campaign', [CampaignController::class, 'index']);
+Route::get('/campaign/{id}', [CampaignController::class, 'show']);
 Route::post('/campaign', [CampaignController::class, 'store'])->middleware('auth:api');
 Route::post('/campaign/{campaign}', [CampaignController::class, 'update'])->middleware('auth:api');
 Route::delete('/campaign/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
@@ -69,6 +72,13 @@ Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth:api');
 Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth:api');
 Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->middleware('auth:api');
+
+/**
+ * Api Payment
+ */
+Route::get('/payment', [PaymentController::class, 'index'])->middleware('auth:api');
+Route::post('/payment', [PaymentController::class, 'store'])->middleware('auth:api');
+Route::post('/payment/notification', [PaymentController::class, 'notificationHandler']);
 
 
 /**
