@@ -117,7 +117,7 @@ export default {
             span {
               float: right;
               padding: 2px;
-              color: #fff;
+              color: black;
               font-size: 0.7em
             }
           }

@@ -3004,33 +3004,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // Component
 
 
@@ -3051,8 +3024,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      isPopularContentMore: false,
-      isFundingContentMore: false,
       projectFeatureSingle: {},
       projectFeatureList: [],
       projectPopular: [],
@@ -3064,9 +3035,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.checkAvailableContent();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])({
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])({
     articles: 'articles'
-  })),
+  })), {}, {
+    totalCampaignProject: function totalCampaignProject() {
+      return this.allProjectList.length;
+    }
+  }),
   methods: {
     checkAvailableContent: function checkAvailableContent() {
       this.getAllProjectList();
@@ -3092,7 +3067,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         contentTitle: 'Project Title Here',
         contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?'
       }];
-      this.projectFeatureList = tempContentFeatureList;
+      this.projectFeatureList = tempContentFeatureList; // GET 3 Random Project from project list
     },
     checkAvailableProjectFeatureSingle: function checkAvailableProjectFeatureSingle() {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
@@ -3145,6 +3120,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // CHECKING API FOR AVAILABLE ARTICLE AND NEWS
       this.$store.dispatch('initArticle').then(function (res) {
         _this2.articleAndNews = _this2.articles;
+      })["catch"](function (err) {
+        console.error(err);
       }); // this.articleAndNews = tempContentArticle
     }
   }
@@ -8905,7 +8882,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
+exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
 
 // exports
 
@@ -44381,21 +44358,21 @@ var render = function () {
           [
             _c(
               "router-link",
-              { attrs: { to: "/projectDetail" } },
+              { attrs: { to: "/projectdetail/id-sekain" } },
               [_c("ProjectListFeature")],
               1
             ),
             _vm._v(" "),
             _c(
               "router-link",
-              { attrs: { to: "/projectDetail" } },
+              { attrs: { to: "/projectdetail/id-sekain" } },
               [_c("ProjectListFeature")],
               1
             ),
             _vm._v(" "),
             _c(
               "router-link",
-              { attrs: { to: "/projectDetail" } },
+              { attrs: { to: "/projectdetail/id-sekain" } },
               [_c("ProjectListFeature")],
               1
             ),
@@ -44409,7 +44386,7 @@ var render = function () {
           [
             _c(
               "router-link",
-              { attrs: { to: "/projectDetail" } },
+              { attrs: { to: "/projectdetail/id-sekain" } },
               [
                 _c("ProjectCardFeature", {
                   attrs: { projectData: _vm.projectFeatureSingle },
@@ -44427,80 +44404,26 @@ var render = function () {
           _vm._v("\n        Popular Project\n      "),
         ]),
         _vm._v(" "),
-        _vm.isPopularContentMore
-          ? _c(
+        _c(
+          "div",
+          { staticClass: "section-content" },
+          _vm._l(_vm.projectPopular, function (project, index) {
+            return _c(
               "div",
-              { staticClass: "section-content-more" },
+              { key: index + project.contentId },
               [
                 _c(
-                  "carousel",
-                  { attrs: { scrollPerPage: false, navigationEnabled: false } },
-                  [
-                    _c("slide", [
-                      _c(
-                        "span",
-                        { staticClass: "label" },
-                        [_c("ProjectMainCard")],
-                        1
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("slide", [
-                      _c(
-                        "span",
-                        { staticClass: "label" },
-                        [_c("ProjectMainCard")],
-                        1
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("slide", [
-                      _c(
-                        "span",
-                        { staticClass: "label" },
-                        [_c("ProjectMainCard")],
-                        1
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("slide", [
-                      _c(
-                        "span",
-                        { staticClass: "label" },
-                        [_c("ProjectMainCard")],
-                        1
-                      ),
-                    ]),
-                  ],
+                  "router-link",
+                  { attrs: { to: "/projectdetail/id-sekain" } },
+                  [_c("ProjectMainCard", { attrs: { projectData: project } })],
                   1
                 ),
               ],
               1
             )
-          : _c(
-              "div",
-              { staticClass: "section-content" },
-              _vm._l(_vm.projectPopular, function (project, index) {
-                return _c(
-                  "div",
-                  { key: index + project.contentId },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: "/projectDetail" } },
-                      [
-                        _c("ProjectMainCard", {
-                          attrs: { projectData: project },
-                        }),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                )
-              }),
-              0
-            ),
+          }),
+          0
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "most-funding-section" }, [
@@ -44521,7 +44444,7 @@ var render = function () {
                   {
                     attrs: {
                       to: {
-                        path: "/projectDetail",
+                        path: "/projectdetail/id-sekain",
                         query: { projectId: project.contentId },
                       },
                     },

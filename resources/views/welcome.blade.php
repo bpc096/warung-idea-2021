@@ -14,6 +14,6 @@
     </body>
     <script
       src="https://app.sandbox.midtrans.com/snap/snap.js"
-      data-clientkey="isi_dengan_client_key_midtrans">
+      data-clientkey="SB-Mid-client-ljOML1mcnbORKUbAs">
     </script>
 </html>

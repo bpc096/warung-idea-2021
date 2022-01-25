@@ -3,18 +3,18 @@
     <div class="section">
       <div class="feature-section">
         <div class="project-feature-list">
-          <router-link to="/projectDetail">
+          <router-link to="/projectdetail/id-sekain">
             <ProjectListFeature />
           </router-link>
-          <router-link to="/projectDetail">
+          <router-link to="/projectdetail/id-sekain">
             <ProjectListFeature />
           </router-link>
-          <router-link to="/projectDetail">
+          <router-link to="/projectdetail/id-sekain">
             <ProjectListFeature />
           </router-link>
         </div>
         <div class="project-feature-card">
-          <router-link to="/projectDetail">
+          <router-link to="/projectdetail/id-sekain">
             <ProjectCardFeature
               :projectData="projectFeatureSingle"
             />
@@ -25,36 +25,9 @@
         <div class="section-title">
           Popular Project
         </div>
-        <div v-if="isPopularContentMore" class="section-content-more">
-          <carousel
-            :scrollPerPage="false"
-            :navigationEnabled="false"
-          >
-            <slide>
-              <span class="label">
-                <ProjectMainCard />
-              </span>
-            </slide>
-            <slide>
-              <span class="label">
-                <ProjectMainCard />
-              </span>
-            </slide>
-            <slide>
-              <span class="label">
-                <ProjectMainCard />
-              </span>
-            </slide>
-            <slide>
-              <span class="label">
-                <ProjectMainCard />
-              </span>
-            </slide>
-          </carousel>
-        </div>
-        <div v-else class="section-content">
+        <div class="section-content">
           <div v-for="(project, index) in projectPopular" :key="index + project.contentId">
-            <router-link to="/projectDetail">
+            <router-link to="/projectdetail/id-sekain">
               <ProjectMainCard
                 :projectData="project"
               />
@@ -68,7 +41,7 @@
         </div>
         <div class="section-content">
           <div v-for="(project, index) in projectMostFunding" :key="index + project.contentId">
-            <router-link :to="{ path: '/projectDetail', query: { projectId: project.contentId }}">
+            <router-link :to="{ path: '/projectdetail/id-sekain', query: { projectId: project.contentId }}">
               <ProjectMainCard
                 :projectData="project"
               />
@@ -116,8 +89,6 @@ export default {
   },
   data: () => {
     return {
-      isPopularContentMore: false,
-      isFundingContentMore: false,
       projectFeatureSingle: {},
       projectFeatureList: [],
       projectPopular: [],
@@ -132,7 +103,10 @@ export default {
   computed: {
     ...mapGetters({
       articles: 'articles'
-    })
+    }),
+    totalCampaignProject () {
+      return this.allProjectList.length
+    }
   },
   methods: {
     checkAvailableContent () {
@@ -163,6 +137,9 @@ export default {
         contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?',
       }]
       this.projectFeatureList = tempContentFeatureList
+
+      // GET 3 Random Project from project list
+
     },
     checkAvailableProjectFeatureSingle () {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
@@ -220,6 +197,9 @@ export default {
       this.$store.dispatch('initArticle')
         .then(res => {
           this.articleAndNews = this.articles
+        })
+        .catch(err => {
+          console.error(err)
         })
       // this.articleAndNews = tempContentArticle
     },
