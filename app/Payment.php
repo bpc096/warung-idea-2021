@@ -16,7 +16,7 @@ class Payment extends Model
      * @var array
      */
     protected $fillable = [
-        'invoice', 'campaign_id', 'donatur_id', 'amount', 'status', 'snap_token'
+        'invoice', 'campaign_id', 'users_id', 'reward_id', 'amount', 'status', 'snap_token'
     ];
 
     /**

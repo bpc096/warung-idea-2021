@@ -31,42 +31,54 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function most_funding()
-    {
-        //
-    }
+    // public function most_funding()
+    // {
+    //     //get detail data category with most-funding campaign
+    //     $category_most_funding = Category::latest()->paginate(8);
+
+    //     if($category_most_funding) {
+
+    //         //return with response JSON
+    //         return response()->json([
+    //             'success' => true,
+    //             'message' => 'List Data Most Funding Campaign Berdasarkan Category',
+    //             'data'    => $category_most_funding,
+    //         ], 200);
+    //     }
+
+    //     //return with response JSON
+    //     return response()->json([
+    //         'success' => false,
+    //         'message' => 'Data Category Tidak Ditemukan!',
+    //     ], 404);
+    // }
 
     /**
-     * Store a newly created resource in storage.
+     * show
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  mixed $slug
+     * @return void
      */
     public function show($id)
     {
-        //
-    }
+        //get detail data category with campaign
+        $category = Category::with('campaigns.user', 'campaigns.sumPayment')->where('id', $id)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        if($category) {
+
+            //return with response JSON
+            return response()->json([
+                'success' => true,
+                'message' => 'List Data Campaign Berdasarkan Category : '. $category->category_name,
+                'data'    => $category,
+            ], 200);
+        }
+
+        //return with response JSON
+        return response()->json([
+            'success' => false,
+            'message' => 'Data Category Tidak Ditemukan!',
+        ], 404);
     }
 
     /**

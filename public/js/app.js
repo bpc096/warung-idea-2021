@@ -66488,9 +66488,20 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\less\app.less */"./resources/less/app.less");
 module.exports = __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+<<<<<<< HEAD
+__webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\coolyeah.kulyah\BINUS\SKRIPSI\laravel-warungide\warung-idea-2021\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/ghozif/Documents/ghozi-repo/warung-idea-2021/resources/sass/app.scss */"./resources/sass/app.scss");
+>>>>>>> 38b84f153f9e16a05d11952708bd44aa1664fbfb
+>>>>>>> main
 
 
 /***/ })
