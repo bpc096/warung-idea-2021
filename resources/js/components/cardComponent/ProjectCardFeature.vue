@@ -36,8 +36,8 @@ export default {
   name: 'ProjectCardFeature',
   props: {
     projectData: {
-      type: Array,
-      default: []
+      type: Object,
+      default: {},
     },
     isInHomePage: {
       type: Boolean,
@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     projectName () {
-      const projectTitle = this.projectData[0]?.title? this.projectData[0].title : this.dummyData.contentTitle
+      const projectTitle = this.projectData?.title? this.projectData.title : this.dummyData.contentTitle
       if(this.isInHomePage) {
         return projectTitle.slice(0,30)
       } else {
@@ -65,7 +65,7 @@ export default {
       }
     },
     projectDesc () {
-      const contentDesc = this.projectData[0]?.description? this.projectData[0].description : this.dummyData.contentDescription
+      const contentDesc = this.projectData?.description? this.projectData.description : this.dummyData.contentDescription
       if(this.isInHomePage) {
         return contentDesc.slice(0,180) + '...'
       } else {

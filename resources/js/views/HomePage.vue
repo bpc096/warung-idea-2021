@@ -4,7 +4,7 @@
       <div class="feature-section">
         <div class="project-feature-list">
           <div v-for="project in projectFeatureList" :key="project.id">
-            <router-link :to="'/projectdetail/'+ project.id">
+            <router-link :to="`/projectdetail/${project.id}`">
               <ProjectListFeature
                 :projectData="project"
                 :isInHomePage="true"
@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="project-feature-card">
-          <router-link :to="'/projectdetail/'+ projectFeatureSingle[0].id">
+          <router-link :to="`/projectdetail/${projectFeatureSingle.id}`">
             <ProjectCardFeature
               :projectData="projectFeatureSingle"
               :isInHomePage="true"
@@ -27,7 +27,7 @@
         </div>
         <div class="section-content">
           <div v-for="(project, index) in projectPopular" :key="index + project.Id">
-            <router-link :to="'/projectdetail/'+ project.id">
+            <router-link :to="`/projectdetail/${project.id}`">
               <ProjectMainCard
                 :projectData="project"
                 :isInHomePage="true"
@@ -42,7 +42,7 @@
         </div>
         <div class="section-content">
           <div v-for="(project, index) in projectMostFunding" :key="index + project.id">
-            <router-link :to="'/projectdetail/'+ project.id">
+            <router-link :to="`/projectdetail/${project.id}`">
               <ProjectMainCard
                 :projectData="project"
                 :isInHomePage="true"
@@ -93,7 +93,7 @@ export default {
     return {
       dummyTest: 3,
       projectId: 3,
-      projectFeatureSingle: [],
+      projectFeatureSingle: {},
       projectFeatureList: [],
       projectPopular: [],
       projectMostFunding: [],
@@ -101,7 +101,7 @@ export default {
       allProjectList: [],
     }
   },
-  mounted () {
+  created () {
     this.checkAvailableContent()
   },
   computed: {
@@ -141,9 +141,10 @@ export default {
     },
     checkAvailableProjectFeatureSingle () {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
-      this.projectFeatureSingle = this.allProjectList.filter((project, idx) => {
+      const resFeatureSingle = this.allProjectList.filter((project, idx) => {
         if(idx <= 0) return project
       })
+      this.projectFeatureSingle = resFeatureSingle[0]
     },
     checkAvailableProjectPopular () {
       // CHECKING API FOR AVAILABLE PROJECT POPULAR

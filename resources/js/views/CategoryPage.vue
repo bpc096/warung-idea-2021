@@ -20,6 +20,8 @@
 <script>
 import ProjectCard from '../components/cardComponent/ArticleCard.vue'
 
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'CategoryPage',
   components: {
@@ -27,7 +29,7 @@ export default {
   },
   data : () => {
     return {
-      categoryId: 0,
+      categoryList: ['arts', 'technology', 'games', 'books', 'movies', 'health-and-fitness'],
       isExist: true,
       projectList: 7,
       projectId: 0,
@@ -43,32 +45,31 @@ export default {
       allProjectList: [],
     }
   },
-  mounted () {
+  created () {
     this.fetchAllProjectList()
-    this.fetchProjectBasedOnCategory()
   },
-  updated () {
-    this.fetchProjectBasedOnCategory()
+  computed: {
+    ...mapGetters({
+      allProjects: 'getAllCampaign',
+    })
   },
   computed: {
     queryCategoryId () {
+      this.updateProjectBasedOnCategory()
       return this.$route.params.categoryId.toUpperCase()
     },
     getCategoryId () {
-      const categoryList = ['arts', 'technology', 'games', 'books', 'movies', 'health-and-fitness']
-      const checkExistId = categoryList.indexOf(this.$route.params.categoryId.toLowerCase())
+      const checkExistId = this.categoryList.indexOf(this.$route.params.categoryId.toLowerCase())
       if(checkExistId >= 0) {
-        this.categoryId = checkExistId + 1
+        return checkExistId + 1
       } else {
-        this.categoryId = 0
+        return 0
       }
-      return this.categoryId
     }
   },
   methods: {
     async fetchAllProjectList () {
-      await this.$store
-        .dispatch('getAllCampaign')
+      await this.$store.dispatch('getAllCampaign')
         .then(res => {
           this.allProjectList = res.data.data.data
         })
@@ -76,7 +77,8 @@ export default {
           console.error(err)
         })
     },
-    fetchProjectBasedOnCategory () {
+    updateProjectBasedOnCategory() {
+      if (!this.allProjectList) return
       this.categoryProjectList = this.allProjectList.filter(project => project.category_id === this.getCategoryId)
     }
   }

@@ -3,8 +3,8 @@ import { GET_CAMPAIGN, UPLOAD_CAMPAIGN } from "../mutation-types"
 
 const state = {
   articleList: [],
-  campaignList: [],
   campaignUpload: {},
+  // campaignList: [],
 }
 
 const actions = {
@@ -12,7 +12,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       Axios.get('campaign')
         .then(res => {
-          commit(GET_CAMPAIGN, res.data.data)
+          // commit(GET_CAMPAIGN, res.data.data)
           resolve(res)
         })
         .catch(err => {

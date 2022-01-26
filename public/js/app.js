@@ -2475,8 +2475,8 @@ __webpack_require__.r(__webpack_exports__);
   name: 'ProjectCardFeature',
   props: {
     projectData: {
-      type: Array,
-      "default": []
+      type: Object,
+      "default": {}
     },
     isInHomePage: {
       type: Boolean,
@@ -2496,9 +2496,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     projectName: function projectName() {
-      var _this$projectData$;
+      var _this$projectData;
 
-      var projectTitle = (_this$projectData$ = this.projectData[0]) !== null && _this$projectData$ !== void 0 && _this$projectData$.title ? this.projectData[0].title : this.dummyData.contentTitle;
+      var projectTitle = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.title ? this.projectData.title : this.dummyData.contentTitle;
 
       if (this.isInHomePage) {
         return projectTitle.slice(0, 30);
@@ -2507,9 +2507,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectDesc: function projectDesc() {
-      var _this$projectData$2;
+      var _this$projectData2;
 
-      var contentDesc = (_this$projectData$2 = this.projectData[0]) !== null && _this$projectData$2 !== void 0 && _this$projectData$2.description ? this.projectData[0].description : this.dummyData.contentDescription;
+      var contentDesc = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.description ? this.projectData.description : this.dummyData.contentDescription;
 
       if (this.isInHomePage) {
         return contentDesc.slice(0, 180) + '...';
@@ -2827,12 +2827,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/cardComponent/ArticleCard.vue */ "./resources/js/components/cardComponent/ArticleCard.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+var _name$components$data;
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2853,14 +2862,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+
+/* harmony default export */ __webpack_exports__["default"] = (_name$components$data = {
   name: 'CategoryPage',
   components: {
     ProjectCard: _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      categoryId: 0,
+      categoryList: ['arts', 'technology', 'games', 'books', 'movies', 'health-and-fitness'],
       isExist: true,
       projectList: 7,
       projectId: 0,
@@ -2873,63 +2883,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       allProjectList: []
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     this.fetchAllProjectList();
-    this.fetchProjectBasedOnCategory();
   },
-  updated: function updated() {
-    this.fetchProjectBasedOnCategory();
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
+    allProjects: 'getAllCampaign'
+  }))
+}, _defineProperty(_name$components$data, "computed", {
+  queryCategoryId: function queryCategoryId() {
+    this.updateProjectBasedOnCategory();
+    return this.$route.params.categoryId.toUpperCase();
   },
-  computed: {
-    queryCategoryId: function queryCategoryId() {
-      return this.$route.params.categoryId.toUpperCase();
-    },
-    getCategoryId: function getCategoryId() {
-      var categoryList = ['arts', 'technology', 'games', 'books', 'movies', 'health-and-fitness'];
-      var checkExistId = categoryList.indexOf(this.$route.params.categoryId.toLowerCase());
+  getCategoryId: function getCategoryId() {
+    var checkExistId = this.categoryList.indexOf(this.$route.params.categoryId.toLowerCase());
 
-      if (checkExistId >= 0) {
-        this.categoryId = checkExistId + 1;
-      } else {
-        this.categoryId = 0;
-      }
-
-      return this.categoryId;
-    }
-  },
-  methods: {
-    fetchAllProjectList: function fetchAllProjectList() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this.$store.dispatch('getAllCampaign').then(function (res) {
-                  _this.allProjectList = res.data.data.data;
-                })["catch"](function (err) {
-                  console.error(err);
-                });
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    fetchProjectBasedOnCategory: function fetchProjectBasedOnCategory() {
-      var _this2 = this;
-
-      this.categoryProjectList = this.allProjectList.filter(function (project) {
-        return project.category_id === _this2.getCategoryId;
-      });
+    if (checkExistId >= 0) {
+      return checkExistId + 1;
+    } else {
+      return 0;
     }
   }
-});
+}), _defineProperty(_name$components$data, "methods", {
+  fetchAllProjectList: function fetchAllProjectList() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch('getAllCampaign').then(function (res) {
+                _this.allProjectList = res.data.data.data;
+              })["catch"](function (err) {
+                console.error(err);
+              });
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  updateProjectBasedOnCategory: function updateProjectBasedOnCategory() {
+    var _this2 = this;
+
+    if (!this.allProjectList) return;
+    this.categoryProjectList = this.allProjectList.filter(function (project) {
+      return project.category_id === _this2.getCategoryId;
+    });
+  }
+}), _name$components$data);
 
 /***/ }),
 
@@ -3215,7 +3221,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       dummyTest: 3,
       projectId: 3,
-      projectFeatureSingle: [],
+      projectFeatureSingle: {},
       projectFeatureList: [],
       projectPopular: [],
       projectMostFunding: [],
@@ -3223,7 +3229,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       allProjectList: []
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     this.checkAvailableContent();
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
@@ -3295,9 +3301,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     checkAvailableProjectFeatureSingle: function checkAvailableProjectFeatureSingle() {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
-      this.projectFeatureSingle = this.allProjectList.filter(function (project, idx) {
+      var resFeatureSingle = this.allProjectList.filter(function (project, idx) {
         if (idx <= 0) return project;
       });
+      this.projectFeatureSingle = resFeatureSingle[0];
     },
     checkAvailableProjectPopular: function checkAvailableProjectPopular() {
       // CHECKING API FOR AVAILABLE PROJECT POPULAR
@@ -44568,9 +44575,7 @@ var render = function () {
             _c(
               "router-link",
               {
-                attrs: {
-                  to: "/projectdetail/" + _vm.projectFeatureSingle[0].id,
-                },
+                attrs: { to: "/projectdetail/" + _vm.projectFeatureSingle.id },
               },
               [
                 _c("ProjectCardFeature", {
@@ -64872,15 +64877,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var state = {
   articleList: [],
-  campaignList: [],
-  campaignUpload: {}
+  campaignUpload: {} // campaignList: [],
+
 };
 var actions = {
   getAllCampaign: function getAllCampaign(_ref) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('campaign').then(function (res) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__["GET_CAMPAIGN"], res.data.data);
+        // commit(GET_CAMPAIGN, res.data.data)
         resolve(res);
       })["catch"](function (err) {
         reject(err);
