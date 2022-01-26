@@ -1,14 +1,14 @@
 <template>
   <div class="category-wrapper">
     <div class="title-category">
-      <h1>{{ checkQueryCategoryId }}</h1>
+      <h1>{{ queryCategoryId }}</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id labore ullam nobis neque ipsa nesciunt ea et dolor fuga adipisci?</p>
     </div>
     <div class="content-category">
-      <div v-for="(project, idx) in projectList" class="project-card-wrap" :key="idx">
-        <a :href="'/projectdetail/'+ projectId">
+      <div v-for="(project, idx) in categoryProjectList" class="project-card-wrap" :key="idx">
+        <a :href="'/projectdetail/'+ project.id">
           <ProjectCard
-          :articleData="testDataProject"
+          :projectData="project"
           :isCampaign="true"
           />
         </a>
@@ -27,9 +27,10 @@ export default {
   },
   data : () => {
     return {
+      categoryId: 0,
       isExist: true,
       projectList: 7,
-      projectId: 'id-sekian',
+      projectId: 0,
       testDataProject: {
         image: '/project-img-url',
         title: 'Project Title',
@@ -37,12 +38,46 @@ export default {
           Aenean orci e diam sapien, finibus eu metus ac,
           porttitor feugiat elit. Vestibulum varius ultricies ante,
           in convallis justo varius a.`
-      }
+      },
+      categoryProjectList: [],
+      allProjectList: [],
     }
   },
+  mounted () {
+    this.fetchAllProjectList()
+    this.fetchProjectBasedOnCategory()
+  },
+  updated () {
+    this.fetchProjectBasedOnCategory()
+  },
   computed: {
-    checkQueryCategoryId () {
+    queryCategoryId () {
       return this.$route.params.categoryId.toUpperCase()
+    },
+    getCategoryId () {
+      const categoryList = ['arts', 'technology', 'games', 'books', 'movies', 'health-and-fitness']
+      const checkExistId = categoryList.indexOf(this.$route.params.categoryId.toLowerCase())
+      if(checkExistId >= 0) {
+        this.categoryId = checkExistId + 1
+      } else {
+        this.categoryId = 0
+      }
+      return this.categoryId
+    }
+  },
+  methods: {
+    async fetchAllProjectList () {
+      await this.$store
+        .dispatch('getAllCampaign')
+        .then(res => {
+          this.allProjectList = res.data.data.data
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    fetchProjectBasedOnCategory () {
+      this.categoryProjectList = this.allProjectList.filter(project => project.category_id === this.getCategoryId)
     }
   }
 }

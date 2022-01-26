@@ -2399,6 +2399,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Boolean,
       "default": false
     },
+    projectData: {
+      type: Object,
+      "default": function _default() {}
+    },
     articleData: {
       type: Object,
       "default": function _default() {
@@ -2415,10 +2419,10 @@ __webpack_require__.r(__webpack_exports__);
       return this.articleData.image;
     },
     titleText: function titleText() {
-      return this.articleData.title;
+      return this.isCampaign ? this.projectData.title : this.articleData.title;
     },
     descText: function descText() {
-      return this.articleData.description;
+      return this.isCampaign ? this.projectData.description : this.articleData.description;
     }
   }
 });
@@ -2563,14 +2567,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ProjectMainCard',
   props: {
     projectData: {
       type: Object,
       "default": {}
+    },
+    isInHomePage: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  data: function data() {
+    return {
+      dummyData: {
+        contentId: 1,
+        contentImageURL: '/testing',
+        contentTitle: 'Project Title Here',
+        contentDescription: 'Lorem ipsum dua tiga tutup botol',
+        contentFundedPercentage: 90
+      }
+    };
+  },
+  computed: {
+    projectName: function projectName() {
+      var _this$projectData;
+
+      var projectTitle = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.title ? this.projectData.title : this.dummyData.contentTitle;
+
+      if (this.isInHomePage) {
+        return projectTitle.slice(0, 30);
+      } else {
+        return projectTitle;
+      }
+    },
+    projectDesc: function projectDesc() {
+      var _this$projectData2;
+
+      var contentDesc = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.description ? this.projectData.description : this.dummyData.contentDescription;
+
+      if (this.isInHomePage) {
+        return contentDesc.slice(0, 250) + '...';
+      } else {
+        return contentDesc;
+      }
+    },
+    projectPercentage: function projectPercentage() {
+      return 90;
     }
   }
 });
@@ -2605,7 +2649,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ProjectListFeature'
+  name: 'ProjectListFeature',
+  props: {
+    projectData: {
+      type: Object,
+      "default": {}
+    },
+    isInHomePage: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  data: function data() {
+    return {
+      dummyData: {
+        contentId: 1,
+        contentImageURL: '/testing',
+        contentTitle: 'Project Title Here',
+        contentDescription: 'Lorem ipsum dua tiga tutup botol',
+        contentFundedPercentage: 90
+      }
+    };
+  },
+  computed: {
+    projectName: function projectName() {
+      var _this$projectData;
+
+      var projectTitle = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.title ? this.projectData.title : this.dummyData.contentTitle;
+
+      if (this.isInHomePage) {
+        return projectTitle.slice(0, 20);
+      } else {
+        return projectTitle;
+      }
+    },
+    projectDesc: function projectDesc() {
+      var _this$projectData2;
+
+      var contentDesc = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.description ? this.projectData.description : this.dummyData.contentDescription;
+
+      if (this.isInHomePage) {
+        return contentDesc.slice(0, 100) + '...';
+      } else {
+        return contentDesc;
+      }
+    },
+    projectPercentage: function projectPercentage() {
+      return 90;
+    }
+  }
 });
 
 /***/ }),
@@ -2732,7 +2824,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/cardComponent/ArticleCard.vue */ "./resources/js/components/cardComponent/ArticleCard.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/cardComponent/ArticleCard.vue */ "./resources/js/components/cardComponent/ArticleCard.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2756,23 +2856,77 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CategoryPage',
   components: {
-    ProjectCard: _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    ProjectCard: _components_cardComponent_ArticleCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
+      categoryId: 0,
       isExist: true,
       projectList: 7,
-      projectId: 'id-sekian',
+      projectId: 0,
       testDataProject: {
         image: '/project-img-url',
         title: 'Project Title',
         description: "Project ipsum dolor sit amet, consectetur adipiscing elit.\n          Aenean orci e diam sapien, finibus eu metus ac,\n          porttitor feugiat elit. Vestibulum varius ultricies ante,\n          in convallis justo varius a."
-      }
+      },
+      categoryProjectList: [],
+      allProjectList: []
     };
   },
+  mounted: function mounted() {
+    this.fetchAllProjectList();
+    this.fetchProjectBasedOnCategory();
+  },
+  updated: function updated() {
+    this.fetchProjectBasedOnCategory();
+  },
   computed: {
-    checkQueryCategoryId: function checkQueryCategoryId() {
+    queryCategoryId: function queryCategoryId() {
       return this.$route.params.categoryId.toUpperCase();
+    },
+    getCategoryId: function getCategoryId() {
+      var categoryList = ['arts', 'technology', 'games', 'books', 'movies', 'health-and-fitness'];
+      var checkExistId = categoryList.indexOf(this.$route.params.categoryId.toLowerCase());
+
+      if (checkExistId >= 0) {
+        this.categoryId = checkExistId + 1;
+      } else {
+        this.categoryId = 0;
+      }
+
+      return this.categoryId;
+    }
+  },
+  methods: {
+    fetchAllProjectList: function fetchAllProjectList() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$store.dispatch('getAllCampaign').then(function (res) {
+                  _this.allProjectList = res.data.data.data;
+                })["catch"](function (err) {
+                  console.error(err);
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    fetchProjectBasedOnCategory: function fetchProjectBasedOnCategory() {
+      var _this2 = this;
+
+      this.categoryProjectList = this.allProjectList.filter(function (project) {
+        return project.category_id === _this2.getCategoryId;
+      });
     }
   }
 });
@@ -3034,6 +3188,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 // Component
 
 
@@ -3064,7 +3223,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       allProjectList: []
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     this.checkAvailableContent();
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])({
@@ -43902,54 +44061,52 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "project-main-card" }, [
+    _c("div", { staticClass: "card-image" }, [_vm._v("\n    image\n  ")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-content" }, [
+      _c("div", { staticClass: "card-title" }, [
+        _vm._v("\n      " + _vm._s(this.projectName) + "\n    "),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-description" }, [
+        _vm._v("\n     " + _vm._s(this.projectDesc) + "\n    "),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "project-main-card" }, [
-      _c("div", { staticClass: "card-image" }, [_vm._v("\n    image\n  ")]),
+    return _c("div", { staticClass: "card-additional" }, [
+      _c("div", { staticClass: "creator-info" }, [
+        _vm._v("\n        By Creator-name\n      "),
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "card-title" }, [
-          _vm._v("\n      Project Name Here\n    "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-description" }, [
-          _vm._v(
-            "\n      Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n       Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque.\n       Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!\n    "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-additional" }, [
-          _c("div", { staticClass: "creator-info" }, [
-            _vm._v("\n        By Creator-name\n      "),
+      _c("div", { staticClass: "icon-info" }, [
+        _c("div", { staticClass: "icon-love" }, [
+          _c("a", { attrs: { href: "#addToLove" } }, [
+            _c("img", {
+              attrs: {
+                src: __webpack_require__(/*! ../../assets/images/icon/love.png */ "./resources/js/assets/images/icon/love.png"),
+                alt: "love-icon",
+              },
+            }),
           ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "icon-info" }, [
-            _c("div", { staticClass: "icon-love" }, [
-              _c("a", { attrs: { href: "#addToLove" } }, [
-                _c("img", {
-                  attrs: {
-                    src: __webpack_require__(/*! ../../assets/images/icon/love.png */ "./resources/js/assets/images/icon/love.png"),
-                    alt: "love-icon",
-                  },
-                }),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "icon-bookmark" }, [
-              _c("a", { attrs: { href: "#addToBookmark" } }, [
-                _c("img", {
-                  attrs: {
-                    src: __webpack_require__(/*! ../../assets/images/icon/bookmark.svg */ "./resources/js/assets/images/icon/bookmark.svg"),
-                    alt: "bookmark-icon",
-                  },
-                }),
-              ]),
-            ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "icon-bookmark" }, [
+          _c("a", { attrs: { href: "#addToBookmark" } }, [
+            _c("img", {
+              attrs: {
+                src: __webpack_require__(/*! ../../assets/images/icon/bookmark.svg */ "./resources/js/assets/images/icon/bookmark.svg"),
+                alt: "bookmark-icon",
+              },
+            }),
           ]),
         ]),
       ]),
@@ -43977,34 +44134,23 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "project-list-wrapper" }, [
-      _c("div", { staticClass: "card-list" }, [
-        _c("div", { staticClass: "list-image" }, [
-          _vm._v("\n      image\n    "),
+  return _c("div", { staticClass: "project-list-wrapper" }, [
+    _c("div", { staticClass: "card-list" }, [
+      _c("div", { staticClass: "list-image" }, [_vm._v("\n      image\n    ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "list-content" }, [
+        _c("div", { staticClass: "content-title" }, [
+          _vm._v("\n        " + _vm._s(this.projectName) + "\n      "),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "list-content" }, [
-          _c("div", { staticClass: "content-title" }, [
-            _vm._v("\n        Project Title Here\n      "),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content-description" }, [
-            _vm._v(
-              "\n        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum, reprehenderit.\n      "
-            ),
-          ]),
+        _c("div", { staticClass: "content-description" }, [
+          _vm._v("\n        " + _vm._s(this.projectDesc) + "\n      "),
         ]),
       ]),
-    ])
-  },
-]
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44161,7 +44307,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "category-wrapper" }, [
     _c("div", { staticClass: "title-category" }, [
-      _c("h1", [_vm._v(_vm._s(_vm.checkQueryCategoryId))]),
+      _c("h1", [_vm._v(_vm._s(_vm.queryCategoryId))]),
       _vm._v(" "),
       _c("p", [
         _vm._v(
@@ -44173,14 +44319,14 @@ var render = function () {
     _c(
       "div",
       { staticClass: "content-category" },
-      _vm._l(_vm.projectList, function (project, idx) {
+      _vm._l(_vm.categoryProjectList, function (project, idx) {
         return _c("div", { key: idx, staticClass: "project-card-wrap" }, [
           _c(
             "a",
-            { attrs: { href: "/projectdetail/" + _vm.projectId } },
+            { attrs: { href: "/projectdetail/" + project.id } },
             [
               _c("ProjectCard", {
-                attrs: { articleData: _vm.testDataProject, isCampaign: true },
+                attrs: { projectData: project, isCampaign: true },
               }),
             ],
             1
@@ -44393,14 +44539,19 @@ var render = function () {
         _c(
           "div",
           { staticClass: "project-feature-list" },
-          _vm._l(_vm.dummyTest, function (test) {
+          _vm._l(_vm.projectFeatureList, function (project) {
             return _c(
               "div",
+              { key: project.id },
               [
                 _c(
                   "router-link",
-                  { attrs: { to: "/projectdetail/" + _vm.projectId } },
-                  [_c("ProjectListFeature")],
+                  { attrs: { to: "/projectdetail/" + project.id } },
+                  [
+                    _c("ProjectListFeature", {
+                      attrs: { projectData: project, isInHomePage: true },
+                    }),
+                  ],
                   1
                 ),
               ],
@@ -44416,7 +44567,11 @@ var render = function () {
           [
             _c(
               "router-link",
-              { attrs: { to: "/projectdetail/id-sekain" } },
+              {
+                attrs: {
+                  to: "/projectdetail/" + _vm.projectFeatureSingle[0].id,
+                },
+              },
               [
                 _c("ProjectCardFeature", {
                   attrs: {
@@ -44443,12 +44598,16 @@ var render = function () {
           _vm._l(_vm.projectPopular, function (project, index) {
             return _c(
               "div",
-              { key: index + project.contentId },
+              { key: index + project.Id },
               [
                 _c(
                   "router-link",
-                  { attrs: { to: "/projectdetail/id-sekain" } },
-                  [_c("ProjectMainCard", { attrs: { projectData: project } })],
+                  { attrs: { to: "/projectdetail/" + project.id } },
+                  [
+                    _c("ProjectMainCard", {
+                      attrs: { projectData: project, isInHomePage: true },
+                    }),
+                  ],
                   1
                 ),
               ],
@@ -44470,19 +44629,16 @@ var render = function () {
           _vm._l(_vm.projectMostFunding, function (project, index) {
             return _c(
               "div",
-              { key: index + project.contentId },
+              { key: index + project.id },
               [
                 _c(
                   "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        path: "/projectdetail/id-sekain",
-                        query: { projectId: project.contentId },
-                      },
-                    },
-                  },
-                  [_c("ProjectMainCard", { attrs: { projectData: project } })],
+                  { attrs: { to: "/projectdetail/" + project.id } },
+                  [
+                    _c("ProjectMainCard", {
+                      attrs: { projectData: project, isInHomePage: true },
+                    }),
+                  ],
                   1
                 ),
               ],

@@ -25,6 +25,10 @@ export default {
       type: Boolean,
       default: false
     },
+    projectData: {
+      type: Object,
+      default: () => {},
+    },
     articleData: {
       type: Object,
       default: () => {
@@ -44,10 +48,10 @@ export default {
       return this.articleData.image
     },
     titleText () {
-      return this.articleData.title
+      return this.isCampaign ? this.projectData.title : this.articleData.title
     },
     descText () {
-      return this.articleData.description
+      return this.isCampaign ? this.projectData.description : this.articleData.description
     }
   }
 }

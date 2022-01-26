@@ -5,12 +5,10 @@
     </div>
     <div class="card-content">
       <div class="card-title">
-        Project Name Here
+        {{ this.projectName }}
       </div>
       <div class="card-description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-         Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque.
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!
+       {{ this.projectDesc }}
       </div>
       <div class="card-additional">
         <div class="creator-info">
@@ -39,7 +37,43 @@ export default {
   props: {
     projectData: {
       type: Object,
-      default: {}
+      default: {},
+    },
+    isInHomePage: {
+      type: Boolean,
+      default: false,
+    }
+  },
+  data: () => {
+    return {
+      dummyData: {
+        contentId: 1,
+        contentImageURL: '/testing',
+        contentTitle: 'Project Title Here',
+        contentDescription: 'Lorem ipsum dua tiga tutup botol',
+        contentFundedPercentage: 90,
+      }
+    }
+  },
+  computed: {
+    projectName () {
+      const projectTitle = this.projectData?.title? this.projectData.title : this.dummyData.contentTitle
+      if(this.isInHomePage) {
+        return projectTitle.slice(0,30)
+      } else {
+        return projectTitle
+      }
+    },
+    projectDesc () {
+      const contentDesc = this.projectData?.description? this.projectData.description : this.dummyData.contentDescription
+      if(this.isInHomePage) {
+        return contentDesc.slice(0,250) + '...'
+      } else {
+        return contentDesc
+      }
+    },
+    projectPercentage () {
+      return 90
     }
   }
 }
@@ -92,7 +126,7 @@ export default {
       }
 
       .icon-info {
-        display: flex; 
+        display: flex;
         flex-direction: row;
 
         .icon-bookmark, .icon-love {

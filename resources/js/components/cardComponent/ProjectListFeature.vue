@@ -6,10 +6,10 @@
       </div>
       <div class="list-content">
         <div class="content-title">
-          Project Title Here
+          {{ this.projectName }}
         </div>
         <div class="content-description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum, reprehenderit.
+          {{ this.projectDesc }}
         </div>
       </div>
     </div>
@@ -19,6 +19,48 @@
 <script>
 export default {
   name: 'ProjectListFeature',
+   props: {
+    projectData: {
+      type: Object,
+      default: {}
+    },
+    isInHomePage: {
+      type: Boolean,
+      default: false,
+    }
+  },
+  data: () => {
+    return {
+      dummyData: {
+        contentId: 1,
+        contentImageURL: '/testing',
+        contentTitle: 'Project Title Here',
+        contentDescription: 'Lorem ipsum dua tiga tutup botol',
+        contentFundedPercentage: 90,
+      }
+    }
+  },
+  computed: {
+    projectName () {
+      const projectTitle = this.projectData?.title? this.projectData.title : this.dummyData.contentTitle
+      if(this.isInHomePage) {
+        return projectTitle.slice(0,20)
+      } else {
+        return projectTitle
+      }
+    },
+    projectDesc () {
+      const contentDesc = this.projectData?.description? this.projectData.description : this.dummyData.contentDescription
+      if(this.isInHomePage) {
+        return contentDesc.slice(0,100) + '...'
+      } else {
+        return contentDesc
+      }
+    },
+    projectPercentage () {
+      return 90
+    }
+  }
 }
 </script>
 
@@ -30,12 +72,12 @@ export default {
   .card-list {
     border-radius: 30px;
     width: 100%;
-    height: 6rem;  
+    height: 6rem;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-    
+
     .list-image {
       border-top-left-radius: 30px;
       border-bottom-left-radius: 30px;

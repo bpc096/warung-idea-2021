@@ -3,14 +3,17 @@
     <div class="section">
       <div class="feature-section">
         <div class="project-feature-list">
-          <div v-for="test in dummyTest">
-            <router-link :to="'/projectdetail/'+ projectId">
-              <ProjectListFeature />
+          <div v-for="project in projectFeatureList" :key="project.id">
+            <router-link :to="'/projectdetail/'+ project.id">
+              <ProjectListFeature
+                :projectData="project"
+                :isInHomePage="true"
+              />
             </router-link>
           </div>
         </div>
         <div class="project-feature-card">
-          <router-link to="/projectdetail/id-sekain">
+          <router-link :to="'/projectdetail/'+ projectFeatureSingle[0].id">
             <ProjectCardFeature
               :projectData="projectFeatureSingle"
               :isInHomePage="true"
@@ -23,10 +26,11 @@
           Popular Project
         </div>
         <div class="section-content">
-          <div v-for="(project, index) in projectPopular" :key="index + project.contentId">
-            <router-link to="/projectdetail/id-sekain">
+          <div v-for="(project, index) in projectPopular" :key="index + project.Id">
+            <router-link :to="'/projectdetail/'+ project.id">
               <ProjectMainCard
                 :projectData="project"
+                :isInHomePage="true"
               />
             </router-link>
           </div>
@@ -37,10 +41,11 @@
           Most Funding Project
         </div>
         <div class="section-content">
-          <div v-for="(project, index) in projectMostFunding" :key="index + project.contentId">
-            <router-link :to="{ path: '/projectdetail/id-sekain', query: { projectId: project.contentId }}">
+          <div v-for="(project, index) in projectMostFunding" :key="index + project.id">
+            <router-link :to="'/projectdetail/'+ project.id">
               <ProjectMainCard
                 :projectData="project"
+                :isInHomePage="true"
               />
             </router-link>
           </div>
@@ -96,7 +101,7 @@ export default {
       allProjectList: [],
     }
   },
-  created () {
+  mounted () {
     this.checkAvailableContent()
   },
   computed: {
