@@ -22,7 +22,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '25000000',
             'max_date' => '2022-06-30',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -33,7 +33,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '30000000',
             'max_date' => '2022-02-25',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -44,7 +44,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '35000000',
             'max_date' => '2022-01-30',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -55,7 +55,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '40000000',
             'max_date' => '2022-05-30',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -66,7 +66,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '45000000',
             'max_date' => '2022-04-28',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -77,7 +77,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '50000000',
             'max_date' => '2022-03-18',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -88,7 +88,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '55000000',
             'max_date' => '2022-07-22',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -99,7 +99,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '60000000',
             'max_date' => '2022-08-30',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -110,7 +110,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '65000000',
             'max_date' => '2022-09-21',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
 
         DB::table('campaigns')->insert([
@@ -121,7 +121,7 @@ class CampaignSeeder extends Seeder
             'target_donation' => '70000000',
             'max_date' => '2022-10-21',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel ligula facilisis, mollis nisi non, laoreet ante. Donec luctus diam elit, eget tincidunt magna elementum sit amet. Cras vitae malesuada augue. Integer congue risus augue, lobortis viverra mi semper et. Sed egestas aliquet aliquet. Nunc sit amet sapien tincidunt, faucibus orci a, ultricies orci. Maecenas iaculis, sapien ut auctor hendrerit, nisl massa gravida lacus, sit amet viverra sapien nulla non magna. Praesent facilisis urna vitae elementum viverra. Etiam volutpat eros eget sem luctus gravida. Aenean ac hendrerit massa, ut rutrum massa. Aenean vestibulum erat vitae augue rhoncus, a feugiat felis laoreet. Etiam vel condimentum est, ac elementum odio. Phasellus interdum, erat sed aliquet placerat, nibh tortor finibus libero, fermentum tempor nibh ante a tortor. Nulla malesuada, purus vitae tincidunt volutpat, nisi justo gravida elit, ac dictum dui quam at purus. Donec vel sollicitudin lectus, eget faucibus nisl. Maecenas vehicula congue est, nec pellentesque lacus suscipit nec.',
-            'image' => '',
+            'image' => 'https://884408.smushcdn.com/2249032/wp-content/uploads/2018/01/campaign-blog-graphic-01-1080x675.jpg?lossy=1&strip=1&webp=1',
         ]);
     }
 }
