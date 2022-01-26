@@ -3,41 +3,23 @@
     <div class="title-page">
       History Donation List
     </div>
-    <div class="campaign-card">
-      <div class="campaign-image">
-        image
-      </div>
-      <div class="campaign-content">
-        <div class="campaign-title">
-          Title Campaign
-        </div>
-        <div class="campaign-desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.
-        </div>
-        <div class="campaign-donation-status">
-          Donation Target
-          <div class="shell">
-            <div
-              class="bar-progress"
-              :style="{width: progressPercentage + '%'}"
-            >
-              <span>{{ progressPercentage }}%</span>
-            </div>
-          </div>
-        </div>
-        <div class="campaign-wrap-button">
-          <a href="/projectdetail/123" class="btn-view-campaign">
-            View Campaign
-          </a>
-        </div>
-      </div>
-    </div>
+    <CampaignCard
+      :isInHistoryCampaignPage="false"
+    />
+    <CampaignCard
+      :isInHistoryCampaignPage="false"
+    />
   </div>
 </template>
 
 <script>
+import CampaignCard from '../../components/campaignComponent/CampaignCard'
+
 export default {
   name: 'HistoryDonationCampaign',
+  components: {
+    CampaignCard,
+  },
   data: () => {
     return {
       progress: '59',
@@ -82,6 +64,7 @@ export default {
     flex-direction: row;
     width: 50rem;
     min-height: 10rem;
+    margin: 2rem 0;
 
     .campaign-image {
       width: 30%;

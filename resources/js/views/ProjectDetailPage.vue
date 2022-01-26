@@ -85,11 +85,14 @@ export default {
       showRewardModal: false,
     }
   },
+  created () {
+    // FETCH API GET CAMPAIGN BASED ON ID
+    console.log('Call API CAMPAIGN BASED ON ID')
+  },
   methods: {
     btnSupportHandle () {
       console.log('CLICK SUPPORT')
       this.showRewardModal = true
-
       // CHECK USER AUTH BEFORE SHOW MODAL
       // IF USER NOT LOGGED IN REDIRECT TO LOGIN OR REGISTER PAGE
     },

@@ -2078,6 +2078,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderTemplate",
@@ -2338,8 +2339,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CampaignCard',
+  props: {
+    isInHistoryCampaignPage: {
+      type: Boolean,
+      "default": true
+    }
+  },
   data: function data() {
     return {
       progress: '59'
@@ -3065,27 +3080,27 @@ __webpack_require__.r(__webpack_exports__);
     return {
       // REFACTOR WITH TITLE & URL
       categoryList: [{
-        categoryId: 'CAT01',
+        categoryId: 'arts',
         title: 'Art & Creativity',
         url: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80'
       }, {
-        categoryId: 'CAT02',
+        categoryId: 'technology',
         title: 'Technology',
         url: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80'
       }, {
-        categoryId: 'CAT03',
+        categoryId: 'games',
         title: 'Games',
         url: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
       }, {
-        categoryId: 'CAT04',
+        categoryId: 'books',
         title: 'Books',
         url: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80'
       }, {
-        categoryId: 'CAT05',
+        categoryId: 'movies',
         title: 'Music',
         url: 'https://images.unsplash.com/photo-1468164016595-6108e4c60c8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80'
       }, {
-        categoryId: 'CAT06',
+        categoryId: 'health-and-fitness',
         title: 'Health & Fitness',
         url: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
       }]
@@ -3605,6 +3620,10 @@ __webpack_require__.r(__webpack_exports__);
       showRewardModal: false
     };
   },
+  created: function created() {
+    // FETCH API GET CAMPAIGN BASED ON ID
+    console.log('Call API CAMPAIGN BASED ON ID');
+  },
   methods: {
     btnSupportHandle: function btnSupportHandle() {
       console.log('CLICK SUPPORT');
@@ -4077,6 +4096,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HistoryCampaign',
@@ -4116,6 +4136,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/campaignComponent/CampaignCard */ "./resources/js/components/campaignComponent/CampaignCard.vue");
 //
 //
 //
@@ -4130,31 +4151,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HistoryDonationCampaign',
+  components: {
+    CampaignCard: _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       progress: '59'
@@ -9086,7 +9088,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
+exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
 
 // exports
 
@@ -9428,7 +9430,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
+exports.push([module.i, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
 
 // exports
 
@@ -43351,6 +43353,12 @@ var render = function () {
             _c("router-link", { attrs: { to: "/category/movies" } }, [
               _vm._v("Movie"),
             ]),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { attrs: { to: "/category/health-and-fitness" } },
+              [_vm._v("Health & Fitness")]
+            ),
           ],
           1
         ),
@@ -43888,44 +43896,55 @@ var render = function () {
             [_c("span", [_vm._v(_vm._s(_vm.progressPercentage) + "%")])]
           ),
         ]),
+        _vm._v(" "),
+        !_vm.isInHistoryCampaignPage
+          ? _c("div", { staticClass: "campaign-wrap-button" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn-view-campaign mr",
+                  attrs: { href: "/projectdetail/123" },
+                },
+                [_vm._v("\n           View Campaign\n          ")]
+              ),
+            ])
+          : _vm._e(),
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _vm.isInHistoryCampaignPage
+        ? _c("div", { staticClass: "campaign-wrap-button" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn-view-campaign",
+                attrs: { href: "/projectdetail/123" },
+              },
+              [_vm._v("\n          View Campaign\n        ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-edit-campaign",
+                attrs: { href: "/campaign/edit" },
+              },
+              [_vm._v("\n          Edit Campaign\n        ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn-delete-campaign",
+                attrs: { href: "#deleteCampaign" },
+              },
+              [_vm._v("\n          Delete Campaign\n        ")]
+            ),
+          ])
+        : _vm._e(),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "campaign-wrap-button" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn-view-campaign",
-          attrs: { href: "/projectdetail/123" },
-        },
-        [_vm._v("\n          View Campaign\n        ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "btn-edit-campaign", attrs: { href: "/campaign/edit" } },
-        [_vm._v("\n          Edit Campaign\n        ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn-delete-campaign",
-          attrs: { href: "#deleteCampaign" },
-        },
-        [_vm._v("\n          Delete Campaign\n        ")]
-      ),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45789,6 +45808,8 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("CampaignCard"),
+      _vm._v(" "),
+      _c("CampaignCard"),
     ],
     1
   )
@@ -45815,63 +45836,22 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "history-campaign-wrap" }, [
-    _c("div", { staticClass: "title-page" }, [
-      _vm._v("\n    History Donation List\n  "),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "campaign-card" }, [
-      _c("div", { staticClass: "campaign-image" }, [
-        _vm._v("\n      image\n    "),
+  return _c(
+    "div",
+    { staticClass: "history-campaign-wrap" },
+    [
+      _c("div", { staticClass: "title-page" }, [
+        _vm._v("\n    History Donation List\n  "),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "campaign-content" }, [
-        _c("div", { staticClass: "campaign-title" }, [
-          _vm._v("\n        Title Campaign\n      "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "campaign-desc" }, [
-          _vm._v(
-            "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.\n      "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "campaign-donation-status" }, [
-          _vm._v("\n        Donation Target\n        "),
-          _c("div", { staticClass: "shell" }, [
-            _c(
-              "div",
-              {
-                staticClass: "bar-progress",
-                style: { width: _vm.progressPercentage + "%" },
-              },
-              [_c("span", [_vm._v(_vm._s(_vm.progressPercentage) + "%")])]
-            ),
-          ]),
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-      ]),
-    ]),
-  ])
+      _c("CampaignCard", { attrs: { isInHistoryCampaignPage: false } }),
+      _vm._v(" "),
+      _c("CampaignCard", { attrs: { isInHistoryCampaignPage: false } }),
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "campaign-wrap-button" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn-view-campaign",
-          attrs: { href: "/projectdetail/123" },
-        },
-        [_vm._v("\n          View Campaign\n        ")]
-      ),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

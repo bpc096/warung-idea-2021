@@ -22,6 +22,7 @@
       <router-link to="/category/games">Games</router-link>
       <router-link to="/category/books">Books</router-link>
       <router-link to="/category/movies">Movie</router-link>
+      <router-link to="/category/health-and-fitness">Health & Fitness</router-link>
     </div>
     <div v-if="isLoggedIn" class="button-wrap">
       <router-link to="/profile" class="button-profile">

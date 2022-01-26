@@ -20,8 +20,16 @@
               <span>{{ progressPercentage }}%</span>
             </div>
           </div>
+          <div class="campaign-wrap-button" v-if="!isInHistoryCampaignPage">
+            <a
+              href="/projectdetail/123"
+              class="btn-view-campaign mr"
+            >
+             View Campaign
+            </a>
+          </div>
         </div>
-        <div class="campaign-wrap-button">
+        <div class="campaign-wrap-button" v-if="isInHistoryCampaignPage">
           <a href="/projectdetail/123" class="btn-view-campaign">
             View Campaign
           </a>
@@ -39,7 +47,13 @@
 <script>
 export default {
   name: 'CampaignCard',
-   data: () => {
+  props: {
+    isInHistoryCampaignPage: {
+      type: Boolean,
+      default: true,
+    }
+  },
+  data: () => {
     return {
       progress: '59',
     }
@@ -71,6 +85,7 @@ export default {
     flex-direction: row;
     width: 50rem;
     min-height: 10rem;
+    margin: 2rem 0;
 
     .campaign-image {
       width: 30%;
@@ -137,6 +152,9 @@ export default {
           border-radius: 10px;
           padding: 5px;
           background-color: pink;
+          &.mr {
+            margin-left: 1rem;
+          }
         }
 
         .btn-edit-campaign {

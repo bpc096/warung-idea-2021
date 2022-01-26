@@ -1,15 +1,15 @@
 <template>
   <div class="discover-wrapper">
     <div v-for="(category, index) in categoryList" class="category-area" :key="index">
-      <router-link 
-        :to="`/category/` + category.categoryId" 
+      <router-link
+        :to="`/category/` + category.categoryId"
         :style="{backgroundImage: `url(${category.url})`}"
-        class="category-button" 
+        class="category-button"
       >
         {{ category.title }}
-      </router-link>  
+      </router-link>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
@@ -20,32 +20,32 @@ export default {
       // REFACTOR WITH TITLE & URL
       categoryList: [
         {
-          categoryId: 'CAT01',
+          categoryId: 'arts',
           title: 'Art & Creativity',
           url: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
         },
         {
-          categoryId: 'CAT02',
+          categoryId: 'technology',
           title: 'Technology',
           url: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80'
         },
         {
-          categoryId: 'CAT03',
+          categoryId: 'games',
           title: 'Games',
           url: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
         },
         {
-          categoryId: 'CAT04',
+          categoryId: 'books',
           title: 'Books',
           url: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80'
         },
         {
-          categoryId: 'CAT05',
+          categoryId: 'movies',
           title: 'Music',
           url: 'https://images.unsplash.com/photo-1468164016595-6108e4c60c8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80'
         },
         {
-          categoryId: 'CAT06',
+          categoryId: 'health-and-fitness',
           title: 'Health & Fitness',
           url: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
         }

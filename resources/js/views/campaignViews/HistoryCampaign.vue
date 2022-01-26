@@ -12,6 +12,7 @@
       </router-link>
     </div>
     <CampaignCard />
+    <CampaignCard />
   </div>
 </template>
 
