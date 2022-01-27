@@ -33,7 +33,7 @@ class CampaignController extends Controller
         
     }
 
-    public function index_user()
+    public function index_user($users_id)
     {
         // $campaigns = Campaign::latest()->when(request()->q, function($campaigns) {
         //     $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
@@ -53,23 +53,26 @@ class CampaignController extends Controller
         // }
 
         //get detail data campaign
-        $campaign = Campaign::with('user')->with('sumPayment')->where('users_id', auth()->guard('api')->user()->id)->first();
+        $campaign = Campaign::with('user')->with('sumPayment')->where('users_id', $users_id)->get();
 
         if($campaign) {
 
             //return with response JSON
             return response()->json([
                 'success'   => true,
-                'message'   => 'Detail Data Campaign : '. $campaign->title,
+                'message'   => 'List Data Campaign By User Id',
                 'data'      => $campaign
             ], 200);
         }
+        else{
+            //return with response JSON
+            return response()->json([
+                'success' => false,
+                'message' => 'Data Campaign Tidak Ditemukan!',
+            ], 404);
+        }
 
-        //return with response JSON
-        return response()->json([
-            'success' => false,
-            'message' => 'Data Campaign Tidak Ditemukan!',
-        ], 404);
+        
     }
 
     /**
