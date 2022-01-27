@@ -87,7 +87,7 @@ class PaymentController extends Controller
             $donation = Payment::create([
                 'invoice'       => $no_invoice,
                 'campaign_id'   => $campaign->id,
-                'donatur_id'    => auth()->guard('api')->user()->id,
+                'users_id'      => auth()->guard('api')->user()->id,
                 'amount'        => $request->amount,
                 'status'        => 'pending',
             ]);
