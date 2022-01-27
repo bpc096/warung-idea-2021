@@ -35,7 +35,7 @@ class PaymentController extends Controller
     public function index()
     {
          //get data donations
-         $payments = Payment::with('campaign')->where('users_id', auth()->guard('api')->user()->id)->latest()->paginate(5);
+         $payments = Payment::with('campaign')->where('users_id', auth()->guard('api')->user()->id)->latest()->paginate(100);
 
          //return with response JSON
          return response()->json([
