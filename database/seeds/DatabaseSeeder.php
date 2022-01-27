@@ -1,5 +1,9 @@
 <?php
 
+use App\Campaign;
+use Database\Seeders\ArticleSeeder;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\CampaignSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(ArticleSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(CampaignSeeder::class);
+        // Campaign::factory()->count(8)->create();
     }
 }
