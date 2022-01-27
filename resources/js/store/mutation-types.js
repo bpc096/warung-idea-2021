@@ -8,7 +8,9 @@ export const SET_ARTICLE = 'setArticle'
 export const SET_USER = 'setUser'
 export const RESET_USER = 'resetUser'
 
-
 // CAMPAIGN
 export const GET_CAMPAIGN = 'getCampaign'
 export const UPLOAD_CAMPAIGN = 'uploadCampaign'
+
+//DONATION
+export const SET_DONATION = 'setDonation'

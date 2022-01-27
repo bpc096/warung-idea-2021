@@ -5,8 +5,9 @@ const state = {
   donation: {
     amount: 0,
     message: '',
-    campaignSlug: ''
-  }
+    campaignSlug: '',
+  },
+  donations: [],
 }
 
 const actions = {
@@ -26,10 +27,16 @@ const actions = {
     return new Promise((resolve, reject) => {
       Axios.post('/payment', data)
         .then(res => {
+
+          console.log(res)
+
           commit('')
           resolve(res)
         })
         .catch(err => {
+
+          console.log(err)
+
           reject(err.response.data)
         })
     })
@@ -37,8 +44,8 @@ const actions = {
 }
 
 const mutations = {
- [SET_DONATIONS]() {
-
+ [SET_DONATION] (state, donation) {
+  state.donations = donation
  }
 }
 

@@ -79,8 +79,27 @@ export default {
     }
   },
   methods: {
-    checkout() {
+    async checkout() {
       console.log('Submit Payment');
+
+      const donation = {
+        amount: 100000,
+        pray: 'hello',
+        campaignSlug: 'arts'
+      }
+
+      await this.$store
+        .dispatch('storeDonation', donation)
+        .then((res) => {
+          console.log(res)
+
+          this.$router.push({
+            name: 'HistoryDonationCampaign'
+          })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }

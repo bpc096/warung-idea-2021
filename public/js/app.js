@@ -3005,6 +3005,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3086,7 +3094,38 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     checkout: function checkout() {
-      console.log('Submit Payment');
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var donation;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log('Submit Payment');
+                donation = {
+                  amount: 100000,
+                  pray: 'hello',
+                  campaignSlug: 'arts'
+                };
+                _context.next = 4;
+                return _this.$store.dispatch('storeDonation', donation).then(function (res) {
+                  console.log(res);
+
+                  _this.$router.push({
+                    name: 'HistoryDonationCampaign'
+                  });
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   }
 });
@@ -64837,6 +64876,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/profileStore */ "./resources/js/store/modules/profileStore.js");
 /* harmony import */ var _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/articleStore */ "./resources/js/store/modules/articleStore.js");
 /* harmony import */ var _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/campaignStore */ "./resources/js/store/modules/campaignStore.js");
+/* harmony import */ var _modules_donateStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/donateStore */ "./resources/js/store/modules/donateStore.js");
 var _mutations__;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
@@ -64848,6 +64888,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
  // Module Store
+
 
 
 
@@ -64876,10 +64917,10 @@ var mutations__ = (_mutations__ = {}, _defineProperty(_mutations__, _mutation_ty
 var getters__ = {};
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, state__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].state), _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__["default"].state), _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__["default"].state), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__["default"].state),
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, actions__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].actions), _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__["default"].actions), _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__["default"].actions), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__["default"].actions),
-  mutations: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, mutations__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].mutations), _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__["default"].mutations), _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__["default"].mutations), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__["default"].mutations),
-  getters: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, getters__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].getters), _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__["default"].getters), _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__["default"].getters), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__["default"].getters)
+  state: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, state__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].state), _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__["default"].state), _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__["default"].state), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__["default"].state), _modules_donateStore__WEBPACK_IMPORTED_MODULE_7__["default"].state),
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, actions__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].actions), _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__["default"].actions), _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__["default"].actions), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__["default"].actions), _modules_donateStore__WEBPACK_IMPORTED_MODULE_7__["default"].actions),
+  mutations: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, mutations__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].mutations), _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__["default"].mutations), _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__["default"].mutations), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__["default"].mutations), _modules_donateStore__WEBPACK_IMPORTED_MODULE_7__["default"].mutations),
+  getters: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, getters__), _modules_authStore__WEBPACK_IMPORTED_MODULE_3__["default"].getters), _modules_profileStore__WEBPACK_IMPORTED_MODULE_4__["default"].getters), _modules_articleStore__WEBPACK_IMPORTED_MODULE_5__["default"].getters), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_6__["default"].getters), _modules_donateStore__WEBPACK_IMPORTED_MODULE_7__["default"].getters)
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
@@ -65194,6 +65235,71 @@ var getters = {
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/donateStore.js":
+/*!***************************************************!*\
+  !*** ./resources/js/store/modules/donateStore.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var state = {
+  donation: {
+    amount: 0,
+    message: '',
+    campaignSlug: ''
+  },
+  donations: []
+};
+var actions = {
+  getDonation: function getDonation(_ref) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/payment').then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__["SET_DONATION"], res.data.data.data);
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err.response.data);
+      });
+    });
+  },
+  storeDonation: function storeDonation(_ref2, data) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/payment', data).then(function (res) {
+        console.log(res);
+        commit('');
+        resolve(res);
+      })["catch"](function (err) {
+        console.log(err);
+        reject(err.response.data);
+      });
+    });
+  }
+};
+
+var mutations = _defineProperty({}, _mutation_types__WEBPACK_IMPORTED_MODULE_1__["SET_DONATION"], function (state, donation) {
+  state.donations = donation;
+});
+
+var getters = {};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/profileStore.js":
 /*!****************************************************!*\
   !*** ./resources/js/store/modules/profileStore.js ***!
@@ -65220,7 +65326,7 @@ var getters = {};
 /*!**********************************************!*\
   !*** ./resources/js/store/mutation-types.js ***!
   \**********************************************/
-/*! exports provided: ADDING_NUMBER, SUBTRACT_NUMBER, SET_ARTICLE, SET_USER, RESET_USER, GET_CAMPAIGN, UPLOAD_CAMPAIGN */
+/*! exports provided: ADDING_NUMBER, SUBTRACT_NUMBER, SET_ARTICLE, SET_USER, RESET_USER, GET_CAMPAIGN, UPLOAD_CAMPAIGN, SET_DONATION */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65232,6 +65338,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESET_USER", function() { return RESET_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_CAMPAIGN", function() { return GET_CAMPAIGN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_CAMPAIGN", function() { return UPLOAD_CAMPAIGN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_DONATION", function() { return SET_DONATION; });
 var ADDING_NUMBER = 'addingNumber';
 var SUBTRACT_NUMBER = 'subtractNumber'; // ARTICLES
 
@@ -65241,7 +65348,9 @@ var SET_USER = 'setUser';
 var RESET_USER = 'resetUser'; // CAMPAIGN
 
 var GET_CAMPAIGN = 'getCampaign';
-var UPLOAD_CAMPAIGN = 'uploadCampaign';
+var UPLOAD_CAMPAIGN = 'uploadCampaign'; //DONATION
+
+var SET_DONATION = 'setDonation';
 
 /***/ }),
 

@@ -10,6 +10,7 @@ import authStore from './modules/authStore'
 import profileStore from './modules/profileStore'
 import articleStore from './modules/articleStore'
 import campaignStore from './modules/campaignStore'
+import donateStore from './modules/donateStore'
 
 const state__ = {
   number: 1,
@@ -45,6 +46,7 @@ const store = new Vuex.Store({
     ...profileStore.state,
     ...articleStore.state,
     ...campaignStore.state,
+    ...donateStore.state,
   },
   actions: {
     ...actions__,
@@ -52,6 +54,7 @@ const store = new Vuex.Store({
     ...profileStore.actions,
     ...articleStore.actions,
     ...campaignStore.actions,
+    ...donateStore.actions,
   },
   mutations: {
     ...mutations__,
@@ -59,13 +62,15 @@ const store = new Vuex.Store({
     ...profileStore.mutations,
     ...articleStore.mutations,
     ...campaignStore.mutations,
+    ...donateStore.mutations,
   },
   getters: {
     ...getters__,
     ...authStore.getters,
     ...profileStore.getters,
     ...articleStore.getters,
-    ...campaignStore.getters
+    ...campaignStore.getters,
+    ...donateStore.getters,
   },
 })
 
