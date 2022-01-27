@@ -29,6 +29,18 @@
             </a>
           </div>
         </div>
+        <div v-if="!isInHistoryCampaignPage" class="campaign-payment-status">
+          Payment status
+          <div :class="['text-status', paymentStatus]">
+            {{ paymentTextStatus }}
+          </div>
+          <button
+            class="btn-payment"
+            @click="payment"
+          >
+            Pay Now !
+          </button>
+        </div>
         <div class="campaign-wrap-button" v-if="isInHistoryCampaignPage">
           <a href="/projectdetail/123" class="btn-view-campaign">
             View Campaign
@@ -56,6 +68,7 @@ export default {
   data: () => {
     return {
       progress: '59',
+      paymentTextStatus: 'PENDING',
     }
   },
   computed: {
@@ -73,6 +86,16 @@ export default {
     checkEligibleToEdit() {
       // TODO : Check Eligiblelity to edit campaign
       return true
+    },
+    paymentStatus () {
+      // LOGIC
+      this.paymentTextStatus = 'SUCCESS'
+      return 'success-status'
+    }
+  },
+  methods: {
+    payment() {
+      console.log('PAYMENT')
     }
   }
 }
@@ -138,6 +161,42 @@ export default {
           }
         }
       }
+
+      .campaign-payment-status {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        align-items: center;
+        justify-content: space-between;
+
+        .text-status {
+          font-weight: 500;
+          color: black;
+          padding: 2px;
+          min-width: 10rem;
+          letter-spacing: 2px;
+          border-radius: 10px;
+
+          &.pending-status {
+            background-color: yellow;
+          }
+
+          &.success-status {
+            background-color: #38ef7d;
+          }
+        }
+
+        .btn-payment {
+          text-decoration: none;
+          color: black;
+          border: 1px solid pink;
+          border-radius: 10px;
+          padding: 5px;
+          background-color: salmon;
+          margin-left: 1rem;
+        }
+      }
+
 
       .campaign-wrap-button {
         display: flex;

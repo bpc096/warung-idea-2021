@@ -1,7 +1,7 @@
 <template>
   <div class="feature-card-wrapper">
     <div class="content-image">
-      image
+      <img :src="imageUrl" alt="image-project-feature">
     </div>
     <div class="content-info">
       <div class="content-title">
@@ -48,7 +48,7 @@ export default {
     return {
       dummyData: {
         contentId: 1,
-        contentImageURL: '/testing',
+        contentImageURL: 'https://images.unsplash.com/photo-1643133277733-68f9bf8ddee2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         contentTitle: 'Project Title Here',
         contentDescription: 'Lorem ipsum dua tiga tutup botol',
         contentFundedPercentage: 90,
@@ -56,6 +56,9 @@ export default {
     }
   },
   computed: {
+    imageUrl() {
+      return this.projectData?.image? this.projectData.image : this.dummyData.contentImageURL
+    },
     projectName () {
       const projectTitle = this.projectData?.title? this.projectData.title : this.dummyData.contentTitle
       if(this.isInHomePage) {
@@ -93,6 +96,12 @@ export default {
     border-top-right-radius: 29px;
     height: 50%;
     background-color: salmon;
+    img {
+      width: 100%;
+      height: 100%;
+      border-top-left-radius: 29px;
+      border-top-right-radius: 29px;
+    }
   }
 
   .content-info {

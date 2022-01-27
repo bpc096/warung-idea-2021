@@ -38,7 +38,9 @@
         </div>
       </div>
       <div class="project-image-section">
-        <div class="image"></div>
+        <div class="image">
+          <img :src="imageUrl" alt="project-detail-image">
+        </div>
       </div>
     </div>
     <div class="wrap-tab-section">
@@ -85,7 +87,9 @@ export default {
   data: () => {
     return {
       showRewardModal: false,
-      projectDetail: {}
+      projectDetail: {
+        dummyUrlImage: 'https://images.unsplash.com/photo-1643226224903-e1f7cbb9fa10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'
+      }
     }
   },
   async created () {
@@ -99,6 +103,9 @@ export default {
       })
   },
   computed: {
+    imageUrl () {
+      return this.projectDetail?.image? this.projectDetail.image : this.projectDetail.dummyUrlImage
+    },
     daysBetween () {
       const maxDate = this.projectDetail?.max_date? this.projectDetail.max_date : '2045-06-30'
 
@@ -224,6 +231,11 @@ export default {
         width: 80%;
         height: 80%;
         background-color: blue;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }

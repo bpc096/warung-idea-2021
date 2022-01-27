@@ -61,7 +61,7 @@
       </div>
       <div class="btn-checkout">
         <button
-          @click="payment"
+          @click="checkout"
         >
           PROCEED TO CHECKOUT
         </button>
@@ -79,7 +79,7 @@ export default {
     }
   },
   methods: {
-    payment() {
+    checkout() {
       console.log('Submit Payment');
     }
   }

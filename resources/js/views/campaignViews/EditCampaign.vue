@@ -121,6 +121,7 @@ export default {
         this.projectDetail = res.data
 
         if(this.projectDetail) {
+          this.projectImage = this.projectDetail.image
           this.title = this.projectDetail.title
           this.categoryId = this.projectDetail.category_id
           this.targetDonation = this.projectDetail.target_donation
@@ -137,7 +138,7 @@ export default {
       user: 'user',
     }),
     imageUrl () {
-      return this.previewImage ? this.previewImage : this.tempImage
+      return this.previewImage ? this.previewImage : this.projectDetail.image
     },
     setMinimumDate() {
       var today = new Date();
@@ -165,7 +166,7 @@ export default {
       data.append('max_date', this.maxDate)
       data.append('description', this.description)
 
-      let param = { campaignId, data}
+      let param = {campaignId, data}
       this.$store
         .dispatch('updateCampaign', param)
         .then(() => {
@@ -178,12 +179,12 @@ export default {
         })
     },
     uploadImage(e) {
+      this.image = e.target.files[0]
       const image = e.target.files[0]
       const reader = new FileReader()
       reader.readAsDataURL(image)
       reader.onload = e => {
         this.previewImage = e.target.result
-        this.image = e.target.result
       }
     }
   }

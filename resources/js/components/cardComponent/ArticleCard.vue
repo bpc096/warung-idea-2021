@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     urlImage () {
-      return this.articleData.image
+      return this.articleData?.image? this.articleData.image : this.projectData.image
     },
     titleText () {
       return this.isCampaign ? this.projectData.title : this.articleData.title

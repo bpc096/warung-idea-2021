@@ -2349,6 +2349,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CampaignCard',
   props: {
@@ -2359,7 +2371,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      progress: '59'
+      progress: '59',
+      paymentTextStatus: 'PENDING'
     };
   },
   computed: {
@@ -2375,6 +2388,16 @@ __webpack_require__.r(__webpack_exports__);
     checkEligibleToEdit: function checkEligibleToEdit() {
       // TODO : Check Eligiblelity to edit campaign
       return true;
+    },
+    paymentStatus: function paymentStatus() {
+      // LOGIC
+      this.paymentTextStatus = 'SUCCESS';
+      return 'success-status';
+    }
+  },
+  methods: {
+    payment: function payment() {
+      console.log('PAYMENT');
     }
   }
 });
@@ -2433,7 +2456,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     urlImage: function urlImage() {
-      return this.articleData.image;
+      var _this$articleData;
+
+      return (_this$articleData = this.articleData) !== null && _this$articleData !== void 0 && _this$articleData.image ? this.articleData.image : this.projectData.image;
     },
     titleText: function titleText() {
       return this.isCampaign ? this.projectData.title : this.articleData.title;
@@ -2504,7 +2529,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       dummyData: {
         contentId: 1,
-        contentImageURL: '/testing',
+        contentImageURL: 'https://images.unsplash.com/photo-1643133277733-68f9bf8ddee2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         contentTitle: 'Project Title Here',
         contentDescription: 'Lorem ipsum dua tiga tutup botol',
         contentFundedPercentage: 90
@@ -2512,10 +2537,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    projectName: function projectName() {
+    imageUrl: function imageUrl() {
       var _this$projectData;
 
-      var projectTitle = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.title ? this.projectData.title : this.dummyData.contentTitle;
+      return (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
+    },
+    projectName: function projectName() {
+      var _this$projectData2;
+
+      var projectTitle = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.title ? this.projectData.title : this.dummyData.contentTitle;
 
       if (this.isInHomePage) {
         return projectTitle.slice(0, 30);
@@ -2524,9 +2554,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectDesc: function projectDesc() {
-      var _this$projectData2;
+      var _this$projectData3;
 
-      var contentDesc = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.description ? this.projectData.description : this.dummyData.contentDescription;
+      var contentDesc = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.description ? this.projectData.description : this.dummyData.contentDescription;
 
       if (this.isInHomePage) {
         return contentDesc.slice(0, 180) + '...';
@@ -2600,7 +2630,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       dummyData: {
         contentId: 1,
-        contentImageURL: '/testing',
+        contentImageURL: 'https://images.unsplash.com/photo-1643133277733-68f9bf8ddee2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         contentTitle: 'Project Title Here',
         contentDescription: 'Lorem ipsum dua tiga tutup botol',
         contentFundedPercentage: 90
@@ -2608,10 +2638,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    projectName: function projectName() {
+    imageUrl: function imageUrl() {
       var _this$projectData;
 
-      var projectTitle = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.title ? this.projectData.title : this.dummyData.contentTitle;
+      return (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
+    },
+    projectName: function projectName() {
+      var _this$projectData2;
+
+      var projectTitle = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.title ? this.projectData.title : this.dummyData.contentTitle;
 
       if (this.isInHomePage) {
         return projectTitle.slice(0, 30);
@@ -2620,9 +2655,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectDesc: function projectDesc() {
-      var _this$projectData2;
+      var _this$projectData3;
 
-      var contentDesc = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.description ? this.projectData.description : this.dummyData.contentDescription;
+      var contentDesc = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.description ? this.projectData.description : this.dummyData.contentDescription;
 
       if (this.isInHomePage) {
         return contentDesc.slice(0, 250) + '...';
@@ -3050,7 +3085,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    payment: function payment() {
+    checkout: function checkout() {
       console.log('Submit Payment');
     }
   }
@@ -3613,6 +3648,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 // Tab Component
 
  // Content Tab Component
@@ -3635,7 +3672,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       showRewardModal: false,
-      projectDetail: {}
+      projectDetail: {
+        dummyUrlImage: 'https://images.unsplash.com/photo-1643226224903-e1f7cbb9fa10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'
+      }
     };
   },
   created: function created() {
@@ -3662,10 +3701,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   computed: {
-    daysBetween: function daysBetween() {
+    imageUrl: function imageUrl() {
       var _this$projectDetail;
 
-      var maxDate = (_this$projectDetail = this.projectDetail) !== null && _this$projectDetail !== void 0 && _this$projectDetail.max_date ? this.projectDetail.max_date : '2045-06-30';
+      return (_this$projectDetail = this.projectDetail) !== null && _this$projectDetail !== void 0 && _this$projectDetail.image ? this.projectDetail.image : this.projectDetail.dummyUrlImage;
+    },
+    daysBetween: function daysBetween() {
+      var _this$projectDetail2;
+
+      var maxDate = (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.max_date ? this.projectDetail.max_date : '2045-06-30';
       var oneDay = 24 * 60 * 60 * 1000;
       var firstDate = new Date();
       var secondDate = new Date(maxDate);
@@ -3673,24 +3717,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return diffDays.toString();
     },
     projectTitle: function projectTitle() {
-      var _this$projectDetail2;
-
-      return (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.title ? this.projectDetail.title : 'Project Title';
-    },
-    projectTargetDonation: function projectTargetDonation() {
       var _this$projectDetail3;
 
-      return (_this$projectDetail3 = this.projectDetail) !== null && _this$projectDetail3 !== void 0 && _this$projectDetail3.target_donation ? this.projectDetail.target_donation.toString() : '10.000.000';
+      return (_this$projectDetail3 = this.projectDetail) !== null && _this$projectDetail3 !== void 0 && _this$projectDetail3.title ? this.projectDetail.title : 'Project Title';
     },
-    projectQuickDesc: function projectQuickDesc() {
+    projectTargetDonation: function projectTargetDonation() {
       var _this$projectDetail4;
 
-      return (_this$projectDetail4 = this.projectDetail) !== null && _this$projectDetail4 !== void 0 && _this$projectDetail4.description ? this.projectDetail.description.slice(0, 100) : 'Project Description';
+      return (_this$projectDetail4 = this.projectDetail) !== null && _this$projectDetail4 !== void 0 && _this$projectDetail4.target_donation ? this.projectDetail.target_donation.toString() : '10.000.000';
     },
-    projectFullDesc: function projectFullDesc() {
+    projectQuickDesc: function projectQuickDesc() {
       var _this$projectDetail5;
 
-      return (_this$projectDetail5 = this.projectDetail) !== null && _this$projectDetail5 !== void 0 && _this$projectDetail5.description ? this.projectDetail.description : 'Project Description';
+      return (_this$projectDetail5 = this.projectDetail) !== null && _this$projectDetail5 !== void 0 && _this$projectDetail5.description ? this.projectDetail.description.slice(0, 100) : 'Project Description';
+    },
+    projectFullDesc: function projectFullDesc() {
+      var _this$projectDetail6;
+
+      return (_this$projectDetail6 = this.projectDetail) !== null && _this$projectDetail6 !== void 0 && _this$projectDetail6.description ? this.projectDetail.description : 'Project Description';
     }
   },
   methods: {
@@ -4135,6 +4179,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.projectDetail = res.data;
 
                 if (_this.projectDetail) {
+                  _this.projectImage = _this.projectDetail.image;
                   _this.title = _this.projectDetail.title;
                   _this.categoryId = _this.projectDetail.category_id;
                   _this.targetDonation = _this.projectDetail.target_donation;
@@ -4157,7 +4202,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     user: 'user'
   })), {}, {
     imageUrl: function imageUrl() {
-      return this.previewImage ? this.previewImage : this.tempImage;
+      return this.previewImage ? this.previewImage : this.projectDetail.image;
     },
     setMinimumDate: function setMinimumDate() {
       var today = new Date();
@@ -4204,13 +4249,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     uploadImage: function uploadImage(e) {
       var _this3 = this;
 
+      this.image = e.target.files[0];
       var image = e.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(image);
 
       reader.onload = function (e) {
         _this3.previewImage = e.target.result;
-        _this3.image = e.target.result;
       };
     }
   }
@@ -9245,7 +9290,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
+exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
 
 // exports
 
@@ -9283,7 +9328,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".feature-card-wrapper[data-v-336cb14c] {\n  background-color: white;\n  height: 100%;\n  width: 100%;\n  border: 1px solid black;\n  border-radius: 30px;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.feature-card-wrapper .content-image[data-v-336cb14c] {\n  border-top-left-radius: 29px;\n  border-top-right-radius: 29px;\n  height: 50%;\n  background-color: salmon;\n}\n.feature-card-wrapper .content-info[data-v-336cb14c] {\n  padding: 0.5rem;\n  height: 47%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-title[data-v-336cb14c] {\n  font-size: 30px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  color: black;\n  text-align: left;\n}\n.feature-card-wrapper .content-info .content-description[data-v-336cb14c] {\n  font-size: 16px;\n  text-align: left;\n  color: rgba(0, 0, 0, 0.8);\n}\n.feature-card-wrapper .content-info .content-addition[data-v-336cb14c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-addition .total-funded-label[data-v-336cb14c] {\n  color: green;\n  font-weight: bold;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label[data-v-336cb14c] {\n  display: flex;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love[data-v-336cb14c] {\n  margin: 0 10px;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark a[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love a[data-v-336cb14c] {\n  text-decoration: none;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark img[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love img[data-v-336cb14c] {\n  height: 24px;\n  width: 24px;\n}\n", ""]);
+exports.push([module.i, ".feature-card-wrapper[data-v-336cb14c] {\n  background-color: white;\n  height: 100%;\n  width: 100%;\n  border: 1px solid black;\n  border-radius: 30px;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n}\n.feature-card-wrapper .content-image[data-v-336cb14c] {\n  border-top-left-radius: 29px;\n  border-top-right-radius: 29px;\n  height: 50%;\n  background-color: salmon;\n}\n.feature-card-wrapper .content-image img[data-v-336cb14c] {\n  width: 100%;\n  height: 100%;\n  border-top-left-radius: 29px;\n  border-top-right-radius: 29px;\n}\n.feature-card-wrapper .content-info[data-v-336cb14c] {\n  padding: 0.5rem;\n  height: 47%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-title[data-v-336cb14c] {\n  font-size: 30px;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  color: black;\n  text-align: left;\n}\n.feature-card-wrapper .content-info .content-description[data-v-336cb14c] {\n  font-size: 16px;\n  text-align: left;\n  color: rgba(0, 0, 0, 0.8);\n}\n.feature-card-wrapper .content-info .content-addition[data-v-336cb14c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n.feature-card-wrapper .content-info .content-addition .total-funded-label[data-v-336cb14c] {\n  color: green;\n  font-weight: bold;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label[data-v-336cb14c] {\n  display: flex;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love[data-v-336cb14c] {\n  margin: 0 10px;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark a[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love a[data-v-336cb14c] {\n  text-decoration: none;\n}\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-bookmark img[data-v-336cb14c],\n.feature-card-wrapper .content-info .content-addition .icon-label .icon-love img[data-v-336cb14c] {\n  height: 24px;\n  width: 24px;\n}\n", ""]);
 
 // exports
 
@@ -9302,7 +9347,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".project-main-card[data-v-02533af6] {\n  height: 340px;\n  width: 620px;\n  display: flex;\n  flex-direction: row;\n  margin: 0 20px;\n  border: 1px solid rgba(0, 0, 0, 0.5);\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.project-main-card .card-image[data-v-02533af6] {\n  width: 40%;\n  height: 100%;\n  background-color: pink;\n}\n.project-main-card .card-content[data-v-02533af6] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  margin-left: 10px;\n}\n.project-main-card .card-content .card-title[data-v-02533af6] {\n  margin-top: 2rem;\n  font-size: 28px;\n  font-weight: bold;\n}\n.project-main-card .card-content .card-description[data-v-02533af6] {\n  margin: 2rem 0;\n  width: 20rem;\n}\n.project-main-card .card-content .card-additional[data-v-02533af6] {\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: flex-end;\n}\n.project-main-card .card-content .card-additional .creator-info[data-v-02533af6] {\n  text-align: center;\n  margin-bottom: 8px;\n}\n.project-main-card .card-content .card-additional .icon-info[data-v-02533af6] {\n  display: flex;\n  flex-direction: row;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love[data-v-02533af6] {\n  margin: 0 6px;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark a[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love a[data-v-02533af6] {\n  text-decoration: none;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark img[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love img[data-v-02533af6] {\n  height: 24px;\n  width: 24px;\n}\n", ""]);
+exports.push([module.i, ".project-main-card[data-v-02533af6] {\n  height: 340px;\n  width: 620px;\n  display: flex;\n  flex-direction: row;\n  margin: 0 20px;\n  border: 1px solid rgba(0, 0, 0, 0.5);\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.project-main-card .card-image[data-v-02533af6] {\n  width: 40%;\n  height: 100%;\n  background-color: pink;\n}\n.project-main-card .card-image img[data-v-02533af6] {\n  height: 100%;\n  width: 100%;\n}\n.project-main-card .card-content[data-v-02533af6] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  margin-left: 10px;\n}\n.project-main-card .card-content .card-title[data-v-02533af6] {\n  margin-top: 2rem;\n  font-size: 28px;\n  font-weight: bold;\n}\n.project-main-card .card-content .card-description[data-v-02533af6] {\n  margin: 2rem 0;\n  width: 20rem;\n}\n.project-main-card .card-content .card-additional[data-v-02533af6] {\n  height: 100%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: flex-end;\n}\n.project-main-card .card-content .card-additional .creator-info[data-v-02533af6] {\n  text-align: center;\n  margin-bottom: 8px;\n}\n.project-main-card .card-content .card-additional .icon-info[data-v-02533af6] {\n  display: flex;\n  flex-direction: row;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love[data-v-02533af6] {\n  margin: 0 6px;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark a[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love a[data-v-02533af6] {\n  text-decoration: none;\n}\n.project-main-card .card-content .card-additional .icon-info .icon-bookmark img[data-v-02533af6],\n.project-main-card .card-content .card-additional .icon-info .icon-love img[data-v-02533af6] {\n  height: 24px;\n  width: 24px;\n}\n", ""]);
 
 // exports
 
@@ -9321,7 +9366,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".project-list-wrapper[data-v-f0e7e5e8] {\n  padding: 0.9rem;\n  margin: 20px 0;\n}\n.project-list-wrapper .card-list[data-v-f0e7e5e8] {\n  border-radius: 30px;\n  width: 100%;\n  height: 6rem;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n}\n.project-list-wrapper .card-list .list-image[data-v-f0e7e5e8] {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n  background-color: salmon;\n  max-width: 40%;\n}\n.project-list-wrapper .card-list .list-image img[data-v-f0e7e5e8] {\n  max-width: 100%;\n  max-height: 100%;\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n.project-list-wrapper .card-list .list-content[data-v-f0e7e5e8] {\n  text-align: left;\n  padding: 0.5rem;\n}\n.project-list-wrapper .card-list .list-content .content-title[data-v-f0e7e5e8] {\n  font-weight: bold;\n}\n.project-list-wrapper .card-list .list-content .content-description[data-v-f0e7e5e8] {\n  font-weight: lighter;\n  margin-top: 0.2rem;\n}\n", ""]);
+exports.push([module.i, ".project-list-wrapper[data-v-f0e7e5e8] {\n  padding: 0.9rem;\n  margin: 20px 0;\n}\n.project-list-wrapper .card-list[data-v-f0e7e5e8] {\n  border-radius: 30px;\n  width: 100%;\n  height: 6rem;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n}\n.project-list-wrapper .card-list .list-image[data-v-f0e7e5e8] {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n  background-color: salmon;\n  max-width: 40%;\n}\n.project-list-wrapper .card-list .list-image img[data-v-f0e7e5e8] {\n  max-width: 100%;\n  height: 100%;\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n.project-list-wrapper .card-list .list-content[data-v-f0e7e5e8] {\n  text-align: left;\n  padding: 0.5rem;\n}\n.project-list-wrapper .card-list .list-content .content-title[data-v-f0e7e5e8] {\n  font-weight: bold;\n}\n.project-list-wrapper .card-list .list-content .content-description[data-v-f0e7e5e8] {\n  font-weight: lighter;\n  margin-top: 0.2rem;\n}\n", ""]);
 
 // exports
 
@@ -9492,7 +9537,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".project-detail-page .wrap-title[data-v-385e7eea] {\n  margin-bottom: 2rem;\n}\n.project-detail-page .wrap-title .main-title[data-v-385e7eea] {\n  font-size: 4rem;\n}\n.project-detail-page .wrap-main-section[data-v-385e7eea] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\n.project-detail-page .wrap-main-section .project-detail-section[data-v-385e7eea] {\n  width: 100%;\n  height: 40vh;\n  text-align: left;\n  margin: 3rem 0 3rem 3rem;\n  font-size: 1.5rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom[data-v-385e7eea] {\n  width: 20rem;\n  height: 1.5rem;\n  border: 2px solid black;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom .progress-color-custom[data-v-385e7eea] {\n  width: 50%;\n  height: 100%;\n  background-color: green;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea] {\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea]:hover {\n  background-color: black;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea] {\n  margin: 0 0.5rem;\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea]:hover {\n  background-color: black;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-image-section[data-v-385e7eea] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-image-section .image[data-v-385e7eea] {\n  width: 80%;\n  height: 80%;\n  background-color: blue;\n}\n", ""]);
+exports.push([module.i, ".project-detail-page .wrap-title[data-v-385e7eea] {\n  margin-bottom: 2rem;\n}\n.project-detail-page .wrap-title .main-title[data-v-385e7eea] {\n  font-size: 4rem;\n}\n.project-detail-page .wrap-main-section[data-v-385e7eea] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\n.project-detail-page .wrap-main-section .project-detail-section[data-v-385e7eea] {\n  width: 100%;\n  height: 40vh;\n  text-align: left;\n  margin: 3rem 0 3rem 3rem;\n  font-size: 1.5rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom[data-v-385e7eea] {\n  width: 20rem;\n  height: 1.5rem;\n  border: 2px solid black;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom .progress-color-custom[data-v-385e7eea] {\n  width: 50%;\n  height: 100%;\n  background-color: green;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea] {\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea]:hover {\n  background-color: black;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea] {\n  margin: 0 0.5rem;\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea]:hover {\n  background-color: black;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-image-section[data-v-385e7eea] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-image-section .image[data-v-385e7eea] {\n  width: 80%;\n  height: 80%;\n  background-color: blue;\n}\n.project-detail-page .wrap-main-section .project-image-section .image img[data-v-385e7eea] {\n  width: 100%;\n  height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -44067,6 +44112,23 @@ var render = function () {
           : _vm._e(),
       ]),
       _vm._v(" "),
+      !_vm.isInHistoryCampaignPage
+        ? _c("div", { staticClass: "campaign-payment-status" }, [
+            _vm._v("\n        Payment status\n        "),
+            _c("div", { class: ["text-status", _vm.paymentStatus] }, [
+              _vm._v(
+                "\n          " + _vm._s(_vm.paymentTextStatus) + "\n        "
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn-payment", on: { click: _vm.payment } },
+              [_vm._v("\n          Pay Now !\n        ")]
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _vm.isInHistoryCampaignPage
         ? _c("div", { staticClass: "campaign-wrap-button" }, [
             _c(
@@ -44167,7 +44229,9 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "feature-card-wrapper" }, [
-    _c("div", { staticClass: "content-image" }, [_vm._v("\n    image\n  ")]),
+    _c("div", { staticClass: "content-image" }, [
+      _c("img", { attrs: { src: _vm.imageUrl, alt: "image-project-feature" } }),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "content-info" }, [
       _c("div", { staticClass: "content-title" }, [
@@ -44244,7 +44308,9 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "project-main-card" }, [
-    _c("div", { staticClass: "card-image" }, [_vm._v("\n    image\n  ")]),
+    _c("div", { staticClass: "card-image" }, [
+      _c("img", { attrs: { src: _vm.imageUrl, alt: "project-image" } }),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-content" }, [
       _c("div", { staticClass: "card-title" }, [
@@ -44567,7 +44633,7 @@ var render = function () {
       _vm._m(3),
       _vm._v(" "),
       _c("div", { staticClass: "btn-checkout" }, [
-        _c("button", { on: { click: _vm.payment } }, [
+        _c("button", { on: { click: _vm.checkout } }, [
           _vm._v("\n        PROCEED TO CHECKOUT\n      "),
         ]),
       ]),
@@ -45230,7 +45296,13 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _c("div", { staticClass: "project-image-section" }, [
+          _c("div", { staticClass: "image" }, [
+            _c("img", {
+              attrs: { src: _vm.imageUrl, alt: "project-detail-image" },
+            }),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c(
@@ -45271,14 +45343,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "progress-bar-custom" }, [
       _c("div", { staticClass: "progress-color-custom" }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "project-image-section" }, [
-      _c("div", { staticClass: "image" }),
     ])
   },
 ]
