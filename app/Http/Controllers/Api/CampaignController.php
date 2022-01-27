@@ -33,7 +33,7 @@ class CampaignController extends Controller
         
     }
 
-    public function index_user($users_id)
+    public function index_user()
     {
         // $campaigns = Campaign::latest()->when(request()->q, function($campaigns) {
         //     $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
@@ -53,7 +53,7 @@ class CampaignController extends Controller
         // }
 
         //get detail data campaign
-        $campaign = Campaign::with('user')->with('sumPayment')->where('users_id', $users_id)->first();
+        $campaign = Campaign::with('user')->with('sumPayment')->where('users_id', auth()->guard('api')->user()->id)->first();
 
         if($campaign) {
 
