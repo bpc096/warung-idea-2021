@@ -35,7 +35,7 @@ class PaymentController extends Controller
     public function index()
     {
          //get data donations
-         $payments = Payment::with('campaign')->where('users_id', auth()->guard('api')->user()->id)->latest()->paginate(5);
+         $payments = Payment::with('campaign')->where('users_id', auth()->guard('api')->user()->id)->latest()->paginate(100);
 
          //return with response JSON
          return response()->json([
@@ -53,7 +53,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        DB::transaction(function($reward_id = 0) use ($request) {
+        DB::transaction(function() use ($request) {
 
             /**
              * algorithm create no invoice
@@ -66,33 +66,32 @@ class PaymentController extends Controller
 
             $no_invoice = 'TRX-'.Str::upper($random);
 
-            if ($reward_id) {
-                # get data reward
-                $reward = Reward::where('id', $request->rewardId)->first();
-                $amount = $request->amount;
-                $campaign = Campaign::find($reward->campaign_id)->where('slug', $request->campaignSlug)->first();
+            // if ($reward_id) {
+            //     # get data reward
+            //     $reward = Reward::where('id', $request->rewardId)->first();
+            //     $amount = $request->amount;
+            //     $campaign = Campaign::find($reward->campaign_id)->where('slug', $request->campaignSlug)->first();
 
-                $donation = Payment::create([
-                    'invoice'       => $no_invoice,
-                    'campaign_id'   => $campaign->id,
-                    'donatur_id'    => auth()->guard('api')->user()->id,
-                    'amount'        => $amount,
-                    'pray'          => $request->pray,
-                    'status'        => 'pending',
-                ]);
-            } else {
+            //     $donation = Payment::create([
+            //         'invoice'       => $no_invoice,
+            //         'campaign_id'   => $campaign->id,
+            //         'donatur_id'    => auth()->guard('api')->user()->id,
+            //         'amount'        => $amount,
+            //         'pray'          => $request->pray,
+            //         'status'        => 'pending',
+            //     ]);
+            // } else {
                 # get data campaign
-                $campaign = Campaign::where('slug', $request->campaignSlug)->first();
+            $campaign = Campaign::where('id', $request->campaignId)->first();
 
-                $donation = Payment::create([
-                    'invoice'       => $no_invoice,
-                    'campaign_id'   => $campaign->id,
-                    'donatur_id'    => auth()->guard('api')->user()->id,
-                    'amount'        => $request->amount,
-                    'pray'          => $request->pray,
-                    'status'        => 'pending',
-                ]);
-            }
+            $donation = Payment::create([
+                'invoice'       => $no_invoice,
+                'campaign_id'   => $campaign->id,
+                'donatur_id'    => auth()->guard('api')->user()->id,
+                'amount'        => $request->amount,
+                'status'        => 'pending',
+            ]);
+            // }
             
             // // get data campaign
             // $campaign = Campaign::where('slug', $request->campaignSlug)->first();

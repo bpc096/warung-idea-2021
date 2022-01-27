@@ -33,7 +33,7 @@ Route::get('/category/{id}', [CategoryController::class, 'show']);
  */
 Route::get('/campaign', [CampaignController::class, 'index']);
 Route::get('/campaign/{id}', [CampaignController::class, 'show']);
-Route::get('/campaign/{users_id}', [CampaignController::class, 'index_user']);
+Route::get('/campaign/users/{users_id}', [CampaignController::class, 'index_user']);
 Route::post('/campaign', [CampaignController::class, 'store'])->middleware('auth:api');
 Route::post('/campaign/{campaign}', [CampaignController::class, 'update'])->middleware('auth:api');
 Route::delete('/campaign/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
