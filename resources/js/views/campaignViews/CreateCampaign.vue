@@ -55,7 +55,7 @@
               >
             </div>
           </div>
-           <div class="user-name">
+          <div class="user-name">
             <div class="text-label">Target Date</div>
             <div class="text-value">
               <input

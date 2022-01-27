@@ -2,7 +2,7 @@
   <div class="project-list-wrapper">
     <div class="card-list">
       <div class="list-image">
-        image
+        <img :src="imageUrl" alt="image-project-campaign">
       </div>
       <div class="list-content">
         <div class="content-title">
@@ -41,6 +41,9 @@ export default {
     }
   },
   computed: {
+    imageUrl () {
+      return this.projectData?.image? this.projectData.image : this.dummyData.contentImageURL
+    },
     projectName () {
       const projectTitle = this.projectData?.title? this.projectData.title : this.dummyData.contentTitle
       if(this.isInHomePage) {
@@ -82,7 +85,14 @@ export default {
       border-top-left-radius: 30px;
       border-bottom-left-radius: 30px;
       background-color: salmon;
-      width: 40%;
+      max-width: 40%;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+      }
     }
 
     .list-content {

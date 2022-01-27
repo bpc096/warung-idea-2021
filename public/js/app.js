@@ -1988,6 +1988,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FooterTemplate"
 });
@@ -2687,10 +2689,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    projectName: function projectName() {
+    imageUrl: function imageUrl() {
       var _this$projectData;
 
-      var projectTitle = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.title ? this.projectData.title : this.dummyData.contentTitle;
+      return (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
+    },
+    projectName: function projectName() {
+      var _this$projectData2;
+
+      var projectTitle = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.title ? this.projectData.title : this.dummyData.contentTitle;
 
       if (this.isInHomePage) {
         return projectTitle.slice(0, 20);
@@ -2699,9 +2706,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectDesc: function projectDesc() {
-      var _this$projectData2;
+      var _this$projectData3;
 
-      var contentDesc = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.description ? this.projectData.description : this.dummyData.contentDescription;
+      var contentDesc = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.description ? this.projectData.description : this.dummyData.contentDescription;
 
       if (this.isInHomePage) {
         return contentDesc.slice(0, 100) + '...';
@@ -3531,12 +3538,22 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_tabComponent_tabComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/tabComponent/tabComponent.vue */ "./resources/js/components/tabComponent/tabComponent.vue");
-/* harmony import */ var _components_tabComponent_tabsComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/tabComponent/tabsComponent.vue */ "./resources/js/components/tabComponent/tabsComponent.vue");
-/* harmony import */ var _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/tabViews/CampaignTab.vue */ "./resources/js/views/tabViews/CampaignTab.vue");
-/* harmony import */ var _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/tabViews/UpdateTab.vue */ "./resources/js/views/tabViews/UpdateTab.vue");
-/* harmony import */ var _views_tabViews_FaqTab_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/tabViews/FaqTab.vue */ "./resources/js/views/tabViews/FaqTab.vue");
-/* harmony import */ var _components_RewardModal_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/RewardModal.vue */ "./resources/js/components/RewardModal.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_tabComponent_tabComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/tabComponent/tabComponent.vue */ "./resources/js/components/tabComponent/tabComponent.vue");
+/* harmony import */ var _components_tabComponent_tabsComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/tabComponent/tabsComponent.vue */ "./resources/js/components/tabComponent/tabsComponent.vue");
+/* harmony import */ var _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/tabViews/CampaignTab.vue */ "./resources/js/views/tabViews/CampaignTab.vue");
+/* harmony import */ var _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/tabViews/UpdateTab.vue */ "./resources/js/views/tabViews/UpdateTab.vue");
+/* harmony import */ var _views_tabViews_FaqTab_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../views/tabViews/FaqTab.vue */ "./resources/js/views/tabViews/FaqTab.vue");
+/* harmony import */ var _components_RewardModal_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/RewardModal.vue */ "./resources/js/components/RewardModal.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
 //
 //
 //
@@ -3608,21 +3625,73 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ProjectDetail',
   components: {
-    tab: _components_tabComponent_tabComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    tabs: _components_tabComponent_tabsComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    campaignTab: _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    updateTab: _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    faqTab: _views_tabViews_FaqTab_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    RewardModal: _components_RewardModal_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    tab: _components_tabComponent_tabComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    tabs: _components_tabComponent_tabsComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    campaignTab: _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    updateTab: _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    faqTab: _views_tabViews_FaqTab_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    RewardModal: _components_RewardModal_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   data: function data() {
     return {
-      showRewardModal: false
+      showRewardModal: false,
+      projectDetail: {}
     };
   },
   created: function created() {
-    // FETCH API GET CAMPAIGN BASED ON ID
-    console.log('Call API CAMPAIGN BASED ON ID');
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch('getCampaignById', _this.$route.params.projectId).then(function (res) {
+                _this.projectDetail = res.data;
+              })["catch"](function (err) {
+                console.log(err);
+              });
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  computed: {
+    daysBetween: function daysBetween() {
+      var _this$projectDetail;
+
+      var maxDate = (_this$projectDetail = this.projectDetail) !== null && _this$projectDetail !== void 0 && _this$projectDetail.max_date ? this.projectDetail.max_date : '2045-06-30';
+      var oneDay = 24 * 60 * 60 * 1000;
+      var firstDate = new Date();
+      var secondDate = new Date(maxDate);
+      var diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+      return diffDays.toString();
+    },
+    projectTitle: function projectTitle() {
+      var _this$projectDetail2;
+
+      return (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.title ? this.projectDetail.title : 'Project Title';
+    },
+    projectTargetDonation: function projectTargetDonation() {
+      var _this$projectDetail3;
+
+      return (_this$projectDetail3 = this.projectDetail) !== null && _this$projectDetail3 !== void 0 && _this$projectDetail3.target_donation ? this.projectDetail.target_donation.toString() : '10.000.000';
+    },
+    projectQuickDesc: function projectQuickDesc() {
+      var _this$projectDetail4;
+
+      return (_this$projectDetail4 = this.projectDetail) !== null && _this$projectDetail4 !== void 0 && _this$projectDetail4.description ? this.projectDetail.description.slice(0, 100) : 'Project Description';
+    },
+    projectFullDesc: function projectFullDesc() {
+      var _this$projectDetail5;
+
+      return (_this$projectDetail5 = this.projectDetail) !== null && _this$projectDetail5 !== void 0 && _this$projectDetail5.description ? this.projectDetail.description : 'Project Description';
+    }
   },
   methods: {
     btnSupportHandle: function btnSupportHandle() {
@@ -3923,13 +3992,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4026,42 +4116,101 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       maxDate: null,
       description: '',
       previewImage: null,
-      tempImage: 'data:image/png;base64,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'
+      tempImage: 'data:image/png;base64,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',
+      projectDetail: {}
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    user: 'user' // TODO: Get Detail ID Campaign First
+  created: function created() {
+    var _this = this;
 
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var campaignId;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              campaignId = _this.$route.params.projectId || 1;
+              _context.next = 3;
+              return _this.$store.dispatch('getCampaignById', campaignId).then(function (res) {
+                _this.projectDetail = res.data;
+
+                if (_this.projectDetail) {
+                  _this.title = _this.projectDetail.title;
+                  _this.categoryId = _this.projectDetail.category_id;
+                  _this.targetDonation = _this.projectDetail.target_donation;
+                  _this.description = _this.projectDetail.description;
+                  _this.maxDate = _this.projectDetail.max_date;
+                }
+              })["catch"](function (err) {
+                console.log(err);
+              });
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    user: 'user'
   })), {}, {
     imageUrl: function imageUrl() {
-      return this.previewImage ? this.previewImage : this.tempImage; // return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+      return this.previewImage ? this.previewImage : this.tempImage;
+    },
+    setMinimumDate: function setMinimumDate() {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
+
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+
+      if (mm < 10) {
+        mm = '0' + mm;
+      }
+
+      today = yyyy + '-' + mm + '-' + dd;
+      return today;
     }
   }),
   methods: {
     editCampaign: function editCampaign() {
-      var _this = this;
+      var _this2 = this;
 
+      var campaignId = this.$route.params.projectId || 1;
       var data = new FormData();
       data.append('image', this.image);
       data.append('title', this.title);
-      this.$store.dispatch('updateProfile', data).then(function () {
-        _this.$router.push({
-          name: 'UserProfile'
+      data.append('category_id', this.categoryId);
+      data.append('target_donation', this.targetDonation);
+      data.append('max_date', this.maxDate);
+      data.append('description', this.description);
+      var param = {
+        campaignId: campaignId,
+        data: data
+      };
+      this.$store.dispatch('updateCampaign', param).then(function () {
+        _this2.$router.push({
+          name: 'HistoryCampaign'
         });
       })["catch"](function (err) {
         console.log(err);
       });
     },
     uploadImage: function uploadImage(e) {
-      var _this2 = this;
+      var _this3 = this;
 
-      this.image = e.target.files[0];
       var image = e.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(image);
 
       reader.onload = function (e) {
-        _this2.previewImage = e.target.result;
+        _this3.previewImage = e.target.result;
+        _this3.image = e.target.result;
       };
     }
   }
@@ -4107,6 +4256,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       progress: '59'
     };
+  },
+  created: function created() {// FETCH PROJECT CREATED BY USER HISTORY BY USER_ID
   },
   computed: {
     progressPercentage: function progressPercentage() {
@@ -4212,7 +4363,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'CampaignTab'
+  name: 'CampaignTab',
+  props: {
+    projectDesc: {
+      type: String,
+      "default": 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae obcaecati esse, culpa dolor tempora consequuntur quisquam corporis nesciunt vel adipisci laboriosam optio ratione maxime, quod reprehenderit commodi laudantium. Ut vero illum ipsa porro ratione officia corporis, delectus voluptatibus debitis perspiciatis aperiam omnis quo corrupti earum expedita quae, impedit reprehenderit? Illo nemo, inventore laboriosam sit tempora in quisquam voluptates sunt ratione numquam delectus facere magnam quibusdam quo nulla, obcaecati perferendis facilis aperiam accusantium soluta explicabo. Autem nihil explicabo quos ea, repellat doloremque itaque ipsam consectetur asperiores ab quae, totam magni doloribus nobis vitae labore nulla fugit dolorem officiis a! Vitae, ad!'
+    }
+  }
 });
 
 /***/ }),
@@ -9164,7 +9321,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".project-list-wrapper[data-v-f0e7e5e8] {\n  padding: 0.9rem;\n  margin: 20px 0;\n}\n.project-list-wrapper .card-list[data-v-f0e7e5e8] {\n  border-radius: 30px;\n  width: 100%;\n  height: 6rem;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n}\n.project-list-wrapper .card-list .list-image[data-v-f0e7e5e8] {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n  background-color: salmon;\n  width: 40%;\n}\n.project-list-wrapper .card-list .list-content[data-v-f0e7e5e8] {\n  text-align: left;\n  padding: 0.5rem;\n}\n.project-list-wrapper .card-list .list-content .content-title[data-v-f0e7e5e8] {\n  font-weight: bold;\n}\n.project-list-wrapper .card-list .list-content .content-description[data-v-f0e7e5e8] {\n  font-weight: lighter;\n  margin-top: 0.2rem;\n}\n", ""]);
+exports.push([module.i, ".project-list-wrapper[data-v-f0e7e5e8] {\n  padding: 0.9rem;\n  margin: 20px 0;\n}\n.project-list-wrapper .card-list[data-v-f0e7e5e8] {\n  border-radius: 30px;\n  width: 100%;\n  height: 6rem;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n}\n.project-list-wrapper .card-list .list-image[data-v-f0e7e5e8] {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n  background-color: salmon;\n  max-width: 40%;\n}\n.project-list-wrapper .card-list .list-image img[data-v-f0e7e5e8] {\n  max-width: 100%;\n  max-height: 100%;\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n.project-list-wrapper .card-list .list-content[data-v-f0e7e5e8] {\n  text-align: left;\n  padding: 0.5rem;\n}\n.project-list-wrapper .card-list .list-content .content-title[data-v-f0e7e5e8] {\n  font-weight: bold;\n}\n.project-list-wrapper .card-list .list-content .content-description[data-v-f0e7e5e8] {\n  font-weight: lighter;\n  margin-top: 0.2rem;\n}\n", ""]);
 
 // exports
 
@@ -9392,7 +9549,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".user-profile-edit-page[data-v-f69cd16c] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-f69cd16c] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-f69cd16c] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-f69cd16c] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-f69cd16c] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-f69cd16c] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-f69cd16c] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-f69cd16c] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-f69cd16c]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-f69cd16c] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-f69cd16c] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+exports.push([module.i, ".user-profile-edit-page[data-v-f69cd16c] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-f69cd16c] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-f69cd16c] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-f69cd16c] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-f69cd16c] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-f69cd16c] {\n  margin-left: 2rem;\n  text-align: left;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-f69cd16c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-f69cd16c] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-f69cd16c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-f69cd16c] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-f69cd16c]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-f69cd16c] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-f69cd16c] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 
 // exports
 
@@ -43178,9 +43335,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "footer-wrapper" }, [
       _c("div", { staticClass: "text-question" }, [
-        _vm._v(
-          "\n    Have a question about our app ?\n    let us help you!\n  "
-        ),
+        _c("div", [_vm._v("\n      Have a question about our app ?\n    ")]),
+        _vm._v("\n    let us help you!\n  "),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field-email" }, [
@@ -43218,7 +43374,7 @@ var staticRenderFns = [
             },
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "text-image" }, [_vm._v("WarungIde.co")]),
+          _c("div", { staticClass: "text-image" }, [_vm._v("WarungIde.com")]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "love-text" }, [
@@ -43426,7 +43582,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("div", { staticClass: "text-image" }, [
-          _vm._v("\n        WarungIde.co\n      "),
+          _vm._v("\n        WarungIde.com\n      "),
         ]),
       ]),
     ])
@@ -44162,7 +44318,11 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "project-list-wrapper" }, [
     _c("div", { staticClass: "card-list" }, [
-      _c("div", { staticClass: "list-image" }, [_vm._v("\n      image\n    ")]),
+      _c("div", { staticClass: "list-image" }, [
+        _c("img", {
+          attrs: { src: _vm.imageUrl, alt: "image-project-campaign" },
+        }),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "list-content" }, [
         _c("div", { staticClass: "content-title" }, [
@@ -45017,14 +45177,26 @@ var render = function () {
         ? _c("RewardModal", { on: { close: _vm.closeModal } })
         : _vm._e(),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "wrap-title" }, [
+        _c("div", { staticClass: "main-title" }, [
+          _vm._v(_vm._s(_vm.projectTitle)),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "main-desc" }, [
+          _vm._v(_vm._s(_vm.projectQuickDesc)),
+        ]),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "wrap-main-section" }, [
         _c("div", { staticClass: "project-detail-section" }, [
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "total-donate-info" }, [
-            _vm._v("\n        Rp 1.000.000 dari Rp 10.000.000\n      "),
+            _vm._v(
+              "\n        Rp 1.000.000 dari Rp " +
+                _vm._s(_vm.projectTargetDonation) +
+                "\n      "
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "supporter-info" }, [
@@ -45032,7 +45204,9 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "day-left-info" }, [
-            _vm._v("\n        25 Hari lagi\n      "),
+            _vm._v(
+              "\n        " + _vm._s(_vm.daysBetween) + " Hari lagi\n      "
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "button-wrapper" }, [
@@ -45056,7 +45230,7 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm._m(2),
+        _vm._m(1),
       ]),
       _vm._v(" "),
       _c(
@@ -45069,7 +45243,11 @@ var render = function () {
               _c(
                 "tab",
                 { attrs: { name: "Campaign", selected: true } },
-                [_c("campaignTab")],
+                [
+                  _c("campaignTab", {
+                    attrs: { projectDesc: _vm.projectFullDesc },
+                  }),
+                ],
                 1
               ),
               _vm._v(" "),
@@ -45087,16 +45265,6 @@ var render = function () {
   )
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrap-title" }, [
-      _c("div", { staticClass: "main-title" }, [_vm._v("Project Title")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "main-desc" }, [_vm._v("Project Description")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -45580,7 +45748,7 @@ var render = function () {
           on: {
             submit: function ($event) {
               $event.preventDefault()
-              return _vm.EditCampaign.apply(null, arguments)
+              return _vm.editCampaign.apply(null, arguments)
             },
           },
         },
@@ -45694,6 +45862,39 @@ var render = function () {
                         return
                       }
                       _vm.targetDonation = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-name" }, [
+              _c("div", { staticClass: "text-label" }, [_vm._v("Target Date")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-value" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.maxDate,
+                      expression: "maxDate",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "dateField",
+                    min: _vm.setMinimumDate,
+                    type: "date",
+                    placeholder: "Target Donation..",
+                  },
+                  domProps: { value: _vm.maxDate },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.maxDate = $event.target.value
                     },
                   },
                 }),
@@ -45873,36 +46074,34 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "wrap-campaign-tab" }, [
+    _c("div", { staticClass: "background-section" }, [
+      _c("div", { staticClass: "background-title" }, [
+        _vm._v("\n      Background Project\n    "),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "background-content" }, [
+        _vm._v("\n     " + _vm._s(_vm.projectDesc) + "\n    "),
+      ]),
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrap-campaign-tab" }, [
-      _c("div", { staticClass: "background-section" }, [
-        _c("div", { staticClass: "background-title" }, [
-          _vm._v("\n      Background Project\n    "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "background-content" }, [
-          _vm._v(
-            "\n      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae obcaecati esse, culpa dolor tempora consequuntur quisquam corporis nesciunt vel adipisci laboriosam optio ratione maxime, quod reprehenderit commodi laudantium. Ut vero illum ipsa porro ratione officia corporis, delectus voluptatibus debitis perspiciatis aperiam omnis quo corrupti earum expedita quae, impedit reprehenderit? Illo nemo, inventore laboriosam sit tempora in quisquam voluptates sunt ratione numquam delectus facere magnam quibusdam quo nulla, obcaecati perferendis facilis aperiam accusantium soluta explicabo. Autem nihil explicabo quos ea, repellat doloremque itaque ipsam consectetur asperiores ab quae, totam magni doloribus nobis vitae labore nulla fugit dolorem officiis a! Vitae, ad!\n    "
-          ),
-        ]),
+    return _c("div", { staticClass: "design-plan-section" }, [
+      _c("div", { staticClass: "design-plan-title" }, [
+        _vm._v("\n      Project Design & Plan\n    "),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "design-plan-section" }, [
-        _c("div", { staticClass: "design-plan-title" }, [
-          _vm._v("\n      Project Design & Plan\n    "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "design-plan-content" }, [
-          _vm._v(
-            "\n      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab a consequatur sint hic fuga quidem repellendus assumenda tempora odit molestiae voluptatibus eos quod voluptate provident nobis rem cum error vitae amet eum ipsum, ipsam, reiciendis pariatur laudantium. Pariatur omnis magni mollitia veritatis incidunt ullam dolor voluptatem illo facere earum! Non adipisci deserunt aliquid, laudantium nisi molestias ullam atque corrupti? Inventore architecto deleniti eveniet accusantium corrupti commodi obcaecati! Laboriosam a ut accusamus. Cum minus atque corrupti quisquam consectetur accusantium enim ab facere, sunt aliquid commodi nesciunt quod tempora, vel voluptate fugit. Maxime ea animi consequuntur saepe natus, officiis unde sint aperiam sequi. Suscipit accusamus, modi, iste aliquam magnam dolor commodi molestias vitae nobis sapiente ut, inventore placeat quisquam nihil architecto ipsum esse officiis. Vel laborum quidem sit cumque reiciendis impedit doloribus placeat earum, nihil, itaque eum excepturi neque eligendi rerum blanditiis natus voluptas laudantium quod adipisci numquam nemo provident fugit deleniti. Nihil quos aut pariatur molestias, eos natus! Rem aut dolorum enim praesentium illo consequuntur quas reiciendis minus quibusdam dolore modi, sed illum nam iusto quaerat possimus? Voluptate ea rem nobis, quos illum ratione tempore sed totam, ipsa, iure at praesentium pariatur quibusdam accusantium? Voluptas, tempora? Architecto saepe repudiandae veniam molestias.\n    "
-          ),
-        ]),
+      _c("div", { staticClass: "design-plan-content" }, [
+        _vm._v(
+          "\n      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab a consequatur sint hic fuga quidem repellendus assumenda tempora odit molestiae voluptatibus eos quod voluptate provident nobis rem cum error vitae amet eum ipsum, ipsam, reiciendis pariatur laudantium. Pariatur omnis magni mollitia veritatis incidunt ullam dolor voluptatem illo facere earum! Non adipisci deserunt aliquid, laudantium nisi molestias ullam atque corrupti? Inventore architecto deleniti eveniet accusantium corrupti commodi obcaecati! Laboriosam a ut accusamus. Cum minus atque corrupti quisquam consectetur accusantium enim ab facere, sunt aliquid commodi nesciunt quod tempora, vel voluptate fugit. Maxime ea animi consequuntur saepe natus, officiis unde sint aperiam sequi. Suscipit accusamus, modi, iste aliquam magnam dolor commodi molestias vitae nobis sapiente ut, inventore placeat quisquam nihil architecto ipsum esse officiis. Vel laborum quidem sit cumque reiciendis impedit doloribus placeat earum, nihil, itaque eum excepturi neque eligendi rerum blanditiis natus voluptas laudantium quod adipisci numquam nemo provident fugit deleniti. Nihil quos aut pariatur molestias, eos natus! Rem aut dolorum enim praesentium illo consequuntur quas reiciendis minus quibusdam dolore modi, sed illum nam iusto quaerat possimus? Voluptate ea rem nobis, quos illum ratione tempore sed totam, ipsa, iure at praesentium pariatur quibusdam accusantium? Voluptas, tempora? Architecto saepe repudiandae veniam molestias.\n    "
+        ),
       ]),
     ])
   },
@@ -64510,7 +64709,7 @@ var routes = [{
   name: 'HistoryDonationCampaign',
   component: _views_campaignViews_HistoryDonationCampaign_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
-  path: '/campaign/edit',
+  path: '/campaign/edit/:projectId',
   name: 'EditCampaign',
   component: _views_campaignViews_EditCampaign_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, {
@@ -64848,10 +65047,13 @@ var getters = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -64861,8 +65063,19 @@ var state = {
 
 };
 var actions = {
-  getAllCampaign: function getAllCampaign(_ref) {
+  getCampaignById: function getCampaignById(_ref, data) {
     var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(apiUrl).then(function (res) {
+        resolve(res.data);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  getAllCampaign: function getAllCampaign(_ref2) {
+    var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('campaign').then(function (res) {
         // commit(GET_CAMPAIGN, res.data.data)
@@ -64872,11 +65085,22 @@ var actions = {
       });
     });
   },
-  uploadCampaign: function uploadCampaign(_ref2, data) {
-    var commit = _ref2.commit;
+  uploadCampaign: function uploadCampaign(_ref3, data) {
+    var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('campaign', data).then(function (res) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__["UPLOAD_CAMPAIGN"], res.data);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPLOAD_CAMPAIGN"], res.data);
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  updateCampaign: function updateCampaign(_ref4, param) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + param.campaignId;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(apiUrl, param.data).then(function (res) {
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -64884,9 +65108,9 @@ var actions = {
     });
   }
 };
-var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__["GET_CAMPAIGN"], function (state, data) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_CAMPAIGN"], function (state, data) {
   state.campaignList = data;
-}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__["UPLOAD_CAMPAIGN"], function (state, data) {
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPLOAD_CAMPAIGN"], function (state, data) {
   state.campaignDetail = data;
 }), _mutations);
 var getters = {

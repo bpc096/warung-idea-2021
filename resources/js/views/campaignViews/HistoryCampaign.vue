@@ -29,6 +29,9 @@ export default {
       progress: '59',
     }
   },
+  created () {
+    // FETCH PROJECT CREATED BY USER HISTORY BY USER_ID
+  },
   computed: {
     progressPercentage() {
       if(parseInt(this.progress) <= 0) {

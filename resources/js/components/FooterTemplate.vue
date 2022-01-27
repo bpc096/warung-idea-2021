@@ -1,7 +1,9 @@
 <template>
   <div class="footer-wrapper">
     <div class="text-question">
-      Have a question about our app ?
+      <div>
+        Have a question about our app ?
+      </div>
       let us help you!
     </div>
     <div class="field-email">
@@ -13,7 +15,7 @@
     <div class="info-app">
       <div class="logo-image">
         <img src="../assets/images/icon/light-bulb.png" alt="bright-lamp">
-        <div class="text-image">WarungIde.co</div>
+        <div class="text-image">WarungIde.com</div>
       </div>
       <div class="love-text">
         <a href="https://github.com/mfaisalghozi/warung-ide-2021">

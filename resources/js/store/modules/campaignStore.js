@@ -1,4 +1,5 @@
 import Axios from "axios"
+import { param } from "jquery"
 import { GET_CAMPAIGN, UPLOAD_CAMPAIGN } from "../mutation-types"
 
 const state = {
@@ -8,6 +9,18 @@ const state = {
 }
 
 const actions = {
+  getCampaignById({commit}, data) {
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'campaign/' + data
+      Axios.get(apiUrl)
+        .then(res => {
+          resolve(res.data)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  },
   getAllCampaign({commit}) {
     return new Promise((resolve, reject) => {
       Axios.get('campaign')
@@ -32,6 +45,18 @@ const actions = {
         })
     })
   },
+  updateCampaign({commit}, param) {
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'campaign/' + param.campaignId
+      Axios.post(apiUrl, param.data)
+        .then(res => {
+          resolve(res)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  }
 }
 
 const mutations = {

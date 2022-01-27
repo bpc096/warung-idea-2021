@@ -135,7 +135,7 @@ const routes = [
     component: HistoryDonationCampaign,
   },
   {
-    path: '/campaign/edit',
+    path: '/campaign/edit/:projectId',
     name: 'EditCampaign',
     component: EditCampaign,
   },
