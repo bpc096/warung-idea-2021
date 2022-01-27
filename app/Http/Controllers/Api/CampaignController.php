@@ -19,9 +19,25 @@ class CampaignController extends Controller
      */
     public function index()
     {
+        //get data campaigns
+        $campaigns = Campaign::with('user')->with('sumPayment')->when(request()->q, function($campaigns) {
+            $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
+        })->latest()->paginate(100);
+
+        //return with response JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'List Data Campaigns',
+            'data'    => $campaigns,
+        ], 200);
+        
+    }
+
+    public function index_user($users_id)
+    {
         // $campaigns = Campaign::latest()->when(request()->q, function($campaigns) {
         //     $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
-        // })->paginate(10);
+        // })->paginate(100);
 
         // if($campaigns){
         //     return response()->json([
@@ -36,18 +52,24 @@ class CampaignController extends Controller
         //     ], 400);
         // }
 
-        //get data campaigns
-        $campaigns = Campaign::with('user')->with('sumPayment')->when(request()->q, function($campaigns) {
-            $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
-        })->latest()->paginate(100);
+        //get detail data campaign
+        $campaign = Campaign::with('user')->with('sumPayment')->where('users_id', $users_id)->first();
+
+        if($campaign) {
+
+            //return with response JSON
+            return response()->json([
+                'success'   => true,
+                'message'   => 'Detail Data Campaign : '. $campaign->title,
+                'data'      => $campaign
+            ], 200);
+        }
 
         //return with response JSON
         return response()->json([
-            'success' => true,
-            'message' => 'List Data Campaigns',
-            'data'    => $campaigns,
-        ], 200);
-        
+            'success' => false,
+            'message' => 'Data Campaign Tidak Ditemukan!',
+        ], 404);
     }
 
     /**
