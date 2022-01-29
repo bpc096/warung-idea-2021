@@ -13,7 +13,7 @@
        <script
         type="text/javascript"
         src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-clientkey="SB-Mid-client-ljOML1mcnbORKUbA">
+        data-client-key="SB-Mid-client-ljOML1mcnbORKUbA">
       </script>
     </body>
 </html>

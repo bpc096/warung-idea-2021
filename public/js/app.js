@@ -2234,31 +2234,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'RewardModal',
+  props: {
+    campaignId: {
+      "default": 1
+    }
+  },
   data: function data() {
     return {
       data: [{
         rewardId: 'rewardId01',
         rewardPrice: 'Rp20.000',
+        rewardAmount: '20000',
         rewardTitle: 'Reward 01',
         rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
       }, {
         rewardId: 'rewardId04',
         rewardPrice: 'Rp150.000',
+        rewardAmount: '150000',
         rewardTitle: 'Reward 04',
         rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
       }, {
         rewardId: 'rewardId02',
         rewardPrice: 'Rp500.000',
+        rewardAmount: '500000',
         rewardTitle: 'Reward 02',
         rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
       }, {
         rewardId: 'rewardId03',
         rewardPrice: 'Rp1.000.000',
+        rewardAmount: '1000000',
         rewardTitle: 'Reward 03',
         rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
       }, {
         rewardId: 'rewardId05',
         rewardPrice: 'Rp10.000.000',
+        rewardAmount: '10000000',
         rewardTitle: 'Reward 05',
         rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
       }],
@@ -2272,6 +2282,9 @@ __webpack_require__.r(__webpack_exports__);
     checkRegexAlphabet: function checkRegexAlphabet() {
       var pattern = /^[0-9]*$/g;
       return !pattern.test(this.amountDonation);
+    },
+    checkAmountInvalid: function checkAmountInvalid() {
+      return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0;
     }
   },
   methods: {
@@ -2279,13 +2292,13 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('close');
     },
     donateAmount: function donateAmount() {
-      if (this.checkRegexAlphabet) return;
+      if (this.checkRegexAlphabet || this.checkAmountInvalid || this.amountDonationToNumber === 0) return;
       var totalAmount = this.amountDonationToNumber;
       this.$router.push({
         name: 'CheckoutPage',
         params: {
-          checkoutId: 'testingId01',
-          totalAmount: totalAmount
+          totalAmount: totalAmount,
+          campaignId: this.campaignId
         }
       });
     }
@@ -2361,21 +2374,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CampaignCard',
   props: {
     isInHistoryCampaignPage: {
       type: Boolean,
       "default": true
+    },
+    donationInfo: {
+      type: Object,
+      "default": function _default() {}
+    },
+    campaignInfo: {
+      type: Object,
+      "default": function _default() {}
     }
   },
   data: function data() {
     return {
       progress: '59',
-      paymentTextStatus: 'PENDING'
+      paymentTextStatus: 'PENDING',
+      paymentStat: 'pending',
+      dummyImgUrl: 'https://images.unsplash.com/photo-1643223723262-7ce785730cf6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80'
     };
   },
   computed: {
+    imageUrl: function imageUrl() {
+      var _this$campaignInfo;
+
+      return (_this$campaignInfo = this.campaignInfo) !== null && _this$campaignInfo !== void 0 && _this$campaignInfo.image ? this.campaignInfo.image : this.dummyImgUrl;
+    },
+    infoDonationAmount: function infoDonationAmount() {
+      var _this$donationInfo;
+
+      return (_this$donationInfo = this.donationInfo) !== null && _this$donationInfo !== void 0 && _this$donationInfo.amount ? this.donationInfo.amount : '10000';
+    },
+    projectTitle: function projectTitle() {
+      var _this$campaignInfo2;
+
+      return (_this$campaignInfo2 = this.campaignInfo) !== null && _this$campaignInfo2 !== void 0 && _this$campaignInfo2.title ? this.campaignInfo.title : 'Title Campaign';
+    },
     progressPercentage: function progressPercentage() {
       if (parseInt(this.progress) <= 0) {
         return '1';
@@ -2390,14 +2434,41 @@ __webpack_require__.r(__webpack_exports__);
       return true;
     },
     paymentStatus: function paymentStatus() {
-      // LOGIC
-      this.paymentTextStatus = 'SUCCESS';
-      return 'success-status';
+      var paymentStyle = '';
+
+      if (this.donationInfo.status === 'pending') {
+        this.paymentTextStatus = 'PENDING';
+        paymentStyle = 'pending-status';
+      } else if (this.donationInfo.status === 'success') {
+        this.paymentTextStatus = 'SUCCESS';
+        paymentStyle = 'success-status';
+      } else {
+        this.paymentTextStatus = 'FAILED';
+        paymentStyle = 'failed-status';
+      }
+
+      return paymentStyle;
     }
   },
   methods: {
     payment: function payment() {
-      console.log('PAYMENT');
+      var _this = this;
+
+      if (!this.donationInfo || !this.donationInfo.snap_token) return;
+      window.snap.pay(this.donationInfo.snap_token, {
+        onSuccess: function onSuccess() {
+          _this.paymentStat = 'success';
+          console.log('SUCCESS');
+        },
+        onPending: function onPending() {
+          _this.paymentStat = 'pending';
+          console.log('PENDING');
+        },
+        onError: function onError() {
+          _this.paymentStat = 'failed';
+          console.log('ERROR');
+        }
+      });
     }
   }
 });
@@ -3087,14 +3158,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CheckoutPage',
+  data: function data() {
+    return {
+      projectData: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    var data = this.$route.params.campaignId || this.$route.query.campaignId;
+    this.$store.dispatch('getCampaignById', data).then(function (res) {
+      _this.projectData = res.data;
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  },
   computed: {
     dummyImage: function dummyImage() {
       return 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80';
+    },
+    projectTitle: function projectTitle() {
+      return this.projectData.title || 'Project Title';
+    },
+    projectImage: function projectImage() {
+      var _this$projectData;
+
+      return (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.image ? this.projectData.image : this.dummyImage;
+    },
+    donationAmount: function donationAmount() {
+      return this.$route.params.totalAmount || this.$route.query.totalAmount;
+    },
+    infoCampaignId: function infoCampaignId() {
+      return this.$route.params.campaignId || this.$route.query.campaignId;
     }
   },
   methods: {
     checkout: function checkout() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var donation;
@@ -3102,24 +3202,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log('Submit Payment');
                 donation = {
-                  amount: 100000,
-                  pray: 'hello',
-                  campaignSlug: 'arts'
+                  amount: _this2.donationAmount,
+                  campaignId: _this2.infoCampaignId
                 };
-                _context.next = 4;
-                return _this.$store.dispatch('storeDonation', donation).then(function (res) {
+                _context.next = 3;
+                return _this2.$store.dispatch('storeDonation', donation).then(function (res) {
                   console.log(res);
 
-                  _this.$router.push({
+                  _this2.$router.push({
                     name: 'HistoryDonationCampaign'
                   });
                 })["catch"](function (err) {
                   console.log(err);
                 });
 
-              case 4:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -3689,6 +3787,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 // Tab Component
 
  // Content Tab Component
@@ -3740,6 +3839,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   computed: {
+    projectId: function projectId() {
+      return this.$route.params.projectId;
+    },
     imageUrl: function imageUrl() {
       var _this$projectDetail;
 
@@ -4311,7 +4413,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/campaignComponent/CampaignCard */ "./resources/js/components/campaignComponent/CampaignCard.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/campaignComponent/CampaignCard */ "./resources/js/components/campaignComponent/CampaignCard.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
 //
 //
 //
@@ -4331,19 +4452,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HistoryCampaign',
   components: {
-    CampaignCard: _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_0__["default"]
+    CampaignCard: _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      progress: '59'
+      progress: '59',
+      listCreatedCampaign: []
     };
   },
-  created: function created() {// FETCH PROJECT CREATED BY USER HISTORY BY USER_ID
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch('getCampaignByUserId', _this.user.id).then(function (res) {
+                _this.listCreatedCampaign = res.data;
+              })["catch"](function (err) {
+                console.log(err);
+              });
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
-  computed: {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
+    user: 'user'
+  })), {}, {
     progressPercentage: function progressPercentage() {
       if (parseInt(this.progress) <= 0) {
         return '1';
@@ -4357,7 +4503,7 @@ __webpack_require__.r(__webpack_exports__);
       // TODO : Check Eligiblelity to edit campaign
       return true;
     }
-  }
+  })
 });
 
 /***/ }),
@@ -4371,7 +4517,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/campaignComponent/CampaignCard */ "./resources/js/components/campaignComponent/CampaignCard.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/campaignComponent/CampaignCard */ "./resources/js/components/campaignComponent/CampaignCard.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
 //
 //
 //
@@ -4390,12 +4545,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HistoryDonationCampaign',
   components: {
-    CampaignCard: _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_0__["default"]
+    CampaignCard: _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      progress: '59'
+      progress: '59',
+      listDonation: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch('getDonation').then(function (res) {
+                _this.listDonation = res;
+              })["catch"](function (err) {
+                console.log(err);
+              });
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   computed: {
     progressPercentage: function progressPercentage() {
@@ -9329,7 +9508,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
+exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  align-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid blueviolet;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: blueviolet;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF1700;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF1700;\n}\n", ""]);
 
 // exports
 
@@ -44002,7 +44181,7 @@ var render = function () {
               ),
             ]),
             _vm._v(" "),
-            _vm.checkRegexAlphabet
+            _vm.checkRegexAlphabet || _vm.checkAmountInvalid
               ? _c("div", { staticClass: "text-error" }, [
                   _vm._v("Please Input Valid Number!"),
                 ])
@@ -44019,7 +44198,10 @@ var render = function () {
                       attrs: {
                         to: {
                           path: "/checkout",
-                          query: { checkoutId: d.rewardId },
+                          query: {
+                            campaignId: _vm.campaignId,
+                            totalAmount: d.rewardAmount,
+                          },
                         },
                       },
                     },
@@ -44110,12 +44292,14 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "campaign-card" }, [
     _c("div", { staticClass: "campaign-image" }, [
-      _vm._v("\n      image\n    "),
+      _c("img", {
+        attrs: { src: _vm.imageUrl, alt: "campaign-image-project" },
+      }),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "campaign-content" }, [
       _c("div", { staticClass: "campaign-title" }, [
-        _vm._v("\n        Title Campaign\n      "),
+        _vm._v("\n        " + _vm._s(_vm.projectTitle) + "\n      "),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "campaign-desc" }, [
@@ -44150,6 +44334,19 @@ var render = function () {
             ])
           : _vm._e(),
       ]),
+      _vm._v(" "),
+      !_vm.isInHistoryCampaignPage
+        ? _c("div", { staticClass: "campaign-donation-amount" }, [
+            _vm._v("\n        Donation Amount\n        "),
+            _c("div", { staticClass: "donation-text" }, [
+              _vm._v(
+                "\n          Rp " +
+                  _vm._s(_vm.infoDonationAmount) +
+                  "\n        "
+              ),
+            ]),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       !_vm.isInHistoryCampaignPage
         ? _c("div", { staticClass: "campaign-payment-status" }, [
@@ -44652,24 +44849,69 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "checkout-page-wrap" }, [
     _c("div", { staticClass: "content-right" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "checkout-title" }, [
+        _vm._v("\n      YOU'RE CONTRIBUTING TO\n      "),
+        _c("div", { staticClass: "project-title" }, [
+          _vm._v("\n        " + _vm._s(_vm.projectTitle) + "\n      "),
+        ]),
+      ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "checkout-info" }, [
         _c("div", { staticClass: "checkout-image" }, [
           _c("img", {
             staticClass: "image-coffee-dummy",
-            attrs: { src: _vm.dummyImage, alt: "image-coffee-dummy" },
+            attrs: { src: _vm.projectImage, alt: "image-coffee-dummy" },
           }),
         ]),
         _vm._v(" "),
-        _vm._m(2),
+        _c("div", { staticClass: "checkout-reward" }, [
+          _c("div", { staticClass: "reward-title" }, [
+            _vm._v("\n          Donasi Sukarela\n        "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "reward-price" }, [
+            _vm._v(
+              "\n          Rp" + _vm._s(_vm.donationAmount) + "\n        "
+            ),
+          ]),
+        ]),
       ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "content-left" }, [
-      _vm._m(3),
+      _c("div", { staticClass: "content-contribution" }, [
+        _c("div", { staticClass: "title-summary" }, [
+          _vm._v("Contribution Summary"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "subtotal-text" }, [
+          _c("div", { staticClass: "subtotal-title" }, [
+            _vm._v("\n          Subtotal\n        "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "subtotal-price" }, [
+            _vm._v(
+              "\n          Rp" + _vm._s(_vm.donationAmount) + ",-\n        "
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "total-text" }, [
+          _c("div", { staticClass: "total-title" }, [
+            _vm._v("\n          TOTAL\n        "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "total-price" }, [
+            _vm._v(
+              "\n          Rp" + _vm._s(_vm.donationAmount) + ",-\n        "
+            ),
+          ]),
+        ]),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "btn-checkout" }, [
         _c("button", { on: { click: _vm.checkout } }, [
@@ -44680,17 +44922,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "checkout-title" }, [
-      _vm._v("\n      YOU'RE CONTRIBUTING TO\n      "),
-      _c("div", { staticClass: "project-title" }, [
-        _vm._v("\n        Project Title\n      "),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -44706,53 +44937,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "checkout-reward" }, [
-      _c("div", { staticClass: "reward-title" }, [
-        _vm._v("\n          Reward Name\n        "),
+    return _c("div", { staticClass: "shipping-text" }, [
+      _c("div", { staticClass: "shipping-title" }, [
+        _vm._v("\n          Shipping\n        "),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "reward-price" }, [
-        _vm._v("\n          Rp123.000\n        "),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content-contribution" }, [
-      _c("div", { staticClass: "title-summary" }, [
-        _vm._v("Contribution Summary"),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "subtotal-text" }, [
-        _c("div", { staticClass: "subtotal-title" }, [
-          _vm._v("\n          Subtotal\n        "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "subtotal-price" }, [
-          _vm._v("\n          Rp123000,-\n        "),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "shipping-text" }, [
-        _c("div", { staticClass: "shipping-title" }, [
-          _vm._v("\n          Shipping\n        "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "shipping-price" }, [
-          _vm._v("\n          Rp0,-\n        "),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "total-text" }, [
-        _c("div", { staticClass: "total-title" }, [
-          _vm._v("\n          TOTAL\n        "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "total-price" }, [
-          _vm._v("\n          Rp123000,-\n        "),
-        ]),
+      _c("div", { staticClass: "shipping-price" }, [
+        _vm._v("\n          Rp0,-\n        "),
       ]),
     ])
   },
@@ -45279,7 +45470,10 @@ var render = function () {
     { staticClass: "project-detail-page" },
     [
       _vm.showRewardModal
-        ? _c("RewardModal", { on: { close: _vm.closeModal } })
+        ? _c("RewardModal", {
+            attrs: { campaignId: _vm.projectId },
+            on: { close: _vm.closeModal },
+          })
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "wrap-title" }, [
@@ -46113,9 +46307,14 @@ var render = function () {
       _vm._v(" "),
       _c("CampaignCard"),
       _vm._v(" "),
-      _c("CampaignCard"),
+      _vm._l(_vm.listCreatedCampaign, function (campaign, idx) {
+        return _c("CampaignCard", {
+          key: idx,
+          attrs: { campaignInfo: campaign },
+        })
+      }),
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -46148,11 +46347,18 @@ var render = function () {
         _vm._v("\n    History Donation List\n  "),
       ]),
       _vm._v(" "),
-      _c("CampaignCard", { attrs: { isInHistoryCampaignPage: false } }),
-      _vm._v(" "),
-      _c("CampaignCard", { attrs: { isInHistoryCampaignPage: false } }),
+      _vm._l(_vm.listDonation, function (donation, idx) {
+        return _c("CampaignCard", {
+          key: idx,
+          attrs: {
+            isInHistoryCampaignPage: false,
+            donationInfo: donation,
+            campaignInfo: donation.campaign,
+          },
+        })
+      }),
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -65168,8 +65374,19 @@ var state = {
 
 };
 var actions = {
-  getCampaignById: function getCampaignById(_ref, data) {
+  getCampaignByUserId: function getCampaignByUserId(_ref, data) {
     var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/users/' + data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(apiUrl).then(function (res) {
+        resolve(res.data);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  getCampaignById: function getCampaignById(_ref2, data) {
+    var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + data;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(apiUrl).then(function (res) {
@@ -65179,8 +65396,8 @@ var actions = {
       });
     });
   },
-  getAllCampaign: function getAllCampaign(_ref2) {
-    var commit = _ref2.commit;
+  getAllCampaign: function getAllCampaign(_ref3) {
+    var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('campaign').then(function (res) {
         // commit(GET_CAMPAIGN, res.data.data)
@@ -65190,8 +65407,8 @@ var actions = {
       });
     });
   },
-  uploadCampaign: function uploadCampaign(_ref3, data) {
-    var commit = _ref3.commit;
+  uploadCampaign: function uploadCampaign(_ref4, data) {
+    var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('campaign', data).then(function (res) {
         commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPLOAD_CAMPAIGN"], res.data);
@@ -65201,8 +65418,8 @@ var actions = {
       });
     });
   },
-  updateCampaign: function updateCampaign(_ref4, param) {
-    var commit = _ref4.commit;
+  updateCampaign: function updateCampaign(_ref5, param) {
+    var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + param.campaignId;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(apiUrl, param.data).then(function (res) {
@@ -65265,7 +65482,7 @@ var actions = {
     return new Promise(function (resolve, reject) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/payment').then(function (res) {
         commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__["SET_DONATION"], res.data.data.data);
-        resolve(res);
+        resolve(res.data.data.data);
       })["catch"](function (err) {
         reject(err.response.data);
       });

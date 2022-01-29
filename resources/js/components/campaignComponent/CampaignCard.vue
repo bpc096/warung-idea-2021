@@ -1,11 +1,11 @@
 <template>
   <div class="campaign-card">
       <div class="campaign-image">
-        image
+        <img :src="imageUrl" alt="campaign-image-project">
       </div>
       <div class="campaign-content">
         <div class="campaign-title">
-          Title Campaign
+          {{ projectTitle }}
         </div>
         <div class="campaign-desc">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.
@@ -27,6 +27,12 @@
             >
              View Campaign
             </a>
+          </div>
+        </div>
+        <div v-if="!isInHistoryCampaignPage" class="campaign-donation-amount">
+          Donation Amount
+          <div class="donation-text">
+            Rp {{ infoDonationAmount }}
           </div>
         </div>
         <div v-if="!isInHistoryCampaignPage" class="campaign-payment-status">
@@ -63,15 +69,34 @@ export default {
     isInHistoryCampaignPage: {
       type: Boolean,
       default: true,
+    },
+    donationInfo: {
+      type: Object,
+      default: () => {}
+    },
+    campaignInfo: {
+      type: Object,
+      default: () => {}
     }
   },
   data: () => {
     return {
       progress: '59',
       paymentTextStatus: 'PENDING',
+      paymentStat: 'pending',
+      dummyImgUrl: 'https://images.unsplash.com/photo-1643223723262-7ce785730cf6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
     }
   },
   computed: {
+    imageUrl () {
+      return this.campaignInfo?.image? this.campaignInfo.image : this.dummyImgUrl
+    },
+    infoDonationAmount () {
+      return this.donationInfo?.amount? this.donationInfo.amount : '10000'
+    },
+    projectTitle () {
+      return this.campaignInfo?.title? this.campaignInfo.title : 'Title Campaign'
+    },
     progressPercentage() {
       if(parseInt(this.progress) <= 0) {
         return '1'
@@ -88,14 +113,39 @@ export default {
       return true
     },
     paymentStatus () {
-      // LOGIC
-      this.paymentTextStatus = 'SUCCESS'
-      return 'success-status'
+      let paymentStyle = ''
+      if (this.donationInfo.status === 'pending') {
+        this.paymentTextStatus = 'PENDING'
+        paymentStyle = 'pending-status'
+      } else if (this.donationInfo.status === 'success') {
+        this.paymentTextStatus = 'SUCCESS'
+        paymentStyle = 'success-status'
+      } else {
+        this.paymentTextStatus = 'FAILED'
+        paymentStyle = 'failed-status'
+      }
+
+      return paymentStyle
     }
   },
   methods: {
     payment() {
-      console.log('PAYMENT')
+      if(!this.donationInfo || !this.donationInfo.snap_token) return
+
+      window.snap.pay(this.donationInfo.snap_token, {
+        onSuccess: () => {
+          this.paymentStat = 'success'
+          console.log('SUCCESS')
+        },
+        onPending: () => {
+          this.paymentStat = 'pending'
+          console.log('PENDING')
+        },
+        onError: () => {
+          this.paymentStat = 'failed'
+          console.log('ERROR')
+        }
+      })
     }
   }
 }
@@ -112,6 +162,11 @@ export default {
 
     .campaign-image {
       width: 30%;
+      margin-right: 3px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .campaign-content {
@@ -162,6 +217,22 @@ export default {
         }
       }
 
+      .campaign-donation-amount {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        align-items: center;
+
+        .donation-text {
+          font-weight: 500;
+          color: black;
+          padding: 2px;
+          min-width: 10rem;
+          border-radius: 10px;
+          align-self: center;
+        }
+      }
+
       .campaign-payment-status {
         display: flex;
         flex-direction: row;
@@ -183,6 +254,10 @@ export default {
 
           &.success-status {
             background-color: #38ef7d;
+          }
+
+          &.failed-status {
+            background-color: red;
           }
         }
 

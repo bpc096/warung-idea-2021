@@ -12,12 +12,17 @@
       </router-link>
     </div>
     <CampaignCard />
-    <CampaignCard />
+    <CampaignCard
+      v-for="(campaign, idx) in listCreatedCampaign"
+      :key="idx"
+      :campaignInfo="campaign"
+    />
   </div>
 </template>
 
 <script>
 import CampaignCard from '../../components/campaignComponent/CampaignCard'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'HistoryCampaign',
@@ -27,12 +32,24 @@ export default {
   data: () => {
     return {
       progress: '59',
+      listCreatedCampaign: [],
     }
   },
-  created () {
+  async created () {
     // FETCH PROJECT CREATED BY USER HISTORY BY USER_ID
+    await this.$store
+      .dispatch('getCampaignByUserId', this.user.id)
+      .then(res => {
+        this.listCreatedCampaign = res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
   },
   computed: {
+    ...mapGetters({
+      user: 'user',
+    }),
     progressPercentage() {
       if(parseInt(this.progress) <= 0) {
         return '1'

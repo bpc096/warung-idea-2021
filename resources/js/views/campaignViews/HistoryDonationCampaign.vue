@@ -4,10 +4,11 @@
       History Donation List
     </div>
     <CampaignCard
+      v-for="(donation, idx) in listDonation"
       :isInHistoryCampaignPage="false"
-    />
-    <CampaignCard
-      :isInHistoryCampaignPage="false"
+      :donationInfo="donation"
+      :campaignInfo="donation.campaign"
+      :key="idx"
     />
   </div>
 </template>
@@ -23,7 +24,18 @@ export default {
   data: () => {
     return {
       progress: '59',
+      listDonation: [],
     }
+  },
+   async created() {
+    await this.$store
+      .dispatch('getDonation')
+      .then(res => {
+        this.listDonation = res
+      })
+      .catch(err => {
+        console.log(err)
+      })
   },
   computed: {
     progressPercentage() {

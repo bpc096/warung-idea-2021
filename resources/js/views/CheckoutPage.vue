@@ -4,7 +4,7 @@
       <div class="checkout-title">
         YOU'RE CONTRIBUTING TO
         <div class="project-title">
-          Project Title
+          {{ projectTitle }}
         </div>
       </div>
       <div class="checkout-perks">
@@ -16,17 +16,17 @@
       <div class="checkout-info">
         <div class="checkout-image">
           <img
-            :src="dummyImage"
+            :src="projectImage"
             class="image-coffee-dummy"
             alt="image-coffee-dummy"
           >
         </div>
         <div class="checkout-reward">
           <div class="reward-title">
-            Reward Name
+            Donasi Sukarela
           </div>
           <div class="reward-price">
-            Rp123.000
+            Rp{{ donationAmount }}
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
             Subtotal
           </div>
           <div class="subtotal-price">
-            Rp123000,-
+            Rp{{ donationAmount }},-
           </div>
         </div>
         <div class="shipping-text">
@@ -55,7 +55,7 @@
             TOTAL
           </div>
           <div class="total-price">
-            Rp123000,-
+            Rp{{ donationAmount }},-
           </div>
         </div>
       </div>
@@ -73,19 +73,44 @@
 <script>
 export default {
   name: 'CheckoutPage',
+  data: () => {
+    return {
+      projectData: {}
+    }
+  },
+  created() {
+    const data = this.$route.params.campaignId || this.$route.query.campaignId
+    this.$store
+      .dispatch('getCampaignById', data)
+      .then(res => {
+        this.projectData = res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
   computed: {
     dummyImage() {
       return 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+    },
+    projectTitle () {
+      return this.projectData.title || 'Project Title'
+    },
+    projectImage () {
+      return this.projectData?.image? this.projectData.image : this.dummyImage
+    },
+    donationAmount () {
+      return this.$route.params.totalAmount || this.$route.query.totalAmount
+    },
+    infoCampaignId () {
+      return this.$route.params.campaignId || this.$route.query.campaignId
     }
   },
   methods: {
     async checkout() {
-      console.log('Submit Payment');
-
       const donation = {
-        amount: 100000,
-        pray: 'hello',
-        campaignSlug: 'arts'
+        amount: this.donationAmount,
+        campaignId: this.infoCampaignId,
       }
 
       await this.$store

@@ -16,10 +16,10 @@
               <button class="btn-donate" type="submit">Donate!</button>
             </form>
           </div>
-          <div v-if="checkRegexAlphabet" class="text-error">Please Input Valid Number!</div>
+          <div v-if="checkRegexAlphabet || checkAmountInvalid" class="text-error">Please Input Valid Number!</div>
 
           <div v-for="(d, idx) in data" :key="idx">
-            <router-link :to="{path: '/checkout', query: { checkoutId: d.rewardId }}">
+            <router-link :to="{path: '/checkout', query: {campaignId: campaignId, totalAmount: d.rewardAmount }}">
               <div class="reward-card-container">
                 <div class="reward-price">
                   <div class="reward-image">
@@ -55,36 +55,46 @@
 <script>
 export default {
   name: 'RewardModal',
+  props: {
+    campaignId: {
+      default: 1,
+    }
+  },
   data: () => {
     return {
       data: [
         {
           rewardId: 'rewardId01',
           rewardPrice: 'Rp20.000',
+          rewardAmount: '20000',
           rewardTitle: 'Reward 01',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
           rewardId: 'rewardId04',
           rewardPrice: 'Rp150.000',
+          rewardAmount: '150000',
           rewardTitle: 'Reward 04',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
           rewardId: 'rewardId02',
           rewardPrice: 'Rp500.000',
+          rewardAmount: '500000',
           rewardTitle: 'Reward 02',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
           rewardId: 'rewardId03',
           rewardPrice: 'Rp1.000.000',
+          rewardAmount: '1000000',
           rewardTitle: 'Reward 03',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
           rewardId: 'rewardId05',
           rewardPrice: 'Rp10.000.000',
+          rewardAmount: '10000000',
           rewardTitle: 'Reward 05',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         }
@@ -100,20 +110,23 @@ export default {
       const pattern = /^[0-9]*$/g
       return !pattern.test(this.amountDonation)
     },
+    checkAmountInvalid () {
+      return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0
+    }
   },
   methods: {
     closeModal () {
       this.$emit('close')
     },
     donateAmount () {
-      if(this.checkRegexAlphabet) return
+      if( this.checkRegexAlphabet || this.checkAmountInvalid || this.amountDonationToNumber === 0) return
 
       const totalAmount = this.amountDonationToNumber
       this.$router.push({
         name: 'CheckoutPage',
         params: {
-          checkoutId: 'testingId01',
           totalAmount: totalAmount,
+          campaignId: this.campaignId
         }
       })
     }

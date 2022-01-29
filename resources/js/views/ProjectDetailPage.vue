@@ -2,6 +2,7 @@
   <div class="project-detail-page">
     <RewardModal
       v-if="showRewardModal"
+      :campaignId="projectId"
       @close="closeModal"
     />
     <div class="wrap-title">
@@ -103,6 +104,9 @@ export default {
       })
   },
   computed: {
+    projectId () {
+      return this.$route.params.projectId
+    },
     imageUrl () {
       return this.projectDetail?.image? this.projectDetail.image : this.projectDetail.dummyUrlImage
     },

@@ -16,7 +16,7 @@ const actions = {
       Axios.get('/payment')
         .then(res => {
           commit(SET_DONATION, res.data.data.data)
-          resolve(res)
+          resolve(res.data.data.data)
         })
         .catch(err => {
           reject(err.response.data)

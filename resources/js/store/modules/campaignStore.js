@@ -9,6 +9,18 @@ const state = {
 }
 
 const actions = {
+  getCampaignByUserId({commit}, data) {
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'campaign/users/' + data
+      Axios.get(apiUrl)
+        .then(res => {
+          resolve(res.data)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  },
   getCampaignById({commit}, data) {
     return new Promise((resolve, reject) => {
       const apiUrl = 'campaign/' + data
