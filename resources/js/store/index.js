@@ -8,6 +8,9 @@ import {
 // Module Store
 import authStore from './modules/authStore'
 import profileStore from './modules/profileStore'
+import articleStore from './modules/articleStore'
+import campaignStore from './modules/campaignStore'
+import donateStore from './modules/donateStore'
 
 const state__ = {
   number: 1,
@@ -40,22 +43,34 @@ const store = new Vuex.Store({
   state: {
     ...state__,
     ...authStore.state,
-    ...profileStore.state
+    ...profileStore.state,
+    ...articleStore.state,
+    ...campaignStore.state,
+    ...donateStore.state,
   },
   actions: {
     ...actions__,
     ...authStore.actions,
     ...profileStore.actions,
+    ...articleStore.actions,
+    ...campaignStore.actions,
+    ...donateStore.actions,
   },
   mutations: {
     ...mutations__,
     ...authStore.mutations,
     ...profileStore.mutations,
+    ...articleStore.mutations,
+    ...campaignStore.mutations,
+    ...donateStore.mutations,
   },
   getters: {
     ...getters__,
     ...authStore.getters,
     ...profileStore.getters,
+    ...articleStore.getters,
+    ...campaignStore.getters,
+    ...donateStore.getters,
   },
 })
 

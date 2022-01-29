@@ -13,12 +13,12 @@
           </div>
           <form @submit.prevent="userLogin">
             <div class="form-group">
-              <label for="username">Username</label>
+              <label for="username">Email</label>
               <input
                 v-model="form.email"
-                type="text"
+                type="email"
                 class="form-control"
-                placeholder="Username.." >
+                placeholder="Email.." >
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -51,13 +51,10 @@ export default {
   },
   methods: {
     userLogin() {
-      console.log(this.form)
       this.$store.dispatch('login', this.form)
       .then(res => {
-        console.log(res)
         this.$router.push({name: 'HomePage', path: '/home'})
       }).catch(err => {
-        console.log(err.response)
         this.errors = err.response.data.message
       })
     }

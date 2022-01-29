@@ -1,14 +1,15 @@
 <template>
   <div class="category-wrapper">
     <div class="title-category">
-      <h1>{{ checkQueryCategoryId }}</h1>
+      <h1>{{ queryCategoryId }}</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id labore ullam nobis neque ipsa nesciunt ea et dolor fuga adipisci?</p>
     </div>
     <div class="content-category">
-      <div v-for="(project, idx) in projectList" class="project-card-wrap" :key="idx">
-        <a :href="'/projectdetail/'+ projectId">
+      <div v-for="(project, idx) in categoryProjectList" class="project-card-wrap" :key="idx">
+        <a :href="'/projectdetail/'+ project.id">
           <ProjectCard
-          :articleData="testDataProject"
+          :projectData="project"
+          :isCampaign="true"
           />
         </a>
       </div>
@@ -19,6 +20,8 @@
 <script>
 import ProjectCard from '../components/cardComponent/ArticleCard.vue'
 
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'CategoryPage',
   components: {
@@ -26,22 +29,57 @@ export default {
   },
   data : () => {
     return {
+      categoryList: ['arts', 'technology', 'games', 'books', 'movies', 'health-and-fitness'],
       isExist: true,
       projectList: 7,
-      projectId: 'id-sekian',
+      projectId: 0,
       testDataProject: {
-        imageUrl: '/project-img-url',
-        titleText: 'Project Title',
-        descText: `Project ipsum dolor sit amet, consectetur adipiscing elit.
+        image: '/project-img-url',
+        title: 'Project Title',
+        description: `Project ipsum dolor sit amet, consectetur adipiscing elit.
           Aenean orci e diam sapien, finibus eu metus ac,
           porttitor feugiat elit. Vestibulum varius ultricies ante,
           in convallis justo varius a.`
+      },
+      categoryProjectList: [],
+      allProjectList: [],
+    }
+  },
+  created () {
+    this.fetchAllProjectList()
+  },
+  computed: {
+    ...mapGetters({
+      allProjects: 'getAllCampaign',
+    })
+  },
+  computed: {
+    queryCategoryId () {
+      this.updateProjectBasedOnCategory()
+      return this.$route.params.categoryId.toUpperCase()
+    },
+    getCategoryId () {
+      const checkExistId = this.categoryList.indexOf(this.$route.params.categoryId.toLowerCase())
+      if(checkExistId >= 0) {
+        return checkExistId + 1
+      } else {
+        return 0
       }
     }
   },
-  computed: {
-    checkQueryCategoryId () {
-      return this.$route.params.categoryId.toUpperCase()
+  methods: {
+    async fetchAllProjectList () {
+      await this.$store.dispatch('getAllCampaign')
+        .then(res => {
+          this.allProjectList = res.data.data.data
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    updateProjectBasedOnCategory() {
+      if (!this.allProjectList) return
+      this.categoryProjectList = this.allProjectList.filter(project => project.category_id === this.getCategoryId)
     }
   }
 }

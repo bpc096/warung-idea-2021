@@ -7,15 +7,15 @@
         </div>
         <div class="user-name">
           <div class="text-label">Name</div>
-          <div class="text-value">{{ profile.name }}</div>
+          <div class="text-value">{{ user.name }}</div>
         </div>
         <div class="user-username">
           <div class="text-label">Username</div>
-          <div class="text-value">{{ profile.username }}</div>
+          <div class="text-value">{{ user.name }}_Username</div>
         </div>
         <div class="user-email">
           <div class="text-label">Email</div>
-          <div class="text-value">{{ profile.email }}</div>
+          <div class="text-value">{{ user.email }}</div>
         </div>
         <div class="user-gender">
           <div class="text-label">Gender</div>
@@ -26,11 +26,27 @@
           <div class="text-value">{{ profile.phonenumber }}</div>
         </div>
       </div>
+      <div class="button-wrap">
+        <a
+          class="button-edit-profile"
+          @click="editProfile"
+          >
+          Edit Profile
+        </a>
+        <a
+          class="button-change-password"
+          @click="changePassword"
+        >
+          Change Password
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'UserProfile',
   data: () => {
@@ -45,8 +61,24 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
     imageUrl () {
-      return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+      return this.user.avatar
+      // return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
+    }
+  },
+  methods: {
+    changePassword() {
+      this.$router.push({
+        path: '/profile/changepassword'
+      })
+    },
+    editProfile() {
+      this.$router.push({
+        path: '/profile/editprofile'
+      })
     }
   }
 
@@ -100,9 +132,44 @@ export default {
       .text-value {
         margin-right: 3rem;
       }
-
     }
 
+      .button-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 3rem;
+
+        a {
+          text-decoration: none;
+          color: black;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .button-edit-profile {
+          background-color: #4FBDBA;
+          width: 13rem;
+          height: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+        }
+
+        .button-change-password {
+          background-color: #F05454;
+          width: 13rem;
+          height: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+        }
+
+      }
 
   }
 }

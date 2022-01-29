@@ -3,20 +3,20 @@
     <div class="section">
       <div class="feature-section">
         <div class="project-feature-list">
-          <router-link to="/projectDetail">
-            <ProjectListFeature />
-          </router-link>
-          <router-link to="/projectDetail">
-            <ProjectListFeature />
-          </router-link>
-          <router-link to="/projectDetail">
-            <ProjectListFeature />
-          </router-link>
+          <div v-for="project in projectFeatureList" :key="project.id">
+            <router-link :to="`/projectdetail/${project.id}`">
+              <ProjectListFeature
+                :projectData="project"
+                :isInHomePage="true"
+              />
+            </router-link>
+          </div>
         </div>
         <div class="project-feature-card">
-          <router-link to="/projectDetail">
-            <ProjectCardFeature 
+          <router-link :to="`/projectdetail/${projectFeatureSingle.id}`">
+            <ProjectCardFeature
               :projectData="projectFeatureSingle"
+              :isInHomePage="true"
             />
           </router-link>
         </div>
@@ -25,38 +25,12 @@
         <div class="section-title">
           Popular Project
         </div>
-        <div v-if="isPopularContentMore" class="section-content-more">
-          <carousel 
-            :scrollPerPage="false"
-            :navigationEnabled="false"
-          >
-            <slide>
-              <span class="label">
-                <ProjectMainCard />
-              </span>
-            </slide>
-            <slide>
-              <span class="label">
-                <ProjectMainCard />
-              </span>
-            </slide>
-            <slide>
-              <span class="label">
-                <ProjectMainCard />
-              </span>
-            </slide>
-            <slide>
-              <span class="label">
-                <ProjectMainCard />
-              </span>
-            </slide>
-          </carousel>
-        </div>
-        <div v-else class="section-content">
-          <div v-for="(project, index) in projectPopular" :key="index + project.contentId">
-            <router-link to="/projectDetail">
-              <ProjectMainCard 
+        <div class="section-content">
+          <div v-for="(project, index) in projectPopular" :key="index + project.Id">
+            <router-link :to="`/projectdetail/${project.id}`">
+              <ProjectMainCard
                 :projectData="project"
+                :isInHomePage="true"
               />
             </router-link>
           </div>
@@ -67,10 +41,11 @@
           Most Funding Project
         </div>
         <div class="section-content">
-          <div v-for="(project, index) in projectMostFunding" :key="index + project.contentId">
-            <router-link :to="{ path: '/projectDetail', query: { projectId: project.contentId }}">
-              <ProjectMainCard 
+          <div v-for="(project, index) in projectMostFunding" :key="index + project.id">
+            <router-link :to="`/projectdetail/${project.id}`">
+              <ProjectMainCard
                 :projectData="project"
+                :isInHomePage="true"
               />
             </router-link>
           </div>
@@ -81,9 +56,9 @@
           Article and News
         </div>
         <div class="section-content">
-          <ArticleCard 
-            v-for="(article, index) in articleAndNews"
-            :key="index + article.contentId"
+          <ArticleCard
+            v-for="(article, index) in articleAndNews.data"
+            :key="index + article.id"
             :articleData="article"
           />
         </div>
@@ -101,6 +76,7 @@ import ArticleCard from '../components/cardComponent/ArticleCard.vue'
 
 // Utils
 import { Carousel, Slide } from 'vue-carousel'
+import { mapGetters } from 'vuex'
 
 
 export default {
@@ -115,119 +91,83 @@ export default {
   },
   data: () => {
     return {
-      isPopularContentMore: false,
-      isFundingContentMore: false,
+      dummyTest: 3,
+      projectId: 3,
       projectFeatureSingle: {},
-      projectFeatureList: [],      
+      projectFeatureList: [],
       projectPopular: [],
       projectMostFunding: [],
       articleAndNews: [],
+      allProjectList: [],
     }
   },
   created () {
     this.checkAvailableContent()
   },
+  computed: {
+    ...mapGetters({
+      articles: 'articles'
+    }),
+    totalCampaignProject () {
+      return this.allProjectList.length
+    }
+  },
   methods: {
-    checkAvailableContent () {
+    async checkAvailableContent () {
+      await this.getAllProjectList()
+
+
       this.checkAvailableProjectFeatureSingle()
       this.checkAvailableProjectFeatureList()
       this.checkAvailableProjectPopular()
       this.checkAvailableProjectMostFunding()
       this.checkAvailableArticleAndNews()
     },
+    async getAllProjectList() {
+      await this.$store
+        .dispatch('getAllCampaign')
+        .then(res => {
+          this.allProjectList = res.data.data.data
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
     checkAvailableProjectFeatureList () {
-      const tempContentFeatureList = [{
-        contentId: 5,
-        contentImageURL: '/testing',
-        contentTitle: 'Project Title Here',
-        contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?',
-      }]
-      this.projectFeatureList = tempContentFeatureList
+      // GET 3 Random Project from project list
+      this.projectFeatureList = this.allProjectList.filter((project, idx) => {
+        if(idx <= 2) return project
+      })
     },
     checkAvailableProjectFeatureSingle () {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
-      const tempContentFeature = {
-        contentId: 1,
-        contentImageURL: '/testing',
-        contentTitle: 'Project Title Here',
-        contentDescription: 'orem ipsum dolor sit amet consectetur adipisicing elit. Eaque id est fuga ducimus nesciunt, ratione aperiam commodi rem architecto nihil?',
-        contentFundedPercentage: 90,
-      }
-      this.projectFeatureSingle = tempContentFeature
+      const resFeatureSingle = this.allProjectList.filter((project, idx) => {
+        if(idx <= 0) return project
+      })
+      this.projectFeatureSingle = resFeatureSingle[0]
     },
     checkAvailableProjectPopular () {
       // CHECKING API FOR AVAILABLE PROJECT POPULAR
-      const tempContentPopular = [
-        {
-          contentId: 2,
-          contentImageURL: '/testing',
-          contentTitle: 'Project name here',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-          contentCreator: 'Mister Ex',
-        },
-        {
-          contentId: 6,
-          contentImageURL: '/testing-six',
-          contentTitle: 'Project name six',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-          contentCreator: 'Mister Ah',
-        },
-      ]
-      this.projectPopular = tempContentPopular
+      this.projectPopular = this.allProjectList.filter((project, idx) => {
+        if(idx <= 1) return project
+      })
     },
     checkAvailableProjectMostFunding () {
       // CHECKING API FOR AVAILABLE PROJECT MOST FUNDING
-      const tempContentMostFunding = [
-        {
-          contentId: 3,
-          contentImageURL: '/testing-zerothree',
-          contentTitle: 'Project name here',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-          contentCreator: 'Mister Be',
-        },
-        {
-          contentId: 8,
-          contentImageURL: '/testing-eight',
-          contentTitle: 'Project name eight',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit facilis consequuntur, laborum et unde quod corporis culpa illum pariatur eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, nam!',
-          contentCreator: 'Mister Eight',
-        },
-      ]
-      this.projectMostFunding = tempContentMostFunding
+      this.projectMostFunding = this.allProjectList.filter((project, idx) => {
+        if(idx <= 1) return project
+      })
     },
     checkAvailableArticleAndNews () {
       // CHECKING API FOR AVAILABLE ARTICLE AND NEWS
-      const tempContentArticle = [
-        {
-          contentId: 4,
-          contentImageURL: '/article-foure',
-          contentTitle: 'News Four',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci e diam sapien, finibus eu metus ac, porttitor feugiat elit. Vestibulum varius ultricies ante, in convallis justo varius a.',
-          contentCreator: 'Mister Four',
-        },
-        {
-          contentId: 9,
-          contentImageURL: '/article-nine',
-          contentTitle: 'News Nine',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci e diam sapien, finibus eu metus ac, porttitor feugiat elit. Vestibulum varius ultricies ante, in convallis justo varius a.',
-          contentCreator: 'Mister Nine',
-        },
-        {
-          contentId: 10,
-          contentImageURL: '/article-ten',
-          contentTitle: 'News Ten',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci e diam sapien, finibus eu metus ac, porttitor feugiat elit. Vestibulum varius ultricies ante, in convallis justo varius a.',
-          contentCreator: 'Mister Ten',
-        },
-        {
-          contentId: 11,
-          contentImageURL: '/article-eleven',
-          contentTitle: 'News Eleven',
-          contentDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci e diam sapien, finibus eu metus ac, porttitor feugiat elit. Vestibulum varius ultricies ante, in convallis justo varius a.',
-          contentCreator: 'Mister Eleven',
-        },
-      ]
-      this.articleAndNews = tempContentArticle
+      this.$store.dispatch('initArticle')
+        .then(res => {
+          this.articleAndNews = this.articles
+        })
+        .catch(err => {
+          console.error(err)
+        })
+      // this.articleAndNews = tempContentArticle
     },
   }
 }
@@ -308,9 +248,9 @@ export default {
     }
 
     .article-section {
-      height: 70vh;
+      height: 30vh;
       width: 100%;
-      margin-top: 4rem;
+      margin-bottom: 20rem;
 
       .section-title {
         height: 10%;

@@ -18,9 +18,14 @@ import CheckoutPage from '../views/CheckoutPage.vue'
 
 // Views Campaign
 import CreateCampaign from '../views/campaignViews/CreateCampaign.vue'
+import EditCampaign from '../views/campaignViews/EditCampaign.vue'
+import HistoryCampaign from '../views/campaignViews/HistoryCampaign.vue'
+import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampaign.vue'
 
 // Views User
-import UserProfile from '../views/UserProfile.vue'
+import UserProfile from '../views/userViews/UserProfile.vue'
+import ChangePassword from '../views/userViews/ChangePassword.vue'
+import EditProfile from '../views/userViews/EditProfile.vue'
 
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
@@ -88,7 +93,7 @@ const routes = [
     component: CheckoutPage,
   },
   {
-    path: '/profile/:userId',
+    path: '/profile',
     name: 'UserProfile',
     component: UserProfile,
     meta: {
@@ -97,9 +102,42 @@ const routes = [
     }
   },
   {
+    path: '/profile/changepassword',
+    name: 'ChangePassword',
+    component: ChangePassword,
+    meta: {
+      // TODO: Change auth to true after ddevelopment
+      auth: false
+    }
+  },
+  {
+    path: '/profile/editProfile',
+    name: 'EditProfile',
+    component: EditProfile,
+    meta: {
+      // TODO: Change auth to true
+      auth: false
+    }
+  },
+  {
     path: '/campaign/create',
     name: 'CreateCampaign',
     component: CreateCampaign,
+  },
+  {
+    path: '/campaign/history',
+    name: 'HistoryCampaign',
+    component: HistoryCampaign,
+  },
+  {
+    path: '/campaign/history/donation',
+    name: 'HistoryDonationCampaign',
+    component: HistoryDonationCampaign,
+  },
+  {
+    path: '/campaign/edit/:projectId',
+    name: 'EditCampaign',
+    component: EditCampaign,
   },
   {
     path: '/haloguys',

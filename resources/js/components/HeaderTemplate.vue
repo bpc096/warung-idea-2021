@@ -7,7 +7,7 @@
           alt="bright-lamp"
         >
         <div class="text-image">
-          WarungIde.co
+          WarungIde.com
         </div>
       </a>
     </div>
@@ -22,13 +22,20 @@
       <router-link to="/category/games">Games</router-link>
       <router-link to="/category/books">Books</router-link>
       <router-link to="/category/movies">Movie</router-link>
+      <router-link to="/category/health-and-fitness">Health & Fitness</router-link>
     </div>
-    <div v-if="isLoggedIn">
+    <div v-if="isLoggedIn" class="button-wrap">
       <router-link to="/profile" class="button-profile">
         Profile
       </router-link>
+      <router-link to="/campaign/history" class="button-profile">
+        Campaign
+      </router-link>
+      <a @click="logout" class="button-logout">
+        Logout
+      </a>
     </div>
-    <div class="button-wrap">
+    <div v-else class="button-wrap">
       <router-link to="/register" class="button-register">
         Register
       </router-link>
@@ -44,6 +51,11 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: "HeaderTemplate",
+  data: () => {
+    return {
+      loginMock: true,
+    }
+  },
   computed: {
     ...mapGetters({
       isLoggedIn: 'isLoggedIn',
@@ -54,6 +66,18 @@ export default {
     },
     isInLanding () {
       return this.$route.name === 'LandingPage' || this.$route.name === 'AboutUsPage'
+    },
+    isUserLoggedIn() {
+      return this.loginMock
+    }
+  },
+  methods: {
+    logout () {
+      this.$store
+        .dispatch('logout')
+        .then(() => {
+          this.$router.push('/')
+        })
     }
   }
 }
@@ -158,6 +182,22 @@ export default {
       &:hover {
         background-color: black;
         color: white;
+      }
+    }
+
+    .button-logout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      margin-right: 1rem;
+      width: 40%;
+      height: 2rem;
+      border-radius: 20px;
+      &:hover {
+        background-color: black;
+        color: white;
+        cursor: pointer;
       }
     }
   }
