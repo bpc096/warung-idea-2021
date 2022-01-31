@@ -57,6 +57,9 @@
         <tab name="FAQ">
           <faqTab />
         </tab>
+        <tab name="Collaborator">
+          <creatorTab />
+        </tab>
       </tabs>
     </div>
   </div>
@@ -71,6 +74,7 @@ import tabs from '../components/tabComponent/tabsComponent.vue'
 import campaignTab from '../views/tabViews/CampaignTab.vue'
 import updateTab from '../views/tabViews/UpdateTab.vue'
 import faqTab from '../views/tabViews/FaqTab.vue'
+import creatorTab from '../views/tabViews/CreatorTab.vue'
 
 // Modal
 import RewardModal from '../components/RewardModal.vue'
@@ -84,6 +88,7 @@ export default {
     updateTab,
     faqTab,
     RewardModal,
+    creatorTab,
   },
   data: () => {
     return {

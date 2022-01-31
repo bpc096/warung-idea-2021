@@ -70,7 +70,7 @@
           </div>
           <div class="user-name">
             <div class="text-label">Campaign Description</div>
-            <div class="text-value">
+            <div class="text-desc-form">
               <textarea
                 v-model="description"
                 type="text"
@@ -80,6 +80,12 @@
                 cols="50"
               >
               </textarea>
+            </div>
+          </div>
+          <div class="user-name">
+            <div class="text-label">Campaign Collaborator</div>
+            <div class="text-collaborator">
+              <MultiselectIde />
             </div>
           </div>
         </div>
@@ -98,11 +104,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import MultiselectIde from '../../components/Multiselect.vue'
 
 export default {
   name: 'CreateCampaign',
+  components: {
+    MultiselectIde
+  },
   data: () => {
     return {
+      selectCollaborator: null,
+      optionCollaborator: ['andi','tono','budi'],
       image: null,
       title: '',
       categoryId: 1,
@@ -171,7 +183,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" scoped >
 .user-profile-edit-page {
   height: 100vh;
   display: flex;
@@ -223,6 +235,16 @@ export default {
 
       .text-value {
         margin-right: 2rem;
+      }
+
+      .text-desc-form {
+        margin-right: 2rem;
+        max-width: 21rem;
+      }
+
+      .text-collaborator {
+        margin-right: 2rem;
+        max-width: 18rem;
       }
 
       .text-category {
