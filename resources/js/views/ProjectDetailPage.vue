@@ -117,9 +117,10 @@ export default {
   },
   computed: {
      progressPercentage() {
-      let progressBar = '0'
+      const randomNumb = Math.floor((Math.random() * 100) + 1)
+      let progressBar = randomNumb.toString()
       if(this.sumPayment.length > 0) {
-        progressBar = this.sumPayment[0]?.total? this.sumPayment[0].total : this.progress
+        progressBar = this.sumPayment[0]?.total? this.sumPayment[0].total : randomNumb.toString()
       }
       if(parseInt(progressBar) <= 0) {
         progressBar = '1'
@@ -136,7 +137,7 @@ export default {
       return this.projectDetail?.image? this.projectDetail.image : this.projectDetail.dummyUrlImage
     },
     daysBetween () {
-      const maxDate = this.projectDetail?.max_date? this.projectDetail.max_date : '2045-06-30'
+      const maxDate = this.projectDetail?.max_date? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30'
 
       const oneDay = 24 * 60 * 60 * 1000
       const firstDate = new Date()
@@ -158,6 +159,13 @@ export default {
     }
   },
   methods: {
+    checkMaxDate(date){
+      let tempDate = '2055-05-05'
+      if(new Date(date).getTime() > new Date().getTime()) {
+        tempDate = date
+      }
+      return tempDate
+    },
     btnSupportHandle () {
       console.log('CLICK SUPPORT')
       this.showRewardModal = true

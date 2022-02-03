@@ -22,20 +22,15 @@
     components: {
       Multiselect
     },
-    props: {
-      value: {
-        type: Array,
-        default: [
-          { name: 'Janto pasto', code: 'js' }
-        ]
-      },
-      options: {
-        type: Array,
-        default: [
+    data: () => {
+      return {
+        value:  [],
+        options:  [
           { name: 'Vuang agung', code: 'vu' },
           { name: 'Joni Yes', code: 'js' },
-          { name: 'Onad sodin', code: 'os' }
-        ]
+          { name: 'Onad sodin', code: 'os' },
+          { name: 'Janto pasto', code: 'jp' },
+        ],
       }
     },
     methods: {

@@ -85,9 +85,7 @@
           <div class="user-name">
             <div class="text-label">Campaign Collaborator</div>
             <div class="text-collaborator">
-              <MultiselectIde
-                @getData="moveDataFromChild"
-              />
+              <MultiselectIde />
             </div>
           </div>
         </div>

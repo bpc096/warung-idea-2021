@@ -2203,17 +2203,10 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default.a
   },
-  props: {
-    value: {
-      type: Array,
-      "default": [{
-        name: 'Janto pasto',
-        code: 'js'
-      }]
-    },
-    options: {
-      type: Array,
-      "default": [{
+  data: function data() {
+    return {
+      value: [],
+      options: [{
         name: 'Vuang agung',
         code: 'vu'
       }, {
@@ -2222,8 +2215,11 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: 'Onad sodin',
         code: 'os'
+      }, {
+        name: 'Janto pasto',
+        code: 'jp'
       }]
-    }
+    };
   },
   methods: {
     addTag: function addTag(newTag) {
@@ -2611,6 +2607,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     descText: function descText() {
       return this.isCampaign ? this.projectData.description : this.articleData.description;
+    },
+    randomNumber: function randomNumber() {
+      var randomNumb = Math.floor(Math.random() * 100 + 1);
+      return randomNumb;
     }
   }
 });
@@ -2711,7 +2711,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectPercentage: function projectPercentage() {
-      return 90;
+      var randomNumb = Math.floor(Math.random() * 100 + 1);
+      return randomNumb;
     }
   }
 });
@@ -3928,12 +3929,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     progressPercentage: function progressPercentage() {
-      var progressBar = '0';
+      var randomNumb = Math.floor(Math.random() * 100 + 1);
+      var progressBar = randomNumb.toString();
 
       if (this.sumPayment.length > 0) {
         var _this$sumPayment$;
 
-        progressBar = (_this$sumPayment$ = this.sumPayment[0]) !== null && _this$sumPayment$ !== void 0 && _this$sumPayment$.total ? this.sumPayment[0].total : this.progress;
+        progressBar = (_this$sumPayment$ = this.sumPayment[0]) !== null && _this$sumPayment$ !== void 0 && _this$sumPayment$.total ? this.sumPayment[0].total : randomNumb.toString();
       }
 
       if (parseInt(progressBar) <= 0) {
@@ -3955,7 +3957,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     daysBetween: function daysBetween() {
       var _this$projectDetail2;
 
-      var maxDate = (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.max_date ? this.projectDetail.max_date : '2045-06-30';
+      var maxDate = (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.max_date ? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30';
       var oneDay = 24 * 60 * 60 * 1000;
       var firstDate = new Date();
       var secondDate = new Date(maxDate);
@@ -3984,6 +3986,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    checkMaxDate: function checkMaxDate(date) {
+      var tempDate = '2055-05-05';
+
+      if (new Date(date).getTime() > new Date().getTime()) {
+        tempDate = date;
+      }
+
+      return tempDate;
+    },
     btnSupportHandle: function btnSupportHandle() {
       console.log('CLICK SUPPORT');
       this.showRewardModal = true; // CHECK USER AUTH BEFORE SHOW MODAL
@@ -4100,8 +4111,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -44879,7 +44888,9 @@ var render = function () {
       _vm._v(" "),
       _vm.isCampaign
         ? _c("div", { staticClass: "donation-info" }, [
-            _vm._v("\n      Total Donation 100%\n    "),
+            _vm._v(
+              "\n      Total Donation " + _vm._s(_vm.randomNumber) + "%\n    "
+            ),
           ])
         : _vm._e(),
     ]),
@@ -46445,11 +46456,7 @@ var render = function () {
               _c(
                 "div",
                 { staticClass: "text-collaborator" },
-                [
-                  _c("MultiselectIde", {
-                    on: { getData: _vm.moveDataFromChild },
-                  }),
-                ],
+                [_c("MultiselectIde")],
                 1
               ),
             ]),
@@ -46743,7 +46750,7 @@ var render = function () {
     { staticClass: "history-campaign-wrap" },
     [
       _c("div", { staticClass: "title-page" }, [
-        _vm._v("\n    History Campaign Page\n  "),
+        _vm._v("\n    Owned Campaign List\n  "),
       ]),
       _vm._v(" "),
       _c(
