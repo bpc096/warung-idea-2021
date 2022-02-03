@@ -40,6 +40,14 @@
           Change Password
         </a>
       </div>
+      <div class="button-wrap">
+         <a
+          class="button-invitation"
+          @click="redirectInvitation"
+        >
+          Invitation
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -78,6 +86,11 @@ export default {
     editProfile() {
       this.$router.push({
         path: '/profile/editprofile'
+      })
+    },
+    redirectInvitation() {
+      this.$router.push({
+        path: '/profile/invitation'
       })
     }
   }
@@ -169,8 +182,16 @@ export default {
           border-radius: 20px;
         }
 
+        .button-invitation {
+          background-color: #2EB086;
+          width: 13rem;
+          height: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+        }
       }
-
   }
 }
 </style>

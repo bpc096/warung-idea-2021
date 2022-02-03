@@ -4,6 +4,9 @@
       History Donation List
     </div>
     <CampaignCard
+      :isInHistorycampaignPage="false"
+    />
+    <CampaignCard
       v-for="(donation, idx) in listDonation"
       :isInHistoryCampaignPage="false"
       :donationInfo="donation"

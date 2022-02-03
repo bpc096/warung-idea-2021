@@ -11,7 +11,7 @@
         {{ descText.slice(0,120) }} ...
       </div>
       <div v-if="isCampaign" class="donation-info">
-        Total Donation 100%
+        Total Donation {{ randomNumber }}%
       </div>
     </div>
   </div>
@@ -52,6 +52,10 @@ export default {
     },
     descText () {
       return this.isCampaign ? this.projectData.description : this.articleData.description
+    },
+    randomNumber() {
+      const randomNumb = Math.floor((Math.random() * 100) + 1)
+      return randomNumb
     }
   }
 }

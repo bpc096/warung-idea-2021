@@ -76,7 +76,8 @@ export default {
       }
     },
     projectPercentage () {
-      return 90
+      const randomNumb = Math.floor((Math.random() * 100) + 1)
+      return randomNumb
     }
   }
 }

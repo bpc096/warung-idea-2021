@@ -22,7 +22,7 @@
           </div>
           <div class="campaign-wrap-button" v-if="!isInHistoryCampaignPage">
             <a
-              href="/projectdetail/123"
+              :href="`/projectdetail/${campaignId}`"
               class="btn-view-campaign mr"
             >
              View Campaign
@@ -48,7 +48,7 @@
           </button>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryCampaignPage">
-          <a href="/projectdetail/123" class="btn-view-campaign">
+          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
             View Campaign
           </a>
           <a href="/campaign/edit" class="btn-edit-campaign">
@@ -78,7 +78,7 @@ export default {
       type: Object,
       default: () => {}
     }
-  },
+},
   data: () => {
     return {
       progress: '59',
@@ -88,6 +88,9 @@ export default {
     }
   },
   computed: {
+    campaignId (){
+      return this.campaignInfo?.id? this.campaignInfo.id : '1'
+    },
     imageUrl () {
       return this.campaignInfo?.image? this.campaignInfo.image : this.dummyImgUrl
     },

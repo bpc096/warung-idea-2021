@@ -88,6 +88,7 @@ export default {
 <style lang="less" scoped>
 .category-wrapper {
   height: 100%;
+  min-height: 100vh;
   margin: 0 2rem;
 
   .title-category {

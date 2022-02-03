@@ -1,7 +1,7 @@
 <template>
   <div class="history-campaign-wrap">
     <div class="title-page">
-      History Campaign Page
+      Owned Campaign List
     </div>
     <div class="button-upper-campaign">
       <router-link to="/campaign/create" class="button-create">

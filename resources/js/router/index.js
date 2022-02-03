@@ -26,6 +26,7 @@ import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampa
 import UserProfile from '../views/userViews/UserProfile.vue'
 import ChangePassword from '../views/userViews/ChangePassword.vue'
 import EditProfile from '../views/userViews/EditProfile.vue'
+import InvitationPage from '../views/userViews/invitationPage.vue'
 
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
@@ -117,6 +118,14 @@ const routes = [
     meta: {
       // TODO: Change auth to true
       auth: false
+    }
+  },
+  {
+    path: '/profile/invitation',
+    name: 'InvitationPage',
+    component: InvitationPage,
+    meta: {
+      auth: false,
     }
   },
   {
