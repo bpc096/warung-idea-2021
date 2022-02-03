@@ -92,14 +92,16 @@ const routes = [
     path: '/checkout',
     name: 'CheckoutPage',
     component: CheckoutPage,
+    meta: {
+      auth: true,
+    }
   },
   {
     path: '/profile',
     name: 'UserProfile',
     component: UserProfile,
     meta: {
-      // TODO: change auth to true after development
-      auth: false,
+      auth: true,
     }
   },
   {
@@ -107,8 +109,7 @@ const routes = [
     name: 'ChangePassword',
     component: ChangePassword,
     meta: {
-      // TODO: Change auth to true after ddevelopment
-      auth: false
+      auth: true,
     }
   },
   {
@@ -116,8 +117,7 @@ const routes = [
     name: 'EditProfile',
     component: EditProfile,
     meta: {
-      // TODO: Change auth to true
-      auth: false
+      auth: true,
     }
   },
   {
@@ -125,7 +125,7 @@ const routes = [
     name: 'InvitationPage',
     component: InvitationPage,
     meta: {
-      auth: false,
+      auth: true,
     }
   },
   {
