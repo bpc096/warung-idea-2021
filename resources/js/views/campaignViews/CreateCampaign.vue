@@ -85,7 +85,11 @@
           <div class="user-name">
             <div class="text-label">Campaign Collaborator</div>
             <div class="text-collaborator">
-              <MultiselectIde />
+              <MultiselectIde
+                :value="selectCollaborator"
+                :options="optionCollaborator"
+                v-on:update:prop="selectCollaborator = $event"
+              />
             </div>
           </div>
         </div>
@@ -113,8 +117,12 @@ export default {
   },
   data: () => {
     return {
-      selectCollaborator: null,
-      optionCollaborator: ['andi','tono','budi'],
+      selectCollaborator: [],
+      optionCollaborator: [
+          { name: 'Alif Halimawant', code: 'user-id-1' },
+          { name: 'Bill Petrus Cerullo', code: 'user-id-2' },
+          { name: 'Jeffrey Marcelino', code: 'user-id-3' }
+        ],
       image: null,
       title: '',
       categoryId: 1,
@@ -149,6 +157,14 @@ export default {
     }
   },
   methods: {
+    addTag (newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+      }
+      this.options.push(tag)
+      this.value.push(tag)
+    },
     submitCampaign() {
       let data = new FormData()
       data.append('image', this.image)

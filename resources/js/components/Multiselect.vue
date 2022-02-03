@@ -18,18 +18,31 @@
 <script>
   import Multiselect from 'vue-multiselect'
   export default {
-    components: { Multiselect },
-    data () {
-      return {
-        value: [
-        { name: 'Janto pasto', code: 'js' }
-        ],
-        options: [
+    name: 'MutliSelectComponent',
+    components: {
+      Multiselect
+    },
+    props: {
+      value: {
+        type: Array,
+        default: [
+          { name: 'Janto pasto', code: 'js' }
+        ]
+      },
+      options: {
+        type: Array,
+        default: [
           { name: 'Vuang agung', code: 'vu' },
           { name: 'Joni Yes', code: 'js' },
           { name: 'Onad sodin', code: 'os' }
         ]
       }
+    },
+    computed: {
+      propModel: {
+        get () { return this.value },
+        set (value) { this.$emit('update:prop', value) },
+      },
     },
     methods: {
       addTag (newTag) {
