@@ -22,6 +22,12 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
 
 /**
+ * Api User
+ */
+Route::get('/user', [UserController::class, 'index']);
+
+
+/**
  * APi Category
  */
 Route::get('/category', [CategoryController::class, 'index']);
@@ -37,6 +43,12 @@ Route::get('/campaign/users/{users_id}', [CampaignController::class, 'index_user
 Route::post('/campaign', [CampaignController::class, 'store'])->middleware('auth:api');
 Route::post('/campaign/{campaign}', [CampaignController::class, 'update'])->middleware('auth:api');
 Route::delete('/campaign/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
+
+/**
+ * Api Collaborators
+ */
+// Route::post('/campaign/{campaign}/collaborators', [CampaignCollaboratorsController::class, 'addCollaborator'])->middleware('auth:api');
+// Route::delete('/campaign/{campaign}/collaborators/{collaborators}', [CampaignCollaboratorsController::class, 'deleteOneCollaborator']);
 
 /**
  * Api Updates
