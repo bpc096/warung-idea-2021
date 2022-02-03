@@ -2225,16 +2225,6 @@ __webpack_require__.r(__webpack_exports__);
       }]
     }
   },
-  computed: {
-    propModel: {
-      get: function get() {
-        return this.value;
-      },
-      set: function set(value) {
-        this.$emit('update:prop', value);
-      }
-    }
-  },
   methods: {
     addTag: function addTag(newTag) {
       var tag = {
@@ -2485,10 +2475,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    imageUrl: function imageUrl() {
+    campaignId: function campaignId() {
       var _this$campaignInfo;
 
-      return (_this$campaignInfo = this.campaignInfo) !== null && _this$campaignInfo !== void 0 && _this$campaignInfo.image ? this.campaignInfo.image : this.dummyImgUrl;
+      return (_this$campaignInfo = this.campaignInfo) !== null && _this$campaignInfo !== void 0 && _this$campaignInfo.id ? this.campaignInfo.id : '1';
+    },
+    imageUrl: function imageUrl() {
+      var _this$campaignInfo2;
+
+      return (_this$campaignInfo2 = this.campaignInfo) !== null && _this$campaignInfo2 !== void 0 && _this$campaignInfo2.image ? this.campaignInfo.image : this.dummyImgUrl;
     },
     infoDonationAmount: function infoDonationAmount() {
       var _this$donationInfo;
@@ -2496,9 +2491,9 @@ __webpack_require__.r(__webpack_exports__);
       return (_this$donationInfo = this.donationInfo) !== null && _this$donationInfo !== void 0 && _this$donationInfo.amount ? this.donationInfo.amount : '10000';
     },
     projectTitle: function projectTitle() {
-      var _this$campaignInfo2;
+      var _this$campaignInfo3;
 
-      return (_this$campaignInfo2 = this.campaignInfo) !== null && _this$campaignInfo2 !== void 0 && _this$campaignInfo2.title ? this.campaignInfo.title : 'Title Campaign';
+      return (_this$campaignInfo3 = this.campaignInfo) !== null && _this$campaignInfo3 !== void 0 && _this$campaignInfo3.title ? this.campaignInfo.title : 'Title Campaign';
     },
     progressPercentage: function progressPercentage() {
       if (parseInt(this.progress) <= 0) {
@@ -3872,6 +3867,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 // Tab Component
 
  // Content Tab Component
@@ -3898,7 +3896,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       showRewardModal: false,
       projectDetail: {
         dummyUrlImage: 'https://images.unsplash.com/photo-1643226224903-e1f7cbb9fa10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'
-      }
+      },
+      sumPayment: [],
+      progress: '80'
     };
   },
   created: function created() {
@@ -3912,6 +3912,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.next = 2;
               return _this.$store.dispatch('getCampaignById', _this.$route.params.projectId).then(function (res) {
                 _this.projectDetail = res.data;
+                _this.sumPayment = res.data.sum_payment;
+                console.log('sumPayment', _this.sumPayment);
               })["catch"](function (err) {
                 console.log(err);
               });
@@ -3925,6 +3927,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   computed: {
+    progressPercentage: function progressPercentage() {
+      var progressBar = '0';
+
+      if (this.sumPayment.length > 0) {
+        var _this$sumPayment$;
+
+        progressBar = (_this$sumPayment$ = this.sumPayment[0]) !== null && _this$sumPayment$ !== void 0 && _this$sumPayment$.total ? this.sumPayment[0].total : this.progress;
+      }
+
+      if (parseInt(progressBar) <= 0) {
+        progressBar = '1';
+      } else if (parseInt(progressBar) >= 100) {
+        progressBar = '100';
+      }
+
+      return progressBar;
+    },
     projectId: function projectId() {
       return this.$route.params.projectId;
     },
@@ -4187,8 +4206,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4198,17 +4215,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      selectCollaborator: [],
-      optionCollaborator: [{
-        name: 'Alif Halimawant',
-        code: 'user-id-1'
-      }, {
-        name: 'Bill Petrus Cerullo',
-        code: 'user-id-2'
-      }, {
-        name: 'Jeffrey Marcelino',
-        code: 'user-id-3'
-      }],
       image: null,
       title: '',
       categoryId: 1,
@@ -9997,7 +10003,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".project-detail-page .wrap-title[data-v-385e7eea] {\n  margin-bottom: 2rem;\n}\n.project-detail-page .wrap-title .main-title[data-v-385e7eea] {\n  font-size: 4rem;\n}\n.project-detail-page .wrap-main-section[data-v-385e7eea] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\n.project-detail-page .wrap-main-section .project-detail-section[data-v-385e7eea] {\n  width: 100%;\n  height: 40vh;\n  text-align: left;\n  margin: 3rem 0 3rem 3rem;\n  font-size: 1.5rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom[data-v-385e7eea] {\n  width: 20rem;\n  height: 1.5rem;\n  border: 2px solid black;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom .progress-color-custom[data-v-385e7eea] {\n  width: 50%;\n  height: 100%;\n  background-color: green;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea] {\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea]:hover {\n  background-color: black;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea] {\n  margin: 0 0.5rem;\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea]:hover {\n  background-color: black;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-image-section[data-v-385e7eea] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-image-section .image[data-v-385e7eea] {\n  width: 80%;\n  height: 80%;\n  background-color: blue;\n}\n.project-detail-page .wrap-main-section .project-image-section .image img[data-v-385e7eea] {\n  width: 100%;\n  height: 100%;\n}\n", ""]);
+exports.push([module.i, ".project-detail-page .wrap-title[data-v-385e7eea] {\n  margin-bottom: 2rem;\n}\n.project-detail-page .wrap-title .main-title[data-v-385e7eea] {\n  font-size: 4rem;\n}\n.project-detail-page .wrap-main-section[data-v-385e7eea] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\n.project-detail-page .wrap-main-section .project-detail-section[data-v-385e7eea] {\n  width: 100%;\n  height: 40vh;\n  text-align: left;\n  margin: 3rem 0 3rem 3rem;\n  font-size: 1.5rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom[data-v-385e7eea] {\n  width: 20rem;\n  height: 1.5rem;\n  border: 2px solid black;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom .progress-color-custom[data-v-385e7eea] {\n  height: 100%;\n  background-color: green;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea] {\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea]:hover {\n  background-color: black;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea] {\n  margin: 0 0.5rem;\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea]:hover {\n  background-color: black;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-image-section[data-v-385e7eea] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-image-section .image[data-v-385e7eea] {\n  width: 80%;\n  height: 80%;\n  background-color: blue;\n}\n.project-detail-page .wrap-main-section .project-image-section .image img[data-v-385e7eea] {\n  width: 100%;\n  height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -44764,7 +44770,7 @@ var render = function () {
                 "a",
                 {
                   staticClass: "btn-view-campaign mr",
-                  attrs: { href: "/projectdetail/123" },
+                  attrs: { href: "/projectdetail/" + _vm.campaignId },
                 },
                 [_vm._v("\n           View Campaign\n          ")]
               ),
@@ -44808,7 +44814,7 @@ var render = function () {
               "a",
               {
                 staticClass: "btn-view-campaign",
-                attrs: { href: "/projectdetail/123" },
+                attrs: { href: "/projectdetail/" + _vm.campaignId },
               },
               [_vm._v("\n          View Campaign\n        ")]
             ),
@@ -45925,7 +45931,12 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "wrap-main-section" }, [
         _c("div", { staticClass: "project-detail-section" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "progress-bar-custom" }, [
+            _c("div", {
+              staticClass: "progress-color-custom",
+              style: { width: _vm.progressPercentage + "%" },
+            }),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "total-donate-info" }, [
             _vm._v(
@@ -46013,16 +46024,7 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress-bar-custom" }, [
-      _c("div", { staticClass: "progress-color-custom" }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46445,15 +46447,7 @@ var render = function () {
                 { staticClass: "text-collaborator" },
                 [
                   _c("MultiselectIde", {
-                    attrs: {
-                      value: _vm.selectCollaborator,
-                      options: _vm.optionCollaborator,
-                    },
-                    on: {
-                      "update:prop": function ($event) {
-                        _vm.selectCollaborator = $event
-                      },
-                    },
+                    on: { getData: _vm.moveDataFromChild },
                   }),
                 ],
                 1

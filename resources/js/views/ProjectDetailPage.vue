@@ -12,7 +12,10 @@
     <div class="wrap-main-section">
       <div class="project-detail-section">
         <div class="progress-bar-custom">
-          <div class="progress-color-custom"></div>
+          <div
+            class="progress-color-custom"
+            :style="{width: progressPercentage + '%'}"
+          ></div>
         </div>
         <div class="total-donate-info">
           Rp 1.000.000 dari Rp {{ projectTargetDonation }}
@@ -95,7 +98,9 @@ export default {
       showRewardModal: false,
       projectDetail: {
         dummyUrlImage: 'https://images.unsplash.com/photo-1643226224903-e1f7cbb9fa10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'
-      }
+      },
+      sumPayment: [],
+      progress: '80',
     }
   },
   async created () {
@@ -103,12 +108,27 @@ export default {
       .dispatch('getCampaignById', this.$route.params.projectId)
       .then((res) => {
         this.projectDetail = res.data
+        this.sumPayment = res.data.sum_payment
+        console.log('sumPayment', this.sumPayment)
       })
       .catch(err => {
         console.log(err)
       })
   },
   computed: {
+     progressPercentage() {
+      let progressBar = '0'
+      if(this.sumPayment.length > 0) {
+        progressBar = this.sumPayment[0]?.total? this.sumPayment[0].total : this.progress
+      }
+      if(parseInt(progressBar) <= 0) {
+        progressBar = '1'
+      }
+      else if (parseInt(progressBar) >= 100) {
+        progressBar = '100'
+      }
+      return progressBar
+    },
     projectId () {
       return this.$route.params.projectId
     },
@@ -182,7 +202,6 @@ export default {
         margin-bottom: 30px;
 
         .progress-color-custom{
-          width: 50%;
           height: 100%;
           background-color: green;
         }

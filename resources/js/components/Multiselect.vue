@@ -38,12 +38,6 @@
         ]
       }
     },
-    computed: {
-      propModel: {
-        get () { return this.value },
-        set (value) { this.$emit('update:prop', value) },
-      },
-    },
     methods: {
       addTag (newTag) {
         const tag = {

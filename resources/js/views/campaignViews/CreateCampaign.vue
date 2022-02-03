@@ -86,9 +86,7 @@
             <div class="text-label">Campaign Collaborator</div>
             <div class="text-collaborator">
               <MultiselectIde
-                :value="selectCollaborator"
-                :options="optionCollaborator"
-                v-on:update:prop="selectCollaborator = $event"
+                @getData="moveDataFromChild"
               />
             </div>
           </div>
@@ -117,12 +115,6 @@ export default {
   },
   data: () => {
     return {
-      selectCollaborator: [],
-      optionCollaborator: [
-          { name: 'Alif Halimawant', code: 'user-id-1' },
-          { name: 'Bill Petrus Cerullo', code: 'user-id-2' },
-          { name: 'Jeffrey Marcelino', code: 'user-id-3' }
-        ],
       image: null,
       title: '',
       categoryId: 1,
