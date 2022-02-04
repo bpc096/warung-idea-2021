@@ -8,7 +8,8 @@
           {{ projectTitle }}
         </div>
         <div class="campaign-desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.
+          Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Ratione, quaerat.
         </div>
         <div class="campaign-donation-status">
           Donation Target
@@ -51,12 +52,15 @@
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
             View Campaign
           </a>
-          <a href="/campaign/edit" class="btn-edit-campaign">
+          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
             Edit Campaign
           </a>
-          <a href="#deleteCampaign" class="btn-delete-campaign">
+          <button
+            @click="deleteCampaign"
+            class="btn-delete-campaign"
+          >
             Delete Campaign
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -132,6 +136,15 @@ export default {
     }
   },
   methods: {
+    deleteCampaign(){
+      this.$store.dispatch('deleteCampaign', this.campaignId)
+        .then(res => {
+          this.$router.go(0)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
     payment() {
       if(!this.donationInfo || !this.donationInfo.snap_token) return
 

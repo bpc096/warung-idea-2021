@@ -21,7 +21,7 @@
           Rp 1.000.000 dari Rp {{ projectTargetDonation }}
         </div>
         <div class="supporter-info">
-          270 Penyumbang
+          {{ progressPercentage }} Penyumbang
         </div>
         <div class="day-left-info">
           {{ daysBetween }} Hari lagi
