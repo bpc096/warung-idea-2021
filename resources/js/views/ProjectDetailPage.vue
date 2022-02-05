@@ -117,7 +117,7 @@ export default {
   },
   computed: {
     totalBacker() {
-      return this.sum_payment?.length? this.sum_payment.length.toString() : '0'
+      return this.sumPayment?.length? this.sumPayment.length.toString() : '0'
     },
     totalPayment() {
       return this.sumPayment[0]?.total? this.sumPayment[0].total : '1'
