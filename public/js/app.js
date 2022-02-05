@@ -2446,6 +2446,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CampaignCard',
   props: {
@@ -2492,13 +2496,22 @@ __webpack_require__.r(__webpack_exports__);
       return (_this$campaignInfo3 = this.campaignInfo) !== null && _this$campaignInfo3 !== void 0 && _this$campaignInfo3.title ? this.campaignInfo.title : 'Title Campaign';
     },
     progressPercentage: function progressPercentage() {
-      if (parseInt(this.progress) <= 0) {
-        return '1';
-      } else if (parseInt(this.progress) >= 100) {
-        return '100';
-      } else {
-        return this.progress;
+      var randomNumb = Math.floor(Math.random() * 100 + 1);
+      var progressBar = randomNumb.toString();
+
+      if (this.sumPayment && this.sumPayment.length > 0) {
+        var _this$sumPayment$;
+
+        progressBar = (_this$sumPayment$ = this.sumPayment[0]) !== null && _this$sumPayment$ !== void 0 && _this$sumPayment$.total ? this.paymentPercentage : randomNumb.toString();
       }
+
+      if (parseInt(progressBar) <= 0) {
+        progressBar = '1';
+      } else if (parseInt(progressBar) >= 100) {
+        progressBar = '100';
+      }
+
+      return progressBar;
     },
     checkEligibleToEdit: function checkEligibleToEdit() {
       // TODO : Check Eligiblelity to edit campaign
@@ -2522,21 +2535,30 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    payment: function payment() {
+    deleteCampaign: function deleteCampaign() {
       var _this = this;
+
+      this.$store.dispatch('deleteCampaign', this.campaignId).then(function (res) {
+        _this.$router.go(0);
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
+    payment: function payment() {
+      var _this2 = this;
 
       if (!this.donationInfo || !this.donationInfo.snap_token) return;
       window.snap.pay(this.donationInfo.snap_token, {
         onSuccess: function onSuccess() {
-          _this.paymentStat = 'success';
+          _this2.paymentStat = 'success';
           console.log('SUCCESS');
         },
         onPending: function onPending() {
-          _this.paymentStat = 'pending';
+          _this2.paymentStat = 'pending';
           console.log('PENDING');
         },
         onError: function onError() {
-          _this.paymentStat = 'failed';
+          _this2.paymentStat = 'failed';
           console.log('ERROR');
         }
       });
@@ -3134,9 +3156,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   updateProjectBasedOnCategory: function updateProjectBasedOnCategory() {
     var _this2 = this;
 
+    console.log('Calling update project category');
+    console.log(this.allProjectList);
+    console.log(this.categoryProjectList);
     if (!this.allProjectList) return;
     this.categoryProjectList = this.allProjectList.filter(function (project) {
-      return project.category_id === _this2.getCategoryId;
+      return parseInt(project.category_id) === _this2.getCategoryId;
     });
   }
 }), _name$components$data);
@@ -3928,14 +3953,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   computed: {
+    totalBacker: function totalBacker() {
+      return Math.floor(Math.random() * 100 + 2);
+    },
+    totalPayment: function totalPayment() {
+      var _this$sumPayment$;
+
+      return (_this$sumPayment$ = this.sumPayment[0]) !== null && _this$sumPayment$ !== void 0 && _this$sumPayment$.total ? this.sumPayment[0].total : '1';
+    },
     progressPercentage: function progressPercentage() {
-      var randomNumb = Math.floor(Math.random() * 100 + 1);
-      var progressBar = randomNumb.toString();
+      var progressBar = '1';
 
       if (this.sumPayment.length > 0) {
-        var _this$sumPayment$;
+        var _this$sumPayment$2;
 
-        progressBar = (_this$sumPayment$ = this.sumPayment[0]) !== null && _this$sumPayment$ !== void 0 && _this$sumPayment$.total ? this.sumPayment[0].total : randomNumb.toString();
+        progressBar = (_this$sumPayment$2 = this.sumPayment[0]) !== null && _this$sumPayment$2 !== void 0 && _this$sumPayment$2.total ? this.paymentPercentage : '1';
       }
 
       if (parseInt(progressBar) <= 0) {
@@ -3945,6 +3977,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return progressBar;
+    },
+    paymentPercentage: function paymentPercentage() {
+      var mathPercentage = Math.floor(parseInt(this.totalPayment) / parseInt(this.projectTargetDonation) * 100);
+      return mathPercentage;
     },
     projectId: function projectId() {
       return this.$route.params.projectId;
@@ -3986,6 +4022,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    formatMoney: function formatMoney(money) {
+      var moneyTemp = money ? parseInt(money) : 10000;
+      var formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp).replace(/[IDR]/gi, '').replace(/(\.+\d{2})/, '').trimLeft();
+      console.log("Rp ".concat(formatter));
+      return formatter;
+    },
     checkMaxDate: function checkMaxDate(date) {
       var tempDate = '2055-05-05';
 
@@ -4215,6 +4260,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4226,8 +4272,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       image: null,
       title: '',
-      categoryId: 1,
-      targetDonation: 1,
+      categoryId: '',
+      targetDonation: '1',
       maxDate: null,
       description: '',
       previewImage: null,
@@ -4586,6 +4632,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4679,6 +4729,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HistoryDonationCampaign',
@@ -4715,6 +4775,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   computed: {
+    backBtnLabel: function backBtnLabel() {
+      return '<- Back to history';
+    },
+    backBtnHomeLabel: function backBtnHomeLabel() {
+      return 'Back to home';
+    },
     progressPercentage: function progressPercentage() {
       if (parseInt(this.progress) <= 0) {
         return '1';
@@ -5110,6 +5176,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10107,7 +10179,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
+exports.push([module.i, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-33df5f96] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
 
 // exports
 
@@ -10240,7 +10312,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".user-profile-page[data-v-2241b423] {\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-page .user-profile-card[data-v-2241b423] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-page .user-profile-card .user-profile-content[data-v-2241b423] {\n  margin: 5rem 0;\n}\n.user-profile-page .user-profile-card .user-image[data-v-2241b423] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-page .user-profile-card .user-image .image[data-v-2241b423] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-page .user-profile-card .user-name[data-v-2241b423],\n.user-profile-page .user-profile-card .user-username[data-v-2241b423],\n.user-profile-page .user-profile-card .user-email[data-v-2241b423],\n.user-profile-page .user-profile-card .user-gender[data-v-2241b423],\n.user-profile-page .user-profile-card .user-phonenumber[data-v-2241b423] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-page .user-profile-card .user-name .text-label[data-v-2241b423],\n.user-profile-page .user-profile-card .user-username .text-label[data-v-2241b423],\n.user-profile-page .user-profile-card .user-email .text-label[data-v-2241b423],\n.user-profile-page .user-profile-card .user-gender .text-label[data-v-2241b423],\n.user-profile-page .user-profile-card .user-phonenumber .text-label[data-v-2241b423] {\n  margin-left: 3rem;\n}\n.user-profile-page .user-profile-card .user-name .text-value[data-v-2241b423],\n.user-profile-page .user-profile-card .user-username .text-value[data-v-2241b423],\n.user-profile-page .user-profile-card .user-email .text-value[data-v-2241b423],\n.user-profile-page .user-profile-card .user-gender .text-value[data-v-2241b423],\n.user-profile-page .user-profile-card .user-phonenumber .text-value[data-v-2241b423] {\n  margin-right: 3rem;\n}\n.user-profile-page .user-profile-card .button-wrap[data-v-2241b423] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-page .user-profile-card .button-wrap a[data-v-2241b423] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-page .user-profile-card .button-wrap a[data-v-2241b423]:hover {\n  cursor: pointer;\n}\n.user-profile-page .user-profile-card .button-wrap .button-edit-profile[data-v-2241b423] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-page .user-profile-card .button-wrap .button-change-password[data-v-2241b423] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-page .user-profile-card .button-wrap .button-invitation[data-v-2241b423] {\n  background-color: #2EB086;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+exports.push([module.i, ".user-profile-page[data-v-2241b423] {\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-page .user-profile-card[data-v-2241b423] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-page .user-profile-card .user-profile-content[data-v-2241b423] {\n  margin: 5rem 0;\n}\n.user-profile-page .user-profile-card .user-image[data-v-2241b423] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-page .user-profile-card .user-image .image[data-v-2241b423] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-page .user-profile-card .user-name[data-v-2241b423],\n.user-profile-page .user-profile-card .user-username[data-v-2241b423],\n.user-profile-page .user-profile-card .user-email[data-v-2241b423],\n.user-profile-page .user-profile-card .user-gender[data-v-2241b423],\n.user-profile-page .user-profile-card .user-phonenumber[data-v-2241b423] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-page .user-profile-card .user-name .text-label[data-v-2241b423],\n.user-profile-page .user-profile-card .user-username .text-label[data-v-2241b423],\n.user-profile-page .user-profile-card .user-email .text-label[data-v-2241b423],\n.user-profile-page .user-profile-card .user-gender .text-label[data-v-2241b423],\n.user-profile-page .user-profile-card .user-phonenumber .text-label[data-v-2241b423] {\n  margin-left: 3rem;\n}\n.user-profile-page .user-profile-card .user-name .text-value[data-v-2241b423],\n.user-profile-page .user-profile-card .user-username .text-value[data-v-2241b423],\n.user-profile-page .user-profile-card .user-email .text-value[data-v-2241b423],\n.user-profile-page .user-profile-card .user-gender .text-value[data-v-2241b423],\n.user-profile-page .user-profile-card .user-phonenumber .text-value[data-v-2241b423] {\n  margin-right: 3rem;\n}\n.user-profile-page .user-profile-card .button-wrap[data-v-2241b423] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-page .user-profile-card .button-wrap a[data-v-2241b423] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-page .user-profile-card .button-wrap a[data-v-2241b423]:hover {\n  cursor: pointer;\n}\n.user-profile-page .user-profile-card .button-wrap .button-edit-profile[data-v-2241b423] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-page .user-profile-card .button-wrap .button-change-password[data-v-2241b423] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-page .user-profile-card .button-wrap .button-invitation[data-v-2241b423] {\n  background-color: #2EB086;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-page .user-profile-card .button-wrap .button-private-chat[data-v-2241b423] {\n  background-color: salmon;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 
 // exports
 
@@ -44540,7 +44612,7 @@ var render = function () {
           multiple: true,
           taggable: true,
           "tag-placeholder": "Add this as new tag",
-          placeholder: "Type to search or add tag",
+          placeholder: "Optional - Add Collaborator",
           label: "name",
           "track-by": "code",
         },
@@ -44756,7 +44828,7 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "campaign-desc" }, [
         _vm._v(
-          "\n        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.\n      "
+          "\n        Lorem ipsum dolor sit\n        amet consectetur adipisicing elit. Ratione, quaerat.\n      "
         ),
       ]),
       _vm._v(" "),
@@ -44832,16 +44904,16 @@ var render = function () {
               "a",
               {
                 staticClass: "btn-edit-campaign",
-                attrs: { href: "/campaign/edit" },
+                attrs: { href: "/campaign/edit/" + _vm.campaignId },
               },
               [_vm._v("\n          Edit Campaign\n        ")]
             ),
             _vm._v(" "),
             _c(
-              "a",
+              "button",
               {
                 staticClass: "btn-delete-campaign",
-                attrs: { href: "#deleteCampaign" },
+                on: { click: _vm.deleteCampaign },
               },
               [_vm._v("\n          Delete Campaign\n        ")]
             ),
@@ -45951,14 +46023,18 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "total-donate-info" }, [
             _vm._v(
-              "\n        Rp 1.000.000 dari Rp " +
-                _vm._s(_vm.projectTargetDonation) +
+              "\n        Rp " +
+                _vm._s(_vm.formatMoney(_vm.totalPayment)) +
+                " dari Rp " +
+                _vm._s(_vm.formatMoney(_vm.projectTargetDonation)) +
                 "\n      "
             ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "supporter-info" }, [
-            _vm._v("\n        270 Penyumbang\n      "),
+            _vm._v(
+              "\n        " + _vm._s(_vm.totalBacker) + " Penyumbang\n      "
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "day-left-info" }, [
@@ -46321,32 +46397,55 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "text-category" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.categoryId,
-                      expression: "categoryId",
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.categoryId,
+                        expression: "categoryId",
+                      },
+                    ],
+                    on: {
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.categoryId = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
                     },
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "number",
-                    min: "1",
-                    max: "6",
-                    placeholder: "Cateogry..",
                   },
-                  domProps: { value: _vm.categoryId },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.categoryId = $event.target.value
-                    },
-                  },
-                }),
+                  [
+                    _c("option", { attrs: { disabled: "", value: "" } }, [
+                      _vm._v("Please select category"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "1" } }, [_vm._v("Arts")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2" } }, [
+                      _vm._v("Technology"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "3" } }, [_vm._v("Games")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "4" } }, [_vm._v("Books")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "5" } }, [_vm._v("Movie")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "6" } }, [
+                      _vm._v("Health & Fitness"),
+                    ]),
+                  ]
+                ),
               ]),
             ]),
             _vm._v(" "),
@@ -46745,47 +46844,46 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "history-campaign-wrap" },
-    [
-      _c("div", { staticClass: "title-page" }, [
-        _vm._v("\n    Owned Campaign List\n  "),
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "button-upper-campaign" },
-        [
-          _c(
-            "router-link",
-            { staticClass: "button-create", attrs: { to: "/campaign/create" } },
-            [_vm._v("\n      + Add New Campaign\n    ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "button-history-donation",
-              attrs: { to: "/campaign/history/donation" },
-            },
-            [_vm._v("\n      History Donation Page\n    ")]
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("CampaignCard"),
-      _vm._v(" "),
-      _vm._l(_vm.listCreatedCampaign, function (campaign, idx) {
-        return _c("CampaignCard", {
-          key: idx,
-          attrs: { campaignInfo: campaign },
-        })
-      }),
-    ],
-    2
-  )
+  return _c("div", { staticClass: "history-campaign-wrap" }, [
+    _c("div", { staticClass: "title-page" }, [
+      _vm._v("\n    Owned Campaign List\n  "),
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "button-upper-campaign" },
+      [
+        _c(
+          "router-link",
+          { staticClass: "button-create", attrs: { to: "/campaign/create" } },
+          [_vm._v("\n      + Add New Campaign\n    ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "button-history-donation",
+            attrs: { to: "/campaign/history/donation" },
+          },
+          [_vm._v("\n      History Donation Page\n    ")]
+        ),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.listCreatedCampaign.length > 0
+      ? _c(
+          "div",
+          _vm._l(_vm.listCreatedCampaign, function (campaign, idx) {
+            return _c("CampaignCard", {
+              key: idx,
+              attrs: { campaignInfo: campaign },
+            })
+          }),
+          1
+        )
+      : _c("div", [_vm._v("\n    You dont have created campaign !\n  ")]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -46809,29 +46907,47 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "history-campaign-wrap" },
-    [
-      _c("div", { staticClass: "title-page" }, [
-        _vm._v("\n    History Donation List\n  "),
-      ]),
-      _vm._v(" "),
-      _c("CampaignCard", { attrs: { isInHistorycampaignPage: false } }),
-      _vm._v(" "),
-      _vm._l(_vm.listDonation, function (donation, idx) {
-        return _c("CampaignCard", {
-          key: idx,
-          attrs: {
-            isInHistoryCampaignPage: false,
-            donationInfo: donation,
-            campaignInfo: donation.campaign,
-          },
-        })
-      }),
-    ],
-    2
-  )
+  return _c("div", { staticClass: "history-campaign-wrap" }, [
+    _c("div", { staticClass: "title-page" }, [
+      _vm._v("\n    History Donation List\n  "),
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "button-upper-campaign" },
+      [
+        _c(
+          "router-link",
+          { staticClass: "button-create", attrs: { to: "/campaign/history" } },
+          [_vm._v("\n       " + _vm._s(_vm.backBtnLabel) + "\n    ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          { staticClass: "button-history-donation", attrs: { to: "/home" } },
+          [_vm._v("\n      " + _vm._s(_vm.backBtnHomeLabel) + "\n    ")]
+        ),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.listDonation.length > 0
+      ? _c(
+          "div",
+          _vm._l(_vm.listDonation, function (donation, idx) {
+            return _c("CampaignCard", {
+              key: idx,
+              attrs: {
+                isInHistoryCampaignPage: false,
+                donationInfo: donation,
+                campaignInfo: donation.campaign,
+              },
+            })
+          }),
+          1
+        )
+      : _c("div", [_vm._v("\n     You dont have any donation list !\n  ")]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -47380,6 +47496,15 @@ var render = function () {
             on: { click: _vm.redirectInvitation },
           },
           [_vm._v("\n        Invitation\n      ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "button-private-chat",
+            attrs: { href: "#redirectPrivateChat" },
+          },
+          [_vm._v("\n        Private Chat\n      ")]
         ),
       ]),
     ]),
@@ -64270,8 +64395,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+ // Axios.defaults.baseURL = `http://localhost:8000/api/`
 
-axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = 'http://localhost:8000/api/';
+axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = 'https://www.warungidea.com/api/';
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(axios__WEBPACK_IMPORTED_MODULE_1___default.a);
 var token = localStorage.getItem('token');
@@ -65697,37 +65823,37 @@ var routes = [{
 }, {
   path: '/checkout',
   name: 'CheckoutPage',
-  component: _views_CheckoutPage_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _views_CheckoutPage_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+  meta: {
+    auth: true
+  }
 }, {
   path: '/profile',
   name: 'UserProfile',
   component: _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_17__["default"],
   meta: {
-    // TODO: change auth to true after development
-    auth: false
+    auth: true
   }
 }, {
   path: '/profile/changepassword',
   name: 'ChangePassword',
   component: _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_18__["default"],
   meta: {
-    // TODO: Change auth to true after ddevelopment
-    auth: false
+    auth: true
   }
 }, {
   path: '/profile/editProfile',
   name: 'EditProfile',
   component: _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_19__["default"],
   meta: {
-    // TODO: Change auth to true
-    auth: false
+    auth: true
   }
 }, {
   path: '/profile/invitation',
   name: 'InvitationPage',
   component: _views_userViews_invitationPage_vue__WEBPACK_IMPORTED_MODULE_20__["default"],
   meta: {
-    auth: false
+    auth: true
   }
 }, {
   path: '/campaign/create',
@@ -66147,6 +66273,18 @@ var actions = {
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + param.campaignId;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(apiUrl, param.data).then(function (res) {
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  deleteCampaign: function deleteCampaign(_ref6, param) {
+    var commit = _ref6.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + param;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](apiUrl, param).then(function (res) {
+        commit('');
         resolve(res);
       })["catch"](function (err) {
         reject(err);

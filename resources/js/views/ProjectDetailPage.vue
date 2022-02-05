@@ -18,10 +18,10 @@
           ></div>
         </div>
         <div class="total-donate-info">
-          Rp 1.000.000 dari Rp {{ projectTargetDonation }}
+          Rp {{ formatMoney(totalPayment) }} dari Rp {{ formatMoney(projectTargetDonation) }}
         </div>
         <div class="supporter-info">
-          270 Penyumbang
+          {{ totalBacker }} Penyumbang
         </div>
         <div class="day-left-info">
           {{ daysBetween }} Hari lagi
@@ -116,11 +116,16 @@ export default {
       })
   },
   computed: {
-     progressPercentage() {
-      const randomNumb = Math.floor((Math.random() * 100) + 1)
-      let progressBar = randomNumb.toString()
+    totalBacker() {
+      return Math.floor((Math.random() * 100) + 2)
+    },
+    totalPayment() {
+      return this.sumPayment[0]?.total? this.sumPayment[0].total : '1'
+    },
+    progressPercentage() {
+      let progressBar = '1'
       if(this.sumPayment.length > 0) {
-        progressBar = this.sumPayment[0]?.total? this.sumPayment[0].total : randomNumb.toString()
+        progressBar = this.sumPayment[0]?.total? this.paymentPercentage : '1'
       }
       if(parseInt(progressBar) <= 0) {
         progressBar = '1'
@@ -129,6 +134,10 @@ export default {
         progressBar = '100'
       }
       return progressBar
+    },
+    paymentPercentage() {
+      const mathPercentage = Math.floor((parseInt(this.totalPayment)/parseInt(this.projectTargetDonation)) * 100)
+      return mathPercentage
     },
     projectId () {
       return this.$route.params.projectId
@@ -159,6 +168,19 @@ export default {
     }
   },
   methods: {
+    formatMoney(money) {
+      const moneyTemp = money ? parseInt(money) : 10000
+      const formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp)
+      .replace(/[IDR]/gi, '')
+      .replace(/(\.+\d{2})/, '')
+      .trimLeft()
+
+      console.log(`Rp ${formatter}`)
+      return formatter
+    },
     checkMaxDate(date){
       let tempDate = '2055-05-05'
       if(new Date(date).getTime() > new Date().getTime()) {

@@ -7,7 +7,7 @@
       :taggable="true"
       @tag="addTag"
       tag-placeholder="Add this as new tag"
-      placeholder="Type to search or add tag"
+      placeholder="Optional - Add Collaborator"
       label="name"
       track-by="code"
     >

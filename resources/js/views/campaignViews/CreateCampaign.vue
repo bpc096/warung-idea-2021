@@ -34,14 +34,15 @@
           <div class="user-name">
             <div class="text-label">Campaign Category</div>
             <div class="text-category">
-              <input
-                v-model="categoryId"
-                type="number"
-                min="1"
-                max="6"
-                class="form-control"
-                placeholder="Cateogry.."
-              >
+              <select v-model="categoryId">
+                <option disabled value="">Please select category</option>
+                <option value="1">Arts</option>
+                <option value="2">Technology</option>
+                <option value="3">Games</option>
+                <option value="4">Books</option>
+                <option value="5">Movie</option>
+                <option value="6">Health & Fitness</option>
+              </select>
             </div>
           </div>
           <div class="user-name">
@@ -115,8 +116,8 @@ export default {
     return {
       image: null,
       title: '',
-      categoryId: 1,
-      targetDonation: 1,
+      categoryId: '',
+      targetDonation: '1',
       maxDate: null,
       description: '',
       previewImage: null,

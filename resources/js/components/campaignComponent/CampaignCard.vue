@@ -8,7 +8,8 @@
           {{ projectTitle }}
         </div>
         <div class="campaign-desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.
+          Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Ratione, quaerat.
         </div>
         <div class="campaign-donation-status">
           Donation Target
@@ -51,12 +52,15 @@
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
             View Campaign
           </a>
-          <a href="/campaign/edit" class="btn-edit-campaign">
+          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
             Edit Campaign
           </a>
-          <a href="#deleteCampaign" class="btn-delete-campaign">
+          <button
+            @click="deleteCampaign"
+            class="btn-delete-campaign"
+          >
             Delete Campaign
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -101,15 +105,18 @@ export default {
       return this.campaignInfo?.title? this.campaignInfo.title : 'Title Campaign'
     },
     progressPercentage() {
-      if(parseInt(this.progress) <= 0) {
-        return '1'
+      const randomNumb = Math.floor((Math.random() * 100) + 1)
+      let progressBar = randomNumb.toString()
+      if(this.sumPayment && this.sumPayment.length > 0) {
+        progressBar = this.sumPayment[0]?.total? this.paymentPercentage : randomNumb.toString()
       }
-      else if (parseInt(this.progress) >= 100) {
-        return '100'
+      if(parseInt(progressBar) <= 0) {
+        progressBar = '1'
       }
-      else {
-        return this.progress
+      else if (parseInt(progressBar) >= 100) {
+        progressBar = '100'
       }
+      return progressBar
     },
     checkEligibleToEdit() {
       // TODO : Check Eligiblelity to edit campaign
@@ -132,6 +139,15 @@ export default {
     }
   },
   methods: {
+    deleteCampaign(){
+      this.$store.dispatch('deleteCampaign', this.campaignId)
+        .then(res => {
+          this.$router.go(0)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
     payment() {
       if(!this.donationInfo || !this.donationInfo.snap_token) return
 

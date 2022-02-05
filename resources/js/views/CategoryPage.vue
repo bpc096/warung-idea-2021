@@ -69,7 +69,8 @@ export default {
   },
   methods: {
     async fetchAllProjectList () {
-      await this.$store.dispatch('getAllCampaign')
+      await this.$store
+        .dispatch('getAllCampaign')
         .then(res => {
           this.allProjectList = res.data.data.data
         })
@@ -78,8 +79,12 @@ export default {
         })
     },
     updateProjectBasedOnCategory() {
+      console.log('Calling update project category')
+      console.log(this.allProjectList)
+      console.log(this.categoryProjectList)
+
       if (!this.allProjectList) return
-      this.categoryProjectList = this.allProjectList.filter(project => project.category_id === this.getCategoryId)
+      this.categoryProjectList = this.allProjectList.filter(project => parseInt(project.category_id) === this.getCategoryId)
     }
   }
 }
