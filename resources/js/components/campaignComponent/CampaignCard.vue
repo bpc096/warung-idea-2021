@@ -105,15 +105,18 @@ export default {
       return this.campaignInfo?.title? this.campaignInfo.title : 'Title Campaign'
     },
     progressPercentage() {
-      if(parseInt(this.progress) <= 0) {
-        return '1'
+      const randomNumb = Math.floor((Math.random() * 100) + 1)
+      let progressBar = randomNumb.toString()
+      if(this.sumPayment && this.sumPayment.length > 0) {
+        progressBar = this.sumPayment[0]?.total? this.paymentPercentage : randomNumb.toString()
       }
-      else if (parseInt(this.progress) >= 100) {
-        return '100'
+      if(parseInt(progressBar) <= 0) {
+        progressBar = '1'
       }
-      else {
-        return this.progress
+      else if (parseInt(progressBar) >= 100) {
+        progressBar = '100'
       }
+      return progressBar
     },
     checkEligibleToEdit() {
       // TODO : Check Eligiblelity to edit campaign

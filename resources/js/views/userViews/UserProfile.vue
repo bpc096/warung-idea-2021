@@ -47,6 +47,12 @@
         >
           Invitation
         </a>
+        <a
+          class="button-private-chat"
+          href="#redirectPrivateChat"
+        >
+          Private Chat
+        </a>
       </div>
     </div>
   </div>
@@ -184,6 +190,16 @@ export default {
 
         .button-invitation {
           background-color: #2EB086;
+          width: 13rem;
+          height: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+        }
+
+        .button-private-chat {
+          background-color: salmon;
           width: 13rem;
           height: 2.5rem;
           display: flex;

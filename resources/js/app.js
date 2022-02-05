@@ -18,7 +18,7 @@ import { setHeaderToken } from './utils/auth'
 
 
 // Axios.defaults.baseURL = `http://localhost:8000/api/`
-Axios.defaults.baseURL = 'https://warungidea.com/api/'
+Axios.defaults.baseURL = 'https://www.warungidea.com/api/'
 
 Vue.config.productionTip = false
 Vue.use(Axios)

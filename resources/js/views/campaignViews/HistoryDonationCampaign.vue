@@ -3,16 +3,26 @@
     <div class="title-page">
       History Donation List
     </div>
-    <CampaignCard
-      :isInHistorycampaignPage="false"
-    />
-    <CampaignCard
-      v-for="(donation, idx) in listDonation"
-      :isInHistoryCampaignPage="false"
-      :donationInfo="donation"
-      :campaignInfo="donation.campaign"
-      :key="idx"
-    />
+    <div class="button-upper-campaign">
+      <router-link to="/campaign/history" class="button-create">
+         {{ backBtnLabel }}
+      </router-link>
+      <router-link to="/home" class="button-history-donation">
+        {{ backBtnHomeLabel }}
+      </router-link>
+    </div>
+    <div v-if="listDonation.length > 0">
+      <CampaignCard
+        v-for="(donation, idx) in listDonation"
+        :isInHistoryCampaignPage="false"
+        :donationInfo="donation"
+        :campaignInfo="donation.campaign"
+        :key="idx"
+      />
+    </div>
+    <div v-else>
+       You dont have any donation list !
+    </div>
   </div>
 </template>
 
@@ -41,6 +51,12 @@ export default {
       })
   },
   computed: {
+    backBtnLabel() {
+      return '<- Back to history'
+    },
+    backBtnHomeLabel() {
+      return 'Back to home'
+    },
     progressPercentage() {
       if(parseInt(this.progress) <= 0) {
         return '1'
@@ -71,6 +87,41 @@ export default {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 2rem;
+  }
+
+  .button-upper-campaign {
+    width: 50rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 10px 0;
+
+    .button-create {
+      text-decoration: none;
+      color: black;
+      border: 1px solid green;
+      border-radius: 20px;
+      padding: 10px;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+
+    .button-history-donation {
+      text-decoration: none;
+      color: black;
+      border: 1px solid green;
+      border-radius: 20px;
+      padding: 10px;
+      margin-left: 10px;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
   }
 
   .campaign-card {

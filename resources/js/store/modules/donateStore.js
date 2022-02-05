@@ -27,16 +27,12 @@ const actions = {
     return new Promise((resolve, reject) => {
       Axios.post('/payment', data)
         .then(res => {
-
           console.log(res)
-
           commit('')
           resolve(res)
         })
         .catch(err => {
-
           console.log(err)
-
           reject(err.response.data)
         })
     })
