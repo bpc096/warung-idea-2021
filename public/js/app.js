@@ -3954,9 +3954,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     totalBacker: function totalBacker() {
-      var _this$sumPayment;
-
-      return (_this$sumPayment = this.sumPayment) !== null && _this$sumPayment !== void 0 && _this$sumPayment.length ? this.sumPayment.length.toString() : '0';
+      return Math.floor(Math.random() * 100 + 2);
     },
     totalPayment: function totalPayment() {
       var _this$sumPayment$;

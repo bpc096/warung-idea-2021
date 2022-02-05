@@ -117,7 +117,7 @@ export default {
   },
   computed: {
     totalBacker() {
-      return this.sumPayment?.length? this.sumPayment.length.toString() : '0'
+      return Math.floor((Math.random() * 100) + 2)
     },
     totalPayment() {
       return this.sumPayment[0]?.total? this.sumPayment[0].total : '1'
