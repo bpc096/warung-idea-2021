@@ -19,6 +19,7 @@ class CreateCampaignsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->string('title');
             $table->string('slug');
+            $table->string('short_description');
             $table->bigInteger('target_donation');
             $table->date('max_date');
             $table->string('image');
