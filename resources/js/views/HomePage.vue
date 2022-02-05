@@ -203,6 +203,7 @@ export default {
       }
       .project-feature-list {
         width: 100%;
+
         a {
           text-decoration: none;
           color: black;
@@ -240,6 +241,7 @@ export default {
         height: 70%;
         width: 100%;
         align-items: center;
+        justify-content: space-around;
         a {
           text-decoration: none;
           color: black;

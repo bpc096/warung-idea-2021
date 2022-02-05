@@ -106,7 +106,8 @@ export default {
 
 <style lang="less" scoped>
 .user-profile-page {
-  height: 100vh;
+  min-height: 100vh;
+  margin: 5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;

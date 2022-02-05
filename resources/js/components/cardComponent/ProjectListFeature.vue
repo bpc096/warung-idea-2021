@@ -85,10 +85,10 @@ export default {
       border-top-left-radius: 30px;
       border-bottom-left-radius: 30px;
       background-color: salmon;
-      max-width: 40%;
+      width: 8rem;
 
       img {
-        max-width: 100%;
+        width: 8rem;
         height: 100%;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;

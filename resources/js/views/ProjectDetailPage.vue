@@ -101,15 +101,16 @@ export default {
       },
       sumPayment: [],
       progress: '80',
+      payment: [],
     }
   },
   async created () {
     await this.$store
       .dispatch('getCampaignById', this.$route.params.projectId)
       .then((res) => {
+        this.payment = res.payments ? res.payments : []
         this.projectDetail = res.data
         this.sumPayment = res.data.sum_payment
-        console.log('sumPayment', this.sumPayment)
       })
       .catch(err => {
         console.log(err)
@@ -117,7 +118,7 @@ export default {
   },
   computed: {
     totalBacker() {
-      return Math.floor((Math.random() * 100) + 2)
+      return this.payment.length
     },
     totalPayment() {
       return this.sumPayment[0]?.total? this.sumPayment[0].total : '1'
@@ -177,8 +178,6 @@ export default {
       .replace(/[IDR]/gi, '')
       .replace(/(\.+\d{2})/, '')
       .trimLeft()
-
-      console.log(`Rp ${formatter}`)
       return formatter
     },
     checkMaxDate(date){

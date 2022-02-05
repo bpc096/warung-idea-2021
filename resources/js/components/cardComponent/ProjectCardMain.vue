@@ -70,7 +70,7 @@ export default {
     projectDesc () {
       const contentDesc = this.projectData?.description? this.projectData.description : this.dummyData.contentDescription
       if(this.isInHomePage) {
-        return contentDesc.slice(0,250) + '...'
+        return contentDesc.slice(0,200) + '...'
       } else {
         return contentDesc
       }
@@ -126,16 +126,16 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
 
       .creator-info {
         text-align: center;
-        margin-bottom: 8px;
       }
 
       .icon-info {
         display: flex;
         flex-direction: row;
+        align-items: center;
 
         .icon-bookmark, .icon-love {
           margin: 0 6px;
