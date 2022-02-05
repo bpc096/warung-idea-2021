@@ -117,7 +117,7 @@ export default {
       image: null,
       title: '',
       categoryId: '',
-      targetDonation: 1,
+      targetDonation: '1',
       maxDate: null,
       description: '',
       previewImage: null,

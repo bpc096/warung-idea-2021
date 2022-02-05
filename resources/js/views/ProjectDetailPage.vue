@@ -21,7 +21,7 @@
           Rp {{ formatMoney(totalPayment) }} dari Rp {{ formatMoney(projectTargetDonation) }}
         </div>
         <div class="supporter-info">
-          {{ progressPercentage }} Penyumbang
+          {{ totalBacker }} Penyumbang
         </div>
         <div class="day-left-info">
           {{ daysBetween }} Hari lagi
@@ -116,12 +116,14 @@ export default {
       })
   },
   computed: {
+    totalBacker() {
+      return this.sum_payment?.length? this.sum_payment.length.toString() : '0'
+    },
     totalPayment() {
       return this.sumPayment[0]?.total? this.sumPayment[0].total : '1'
     },
     progressPercentage() {
-      const randomNumb = Math.floor((Math.random() * 100) + 1)
-      let progressBar = randomNumb.toString()
+      let progressBar = '1'
       if(this.sumPayment.length > 0) {
         progressBar = this.sumPayment[0]?.total? this.paymentPercentage : '1'
       }

@@ -3953,14 +3953,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   computed: {
+    totalBacker: function totalBacker() {
+      var _this$sum_payment;
+
+      return (_this$sum_payment = this.sum_payment) !== null && _this$sum_payment !== void 0 && _this$sum_payment.length ? this.sum_payment.length.toString() : '0';
+    },
     totalPayment: function totalPayment() {
       var _this$sumPayment$;
 
       return (_this$sumPayment$ = this.sumPayment[0]) !== null && _this$sumPayment$ !== void 0 && _this$sumPayment$.total ? this.sumPayment[0].total : '1';
     },
     progressPercentage: function progressPercentage() {
-      var randomNumb = Math.floor(Math.random() * 100 + 1);
-      var progressBar = randomNumb.toString();
+      var progressBar = '1';
 
       if (this.sumPayment.length > 0) {
         var _this$sumPayment$2;
@@ -4271,7 +4275,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       image: null,
       title: '',
       categoryId: '',
-      targetDonation: 1,
+      targetDonation: '1',
       maxDate: null,
       description: '',
       previewImage: null,
@@ -46031,9 +46035,7 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "supporter-info" }, [
             _vm._v(
-              "\n        " +
-                _vm._s(_vm.progressPercentage) +
-                " Penyumbang\n      "
+              "\n        " + _vm._s(_vm.totalBacker) + " Penyumbang\n      "
             ),
           ]),
           _vm._v(" "),
