@@ -12,6 +12,8 @@ class UserController extends Controller
     {
         $users = User::latest()->get();
         return response()->json([
+            'success' => true,
+            'message' => 'List Data User (Creator)!',
             'data' => $users
         ]);
     }

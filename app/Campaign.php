@@ -9,14 +9,14 @@ class Campaign extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['users_id', 'category_id', 'title', 'slug', 'target_donation', 'max_date', 'description', 'image'];
+    protected $fillable = ['users_id', 'category_id', 'title', 'slug', 'short_description', 'target_donation', 'max_date', 'description', 'image'];
 
     public function category(){
         return $this->belongsTo(Category::class);
     }
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function rewards(){
