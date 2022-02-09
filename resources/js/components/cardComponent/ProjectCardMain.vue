@@ -112,22 +112,22 @@ export default {
     text-align: left;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100%;
     margin-left: 10px;
 
     .card-title {
-      margin-top: 2rem;
+      margin-top: 1rem;
       font-size: 28px;
       font-weight: bold;
     }
 
     .card-description {
-      margin: 2rem 0;
       width: 20rem;
     }
 
     .card-additional {
-      height: 100%;
+      height: 4rem;
       display: flex;
       flex-direction: row;
       justify-content: space-between;

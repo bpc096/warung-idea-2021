@@ -65,7 +65,7 @@ export default {
       } else {
         return 0
       }
-    }
+    },
   },
   methods: {
     async fetchAllProjectList () {

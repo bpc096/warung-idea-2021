@@ -11,7 +11,7 @@
         {{ descText.slice(0,120) }} ...
       </div>
       <div v-if="isCampaign" class="donation-info">
-        Total Donation {{ randomNumber }}%
+        Total Donation {{ paymentPercentage }}%
       </div>
     </div>
   </div>
@@ -53,36 +53,54 @@ export default {
     descText () {
       return this.isCampaign ? this.projectData.description : this.articleData.description
     },
-    randomNumber() {
-      const randomNumb = Math.floor((Math.random() * 100) + 1)
-      return randomNumb
-    }
+    projectTargetDonation() {
+     if(!this.projectData || !this.projectData.target_donation) return '0'
+     else return this.projectData.target_donation
+    },
+    totalPayment() {
+      if(!this.projectData || !this.projectData.sum_payment || this.projectData.sum_payment.length <=0 || !this.projectData.sum_payment[0].total) return '0'
+      else return this.projectData.sum_payment[0].total
+    },
+    paymentPercentage() {
+      if(!this.isCampaign || this.totalpayment === '0' || this.projectTargetDonation === '0') return '0'
+      const mathPercentage = Math.floor((parseInt(this.totalPayment)/parseInt(this.projectTargetDonation)) * 100)
+      return mathPercentage
+    },
   }
 }
 </script>
 
 <style lang="less" scoped>
 .article-card-wrapper {
-  min-height: 24rem;
+  min-height: 20rem;
   margin: 0 2rem;
   border: 1px solid rgb(32, 31, 31);
+  border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
 
   .article-image {
     background-color: pink;
     height: 10rem;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 
     img {
       height: 100%;
       width: 100%;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
     }
   }
 
   .article-info {
-    height: 50%;
+    height: 15rem;
     text-align: left;
     margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 
     .article-title {
       padding: 5px 10px;

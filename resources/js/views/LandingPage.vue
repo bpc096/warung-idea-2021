@@ -122,8 +122,8 @@ export default {
     background-color: #D8F2FF;
   }
 
-  .second-section, 
-  .third-section, 
+  .second-section,
+  .third-section,
   .four-section {
     .text-info {
       width: 35rem;
@@ -134,9 +134,11 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 95vh;
     h1 {
       font-size: 4rem;
+      color: #17a2b8;
     }
     .member-section {
       display: flex;
@@ -164,7 +166,7 @@ export default {
 
         .member-image {
           width: 100%;
-          height: 60%; 
+          height: 60%;
           img {
             height: 100%;
             border-radius: 10px;

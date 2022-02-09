@@ -64,10 +64,12 @@
           <creatorTab />
         </tab>
         <tab name="Forum">
-          forum disquss
+          <forumTab
+            :projectData="projectDetail"
+          />
         </tab>
         <tab name="Payment">
-          payment list
+          <paymentTab />
         </tab>
       </tabs>
     </div>
@@ -84,6 +86,8 @@ import campaignTab from '../views/tabViews/CampaignTab.vue'
 import updateTab from '../views/tabViews/UpdateTab.vue'
 import faqTab from '../views/tabViews/FaqTab.vue'
 import creatorTab from '../views/tabViews/CreatorTab.vue'
+import forumTab from '../views/tabViews/forumTab.vue'
+import paymentTab from '../views/tabViews/paymentTab.vue'
 
 // Modal
 import RewardModal from '../components/RewardModal.vue'
@@ -98,6 +102,8 @@ export default {
     faqTab,
     RewardModal,
     creatorTab,
+    forumTab,
+    paymentTab
   },
   data: () => {
     return {

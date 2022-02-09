@@ -12,7 +12,7 @@
       </div>
       <div class="content-addition">
         <div class="total-funded-label">
-          Total Funded {{ this.projectPercentage }}%
+          Total Funded {{ this.paymentPercentage }}%
         </div>
         <div class="icon-label">
           <div class="icon-love">
@@ -75,10 +75,19 @@ export default {
         return contentDesc
       }
     },
-    projectPercentage () {
-      const randomNumb = Math.floor((Math.random() * 100) + 1)
-      return randomNumb
-    }
+    projectTargetDonation() {
+     if(!this.projectData || !this.projectData.target_donation) return '0'
+     else return this.projectData.target_donation
+    },
+    totalPayment() {
+      if(!this.projectData || !this.projectData.sum_payment || this.projectData.sum_payment.length <=0 || !this.projectData.sum_payment[0].total) return '0'
+      else return this.projectData.sum_payment[0].total
+    },
+    paymentPercentage() {
+      if(this.totalpayment === '0' || this.projectTargetDonation === '0') return '0'
+      const mathPercentage = Math.floor((parseInt(this.totalPayment)/parseInt(this.projectTargetDonation)) * 100)
+      return mathPercentage
+    },
   }
 }
 </script>
