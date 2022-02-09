@@ -63,6 +63,12 @@
         <tab name="Collaborator">
           <creatorTab />
         </tab>
+        <tab name="Forum">
+          forum disquss
+        </tab>
+        <tab name="Payment">
+          payment list
+        </tab>
       </tabs>
     </div>
   </div>
@@ -213,7 +219,7 @@ export default {
   }
 
   .wrap-main-section{
-    border: 1px solid black;
+    border-top: 1px solid black;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -228,11 +234,13 @@ export default {
         width: 20rem;
         height: 1.5rem;
         border: 2px solid black;
+        border-radius: 10px;
         margin-bottom: 30px;
 
         .progress-color-custom{
           height: 100%;
-          background-color: green;
+          background-color: #1FAB89;
+          border-radius: 10px;
         }
       }
 
@@ -287,7 +295,6 @@ export default {
       .image {
         width: 80%;
         height: 80%;
-        background-color: blue;
 
         img {
           width: 100%;

@@ -90,13 +90,14 @@ export default {
   width: 100%;
   border: 1px solid black;
   border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
 
   .content-image {
     border-top-left-radius: 29px;
     border-top-right-radius: 29px;
     height: 50%;
-    background-color: salmon;
+    background-color: #7CD1B8;
     img {
       width: 100%;
       height: 100%;

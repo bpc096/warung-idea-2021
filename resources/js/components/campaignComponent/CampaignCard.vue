@@ -8,48 +8,30 @@
           {{ projectTitle }}
         </div>
         <div class="campaign-desc">
-          Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Ratione, quaerat.
+          {{ projectDesc.slice(0,75) }} ...
         </div>
-        <div class="campaign-donation-status">
-          Donation Target
-          <div class="shell">
-            <div
-              class="bar-progress"
-              :style="{width: progressPercentage + '%'}"
-            >
-              <span>{{ progressPercentage }}%</span>
-            </div>
-          </div>
-          <div class="campaign-wrap-button" v-if="!isInHistoryCampaignPage">
-            <a
-              :href="`/projectdetail/${campaignId}`"
-              class="btn-view-campaign mr"
-            >
-             View Campaign
-            </a>
-          </div>
-        </div>
-        <div v-if="!isInHistoryCampaignPage" class="campaign-donation-amount">
+        <div v-if="!isInHistoryOwnedPage" class="campaign-donation-amount">
           Donation Amount
           <div class="donation-text">
-            Rp {{ infoDonationAmount }}
+            Rp {{ formatMoney(infoDonationAmount) }}
           </div>
         </div>
-        <div v-if="!isInHistoryCampaignPage" class="campaign-payment-status">
+        <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
           Payment status
           <div :class="['text-status', paymentStatus]">
             {{ paymentTextStatus }}
           </div>
           <button
+            v-if="paymentStatus !== 'success-status'"
             class="btn-payment"
             @click="payment"
           >
             Pay Now !
           </button>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryCampaignPage">
-          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          Campaign Config
+          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
             View Campaign
           </a>
           <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
@@ -62,6 +44,36 @@
             Delete Campaign
           </button>
         </div>
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          Updates Config
+          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
+            Add New Updates
+          </a>
+          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
+            Edit Updates
+          </a>
+          <button
+            @click="deleteCampaign"
+            class="btn-delete-campaign"
+          >
+            Remove Updates
+          </button>
+        </div>
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          Reward Config
+          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
+            Add New Reward
+          </a>
+          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
+            Edit Reward
+          </a>
+          <button
+            @click="deleteCampaign"
+            class="btn-delete-campaign"
+          >
+            Remove Reward
+          </button>
+        </div>
       </div>
     </div>
 </template>
@@ -70,7 +82,7 @@
 export default {
   name: 'CampaignCard',
   props: {
-    isInHistoryCampaignPage: {
+    isInHistoryOwnedPage: {
       type: Boolean,
       default: true,
     },
@@ -92,6 +104,9 @@ export default {
     }
   },
   computed: {
+    projectDesc() {
+      return this.campaignInfo?.description? this.campaignInfo.description : 'Lorem ipsum dolor sitamet consectetur adipisicing elit. Ratione, quaerat.'
+    },
     campaignId (){
       return this.campaignInfo?.id? this.campaignInfo.id : '1'
     },
@@ -103,20 +118,6 @@ export default {
     },
     projectTitle () {
       return this.campaignInfo?.title? this.campaignInfo.title : 'Title Campaign'
-    },
-    progressPercentage() {
-      const randomNumb = Math.floor((Math.random() * 100) + 1)
-      let progressBar = randomNumb.toString()
-      if(this.sumPayment && this.sumPayment.length > 0) {
-        progressBar = this.sumPayment[0]?.total? this.paymentPercentage : randomNumb.toString()
-      }
-      if(parseInt(progressBar) <= 0) {
-        progressBar = '1'
-      }
-      else if (parseInt(progressBar) >= 100) {
-        progressBar = '100'
-      }
-      return progressBar
     },
     checkEligibleToEdit() {
       // TODO : Check Eligiblelity to edit campaign
@@ -139,6 +140,17 @@ export default {
     }
   },
   methods: {
+    formatMoney(money) {
+      const moneyTemp = money ? parseInt(money) : 10000
+      const formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp)
+      .replace(/[IDR]/gi, '')
+      .replace(/(\.+\d{2})/, '')
+      .trimLeft()
+      return formatter
+    },
     deleteCampaign(){
       this.$store.dispatch('deleteCampaign', this.campaignId)
         .then(res => {
@@ -192,6 +204,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      // width: 60%;
 
       .campaign-title {
         text-align: left;
@@ -296,6 +309,7 @@ export default {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
         margin: 10px 0;
 
         .btn-view-campaign {
@@ -313,20 +327,20 @@ export default {
         .btn-edit-campaign {
           text-decoration: none;
           color: black;
-          border: 1px solid blueviolet;
+          border: 1px solid #4FBDBA;
           border-radius: 10px;
           padding: 5px;
-          background-color: blueviolet;
+          background-color: #4FBDBA;
           margin: 0 10px;
         }
 
         .btn-delete-campaign {
           text-decoration: none;
           color: black;
-          border: 1px solid #FF1700;
+          border: 1px solid #FF5959;
           border-radius: 10px;
           padding: 5px;
-          background-color: #FF1700;
+          background-color: #FF5959;
         }
       }
     }

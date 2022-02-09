@@ -90,16 +90,21 @@ export default {
   flex-direction: row;
   margin: 0 20px;
   border: 1px solid rgba(0,0,0,.5);
+  border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   .card-image {
     width: 40%;
     height: 100%;
-    background-color: pink;
+    background-color: #7CD1B8;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 
     img {
       height: 100%;
       width: 100%;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
     }
   }
 
