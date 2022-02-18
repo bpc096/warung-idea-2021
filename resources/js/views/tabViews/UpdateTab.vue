@@ -7,13 +7,16 @@
       <div class="content-update">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, saepe reiciendis exercitationem, voluptas ipsam, rerum quam omnis adipisci quia quisquam ducimus veritatis. Natus aut dignissimos esse ad odit, dolorum, maxime nemo nam qui excepturi ducimus, corrupti ullam minima quibusdam quas ratione expedita tempore rem? Ipsa dolor excepturi, dolorem tempore doloribus eos! Similique nemo ex perferendis eligendi, at, quibusdam doloribus totam mollitia excepturi voluptas vitae deserunt suscipit dolor rem ratione ad veritatis iusto corporis dicta in maxime enim ipsam quam? Obcaecati, aperiam alias unde fugit quidem quasi quia dolorum dicta officia! Magnam, laudantium! Exercitationem eaque velit impedit doloremque. Odit, doloribus culpa.
       </div>
-    </div>
-    <div class="update-card">
-      <div class="title-update">
-        Lorem ipsum dolor sit amet.
-      </div>
-      <div class="content-update">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, saepe reiciendis exercitationem, voluptas ipsam, rerum quam omnis adipisci quia quisquam ducimus veritatis. Natus aut dignissimos esse ad odit, dolorum, maxime nemo nam qui excepturi ducimus, corrupti ullam minima quibusdam quas ratione expedita tempore rem? Ipsa dolor excepturi, dolorem tempore doloribus eos! Similique nemo ex perferendis eligendi, at, quibusdam doloribus totam mollitia excepturi voluptas vitae deserunt suscipit dolor rem ratione ad veritatis iusto corporis dicta in maxime enim ipsam quam? Obcaecati, aperiam alias unde fugit quidem quasi quia dolorum dicta officia! Magnam, laudantium! Exercitationem eaque velit impedit doloremque. Odit, doloribus culpa.
+      <div
+        v-if="checkUserOwner"
+        class="button-wrap"
+      >
+        <a :href="`/updates/edit/${campaignId}/${mockUpdatesId}`" class="btn">
+            Edit Updates
+        </a>
+        <a @click="deleteUpdates" class="btn">
+            Delete Updates
+          </a>
       </div>
     </div>
   </div>
@@ -21,7 +24,37 @@
 
 <script>
 export default {
-  name: 'UpdateTab'
+  name: 'UpdateTab',
+  props: {
+    campaignId: {
+      type: Number,
+      default: 1,
+    },
+    userId: {
+      type: Number,
+      default: 1
+    },
+    ownerId: {
+      type: String,
+      default: "0"
+    }
+  },
+  data: () => {
+    return {
+      mockUpdatesId: 1,
+    }
+  },
+  computed: {
+    checkUserOwner() {
+      // return parseInt(this.ownerId) === userId
+      return parseInt(this.ownerId) === this.userId
+    }
+  },
+  methods: {
+    deleteUpdates() {
+      console.log('delete updates');
+    }
+  }
 }
 </script>
 
@@ -34,6 +67,7 @@ export default {
 
   .update-card {
     border: 1px solid black;
+    border-radius: 5px;
     width: 60rem;
     height: 20rem;
     margin: 5rem 0;
@@ -44,6 +78,16 @@ export default {
       margin: 1rem 0;
       font-size: 30px;
       font-weight: bold;
+    }
+
+    .button-wrap {
+      margin-top: 1rem;
+      text-align: end;
+
+      .btn {
+        border: 1px solid black;
+        border-radius: 10px;
+      }
     }
   }
 

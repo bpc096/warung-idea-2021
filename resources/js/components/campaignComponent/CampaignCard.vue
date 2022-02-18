@@ -46,10 +46,10 @@
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           Updates Config
-          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
+          <a :href="`/updates/create/${campaignId}`" class="btn-view-campaign mr">
             Add New Updates
           </a>
-          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
+          <a :href="`/updates/edit/${campaignId}`" class="btn-edit-campaign">
             Edit Updates
           </a>
           <button

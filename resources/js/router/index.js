@@ -22,6 +22,10 @@ import EditCampaign from '../views/campaignViews/EditCampaign.vue'
 import HistoryCampaign from '../views/campaignViews/HistoryCampaign.vue'
 import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampaign.vue'
 
+// Views Updates
+import CreateUpdates from '../views/updatesViews/CreateUpdates.vue'
+import EditUpdates from '../views/updatesViews/EditUpdates.vue'
+
 // Views User
 import UserProfile from '../views/userViews/UserProfile.vue'
 import ChangePassword from '../views/userViews/ChangePassword.vue'
@@ -149,14 +153,14 @@ const routes = [
     component: EditCampaign,
   },
   {
-    path: '/haloguys',
-    name: 'HaloGuys',
-    component: HaloGuys,
+    path: '/updates/create/:projectId',
+    name: 'CreateUpdates',
+    component: CreateUpdates,
   },
   {
-    path: '/helloworld',
-    name: 'HelloWorld',
-    component: HelloWorld,
+    path: '/updates/edit/:projectId/:updateId',
+    name: 'EditUpdates',
+    component: EditUpdates,
   }
 ]
 

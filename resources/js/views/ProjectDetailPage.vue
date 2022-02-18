@@ -58,7 +58,10 @@
           />
         </tab>
         <tab name="Updates">
-          <updateTab />
+          <updateTab
+            :userId="user.id"
+            :ownerId="projectDetail.users_id"
+          />
         </tab>
         <tab name="FAQ">
           <faqTab />
@@ -94,6 +97,8 @@ import paymentTab from '../views/tabViews/paymentTab.vue'
 
 // Modal
 import RewardModal from '../components/RewardModal.vue'
+
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ProjectDetail',
@@ -132,6 +137,9 @@ export default {
       })
   },
   computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
     totalBacker() {
       return this.payment.length
     },
