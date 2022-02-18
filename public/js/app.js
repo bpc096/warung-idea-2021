@@ -2218,6 +2218,30 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: 'Janto pasto',
         code: 'jp'
+      }, {
+        name: 'Janto pasto',
+        code: 'j23p'
+      }, {
+        name: 'Janto pasto',
+        code: 'jgp'
+      }, {
+        name: 'Janto pasto',
+        code: 'fjp'
+      }, {
+        name: 'Janto pasto',
+        code: 'djp'
+      }, {
+        name: 'Janto pasto',
+        code: 'jfqp'
+      }, {
+        name: 'Janto pasto',
+        code: 'jcvp'
+      }, {
+        name: 'Janto pasto',
+        code: 'jtsp'
+      }, {
+        name: 'Janto pasto',
+        code: 'jqwep'
       }]
     };
   },
@@ -3846,6 +3870,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -10313,7 +10340,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-campaign-tab[data-v-8fa6fde4] {\n  height: 70vh;\n  text-align: left;\n  padding: 0 5rem;\n}\n.wrap-campaign-tab .background-section[data-v-8fa6fde4] {\n  margin: 2rem 0;\n}\n.wrap-campaign-tab .background-section .background-title[data-v-8fa6fde4] {\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-campaign-tab .design-plan-section[data-v-8fa6fde4] {\n  margin: 2rem 0;\n}\n.wrap-campaign-tab .design-plan-section .design-plan-title[data-v-8fa6fde4] {\n  font-size: 30px;\n  font-weight: bold;\n}\n", ""]);
+exports.push([module.i, ".wrap-campaign-tab[data-v-8fa6fde4] {\n  height: 70vh;\n  text-align: left;\n  padding: 0 20rem;\n}\n.wrap-campaign-tab .background-section[data-v-8fa6fde4] {\n  margin: 4rem 0;\n}\n.wrap-campaign-tab .background-section .background-title[data-v-8fa6fde4] {\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-campaign-tab .design-plan-section[data-v-8fa6fde4] {\n  margin: 4rem 0;\n}\n.wrap-campaign-tab .design-plan-section .design-plan-title[data-v-8fa6fde4] {\n  font-size: 30px;\n  font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -10351,7 +10378,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 70vh;\n  text-align: left;\n  padding: 3rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin-bottom: 2rem;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 2rem 0;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n", ""]);
+exports.push([module.i, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 70vh;\n  text-align: left;\n  padding: 0 20rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin: 5rem 0 2rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 2rem 0;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n", ""]);
 
 // exports
 
@@ -10408,7 +10435,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".payment-tab-wrap[data-v-8ea3d814] {\n  height: 90vh;\n}\n", ""]);
+exports.push([module.i, ".payment-tab-wrap[data-v-8ea3d814] {\n  height: 90vh;\n  margin-top: 3rem;\n}\n", ""]);
 
 // exports
 
@@ -46314,6 +46341,8 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
           _c("div", { staticClass: "button-wrapper" }, [
             _c(
               "button",
@@ -46391,7 +46420,17 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "day-left-info" }, [
+      _vm._v("\n        Created By "),
+      _c("b", [_vm._v("Subejo Atmoko")]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -47500,11 +47539,18 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "payment-tab-wrap" }, [
-    _vm._v("\n  Payment Tab\n"),
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "payment-tab-wrap" }, [
+      _c("h2", [_vm._v("Payment List")]),
+    ])
+  },
+]
 render._withStripped = true
 
 

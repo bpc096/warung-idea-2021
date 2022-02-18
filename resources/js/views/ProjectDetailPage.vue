@@ -26,6 +26,9 @@
         <div class="day-left-info">
           {{ daysBetween }} Hari lagi
         </div>
+        <div class="day-left-info">
+          Created By <b>Subejo Atmoko</b>
+        </div>
         <div class="button-wrapper">
           <button
             class="btn-support"

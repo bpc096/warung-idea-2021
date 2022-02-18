@@ -32,9 +32,10 @@ export default {
 .wrap-faq-tab {
   min-height: 70vh;
   text-align: left;
-  padding: 3rem;
+  padding: 0 20rem;
+
   .faq-title {
-    margin-bottom: 2rem;
+    margin: 5rem 0 2rem 0;
     font-size: 30px;
     font-weight: bold;
   }

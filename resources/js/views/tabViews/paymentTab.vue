@@ -1,6 +1,6 @@
 <template>
   <div class="payment-tab-wrap">
-    Payment Tab
+    <h2>Payment List</h2>
   </div>
 </template>
 
@@ -13,5 +13,6 @@ export default {
 <style lang="less" scoped>
 .payment-tab-wrap {
   height: 90vh;
+  margin-top: 3rem;
 }
 </style>
