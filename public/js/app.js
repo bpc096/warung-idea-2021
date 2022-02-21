@@ -3961,6 +3961,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 // Tab Component
 
  // Content Tab Component
@@ -4954,9 +4955,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -4979,7 +4985,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'FaqTab'
+  name: 'FaqTab',
+  data: function data() {
+    return {
+      asdfasdf: [],
+      listData: [{
+        "id": 1,
+        "users_id": 1,
+        "campaign_id": 2,
+        "title": "FAQ #1 ?",
+        "description": "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
+        "created_at": "2022-01-05T09:47:17.000000Z",
+        "updated_at": "2022-01-05T09:47:17.000000Z"
+      }, {
+        "id": 2,
+        "users_id": 1,
+        "campaign_id": 2,
+        "title": "FAQ #2 ?",
+        "description": "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
+        "created_at": "2022-01-05T09:47:17.000000Z",
+        "updated_at": "2022-01-05T09:47:17.000000Z"
+      }]
+    };
+  },
+  created: function created() {//TODO fetch FAQ by Campaign ID
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  computed: function computed() {}
 });
 
 /***/ }),
@@ -4993,6 +5036,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5035,8 +5091,55 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      mockUpdatesId: 1
+      mockUpdatesId: 1,
+      listData: [],
+      mockListData: [{
+        id: 1,
+        users_id: 1,
+        campaign_id: 2,
+        title: "Updates #1",
+        description: "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
+        created_at: "2022-01-05T09:47:17.000000Z",
+        updated_at: "2022-01-05T09:47:17.000000Z"
+      }, {
+        id: 2,
+        users_id: 1,
+        campaign_id: 2,
+        title: "Updates #2",
+        description: "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
+        created_at: "2022-01-05T09:47:17.000000Z",
+        updated_at: "2022-01-05T09:47:17.000000Z"
+      }]
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var campaignId;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              campaignId = _this.campaignId;
+              _context.next = 3;
+              return _this.$store.dispatch('getUpdatesByCampaignId', campaignId).then(function (res) {
+                console.log(res);
+
+                if (res.success && res.data && res.data.length > 0) {
+                  _this.listData = res.data;
+                }
+              })["catch"](function (err) {
+                console.error(err);
+              });
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   computed: {
     checkUserOwner: function checkUserOwner() {
@@ -5336,7 +5439,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               campaignId = _this.$route.params.projectId || 1;
-              updatesId = _this.$route.params.updatesId || 1; //Fetching Store
+              updatesId = _this.$route.params.updatesId || 1; // TODO: Fetching getUpdatesByCampagnidAndUpdateId
 
             case 2:
             case "end":
@@ -10666,7 +10769,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 70vh;\n  text-align: left;\n  padding: 0 20rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin: 5rem 0 2rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 2rem 0;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n", ""]);
+exports.push([module.i, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 70vh;\n  text-align: left;\n  padding: 0 20rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-faq-tab h2[data-v-119d3486] {\n  margin-top: 5rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin: 5rem 0 2rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 2rem 0;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n", ""]);
 
 // exports
 
@@ -10685,7 +10788,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 5px;\n  width: 60rem;\n  height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-update-tab .update-card .button-wrap[data-v-0f7a7116] {\n  margin-top: 1rem;\n  text-align: end;\n}\n.wrap-update-tab .update-card .button-wrap .btn[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 10px;\n}\n", ""]);
+exports.push([module.i, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab .empty-update[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 5px;\n  width: 60rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-update-tab .update-card .button-wrap[data-v-0f7a7116] {\n  margin-top: 1rem;\n  text-align: end;\n}\n.wrap-update-tab .update-card .button-wrap .btn[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 10px;\n}\n", ""]);
 
 // exports
 
@@ -46785,6 +46888,7 @@ var render = function () {
                     attrs: {
                       userId: _vm.user.id,
                       ownerId: _vm.projectDetail.users_id,
+                      campaignId: _vm.projectDetail.id,
                     },
                   }),
                 ],
@@ -47788,44 +47892,37 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "wrap-faq-tab" }, [
+    _vm.listData.length > 0
+      ? _c(
+          "div",
+          [
+            _c("div", { staticClass: "faq-title" }, [
+              _vm._v("\n      Frequently Asked Question\n    "),
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.listData, function (data) {
+              return _c("div", { key: data.id, staticClass: "faq-content" }, [
+                _c("div", { staticClass: "question-content" }, [
+                  _vm._v("\n        " + _vm._s(data.title) + "\n      "),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "answer-content" }, [
+                  _vm._v("\n        " + _vm._s(data.description) + "\n      "),
+                ]),
+              ])
+            }),
+          ],
+          2
+        )
+      : _c("div", [
+          _c("h2", [
+            _vm._v("Ups... There's no FAQ for this project right now!"),
+          ]),
+        ]),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrap-faq-tab" }, [
-      _c("div", { staticClass: "faq-title" }, [
-        _vm._v("\n    Frequently Asked Question\n  "),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "faq-content" }, [
-        _c("div", { staticClass: "question-content" }, [
-          _vm._v("\n      Lorem ipsum dolor sit amet ?\n    "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "answer-content" }, [
-          _vm._v(
-            "\n      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, vel.\n    "
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "faq-content" }, [
-        _c("div", { staticClass: "question-content" }, [
-          _vm._v("\n      Lorem ipsum dolor sit amet ?\n    "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "answer-content" }, [
-          _vm._v(
-            "\n      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates molestiae atque optio consequuntur, cumque magnam quis accusantium recusandae ut cupiditate!\n    "
-          ),
-        ]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -47848,37 +47945,50 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "wrap-update-tab" }, [
-    _c("div", { staticClass: "update-card" }, [
-      _c("div", { staticClass: "title-update" }, [
-        _vm._v("\n      Lorem ipsum dolor sit amet.\n    "),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "content-update" }, [
-        _vm._v(
-          "\n      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate, saepe reiciendis exercitationem, voluptas ipsam, rerum quam omnis adipisci quia quisquam ducimus veritatis. Natus aut dignissimos esse ad odit, dolorum, maxime nemo nam qui excepturi ducimus, corrupti ullam minima quibusdam quas ratione expedita tempore rem? Ipsa dolor excepturi, dolorem tempore doloribus eos! Similique nemo ex perferendis eligendi, at, quibusdam doloribus totam mollitia excepturi voluptas vitae deserunt suscipit dolor rem ratione ad veritatis iusto corporis dicta in maxime enim ipsam quam? Obcaecati, aperiam alias unde fugit quidem quasi quia dolorum dicta officia! Magnam, laudantium! Exercitationem eaque velit impedit doloremque. Odit, doloribus culpa.\n    "
-        ),
-      ]),
-      _vm._v(" "),
-      _vm.checkUserOwner
-        ? _c("div", { staticClass: "button-wrap" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn",
-                attrs: {
-                  href:
-                    "/updates/edit/" + _vm.campaignId + "/" + _vm.mockUpdatesId,
-                },
-              },
-              [_vm._v("\n          Edit Updates\n      ")]
-            ),
-            _vm._v(" "),
-            _c("a", { staticClass: "btn", on: { click: _vm.deleteUpdates } }, [
-              _vm._v("\n          Delete Updates\n        "),
-            ]),
-          ])
-        : _vm._e(),
-    ]),
+    _vm.listData.length > 0
+      ? _c(
+          "div",
+          _vm._l(_vm.listData, function (data) {
+            return _c("div", { key: data.id, staticClass: "update-card" }, [
+              _c("div", { staticClass: "title-update" }, [
+                _vm._v("\n        " + _vm._s(data.title) + "\n      "),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "content-update" }, [
+                _vm._v("\n        " + _vm._s(data.description) + "\n      "),
+              ]),
+              _vm._v(" "),
+              _vm.checkUserOwner
+                ? _c("div", { staticClass: "button-wrap" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn",
+                        attrs: {
+                          href:
+                            "/updates/edit/" +
+                            _vm.campaignId +
+                            "/" +
+                            _vm.mockUpdatesId,
+                        },
+                      },
+                      [_vm._v("\n          Edit Updates\n        ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "btn", on: { click: _vm.deleteUpdates } },
+                      [_vm._v("\n          Delete Updates\n        ")]
+                    ),
+                  ])
+                : _vm._e(),
+            ])
+          }),
+          0
+        )
+      : _c("div", { staticClass: "empty-update" }, [
+          _c("h2", [_vm._v("Upss ... There's no updates for this project!")]),
+        ]),
   ])
 }
 var staticRenderFns = []
@@ -65431,9 +65541,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
- // Axios.defaults.baseURL = `http://localhost:8000/api/`
 
-axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = 'https://www.warungidea.com/api/';
+var devApp = true; //TODO : change this before deploy
+
+axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = devApp ? 'http://localhost:8000/api/' : 'https://www.warungidea.com/api/';
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(axios__WEBPACK_IMPORTED_MODULE_1___default.a);
 var token = localStorage.getItem('token');
@@ -67465,73 +67576,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+var CREATE_UPDATES = 'createUpdates';
+var GET_UPDATES = 'getUpdates';
 var state = {
-  articleList: [],
-  campaignUpload: {} // campaignList: [],
-
+  editUpdateData: '',
+  getUpdateData: ''
 };
 var actions = {
-  getCampaignByUserId: function getCampaignByUserId(_ref, data) {
+  getUpdatesByCampaignId: function getUpdatesByCampaignId(_ref, campaignId) {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      var apiUrl = 'campaign/users/' + data;
+      var apiUrl = 'campaign/' + campaignId + '/updates';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(apiUrl).then(function (res) {
+        commit(GET_UPDATES, res.data.data);
         resolve(res.data);
       })["catch"](function (err) {
         reject(err);
       });
     });
   },
-  getCampaignById: function getCampaignById(_ref2, data) {
+  createUpdates: function createUpdates(_ref2, param) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
-      var apiUrl = 'campaign/' + data;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(apiUrl).then(function (res) {
-        resolve(res.data);
-      })["catch"](function (err) {
-        reject(err);
-      });
-    });
-  },
-  getAllCampaign: function getAllCampaign(_ref3) {
-    var commit = _ref3.commit;
-    return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('campaign').then(function (res) {
-        // commit(GET_CAMPAIGN, res.data.data)
-        resolve(res);
-      })["catch"](function (err) {
-        reject(err);
-      });
-    });
-  },
-  uploadCampaign: function uploadCampaign(_ref4, data) {
-    var commit = _ref4.commit;
-    return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('campaign', data).then(function (res) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPLOAD_CAMPAIGN"], res.data);
-        resolve(res);
-      })["catch"](function (err) {
-        reject(err);
-      });
-    });
-  },
-  updateCampaign: function updateCampaign(_ref5, param) {
-    var commit = _ref5.commit;
-    return new Promise(function (resolve, reject) {
-      var apiUrl = 'campaign/' + param.campaignId;
+      var apiUrl = 'campaign/' + param.campaignId + '/updates';
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(apiUrl, param.data).then(function (res) {
-        resolve(res);
-      })["catch"](function (err) {
-        reject(err);
-      });
-    });
-  },
-  deleteCampaign: function deleteCampaign(_ref6, param) {
-    var commit = _ref6.commit;
-    return new Promise(function (resolve, reject) {
-      var apiUrl = 'campaign/' + param;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](apiUrl, param).then(function (res) {
-        commit('');
+        commit(CREATE_UPDATES, res.data);
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -67539,19 +67608,12 @@ var actions = {
     });
   }
 };
-var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["GET_CAMPAIGN"], function (state, data) {
-  state.campaignList = data;
-}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__["UPLOAD_CAMPAIGN"], function (state, data) {
-  state.campaignDetail = data;
+var mutations = (_mutations = {}, _defineProperty(_mutations, CREATE_UPDATES, function (state, data) {
+  state.editUpdateData = data;
+}), _defineProperty(_mutations, GET_UPDATES, function (state, data) {
+  state.getupdateData = data;
 }), _mutations);
-var getters = {
-  getAllCampaign: function getAllCampaign(state) {
-    return state.campaignList;
-  },
-  getUploadedCampaign: function getUploadedCampaign(state) {
-    return state.campaignDetail;
-  }
-};
+var getters = {};
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
   actions: actions,

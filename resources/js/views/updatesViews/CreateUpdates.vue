@@ -71,7 +71,6 @@ export default {
     },
   },
   methods: {
-
     submitCampaign() {
       let data = new FormData()
       const campaignId = this.$route.params.projectId || 1

@@ -2,18 +2,21 @@ import Axios from "axios"
 import { param } from "jquery"
 import { GET_CAMPAIGN, UPLOAD_CAMPAIGN } from "../mutation-types"
 
+const CREATE_UPDATES = 'createUpdates'
+const GET_UPDATES = 'getUpdates'
+
 const state = {
-  articleList: [],
-  campaignUpload: {},
-  // campaignList: [],
+  editUpdateData: '',
+  getUpdateData: '',
 }
 
 const actions = {
-  getCampaignByUserId({commit}, data) {
+  getUpdatesByCampaignId({commit}, campaignId){
     return new Promise((resolve, reject) => {
-      const apiUrl = 'campaign/users/' + data
+      const apiUrl = 'campaign/' + campaignId + '/updates'
       Axios.get(apiUrl)
         .then(res => {
+          commit(GET_UPDATES, res.data.data)
           resolve(res.data)
         })
         .catch(err => {
@@ -21,60 +24,12 @@ const actions = {
         })
     })
   },
-  getCampaignById({commit}, data) {
+  createUpdates({commit}, param) {
     return new Promise((resolve, reject) => {
-      const apiUrl = 'campaign/' + data
-      Axios.get(apiUrl)
-        .then(res => {
-          resolve(res.data)
-        })
-        .catch(err => {
-          reject(err)
-        })
-    })
-  },
-  getAllCampaign({commit}) {
-    return new Promise((resolve, reject) => {
-      Axios.get('campaign')
-        .then(res => {
-          // commit(GET_CAMPAIGN, res.data.data)
-          resolve(res)
-        })
-        .catch(err => {
-          reject(err)
-        })
-    })
-  },
-  uploadCampaign({commit}, data) {
-    return new Promise((resolve, reject) => {
-      Axios.post('campaign', data)
-        .then(res => {
-          commit(UPLOAD_CAMPAIGN, res.data)
-          resolve(res)
-        })
-        .catch(err => {
-          reject(err)
-        })
-    })
-  },
-  updateCampaign({commit}, param) {
-    return new Promise((resolve, reject) => {
-      const apiUrl = 'campaign/' + param.campaignId
+      const apiUrl = 'campaign/' + param.campaignId + '/updates'
       Axios.post(apiUrl, param.data)
         .then(res => {
-          resolve(res)
-        })
-        .catch(err => {
-          reject(err)
-        })
-    })
-  },
-  deleteCampaign({commit}, param) {
-    return new Promise((resolve, reject) => {
-      const apiUrl = 'campaign/' + param
-      Axios.delete(apiUrl, param)
-        .then(res => {
-          commit('')
+          commit(CREATE_UPDATES, res.data)
           resolve(res)
         })
         .catch(err => {
@@ -85,21 +40,16 @@ const actions = {
 }
 
 const mutations = {
-  [GET_CAMPAIGN] (state, data) {
-    state.campaignList = data
+  [CREATE_UPDATES](state, data) {
+    state.editUpdateData = data
   },
-  [UPLOAD_CAMPAIGN] (state, data) {
-    state.campaignDetail = data
+  [GET_UPDATES](state, data) {
+    state.getupdateData = data
   }
 }
 
 const getters = {
-  getAllCampaign (state) {
-    return state.campaignList
-  },
-  getUploadedCampaign (state) {
-    return state.campaignDetail
-  },
+
 }
 
 export default {
