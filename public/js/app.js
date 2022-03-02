@@ -4988,8 +4988,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: 'FaqTab',
   data: function data() {
     return {
-      asdfasdf: [],
-      listData: [{
+      listData: [],
+      mockListData: [{
         "id": 1,
         "users_id": 1,
         "campaign_id": 2,

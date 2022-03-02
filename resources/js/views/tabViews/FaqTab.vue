@@ -24,8 +24,8 @@ export default {
   name: 'FaqTab',
   data: () => {
     return {
-      asdfasdf: [],
-      listData: [
+      listData: [],
+      mockListData: [
          {
             "id": 1,
             "users_id": 1,
