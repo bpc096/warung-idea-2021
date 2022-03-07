@@ -90,7 +90,10 @@ const routes = [
   {
     path: '/projectdetail/:projectId',
     name: 'ProjectDetail',
-    component: ProjectDetailPage
+    component: ProjectDetailPage,
+    meta: {
+      auth: true,
+    }
   },
   {
     path: '/checkout',

@@ -16,7 +16,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { setHeaderToken } from './utils/auth'
 
-const devApp = true //TODO : change this before deploy
+const devApp = false //TODO : change this before deploy
 Axios.defaults.baseURL = devApp ? 'http://localhost:8000/api/' : 'https://www.warungidea.com/api/'
 
 Vue.config.productionTip = false

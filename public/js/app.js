@@ -65542,7 +65542,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-var devApp = true; //TODO : change this before deploy
+var devApp = false; //TODO : change this before deploy
 
 axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = devApp ? 'http://localhost:8000/api/' : 'https://www.warungidea.com/api/';
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.config.productionTip = false;
@@ -66971,7 +66971,10 @@ var routes = [{
 }, {
   path: '/projectdetail/:projectId',
   name: 'ProjectDetail',
-  component: _views_ProjectDetailPage_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+  component: _views_ProjectDetailPage_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+  meta: {
+    auth: true
+  }
 }, {
   path: '/checkout',
   name: 'CheckoutPage',
