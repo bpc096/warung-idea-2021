@@ -24,8 +24,9 @@ export default {
   name: 'FaqTab',
   data: () => {
     return {
-      listData: [],
-      mockListData: [
+      // TODO : Change realListData with listData, and listData with mock
+      realListData: [],
+      listData: [
          {
             "id": 1,
             "users_id": 1,

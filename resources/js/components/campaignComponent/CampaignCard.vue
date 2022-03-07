@@ -46,33 +46,21 @@
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           Updates Config
-          <a :href="`/updates/create/${campaignId}`" class="btn-view-campaign mr">
+          <a :href="`/projectdetail/${campaignId}#updates`" class="btn-view-campaign">
+            View Updates
+          </a>
+          <a :href="`/updates/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Updates
           </a>
-          <a :href="`/updates/edit/${campaignId}`" class="btn-edit-campaign">
-            Edit Updates
-          </a>
-          <button
-            @click="deleteCampaign"
-            class="btn-delete-campaign"
-          >
-            Remove Updates
-          </button>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           Reward Config
-          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
+          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
+            View Rewards
+          </a>
+          <a :href="`/projectdetail/${campaignId}`" class="btn-edit-campaign mr">
             Add New Reward
           </a>
-          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
-            Edit Reward
-          </a>
-          <button
-            @click="deleteCampaign"
-            class="btn-delete-campaign"
-          >
-            Remove Reward
-          </button>
         </div>
       </div>
     </div>
@@ -308,7 +296,7 @@ export default {
       .campaign-wrap-button {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         margin: 10px 0;
 

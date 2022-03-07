@@ -2474,18 +2474,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CampaignCard',
   props: {
@@ -4988,8 +4976,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: 'FaqTab',
   data: function data() {
     return {
-      listData: [],
-      mockListData: [{
+      // TODO : Change realListData with listData, and listData with mock
+      realListData: [],
+      listData: [{
         "id": 1,
         "users_id": 1,
         "campaign_id": 2,
@@ -5092,8 +5081,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       mockUpdatesId: 1,
-      listData: [],
-      mockListData: [{
+      // TODO : Change realListData with listData, and listData with mock
+      realListData: [],
+      listData: [{
         id: 1,
         users_id: 1,
         campaign_id: 2,
@@ -10370,7 +10360,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  align-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #4FBDBA;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #4FBDBA;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF5959;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF5959;\n}\n", ""]);
+exports.push([module.i, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  align-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #4FBDBA;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #4FBDBA;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF5959;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF5959;\n}\n", ""]);
 
 // exports
 
@@ -10788,7 +10778,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab .empty-update[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 5px;\n  width: 60rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-update-tab .update-card .button-wrap[data-v-0f7a7116] {\n  margin-top: 1rem;\n  text-align: end;\n}\n.wrap-update-tab .update-card .button-wrap .btn[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 10px;\n}\n", ""]);
+exports.push([module.i, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab .empty-update[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 5px;\n  width: 60rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-update-tab .update-card .button-wrap[data-v-0f7a7116] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-update-tab .update-card .button-wrap .btn[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n", ""]);
 
 // exports
 
@@ -10978,7 +10968,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.container-vue {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  text-align: center;\n  color: #2c3e50;\n  margin-top: 60px;\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  max-width: 100%;\n  background-color: #F6F6F6;\n}\n", ""]);
+exports.push([module.i, "\n.container-vue {\r\n  font-family: Avenir, Helvetica, Arial, sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  text-align: center;\r\n  color: #2c3e50;\r\n  margin-top: 60px;\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 100%;\r\n  max-width: 100%;\r\n  background-color: #F6F6F6;\n}\r\n", ""]);
 
 // exports
 
@@ -45647,28 +45637,21 @@ var render = function () {
             _c(
               "a",
               {
-                staticClass: "btn-view-campaign mr",
-                attrs: { href: "/updates/create/" + _vm.campaignId },
+                staticClass: "btn-view-campaign",
+                attrs: {
+                  href: "/projectdetail/" + _vm.campaignId + "#updates",
+                },
               },
-              [_vm._v("\n          Add New Updates\n        ")]
+              [_vm._v("\n          View Updates\n        ")]
             ),
             _vm._v(" "),
             _c(
               "a",
               {
-                staticClass: "btn-edit-campaign",
-                attrs: { href: "/updates/edit/" + _vm.campaignId },
+                staticClass: "btn-edit-campaign mr",
+                attrs: { href: "/updates/create/" + _vm.campaignId },
               },
-              [_vm._v("\n          Edit Updates\n        ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn-delete-campaign",
-                on: { click: _vm.deleteCampaign },
-              },
-              [_vm._v("\n          Remove Updates\n        ")]
+              [_vm._v("\n          Add New Updates\n        ")]
             ),
           ])
         : _vm._e(),
@@ -45679,28 +45662,19 @@ var render = function () {
             _c(
               "a",
               {
-                staticClass: "btn-view-campaign mr",
+                staticClass: "btn-view-campaign",
                 attrs: { href: "/projectdetail/" + _vm.campaignId },
               },
-              [_vm._v("\n          Add New Reward\n        ")]
+              [_vm._v("\n          View Rewards\n        ")]
             ),
             _vm._v(" "),
             _c(
               "a",
               {
-                staticClass: "btn-edit-campaign",
-                attrs: { href: "/campaign/edit/" + _vm.campaignId },
+                staticClass: "btn-edit-campaign mr",
+                attrs: { href: "/projectdetail/" + _vm.campaignId },
               },
-              [_vm._v("\n          Edit Reward\n        ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn-delete-campaign",
-                on: { click: _vm.deleteCampaign },
-              },
-              [_vm._v("\n          Remove Reward\n        ")]
+              [_vm._v("\n          Add New Reward\n        ")]
             ),
           ])
         : _vm._e(),
@@ -65542,7 +65516,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-var devApp = false; //TODO : change this before deploy
+var devApp = true; //TODO : change this before deploy
 
 axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = devApp ? 'http://localhost:8000/api/' : 'https://www.warungidea.com/api/';
 vue__WEBPACK_IMPORTED_MODULE_2___default.a.config.productionTip = false;

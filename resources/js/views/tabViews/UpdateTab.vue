@@ -47,8 +47,9 @@ export default {
   data: () => {
     return {
       mockUpdatesId: 1,
-      listData: [],
-      mockListData: [
+      // TODO : Change realListData with listData, and listData with mock
+      realListData: [],
+      listData: [
         {
           id: 1,
           users_id: 1,
@@ -117,6 +118,9 @@ export default {
     margin: 5rem 0;
     text-align: left;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .title-update {
       margin: 1rem 0;
@@ -125,12 +129,13 @@ export default {
     }
 
     .button-wrap {
-      margin-top: 1rem;
+      margin: 1rem 0;
       text-align: end;
 
       .btn {
         border: 1px solid black;
         border-radius: 10px;
+        margin-left: .5rem;
       }
     }
   }
