@@ -30,6 +30,10 @@ import EditUpdates from '../views/updatesViews/EditUpdates.vue'
 import CreateFaqs from '../views/faqViews/CreateFaqs.vue'
 import EditFaqs from '../views/faqViews/EditFaqs.vue'
 
+// Views Rewards
+import CreateRewards from '../views/rewardViews/CreateRewards.vue'
+import EditRewards from '../views/RewardViews/EditRewards.vue'
+
 // Views User
 import UserProfile from '../views/userViews/UserProfile.vue'
 import ChangePassword from '../views/userViews/ChangePassword.vue'
@@ -178,6 +182,16 @@ const routes = [
     path: '/faqs/edit/:projectId/:updateId',
     name: 'EditFaqs',
     component: EditFaqs,
+  },
+  {
+    path: '/rewards/create/:projectId',
+    name: 'CreateRewards',
+    component: CreateRewards,
+  },
+  {
+    path: '/rewards/edit/:projctId/:updateId',
+    name: 'EditRewards',
+    component: EditRewards,
   }
 ]
 

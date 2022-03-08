@@ -2,7 +2,9 @@
   <div class="project-detail-page">
     <RewardModal
       v-if="showRewardModal"
-      :campaignId="projectId"
+      :userId="user.id"
+      :ownerId="projectDetail.users_id"
+      :campaignId="projectDetail.id"
       @close="closeModal"
     />
     <div class="wrap-title">

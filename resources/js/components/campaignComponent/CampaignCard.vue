@@ -67,7 +67,7 @@
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
             View Rewards
           </a>
-          <a :href="`/projectdetail/${campaignId}`" class="btn-edit-campaign mr">
+          <a :href="`/rewards/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Reward
           </a>
         </div>
