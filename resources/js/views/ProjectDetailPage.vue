@@ -65,7 +65,11 @@
           />
         </tab>
         <tab name="FAQ">
-          <faqTab />
+          <faqTab
+            :userId="user.id"
+            :ownerId="projectDetail.users_id"
+            :campaignId="projectDetail.id"
+          />
         </tab>
         <tab name="Collaborator">
           <creatorTab />

@@ -54,6 +54,15 @@
           </a>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          FAQ Config
+          <a :href="`/projectdetail/${campaignId}#faqs`" class="btn-view-campaign">
+            View FAQ
+          </a>
+          <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign mr">
+            Add New FAQ
+          </a>
+        </div>
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           Reward Config
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
             View Rewards

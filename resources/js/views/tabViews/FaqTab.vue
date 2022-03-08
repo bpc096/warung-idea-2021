@@ -11,6 +11,16 @@
         <div class="answer-content">
           {{ data.description }}
         </div>
+        <div
+          v-if="checkUserOwner"
+          class="btn-content">
+          <a :href="`/faqs/edit/${campaignId}/${data.id}`" class="btn">
+            Edit
+          </a>
+          <a @click="deleteFaqs" class="btn">
+            Delete
+          </a>
+        </div>
       </div>
     </div>
     <div v-else>
@@ -22,12 +32,27 @@
 <script>
 export default {
   name: 'FaqTab',
+  props: {
+    campaignId: {
+      type: Number,
+      default: 1,
+    },
+    userId: {
+      type: Number,
+      default: 1
+    },
+    ownerId: {
+      type: String,
+      default: "0"
+    }
+  },
   data: () => {
     return {
+      mockUpdatesId: 1,
       // TODO : Change realListData with listData, and listData with mock
       realListData: [],
       listData: [
-         {
+        {
             "id": 1,
             "users_id": 1,
             "campaign_id": 2,
@@ -51,8 +76,16 @@ export default {
   async created() {
     //TODO fetch FAQ by Campaign ID
   },
-  computed() {
-
+  computed: {
+   checkUserOwner() {
+      // return parseInt(this.ownerId) === userId
+      return parseInt(this.ownerId) === this.userId
+    }
+  },
+  methods: {
+    deleteFaqs() {
+      console.log('delete faqs')
+    }
   }
 }
 </script>
@@ -78,12 +111,27 @@ export default {
   }
   .faq-content {
     margin: 2rem 0;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
     .question-content {
       font-size: 20px;
       font-weight: bold;
     }
     .answer-content {
       font-size: 20px;
+    }
+
+    .btn-content {
+      margin: 1rem 0;
+      text-align: end;
+
+      .btn {
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-left: .5rem;
+      }
     }
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <div class="wrap-creator-tab">
+    <div class="title-creator">
+      Collaborator List
+    </div>
     <div class="creator-card">
-      <div class="title-creator">
-        Collaborator List
-      </div>
       <div class="content-creator">
         <ul>
           <li>Budiman Sudjiatmiko</li>
@@ -28,6 +28,13 @@ export default {
   flex-direction: column;
   align-items: center;
 
+  .title-creator {
+    margin-top: 5rem;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+
   .creator-card {
     border: 1px solid black;
     width: 50rem;
@@ -35,13 +42,6 @@ export default {
     margin: 5rem 0;
     text-align: left;
     padding: 10px;
-
-    .title-creator {
-      margin: 1rem 0;
-      font-size: 30px;
-      font-weight: bold;
-      text-align: center;
-    }
 
     .content-creator {
       font-size: 25px;

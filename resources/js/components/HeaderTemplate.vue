@@ -86,13 +86,13 @@ export default {
 <style lang="less" scoped>
 
 .header-wrapper {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgba(0,0,0,.1);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 4rem;
-  background-color: rgba(0,0,0,.05);
+  background-color: rgba(0,0,0,.01);
 
 
   .logo-wrap {

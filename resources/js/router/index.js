@@ -26,6 +26,10 @@ import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampa
 import CreateUpdates from '../views/updatesViews/CreateUpdates.vue'
 import EditUpdates from '../views/updatesViews/EditUpdates.vue'
 
+// Views Faqs
+import CreateFaqs from '../views/faqViews/CreateFaqs.vue'
+import EditFaqs from '../views/faqViews/EditFaqs.vue'
+
 // Views User
 import UserProfile from '../views/userViews/UserProfile.vue'
 import ChangePassword from '../views/userViews/ChangePassword.vue'
@@ -164,6 +168,16 @@ const routes = [
     path: '/updates/edit/:projectId/:updateId',
     name: 'EditUpdates',
     component: EditUpdates,
+  },
+  {
+    path: '/faqs/create/:projectId',
+    name: 'CreateFaqs',
+    component: CreateFaqs,
+  },
+  {
+    path: '/faqs/edit/:projectId/:updateId',
+    name: 'EditFaqs',
+    component: EditFaqs,
   }
 ]
 

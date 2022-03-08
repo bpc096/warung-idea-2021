@@ -45,8 +45,8 @@ export default {
 
 <style lang="less" scoped>
 .footer-wrapper {
-  background-color: rgba(0,0,0,.05);
-  border: 1px solid grey;
+  background-color: rgba(0,0,0,.01);
+  border-top: 1px solid rgba(0,0,0,.1);
   display: flex;
   flex-direction: column;
   height: 25rem;

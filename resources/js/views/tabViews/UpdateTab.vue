@@ -1,6 +1,9 @@
 <template>
   <div class="wrap-update-tab">
     <div v-if="listData.length > 0">
+      <div class="update-title">
+        Project Update
+      </div>
       <div class="update-card" v-for="data in listData" :key="data.id">
         <div class="title-update">
           {{ data.title }}
@@ -12,11 +15,11 @@
           v-if="checkUserOwner"
           class="button-wrap"
         >
-          <a :href="`/updates/edit/${campaignId}/${mockUpdatesId}`" class="btn">
-            Edit Updates
+          <a :href="`/updates/edit/${campaignId}/${data.id}`" class="btn">
+            Edit
           </a>
           <a @click="deleteUpdates" class="btn">
-            Delete Updates
+            Delete
           </a>
         </div>
       </div>
@@ -93,7 +96,7 @@ export default {
   },
   methods: {
     deleteUpdates() {
-      console.log('delete updates');
+      console.log('delete updates')
     }
   }
 }
@@ -110,17 +113,27 @@ export default {
     margin-top: 5rem;
   }
 
+  h2 {
+    margin-top: 5rem;
+  }
+
+  .update-title {
+    margin: 5rem 0 0 0;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+
   .update-card {
     border: 1px solid black;
     border-radius: 5px;
     width: 60rem;
-    min-height: 20rem;
-    margin: 5rem 0;
+    min-height: 10rem;
+    margin: 4rem 0;
     text-align: left;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     .title-update {
       margin: 1rem 0;
