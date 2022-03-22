@@ -29,7 +29,7 @@
           {{ daysBetween }} Hari lagi
         </div>
         <div class="day-left-info">
-          Created By <b>Subejo Atmoko</b>
+          Created by <b>{{ displayCreatorName }}</b>
         </div>
         <div class="button-wrapper">
           <button
@@ -147,6 +147,10 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+    displayCreatorName () {
+      const name = this.projectDetail?.user?.name? this.projectDetail.user.name : 'Anonymous'
+      return name
+    },
     totalBacker() {
       return this.payment.length
     },

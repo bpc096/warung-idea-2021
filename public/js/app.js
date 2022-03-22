@@ -4057,6 +4057,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_10__["mapGetters"])({
     user: 'user'
   })), {}, {
+    displayCreatorName: function displayCreatorName() {
+      var _this$projectDetail, _this$projectDetail$u;
+
+      var name = (_this$projectDetail = this.projectDetail) !== null && _this$projectDetail !== void 0 && (_this$projectDetail$u = _this$projectDetail.user) !== null && _this$projectDetail$u !== void 0 && _this$projectDetail$u.name ? this.projectDetail.user.name : 'Anonymous';
+      return name;
+    },
     totalBacker: function totalBacker() {
       return this.payment.length;
     },
@@ -4090,14 +4096,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.$route.params.projectId;
     },
     imageUrl: function imageUrl() {
-      var _this$projectDetail;
-
-      return (_this$projectDetail = this.projectDetail) !== null && _this$projectDetail !== void 0 && _this$projectDetail.image ? this.projectDetail.image : this.projectDetail.dummyUrlImage;
-    },
-    daysBetween: function daysBetween() {
       var _this$projectDetail2;
 
-      var maxDate = (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.max_date ? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30';
+      return (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.image ? this.projectDetail.image : this.projectDetail.dummyUrlImage;
+    },
+    daysBetween: function daysBetween() {
+      var _this$projectDetail3;
+
+      var maxDate = (_this$projectDetail3 = this.projectDetail) !== null && _this$projectDetail3 !== void 0 && _this$projectDetail3.max_date ? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30';
       var oneDay = 24 * 60 * 60 * 1000;
       var firstDate = new Date();
       var secondDate = new Date(maxDate);
@@ -4105,24 +4111,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return diffDays.toString();
     },
     projectTitle: function projectTitle() {
-      var _this$projectDetail3;
-
-      return (_this$projectDetail3 = this.projectDetail) !== null && _this$projectDetail3 !== void 0 && _this$projectDetail3.title ? this.projectDetail.title : 'Project Title';
-    },
-    projectTargetDonation: function projectTargetDonation() {
       var _this$projectDetail4;
 
-      return (_this$projectDetail4 = this.projectDetail) !== null && _this$projectDetail4 !== void 0 && _this$projectDetail4.target_donation ? this.projectDetail.target_donation.toString() : '10.000.000';
+      return (_this$projectDetail4 = this.projectDetail) !== null && _this$projectDetail4 !== void 0 && _this$projectDetail4.title ? this.projectDetail.title : 'Project Title';
     },
-    projectQuickDesc: function projectQuickDesc() {
+    projectTargetDonation: function projectTargetDonation() {
       var _this$projectDetail5;
 
-      return (_this$projectDetail5 = this.projectDetail) !== null && _this$projectDetail5 !== void 0 && _this$projectDetail5.description ? this.projectDetail.description.slice(0, 100) : 'Project Description';
+      return (_this$projectDetail5 = this.projectDetail) !== null && _this$projectDetail5 !== void 0 && _this$projectDetail5.target_donation ? this.projectDetail.target_donation.toString() : '10.000.000';
     },
-    projectFullDesc: function projectFullDesc() {
+    projectQuickDesc: function projectQuickDesc() {
       var _this$projectDetail6;
 
-      return (_this$projectDetail6 = this.projectDetail) !== null && _this$projectDetail6 !== void 0 && _this$projectDetail6.description ? this.projectDetail.description : 'Project Description';
+      return (_this$projectDetail6 = this.projectDetail) !== null && _this$projectDetail6 !== void 0 && _this$projectDetail6.description ? this.projectDetail.description.slice(0, 100) : 'Project Description';
+    },
+    projectFullDesc: function projectFullDesc() {
+      var _this$projectDetail7;
+
+      return (_this$projectDetail7 = this.projectDetail) !== null && _this$projectDetail7 !== void 0 && _this$projectDetail7.description ? this.projectDetail.description : 'Project Description';
     }
   }),
   methods: {
@@ -47619,7 +47625,10 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "day-left-info" }, [
+            _vm._v("\n        Created by "),
+            _c("b", [_vm._v(_vm._s(_vm.displayCreatorName))]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "button-wrapper" }, [
             _c(
@@ -47724,17 +47733,7 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "day-left-info" }, [
-      _vm._v("\n        Created By "),
-      _c("b", [_vm._v("Subejo Atmoko")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
