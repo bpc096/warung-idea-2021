@@ -12,7 +12,7 @@
       </div>
       <div class="card-additional">
         <div class="creator-info">
-          By Creator-name
+          <i>Created by <b>{{ creatorName }}</b></i>
         </div>
         <div class="icon-info">
           <div class="icon-love">
@@ -56,6 +56,10 @@ export default {
     }
   },
   computed: {
+    creatorName () {
+      const name = this.projectData?.user?.name? this.projectData.user.name : 'Anonymous'
+      return name
+    },
     imageUrl () {
       return this.projectData?.image? this.projectData.image : this.dummyData.contentImageURL
     },

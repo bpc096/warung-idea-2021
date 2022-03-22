@@ -2876,15 +2876,21 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    imageUrl: function imageUrl() {
-      var _this$projectData;
+    creatorName: function creatorName() {
+      var _this$projectData, _this$projectData$use;
 
-      return (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
+      var name = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && (_this$projectData$use = _this$projectData.user) !== null && _this$projectData$use !== void 0 && _this$projectData$use.name ? this.projectData.user.name : 'Anonymous';
+      return name;
     },
-    projectName: function projectName() {
+    imageUrl: function imageUrl() {
       var _this$projectData2;
 
-      var projectTitle = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.title ? this.projectData.title : this.dummyData.contentTitle;
+      return (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.image ? this.projectData.image : this.dummyData.contentImageURL;
+    },
+    projectName: function projectName() {
+      var _this$projectData3;
+
+      var projectTitle = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.title ? this.projectData.title : this.dummyData.contentTitle;
 
       if (this.isInHomePage) {
         return projectTitle.slice(0, 30);
@@ -2893,9 +2899,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectDesc: function projectDesc() {
-      var _this$projectData3;
+      var _this$projectData4;
 
-      var contentDesc = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.description ? this.projectData.description : this.dummyData.contentDescription;
+      var contentDesc = (_this$projectData4 = this.projectData) !== null && _this$projectData4 !== void 0 && _this$projectData4.description ? this.projectData.description : this.dummyData.contentDescription;
 
       if (this.isInHomePage) {
         return contentDesc.slice(0, 200) + '...';
@@ -46661,7 +46667,16 @@ var render = function () {
         _vm._v("\n     " + _vm._s(this.projectDesc) + "\n    "),
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "card-additional" }, [
+        _c("div", { staticClass: "creator-info" }, [
+          _c("i", [
+            _vm._v("Created by "),
+            _c("b", [_vm._v(_vm._s(_vm.creatorName))]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+      ]),
     ]),
   ])
 }
@@ -46670,32 +46685,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-additional" }, [
-      _c("div", { staticClass: "creator-info" }, [
-        _vm._v("\n        By Creator-name\n      "),
+    return _c("div", { staticClass: "icon-info" }, [
+      _c("div", { staticClass: "icon-love" }, [
+        _c("a", { attrs: { href: "#addToLove" } }, [
+          _c("img", {
+            attrs: {
+              src: __webpack_require__(/*! ../../assets/images/icon/love.png */ "./resources/js/assets/images/icon/love.png"),
+              alt: "love-icon",
+            },
+          }),
+        ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "icon-info" }, [
-        _c("div", { staticClass: "icon-love" }, [
-          _c("a", { attrs: { href: "#addToLove" } }, [
-            _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ../../assets/images/icon/love.png */ "./resources/js/assets/images/icon/love.png"),
-                alt: "love-icon",
-              },
-            }),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "icon-bookmark" }, [
-          _c("a", { attrs: { href: "#addToBookmark" } }, [
-            _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ../../assets/images/icon/bookmark.svg */ "./resources/js/assets/images/icon/bookmark.svg"),
-                alt: "bookmark-icon",
-              },
-            }),
-          ]),
+      _c("div", { staticClass: "icon-bookmark" }, [
+        _c("a", { attrs: { href: "#addToBookmark" } }, [
+          _c("img", {
+            attrs: {
+              src: __webpack_require__(/*! ../../assets/images/icon/bookmark.svg */ "./resources/js/assets/images/icon/bookmark.svg"),
+              alt: "bookmark-icon",
+            },
+          }),
         ]),
       ]),
     ])
