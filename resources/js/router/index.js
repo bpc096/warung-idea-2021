@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// Components
-import HelloWorld from '../components/HelloWorld.vue'
-import HaloGuys from '../components/HaloGuys.vue'
-
 // Views
 import LandingPage from '../views/LandingPage.vue'
 import HomePage from '../views/HomePage.vue'
@@ -43,6 +39,9 @@ import InvitationPage from '../views/userViews/invitationPage.vue'
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
 import UpdateTab from '../views/tabViews/UpdateTab.vue'
+
+// Private Message
+import ChatPage from '../views/chatViews/ChatPage.vue'
 
 // store
 import store from '../store'
@@ -192,6 +191,11 @@ const routes = [
     path: '/rewards/edit/:projctId/:updateId',
     name: 'EditRewards',
     component: EditRewards,
+  },
+  {
+    path: '/chat',
+    name: 'ChatPage',
+    component: ChatPage,
   }
 ]
 
