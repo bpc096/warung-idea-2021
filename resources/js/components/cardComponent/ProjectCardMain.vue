@@ -17,12 +17,12 @@
         <div class="icon-info">
           <div class="icon-love">
             <a href="#addToLove">
-              <img src="../../assets/images/icon/love.png" alt="love-icon">
+              <img src="images/icon/love.png" alt="love-icon">
             </a>
           </div>
           <div class="icon-bookmark">
             <a href="#addToBookmark">
-              <img src="../../assets/images/icon/bookmark.svg" alt="bookmark-icon">
+              <img src="images/icon/bookmark.svg" alt="bookmark-icon">
             </a>
           </div>
         </div>

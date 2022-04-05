@@ -1,11 +1,11 @@
 <template>
   <div class="aboutus-wrapper">
     <div class="image-wrapper">
-      <img src="../assets/images/aboutus.jpg" alt="about-us-image">
+      <img src="images/aboutus.jpg" alt="about-us-image">
     </div>
     <div class="text-wrapper">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Libero ut sequi ad veniam tempora dolorem quisquam labore quo inventore optio odit, 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Libero ut sequi ad veniam tempora dolorem quisquam labore quo inventore optio odit,
       qui sint aliquam, aut quod sit? Alias, dolore vel?
     </div>
   </div>
