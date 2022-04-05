@@ -12661,7 +12661,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".chat-page-wrap[data-v-df571542] {\n  min-height: 90vh;\n}\n.chat-page-wrap .title[data-v-df571542] {\n  margin: 1rem 0;\n}\n.chat-page-wrap .content-page[data-v-df571542] {\n  display: flex;\n  flex-direction: row;\n}\n.chat-page-wrap .content-page .side-list-user[data-v-df571542] {\n  width: 25%;\n  height: 90vh;\n  border: 1px solid red;\n}\n.chat-page-wrap .content-page .main-chat[data-v-df571542] {\n  width: 75%;\n  height: 90vh;\n  border: 1px solid blue;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".chat-page-wrap[data-v-df571542] {\n  min-height: 90vh;\n}\n.chat-page-wrap .title[data-v-df571542] {\n  margin: 1rem 0;\n}\n.chat-page-wrap .content-page[data-v-df571542] {\n  display: flex;\n  flex-direction: row;\n}\n.chat-page-wrap .content-page .side-list-user[data-v-df571542] {\n  width: 20%;\n  height: 90vh;\n  border: 1px solid red;\n}\n.chat-page-wrap .content-page .main-chat[data-v-df571542] {\n  width: 80%;\n  height: 90vh;\n  border: 1px solid blue;\n}\n.chat-page-wrap .content-page .main-chat .container[data-v-df571542] {\n  padding: 0;\n  margin: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

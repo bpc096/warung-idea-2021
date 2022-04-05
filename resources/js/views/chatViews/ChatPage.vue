@@ -103,14 +103,19 @@ export default {
     display: flex;
     flex-direction: row;
     .side-list-user {
-      width: 25%;
+      width: 20%;
       height: 90vh;
       border: 1px solid red;
     }
     .main-chat {
-      width: 75%;
+      width: 80%;
       height: 90vh;
       border: 1px solid blue;
+
+      .container {
+        padding: 0;
+        margin: 0;
+      }
     }
   }
 }
