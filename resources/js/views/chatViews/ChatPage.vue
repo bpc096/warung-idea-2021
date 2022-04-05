@@ -10,7 +10,6 @@
       <div class="main-chat">
         <div class="container">
           <div class="card">
-            <div class="card-header">Chats</div>
             <div id="top-scroll-chat" class="card-body">
               <ChatMessages
                 :messages="messages"
