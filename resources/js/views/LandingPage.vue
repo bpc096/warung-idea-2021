@@ -6,12 +6,12 @@
         <h3>Share your idea to the world</h3>
       </div>
       <div class="image-info">
-        <img src="../assets/images/section_test01.svg" alt="image-section-one">
+        <img src="images/section_test01.svg" alt="image-section-one">
       </div>
     </div>
     <div class="section second-section">
       <div class="image-info">
-        <img src="../assets/images/section2.jpg" alt="image-section-two">
+        <img src="images/section2.jpg" alt="image-section-two">
       </div>
       <div class="text-info">
         <h1>Our Mission</h1>
@@ -32,12 +32,12 @@
         </h3>
       </div>
       <div class="image-info">
-        <img src="../assets/images/section3.svg" alt="image-section-three">
+        <img src="images/section3.svg" alt="image-section-three">
       </div>
     </div>
     <div class="section four-section">
       <div class="image-info">
-        <img src="../assets/images/section4.jpg" alt="image-section-four">
+        <img src="images/section4.jpg" alt="image-section-four">
       </div>
       <div class="text-info">
         <h1>Our Ideas</h1>
@@ -53,7 +53,7 @@
       <div class="member-section">
         <div class="member">
           <div class="member-image">
-            <img src="../assets/images/team/bill.jpg" alt="bill-petrus-team-01">
+            <img src="images/team/bill.jpg" alt="bill-petrus-team-01">
           </div>
           <div class="member-name">
             Bill Petrus - Backend Engineer
@@ -61,7 +61,7 @@
         </div>
         <div class="member">
           <div class="member-image">
-            <img src="../assets/images/team/jeffrey.jpg" alt="jeffrey-team-02">
+            <img src="images/team/jeffrey.jpg" alt="jeffrey-team-02">
           </div>
           <div class="member-name">
             Jeffrey Marcellino - Database Engineer
@@ -69,7 +69,7 @@
         </div>
         <div class="member">
           <div class="member-image">
-            <img src="../assets/images/team/ghozi.jpg" alt="ghozi-team-03">
+            <img src="images/team/ghozi.jpg" alt="ghozi-team-03">
           </div>
           <div class="member-name">
             M Faisal Ghozi - Frontend Engineer
@@ -122,8 +122,8 @@ export default {
     background-color: #D8F2FF;
   }
 
-  .second-section, 
-  .third-section, 
+  .second-section,
+  .third-section,
   .four-section {
     .text-info {
       width: 35rem;
@@ -134,9 +134,11 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 95vh;
     h1 {
       font-size: 4rem;
+      color: #17a2b8;
     }
     .member-section {
       display: flex;
@@ -164,7 +166,7 @@ export default {
 
         .member-image {
           width: 100%;
-          height: 60%; 
+          height: 60%;
           img {
             height: 100%;
             border-radius: 10px;

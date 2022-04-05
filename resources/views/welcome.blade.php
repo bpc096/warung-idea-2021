@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>WarungIdea2021</title>
+        <title>WarungIdea • Wujudkan idemu sekarang</title>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
         <script src="{{ mix('js/app.js') }}" type="text/javascript" defer></script>
@@ -14,6 +14,7 @@
         type="text/javascript"
         src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="SB-Mid-client-ljOML1mcnbORKUbA">
+        <script id="dsq-count-scr" src="//warungidea.disqus.com/count.js" async></script>
       </script>
     </body>
 </html>

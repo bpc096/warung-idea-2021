@@ -65,7 +65,7 @@ export default {
       } else {
         return 0
       }
-    }
+    },
   },
   methods: {
     async fetchAllProjectList () {
@@ -79,10 +79,6 @@ export default {
         })
     },
     updateProjectBasedOnCategory() {
-      console.log('Calling update project category')
-      console.log(this.allProjectList)
-      console.log(this.categoryProjectList)
-
       if (!this.allProjectList) return
       this.categoryProjectList = this.allProjectList.filter(project => parseInt(project.category_id) === this.getCategoryId)
     }

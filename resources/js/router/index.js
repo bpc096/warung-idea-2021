@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// Components
-import HelloWorld from '../components/HelloWorld.vue'
-import HaloGuys from '../components/HaloGuys.vue'
-
 // Views
 import LandingPage from '../views/LandingPage.vue'
 import HomePage from '../views/HomePage.vue'
@@ -22,6 +18,18 @@ import EditCampaign from '../views/campaignViews/EditCampaign.vue'
 import HistoryCampaign from '../views/campaignViews/HistoryCampaign.vue'
 import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampaign.vue'
 
+// Views Updates
+import CreateUpdates from '../views/updatesViews/CreateUpdates.vue'
+import EditUpdates from '../views/updatesViews/EditUpdates.vue'
+
+// Views Faqs
+import CreateFaqs from '../views/faqViews/CreateFaqs.vue'
+import EditFaqs from '../views/faqViews/EditFaqs.vue'
+
+// Views Rewards
+import CreateRewards from '../views/rewardViews/CreateRewards.vue'
+import EditRewards from '../views/RewardViews/EditRewards.vue'
+
 // Views User
 import UserProfile from '../views/userViews/UserProfile.vue'
 import ChangePassword from '../views/userViews/ChangePassword.vue'
@@ -31,6 +39,9 @@ import InvitationPage from '../views/userViews/invitationPage.vue'
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
 import UpdateTab from '../views/tabViews/UpdateTab.vue'
+
+// Private Message
+import ChatPage from '../views/chatViews/ChatPage.vue'
 
 // store
 import store from '../store'
@@ -86,7 +97,10 @@ const routes = [
   {
     path: '/projectdetail/:projectId',
     name: 'ProjectDetail',
-    component: ProjectDetailPage
+    component: ProjectDetailPage,
+    meta: {
+      auth: true,
+    }
   },
   {
     path: '/checkout',
@@ -149,14 +163,39 @@ const routes = [
     component: EditCampaign,
   },
   {
-    path: '/haloguys',
-    name: 'HaloGuys',
-    component: HaloGuys,
+    path: '/updates/create/:projectId',
+    name: 'CreateUpdates',
+    component: CreateUpdates,
   },
   {
-    path: '/helloworld',
-    name: 'HelloWorld',
-    component: HelloWorld,
+    path: '/updates/edit/:projectId/:updateId',
+    name: 'EditUpdates',
+    component: EditUpdates,
+  },
+  {
+    path: '/faqs/create/:projectId',
+    name: 'CreateFaqs',
+    component: CreateFaqs,
+  },
+  {
+    path: '/faqs/edit/:projectId/:updateId',
+    name: 'EditFaqs',
+    component: EditFaqs,
+  },
+  {
+    path: '/rewards/create/:projectId',
+    name: 'CreateRewards',
+    component: CreateRewards,
+  },
+  {
+    path: '/rewards/edit/:projctId/:updateId',
+    name: 'EditRewards',
+    component: EditRewards,
+  },
+  {
+    path: '/chat',
+    name: 'ChatPage',
+    component: ChatPage,
   }
 ]
 

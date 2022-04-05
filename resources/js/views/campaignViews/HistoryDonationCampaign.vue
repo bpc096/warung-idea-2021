@@ -14,7 +14,7 @@
     <div v-if="listDonation.length > 0">
       <CampaignCard
         v-for="(donation, idx) in listDonation"
-        :isInHistoryCampaignPage="false"
+        :isInHistoryOwnedPage="false"
         :donationInfo="donation"
         :campaignInfo="donation.campaign"
         :key="idx"
@@ -72,7 +72,7 @@ export default {
       // TODO : Check Eligiblelity to edit campaign
       return true
     }
-  }
+  },
 }
 </script>
 

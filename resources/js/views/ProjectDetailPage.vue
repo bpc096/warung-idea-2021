@@ -2,7 +2,9 @@
   <div class="project-detail-page">
     <RewardModal
       v-if="showRewardModal"
-      :campaignId="projectId"
+      :userId="user.id"
+      :ownerId="projectDetail.users_id"
+      :campaignId="projectDetail.id"
       @close="closeModal"
     />
     <div class="wrap-title">
@@ -25,6 +27,9 @@
         </div>
         <div class="day-left-info">
           {{ daysBetween }} Hari lagi
+        </div>
+        <div class="day-left-info">
+          Created by <b>{{ displayCreatorName }}</b>
         </div>
         <div class="button-wrapper">
           <button
@@ -55,13 +60,29 @@
           />
         </tab>
         <tab name="Updates">
-          <updateTab />
+          <updateTab
+            :userId="user.id"
+            :ownerId="projectDetail.users_id"
+            :campaignId="projectDetail.id"
+          />
         </tab>
         <tab name="FAQ">
-          <faqTab />
+          <faqTab
+            :userId="user.id"
+            :ownerId="projectDetail.users_id"
+            :campaignId="projectDetail.id"
+          />
         </tab>
         <tab name="Collaborator">
           <creatorTab />
+        </tab>
+        <tab name="Forum">
+          <forumTab
+            :projectData="projectDetail"
+          />
+        </tab>
+        <tab name="Payment">
+          <paymentTab />
         </tab>
       </tabs>
     </div>
@@ -78,9 +99,13 @@ import campaignTab from '../views/tabViews/CampaignTab.vue'
 import updateTab from '../views/tabViews/UpdateTab.vue'
 import faqTab from '../views/tabViews/FaqTab.vue'
 import creatorTab from '../views/tabViews/CreatorTab.vue'
+import forumTab from '../views/tabViews/forumTab.vue'
+import paymentTab from '../views/tabViews/paymentTab.vue'
 
 // Modal
 import RewardModal from '../components/RewardModal.vue'
+
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ProjectDetail',
@@ -92,6 +117,8 @@ export default {
     faqTab,
     RewardModal,
     creatorTab,
+    forumTab,
+    paymentTab
   },
   data: () => {
     return {
@@ -101,23 +128,31 @@ export default {
       },
       sumPayment: [],
       progress: '80',
+      payment: [],
     }
   },
   async created () {
     await this.$store
       .dispatch('getCampaignById', this.$route.params.projectId)
       .then((res) => {
+        this.payment = res.payments ? res.payments : []
         this.projectDetail = res.data
         this.sumPayment = res.data.sum_payment
-        console.log('sumPayment', this.sumPayment)
       })
       .catch(err => {
         console.log(err)
       })
   },
   computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
+    displayCreatorName () {
+      const name = this.projectDetail?.user?.name? this.projectDetail.user.name : 'Anonymous'
+      return name
+    },
     totalBacker() {
-      return Math.floor((Math.random() * 100) + 2)
+      return this.payment.length
     },
     totalPayment() {
       return this.sumPayment[0]?.total? this.sumPayment[0].total : '1'
@@ -177,8 +212,6 @@ export default {
       .replace(/[IDR]/gi, '')
       .replace(/(\.+\d{2})/, '')
       .trimLeft()
-
-      console.log(`Rp ${formatter}`)
       return formatter
     },
     checkMaxDate(date){
@@ -214,7 +247,7 @@ export default {
   }
 
   .wrap-main-section{
-    border: 1px solid black;
+    border-top: 1px solid black;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -229,11 +262,13 @@ export default {
         width: 20rem;
         height: 1.5rem;
         border: 2px solid black;
+        border-radius: 10px;
         margin-bottom: 30px;
 
         .progress-color-custom{
           height: 100%;
-          background-color: green;
+          background-color: #1FAB89;
+          border-radius: 10px;
         }
       }
 
@@ -288,7 +323,6 @@ export default {
       .image {
         width: 80%;
         height: 80%;
-        background-color: blue;
 
         img {
           width: 100%;

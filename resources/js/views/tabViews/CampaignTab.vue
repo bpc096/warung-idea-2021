@@ -35,10 +35,10 @@ export default {
 .wrap-campaign-tab{
   height: 70vh;
   text-align: left;
-  padding: 0 5rem;
+  padding: 0 20rem;
 
   .background-section {
-    margin: 2rem 0;
+    margin: 4rem 0;
     .background-title {
       font-size: 30px;
       font-weight: bold;
@@ -46,7 +46,7 @@ export default {
   }
 
   .design-plan-section {
-    margin: 2rem 0;
+    margin: 4rem 0;
     .design-plan-title {
       font-size: 30px;
       font-weight: bold;

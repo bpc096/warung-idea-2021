@@ -141,10 +141,10 @@ export default {
     },
     checkAvailableProjectFeatureSingle () {
       // CHECKING API FOR AVAILABLE PROJECT FEATURE
-      const resFeatureSingle = this.allProjectList.filter((project, idx) => {
-        if(idx <= 0) return project
-      })
-      this.projectFeatureSingle = resFeatureSingle[0]
+      const maxProjectTotal = this.allProjectList.length
+      const randomNum = Math.floor(Math.random() * (maxProjectTotal-1)) + 1;
+      const resFeatureSingle = this.allProjectList[randomNum]
+      this.projectFeatureSingle = resFeatureSingle
     },
     checkAvailableProjectPopular () {
       // CHECKING API FOR AVAILABLE PROJECT POPULAR
@@ -196,13 +196,17 @@ export default {
       margin-top: 2rem;
       .project-feature-card {
         width: 100%;
-        padding: 2rem;
+        padding: 2rem 2rem 0 2rem;
         a {
           text-decoration: none;
         }
       }
       .project-feature-list {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
         a {
           text-decoration: none;
           color: black;
@@ -240,6 +244,7 @@ export default {
         height: 70%;
         width: 100%;
         align-items: center;
+        justify-content: space-around;
         a {
           text-decoration: none;
           color: black;
@@ -262,7 +267,7 @@ export default {
       }
 
       .section-content {
-        height: 100%;
+        min-height: 100%;
         display: flex;
         flex-direction: row;
         margin-top: 4rem;

@@ -8,9 +8,9 @@
             <form @submit.prevent="donateAmount">
               <input
                 v-model="amountDonation"
+                id="amount"
                 class="input-amount"
                 type="text"
-                id="amount"
                 name="amount"
               >
               <button class="btn-donate" type="submit">Donate!</button>
@@ -36,6 +36,17 @@
                 </div>
               </div>
             </router-link>
+            <div
+              v-if="checkUserOwner"
+              class="button-wrap"
+            >
+              <a :href="`/rewards/edit/${campaignId}/${d.rewardId}`" class="btn">
+                Edit
+              </a>
+              <a @click="deleteReward" class="btn">
+                Delete
+              </a>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -57,42 +68,51 @@ export default {
   name: 'RewardModal',
   props: {
     campaignId: {
+      type: Number,
       default: 1,
+    },
+    userId: {
+      type: Number,
+      default: 1
+    },
+    ownerId: {
+      type: String,
+      default: "0"
     }
   },
   data: () => {
     return {
       data: [
         {
-          rewardId: 'rewardId01',
+          rewardId: '1',
           rewardPrice: 'Rp20.000',
           rewardAmount: '20000',
           rewardTitle: 'Reward 01',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
-          rewardId: 'rewardId04',
+          rewardId: '2',
           rewardPrice: 'Rp150.000',
           rewardAmount: '150000',
           rewardTitle: 'Reward 04',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
-          rewardId: 'rewardId02',
+          rewardId: '3',
           rewardPrice: 'Rp500.000',
           rewardAmount: '500000',
           rewardTitle: 'Reward 02',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
-          rewardId: 'rewardId03',
+          rewardId: '4',
           rewardPrice: 'Rp1.000.000',
           rewardAmount: '1000000',
           rewardTitle: 'Reward 03',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
-          rewardId: 'rewardId05',
+          rewardId: '5',
           rewardPrice: 'Rp10.000.000',
           rewardAmount: '10000000',
           rewardTitle: 'Reward 05',
@@ -112,6 +132,10 @@ export default {
     },
     checkAmountInvalid () {
       return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0
+    },
+    checkUserOwner() {
+      return true
+      // return parseInt(this.ownerId) === this.userId
     }
   },
   methods: {
@@ -129,6 +153,10 @@ export default {
           campaignId: this.campaignId
         }
       })
+    },
+    deleteReward() {
+      // TODO: TB Developed once can create
+      console.log('delete reward')
     }
   }
 }
@@ -196,6 +224,17 @@ export default {
           width: 300px;
         }
       }
+
+      .button-wrap {
+          margin: 1rem 0;
+          text-align: center;
+
+          .btn {
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-left: .5rem;
+          }
+        }
 
       .reward-card-container {
         text-align: left;
