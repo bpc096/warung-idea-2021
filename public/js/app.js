@@ -3964,11 +3964,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this$projectDetail3;
 
       var maxDate = (_this$projectDetail3 = this.projectDetail) !== null && _this$projectDetail3 !== void 0 && _this$projectDetail3.max_date ? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30';
-      var oneDay = 24 * 60 * 60 * 1000;
-      var firstDate = new Date();
-      var secondDate = new Date(maxDate);
-      var diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-      return diffDays.toString();
+      var dayBetween = '';
+
+      if (maxDate.datePass) {
+        dayBetween = 'Proyek telah selesai!';
+      } else {
+        var oneDay = 24 * 60 * 60 * 1000;
+        var firstDate = new Date();
+        var secondDate = new Date(maxDate.tempDate);
+        var diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+        dayBetween = diffDays.toString() + ' Hari Lagi';
+      }
+
+      return dayBetween;
     },
     projectTitle: function projectTitle() {
       var _this$projectDetail4;
@@ -4001,13 +4009,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return formatter;
     },
     checkMaxDate: function checkMaxDate(date) {
-      var tempDate = '2055-05-05';
+      // let tempDate = '2055-05-05'
+      var checkMaxDate = '';
+      var datePassed = false;
 
       if (new Date(date).getTime() > new Date().getTime()) {
-        tempDate = date;
+        checkMaxDate = date;
+      } else {
+        checkMaxDate = date;
+        datePassed = true;
       }
 
-      return tempDate;
+      return {
+        tempDate: checkMaxDate,
+        datePass: datePassed
+      };
     },
     btnSupportHandle: function btnSupportHandle() {
       console.log('CLICK SUPPORT');
@@ -5077,7 +5093,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -50609,7 +50624,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "logo-wrap" }, [
       _c("a", { attrs: { href: "/" } }, [
         _c("img", {
-          attrs: { src: "images/icon/light-bulb.png", alt: "bright-lamp" },
+          attrs: { src: "\\images\\icon\\light-bulb.png", alt: "bright-lamp" },
         }),
         _vm._v(" "),
         _c("div", { staticClass: "text-image" }, [
@@ -52149,9 +52164,7 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "day-left-info" }, [
-            _vm._v(
-              "\n        " + _vm._s(_vm.daysBetween) + " Hari lagi\n      "
-            ),
+            _vm._v("\n        " + _vm._s(_vm.daysBetween) + "\n      "),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "day-left-info" }, [
@@ -53380,8 +53393,6 @@ var render = function () {
       _c("div", { staticClass: "main-chat" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Chats")]),
-            _vm._v(" "),
             _c(
               "div",
               { staticClass: "card-body", attrs: { id: "top-scroll-chat" } },

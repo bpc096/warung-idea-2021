@@ -3,7 +3,7 @@
     <div class="logo-wrap">
       <a href="/">
         <img
-          src="images/icon/light-bulb.png"
+          src="\images\icon\light-bulb.png"
           alt="bright-lamp"
         >
         <div class="text-image">

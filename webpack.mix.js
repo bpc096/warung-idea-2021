@@ -31,5 +31,5 @@ mix
   .js('resources/js/app.js', 'public/js')
   .vue()
   .sass('resources/sass/app.scss', 'public/css')
-  .less('resources/less/app.less', 'public/css');
-
+  .less('resources/less/app.less', 'public/css')
+  .disableNotifications();
