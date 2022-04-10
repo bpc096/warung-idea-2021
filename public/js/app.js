@@ -5928,6 +5928,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ForumTab',
@@ -5938,6 +5940,15 @@ __webpack_require__.r(__webpack_exports__);
         category_id: 1
       }
     }
+  },
+  data: function data() {
+    return {
+      lang: 'en',
+      pageConfig: {
+        url: location.href,
+        identifier: location.pathname
+      }
+    };
   },
   components: {
     Disqus: vue_disqus__WEBPACK_IMPORTED_MODULE_0__.Disqus
@@ -5964,6 +5975,9 @@ __webpack_require__.r(__webpack_exports__);
         title: this.getTitle,
         category_id: this.getCategoryId
       };
+    },
+    newComment: function newComment(e) {
+      console.log(e);
     }
   }
 });
@@ -54106,7 +54120,12 @@ var render = function () {
       _c("h2", { attrs: { id: "comment" } }, [_vm._v("Forum")]),
       _vm._v(" "),
       _c("Disqus", {
-        attrs: { shortname: "warungidea", pageConfig: _vm.getPageConfig },
+        attrs: {
+          shortname: "warungidea",
+          pageConfig: _vm.pageConfig,
+          lang: _vm.lang,
+        },
+        on: { "new-comment": _vm.newComment },
       }),
     ],
     1

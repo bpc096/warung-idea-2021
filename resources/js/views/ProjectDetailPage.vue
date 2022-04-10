@@ -135,7 +135,7 @@ export default {
     await this.$store
       .dispatch('getCampaignById', this.$route.params.projectId)
       .then((res) => {
-        this.payment = res.payments ? res.payments : []
+        this.payment = res.payments || []
         this.projectDetail = res.data
         this.sumPayment = res.data.sum_payment
       })
