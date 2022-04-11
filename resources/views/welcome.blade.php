@@ -9,12 +9,14 @@
         <script src="{{ mix('js/app.js') }}" type="text/javascript" defer></script>
     </head>
     <body style="background-color: white; margin: 0; padding: 0;">
-       <div id="app"></div>
-       <script
-        type="text/javascript"
-        src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="SB-Mid-client-ljOML1mcnbORKUbA">
+        <div id="app"></div>
+        <script
+          type="text/javascript"
+          src="https://app.sandbox.midtrans.com/snap/snap.js"
+          data-client-key="SB-Mid-client-ljOML1mcnbORKUbA"
+        >
         <script id="dsq-count-scr" src="//warungidea.disqus.com/count.js" async></script>
+        <script type="text/css" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.22.0/css/uikit.almost-flat.min.css"></script>
       </script>
     </body>
 </html>

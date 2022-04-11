@@ -47,5 +47,9 @@ export default {
   .left {
     text-align: left;
   }
+
+  p {
+    width: 90%;
+  }
 }
 </style>

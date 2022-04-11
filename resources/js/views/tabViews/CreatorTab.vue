@@ -5,11 +5,43 @@
     </div>
     <div class="creator-card">
       <div class="content-creator">
-        <ul>
-          <li>Budiman Sudjiatmiko</li>
-          <li>Andre Bodat</li>
-          <li>Sugiarto Hartaono</li>
-        </ul>
+        <table>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Country</th>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+          </tr>
+          <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+          </tr>
+          <tr>
+            <td>Ernst Handel</td>
+            <td>Roland Mendel</td>
+            <td>Austria</td>
+          </tr>
+          <tr>
+            <td>Island Trading</td>
+            <td>Helen Bennett</td>
+            <td>UK</td>
+          </tr>
+          <tr>
+            <td>Laughing Bacchus Winecellars</td>
+            <td>Yoshi Tannamuri</td>
+            <td>Canada</td>
+          </tr>
+          <tr>
+            <td>Magazzini Alimentari Riuniti</td>
+            <td>Giovanni Rovelli</td>
+            <td>Italy</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -27,6 +59,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5rem;
 
   .title-creator {
     margin-top: 5rem;
@@ -38,13 +71,28 @@ export default {
   .creator-card {
     border: 1px solid black;
     width: 50rem;
-    height: 20rem;
+    min-height: 20rem;
     margin: 5rem 0;
     text-align: left;
     padding: 10px;
 
     .content-creator {
-      font-size: 25px;
+      font-size: 20px;
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
     }
   }
 

@@ -76,13 +76,13 @@
         <tab name="Collaborator">
           <creatorTab />
         </tab>
+        <tab name="Payment">
+          <paymentTab />
+        </tab>
         <tab name="Forum">
           <forumTab
             :projectData="projectDetail"
           />
-        </tab>
-        <tab name="Payment">
-          <paymentTab />
         </tab>
       </tabs>
     </div>
@@ -103,7 +103,7 @@ import forumTab from '../views/tabViews/forumTab.vue'
 import paymentTab from '../views/tabViews/paymentTab.vue'
 
 // Modal
-import RewardModal from '../components/RewardModal.vue'
+import RewardModal from '../components/modalComponent/RewardModal.vue'
 
 import { mapGetters } from 'vuex'
 
@@ -155,7 +155,7 @@ export default {
       return this.payment.length
     },
     totalPayment() {
-      return this.sumPayment[0]?.total? this.sumPayment[0].total : '1'
+      return this.sumPayment[0]?.total? this.sumPayment[0].total : '0'
     },
     progressPercentage() {
       let progressBar = '1'
@@ -307,7 +307,7 @@ export default {
           padding: 10px;
           margin-right: 1rem;
           &:hover{
-            background-color: black;
+            background-color: green;
             color: white;
           }
         }
@@ -319,7 +319,7 @@ export default {
           padding: 10px;
 
           &:hover{
-            background-color: black;
+            background-color: blueviolet;
             color: white;
           }
         }

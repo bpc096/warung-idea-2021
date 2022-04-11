@@ -104,16 +104,15 @@ export default {
     .side-list-user {
       width: 20%;
       height: 90vh;
-      border: 1px solid red;
     }
     .main-chat {
       width: 80%;
       height: 90vh;
-      border: 1px solid blue;
 
       .container {
         padding: 0;
         margin: 0;
+        max-width: 100%;
       }
     }
   }
