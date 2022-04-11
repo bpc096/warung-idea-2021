@@ -19,7 +19,7 @@ export default {
 
 <style lang="less" scoped>
 .aboutus-wrapper {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,14 +28,17 @@ export default {
 
   .image-wrapper {
     img {
-      width: 33rem;
-      height: 33rem;
+      border-radius: 50%;
+      width: 35rem;
+      height: 35rem;
     }
+    margin-top: 2rem;
     margin-bottom: 2rem;
   }
 
   .text-wrapper {
     margin-top: 5rem;
+    margin-bottom: 5rem;
     width: 50%;
     font-size: 26px;
     font-weight: 500;

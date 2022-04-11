@@ -3899,7 +3899,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               _context.next = 2;
               return _this.$store.dispatch('getCampaignById', _this.$route.params.projectId).then(function (res) {
-                _this.payment = res.payments ? res.payments : [];
+                _this.payment = res.payments || [];
                 _this.projectDetail = res.data;
                 _this.sumPayment = res.data.sum_payment;
               })["catch"](function (err) {
@@ -4118,7 +4118,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'LoginPage'
         });
       })["catch"](function (err) {
-        _this.errors = err.response.data.errors || [['Register Failed Please Try Again!']];
+        _this.errors = err.response.data || [['Register Failed Please Try Again!']];
       });
     }
   }
@@ -12306,7 +12306,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".aboutus-wrapper[data-v-75164aeb] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-bottom: 2rem;\n}\n.aboutus-wrapper .image-wrapper[data-v-75164aeb] {\n  margin-bottom: 2rem;\n}\n.aboutus-wrapper .image-wrapper img[data-v-75164aeb] {\n  width: 33rem;\n  height: 33rem;\n}\n.aboutus-wrapper .text-wrapper[data-v-75164aeb] {\n  margin-top: 5rem;\n  width: 50%;\n  font-size: 26px;\n  font-weight: 500;\n  text-align: center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".aboutus-wrapper[data-v-75164aeb] {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-bottom: 2rem;\n}\n.aboutus-wrapper .image-wrapper[data-v-75164aeb] {\n  margin-top: 2rem;\n  margin-bottom: 2rem;\n}\n.aboutus-wrapper .image-wrapper img[data-v-75164aeb] {\n  border-radius: 50%;\n  width: 35rem;\n  height: 35rem;\n}\n.aboutus-wrapper .text-wrapper[data-v-75164aeb] {\n  margin-top: 5rem;\n  margin-bottom: 5rem;\n  width: 50%;\n  font-size: 26px;\n  font-weight: 500;\n  text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
