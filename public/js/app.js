@@ -2038,31 +2038,31 @@ __webpack_require__.r(__webpack_exports__);
         name: 'Onad sodin',
         code: 'os'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto 1',
         code: 'jp'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto 2',
         code: 'j23p'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto pas3to',
         code: 'jgp'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto 4',
         code: 'fjp'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto 5',
         code: 'djp'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto 6',
         code: 'jfqp'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto 65',
         code: 'jcvp'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto 656',
         code: 'jtsp'
       }, {
-        name: 'Janto pasto',
+        name: 'Janto 47',
         code: 'jqwep'
       }]
     };
@@ -6016,6 +6016,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue_disqus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-disqus */ "./node_modules/vue-disqus/dist/vue-disqus.esm.js");
+//
+//
 //
 //
 //
@@ -12250,7 +12252,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.01);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap .btn-main[data-v-ed47945c] {\n  font-weight: 500;\n  letter-spacing: 2px;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: pink;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 15%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-left: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n  cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.01);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap .btn-main[data-v-ed47945c] {\n  font-weight: 500;\n  letter-spacing: 2px;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: blue;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 15%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-left: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13066,7 +13068,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".forum-tab-wrap[data-v-ca8ed78a] {\n  height: 90vh;\n  margin-top: 3rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".forum-tab-wrap[data-v-ca8ed78a] {\n  height: 90vh;\n  margin-top: 3rem;\n}\n.forum-tab-wrap .title-tab[data-v-ca8ed78a] {\n  margin: 5rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -54679,7 +54681,9 @@ var render = function () {
     "section",
     { staticClass: "forum-tab-wrap", attrs: { "aria-labelledby": "comment" } },
     [
-      _c("h2", { attrs: { id: "comment" } }, [_vm._v("Forum")]),
+      _c("div", { staticClass: "title-tab" }, [
+        _vm._v("\n    Forum Discussion\n  "),
+      ]),
       _vm._v(" "),
       _c("Disqus", {
         attrs: {
@@ -54744,7 +54748,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v("Maria Anders")]),
               _vm._v(" "),
-              _c("td", [_vm._v("Germany")]),
+              _c("td", [_vm._v("Rp 20.000")]),
             ]),
             _vm._v(" "),
             _c("tr", [
@@ -54752,13 +54756,15 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v("Francisco Chang")]),
               _vm._v(" "),
-              _c("td", [_vm._v("Mexico")]),
+              _c("td", [_vm._v("Rp 80.000")]),
             ]),
             _vm._v(" "),
             _c("tr", [
+              _c("td", [_vm._v("3")]),
+              _vm._v(" "),
               _c("td", [_vm._v("Roland Mendel")]),
               _vm._v(" "),
-              _c("td", [_vm._v("Austria")]),
+              _c("td", [_vm._v("Rp 20.000")]),
             ]),
             _vm._v(" "),
             _c("tr", [
@@ -54766,7 +54772,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v("Helen Bennett")]),
               _vm._v(" "),
-              _c("td", [_vm._v("UK")]),
+              _c("td", [_vm._v("Rp 2.330.000")]),
             ]),
             _vm._v(" "),
             _c("tr", [
@@ -54774,7 +54780,7 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("td", [_vm._v("Yoshi Tannamuri")]),
               _vm._v(" "),
-              _c("td", [_vm._v("Canada")]),
+              _c("td", [_vm._v("Rp 590.000")]),
             ]),
           ]),
         ]),

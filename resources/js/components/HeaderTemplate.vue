@@ -130,7 +130,7 @@ export default {
       text-decoration: none;
       color: black;
       &:hover {
-        color: pink;
+        color: blue;
       }
     }
   }

@@ -14,27 +14,27 @@
           <tr>
             <td>1</td>
             <td>Maria Anders</td>
-            <td>Germany</td>
+            <td>Rp 20.000</td>
           </tr>
           <tr>
             <td>2</td>
             <td>Francisco Chang</td>
-            <td>Mexico</td>
+            <td>Rp 80.000</td>
           </tr>
           <tr>
-            <td3</td>
+            <td>3</td>
             <td>Roland Mendel</td>
-            <td>Austria</td>
+            <td>Rp 20.000</td>
           </tr>
           <tr>
             <td>4</td>
             <td>Helen Bennett</td>
-            <td>UK</td>
+            <td>Rp 2.330.000</td>
           </tr>
           <tr>
             <td>5</td>
             <td>Yoshi Tannamuri</td>
-            <td>Canada</td>
+            <td>Rp 590.000</td>
           </tr>
         </table>
       </div>

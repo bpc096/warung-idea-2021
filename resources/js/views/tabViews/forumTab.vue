@@ -1,6 +1,8 @@
 <template>
   <section class='forum-tab-wrap' aria-labelledby="comment">
-    <h2 id="comment">Forum</h2>
+    <div class="title-tab">
+      Forum Discussion
+    </div>
     <Disqus
       shortname="warungidea"
       :pageConfig="pageConfig"
@@ -69,5 +71,12 @@ export default {
 .forum-tab-wrap {
   height: 90vh;
   margin-top: 3rem;
+
+  .title-tab {
+    margin: 5rem 0;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
 }
 </style>
