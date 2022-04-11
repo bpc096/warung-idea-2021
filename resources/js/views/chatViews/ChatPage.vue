@@ -76,7 +76,7 @@ export default {
     async addMessage(message) {
       // await this.scrollTopChat()
 
-      console.log(message)
+      // console.log(message)
       const msg = {
         message: message.message,
         user: message.user

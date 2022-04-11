@@ -5210,7 +5210,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 // await this.scrollTopChat()
-                console.log(message);
+                // console.log(message)
                 msg = {
                   message: message.message,
                   user: message.user
@@ -5221,7 +5221,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 // });
 
 
-              case 3:
+              case 2:
               case "end":
                 return _context.stop();
             }
