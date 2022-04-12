@@ -1,9 +1,13 @@
 <template>
   <section class='forum-tab-wrap' aria-labelledby="comment">
-    <h2 id="comment">Forum</h2>
+    <div class="title-tab">
+      Forum Discussion
+    </div>
     <Disqus
-      shortname='warungidea'
-      :pageConfig="getPageConfig"
+      shortname="warungidea"
+      :pageConfig="pageConfig"
+      :lang="lang"
+      @new-comment="newComment"
     />
   </section>
 </template>
@@ -18,6 +22,15 @@ export default {
       type: Object,
       default: {
         category_id: 1
+      }
+    }
+  },
+  data: () => {
+    return {
+      lang: 'en',
+      pageConfig: {
+        url: location.href,
+        identifier: location.pathname
       }
     }
   },
@@ -46,6 +59,9 @@ export default {
         title: this.getTitle,
         category_id: this.getCategoryId
       }
+    },
+    newComment(e){
+      console.log(e)
     }
   }
 }
@@ -55,5 +71,12 @@ export default {
 .forum-tab-wrap {
   height: 90vh;
   margin-top: 3rem;
+
+  .title-tab {
+    margin: 5rem 0;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
 }
 </style>

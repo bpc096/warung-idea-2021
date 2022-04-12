@@ -26,7 +26,7 @@
           {{ totalBacker }} Penyumbang
         </div>
         <div class="day-left-info">
-          {{ daysBetween }} Hari lagi
+          {{ daysBetween }}
         </div>
         <div class="day-left-info">
           Created by <b>{{ displayCreatorName }}</b>
@@ -76,13 +76,13 @@
         <tab name="Collaborator">
           <creatorTab />
         </tab>
+        <tab name="Payment">
+          <paymentTab />
+        </tab>
         <tab name="Forum">
           <forumTab
             :projectData="projectDetail"
           />
-        </tab>
-        <tab name="Payment">
-          <paymentTab />
         </tab>
       </tabs>
     </div>
@@ -103,7 +103,7 @@ import forumTab from '../views/tabViews/forumTab.vue'
 import paymentTab from '../views/tabViews/paymentTab.vue'
 
 // Modal
-import RewardModal from '../components/RewardModal.vue'
+import RewardModal from '../components/modalComponent/RewardModal.vue'
 
 import { mapGetters } from 'vuex'
 
@@ -135,7 +135,7 @@ export default {
     await this.$store
       .dispatch('getCampaignById', this.$route.params.projectId)
       .then((res) => {
-        this.payment = res.payments ? res.payments : []
+        this.payment = res.payments || []
         this.projectDetail = res.data
         this.sumPayment = res.data.sum_payment
       })
@@ -155,7 +155,7 @@ export default {
       return this.payment.length
     },
     totalPayment() {
-      return this.sumPayment[0]?.total? this.sumPayment[0].total : '1'
+      return this.sumPayment[0]?.total? this.sumPayment[0].total : '0'
     },
     progressPercentage() {
       let progressBar = '1'
@@ -182,12 +182,18 @@ export default {
     },
     daysBetween () {
       const maxDate = this.projectDetail?.max_date? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30'
+      let dayBetween = ''
 
-      const oneDay = 24 * 60 * 60 * 1000
-      const firstDate = new Date()
-      const secondDate = new Date(maxDate)
-      const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay))
-      return diffDays.toString()
+      if(maxDate.datePass) {
+        dayBetween = 'Proyek telah selesai!'
+      } else {
+        const oneDay = 24 * 60 * 60 * 1000
+        const firstDate = new Date()
+        const secondDate = new Date(maxDate.tempDate)
+        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay))
+        dayBetween = diffDays.toString() + ' Hari Lagi'
+      }
+      return dayBetween
     },
     projectTitle () {
       return this.projectDetail?.title? this.projectDetail.title : 'Project Title'
@@ -215,11 +221,16 @@ export default {
       return formatter
     },
     checkMaxDate(date){
-      let tempDate = '2055-05-05'
+      // let tempDate = '2055-05-05'
+      let checkMaxDate = ''
+      let datePassed = false
       if(new Date(date).getTime() > new Date().getTime()) {
-        tempDate = date
+        checkMaxDate = date
+      } else {
+        checkMaxDate = date
+        datePassed = true
       }
-      return tempDate
+      return {tempDate: checkMaxDate, datePass: datePassed}
     },
     btnSupportHandle () {
       console.log('CLICK SUPPORT')
@@ -296,7 +307,7 @@ export default {
           padding: 10px;
           margin-right: 1rem;
           &:hover{
-            background-color: black;
+            background-color: green;
             color: white;
           }
         }
@@ -308,7 +319,7 @@ export default {
           padding: 10px;
 
           &:hover{
-            background-color: black;
+            background-color: blueviolet;
             color: white;
           }
         }

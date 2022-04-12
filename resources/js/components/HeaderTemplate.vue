@@ -3,7 +3,7 @@
     <div class="logo-wrap">
       <a href="/">
         <img
-          src="images/icon/light-bulb.png"
+          src="\images\icon\light-bulb.png"
           alt="bright-lamp"
         >
         <div class="text-image">
@@ -12,9 +12,9 @@
       </a>
     </div>
     <div v-if="isInLanding" class="category-wrap">
-      <router-link to="/home">Home</router-link>
-      <router-link to="/discover">Discover</router-link>
-      <router-link to="/aboutus">About Us</router-link>
+      <router-link class="btn-main" to="/home">Home</router-link>
+      <router-link class="btn-main" to="/discover">Discover</router-link>
+      <router-link class="btn-main" to="/aboutus">About Us</router-link>
     </div>
     <div v-else class="category-wrap">
       <router-link to="/category/arts">Arts</router-link>
@@ -120,11 +120,17 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
+    .btn-main {
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+
     a {
       text-decoration: none;
       color: black;
       &:hover {
-        color: pink;
+        color: blue;
       }
     }
   }

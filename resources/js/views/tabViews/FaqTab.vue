@@ -14,10 +14,10 @@
         <div
           v-if="checkUserOwner"
           class="btn-content">
-          <a :href="`/faqs/edit/${campaignId}/${data.id}`" class="btn">
+          <a :href="`/faqs/edit/${campaignId}/${data.id}`" class="btn btn-edit">
             Edit
           </a>
-          <a @click="deleteFaqs" class="btn">
+          <a @click="deleteFaqs" class="btn btn-delete">
             Delete
           </a>
         </div>
@@ -131,6 +131,14 @@ export default {
         border: 1px solid black;
         border-radius: 10px;
         margin-left: .5rem;
+        &-delete:hover {
+          background-color: red;
+          color: white
+        }
+        &-edit:hover {
+          background-color: green;
+          color: white;
+        }
       }
     }
   }

@@ -1,5 +1,9 @@
 <template>
   <div class="campaign-card">
+      <DeleteModal
+        :showModal="showDeleteModal"
+        @closeModal="closeDeleteModal"
+      />
       <div class="campaign-image">
         <img :src="imageUrl" alt="campaign-image-project">
       </div>
@@ -7,9 +11,9 @@
         <div class="campaign-title">
           {{ projectTitle }}
         </div>
-        <div class="campaign-desc">
+        <!-- <div class="campaign-desc">
           {{ projectDesc.slice(0,75) }} ...
-        </div>
+        </div> -->
         <div v-if="!isInHistoryOwnedPage" class="campaign-donation-amount">
           Donation Amount
           <div class="donation-text">
@@ -30,7 +34,7 @@
           </button>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
-          Campaign Config
+          <b>Campaign Config :</b>
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
             View Campaign
           </a>
@@ -38,14 +42,14 @@
             Edit Campaign
           </a>
           <button
-            @click="deleteCampaign"
+            @click="openDeleteModal"
             class="btn-delete-campaign"
           >
             Delete Campaign
           </button>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
-          Updates Config
+          <b>Updates Config :</b>
           <a :href="`/projectdetail/${campaignId}#updates`" class="btn-view-campaign">
             View Updates
           </a>
@@ -54,7 +58,7 @@
           </a>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
-          FAQ Config
+          <b>FAQ Config :</b>
           <a :href="`/projectdetail/${campaignId}#faqs`" class="btn-view-campaign">
             View FAQ
           </a>
@@ -63,7 +67,7 @@
           </a>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
-          Reward Config
+          <b>Reward Config :</b>
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
             View Rewards
           </a>
@@ -76,8 +80,13 @@
 </template>
 
 <script>
+import DeleteModal from '../modalComponent/DeleteModal.vue'
+
 export default {
   name: 'CampaignCard',
+  components: {
+    DeleteModal,
+  },
   props: {
     isInHistoryOwnedPage: {
       type: Boolean,
@@ -94,6 +103,8 @@ export default {
 },
   data: () => {
     return {
+      showDeleteModal: false,
+      continueDelete: false,
       progress: '59',
       paymentTextStatus: 'PENDING',
       paymentStat: 'pending',
@@ -132,11 +143,19 @@ export default {
         this.paymentTextStatus = 'FAILED'
         paymentStyle = 'failed-status'
       }
-
       return paymentStyle
     }
   },
   methods: {
+    closeDeleteModal(isContinue) {
+      this.showDeleteModal = false
+      if(isContinue) {
+        this.deleteCampaign()
+      }
+    },
+    openDeleteModal(){
+      this.showDeleteModal = true
+    },
     formatMoney(money) {
       const moneyTemp = money ? parseInt(money) : 10000
       const formatter = new Intl.NumberFormat('en-ID', {
@@ -148,7 +167,10 @@ export default {
       .trimLeft()
       return formatter
     },
-    deleteCampaign(){
+    deleteCampaign () {
+      console.log('Request Delete Approval')
+      // TODO : Uncomment Code
+      /*
       this.$store.dispatch('deleteCampaign', this.campaignId)
         .then(res => {
           this.$router.go(0)
@@ -156,6 +178,7 @@ export default {
         .catch(err => {
           console.error(err)
         })
+      */
     },
     payment() {
       if(!this.donationInfo || !this.donationInfo.snap_token) return
@@ -201,10 +224,10 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      // width: 60%;
+      width: 100%;
 
       .campaign-title {
-        text-align: left;
+        text-align: center;
         font-size: 20px;
         font-weight: bold;
         margin-top: 10px;
