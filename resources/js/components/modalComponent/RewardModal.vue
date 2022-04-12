@@ -13,7 +13,9 @@
                 type="text"
                 name="amount"
               >
-              <button class="btn-donate" type="submit">Donate!</button>
+              <a class="btn-donate" type="submit">
+                Donate!
+              </a>
             </form>
           </div>
           <div v-if="checkRegexAlphabet || checkAmountInvalid" class="text-error">Please Input Valid Number!</div>
@@ -40,10 +42,10 @@
               v-if="checkUserOwner"
               class="button-wrap"
             >
-              <a :href="`/rewards/edit/${campaignId}/${d.rewardId}`" class="btn">
+              <a :href="`/rewards/edit/${campaignId}/${d.rewardId}`" class="btn btn-edit">
                 Edit
               </a>
-              <a @click="deleteReward" class="btn">
+              <a @click="deleteReward" class="btn btn-delete">
                 Delete
               </a>
             </div>
@@ -196,14 +198,14 @@ export default {
         overflow: auto;
       }
 
-     div > a {
-       text-decoration: none;
-       color: black;
-     }
+      div > a {
+        text-decoration: none;
+        color: black;
+      }
 
-     .text-error {
-       color: red;
-     }
+      .text-error {
+        color: red;
+      }
 
       .modal-non-reward {
         display: flex;
@@ -223,6 +225,20 @@ export default {
           margin: 0 10px;
           width: 300px;
         }
+
+        a {
+          border: 1px solid black;
+          border-radius: 10px;
+          margin-left: .5rem;
+          text-decoration: none;
+          color: black;
+          min-width: 5rem;
+
+          &:hover {
+            color: white;
+            background-color: green;
+          }
+        }
       }
 
       .button-wrap {
@@ -233,6 +249,14 @@ export default {
             border: 1px solid black;
             border-radius: 10px;
             margin-left: .5rem;
+            &-delete:hover {
+              background-color: red;
+              color: white
+            }
+            &-edit:hover {
+              background-color: green;
+              color: white;
+            }
           }
         }
 

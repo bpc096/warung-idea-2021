@@ -92,7 +92,7 @@ export default {
 
 .<style lang="less" scoped>
 .wrap-faq-tab {
-  min-height: 70vh;
+  min-height: 90vh;
   text-align: left;
   padding: 0 20rem;
   display: flex;

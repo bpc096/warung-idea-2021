@@ -104,7 +104,7 @@ export default {
 
 <style lang="less" scoped>
 .wrap-update-tab{
-  min-height: 70vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +125,6 @@ export default {
   }
 
   .update-card {
-    border: 1px solid black;
     border-radius: 5px;
     width: 60rem;
     min-height: 10rem;
@@ -134,6 +133,10 @@ export default {
     padding: 10px;
     display: flex;
     flex-direction: column;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+
+
 
     .title-update {
       margin: 1rem 0;
