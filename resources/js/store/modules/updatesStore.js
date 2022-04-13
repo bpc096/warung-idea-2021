@@ -1,5 +1,4 @@
 import Axios from "axios"
-import { param } from "jquery"
 import { GET_CAMPAIGN, UPLOAD_CAMPAIGN } from "../mutation-types"
 
 const CREATE_UPDATES = 'createUpdates'

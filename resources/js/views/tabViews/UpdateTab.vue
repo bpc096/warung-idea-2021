@@ -36,15 +36,12 @@ export default {
   props: {
     campaignId: {
       type: Number,
-      default: 1,
     },
     userId: {
       type: Number,
-      default: 1
     },
     ownerId: {
       type: String,
-      default: "0"
     }
   },
   data: () => {
@@ -74,12 +71,11 @@ export default {
       ],
     }
   },
-  async created() {
+  updated() {
     const campaignId = this.campaignId
-    await this.$store
+    this.$store
       .dispatch('getUpdatesByCampaignId', campaignId)
       .then(res => {
-        console.log(res)
         if(res.success && res.data && res.data.length > 0) {
           this.listData = res.data
         }

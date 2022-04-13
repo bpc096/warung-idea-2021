@@ -3981,13 +3981,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.$store.dispatch('getCampaignById', _this.$route.params.projectId).then(function (res) {
-                _this.payment = res.payments || [];
-                _this.projectDetail = res.data;
-                _this.sumPayment = res.data.sum_payment;
-              })["catch"](function (err) {
-                console.log(err);
-              });
+              return _this.fetchingCampaignInfo();
 
             case 2:
             case "end":
@@ -4083,6 +4077,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   }),
   methods: {
+    fetchingCampaignInfo: function fetchingCampaignInfo() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.$store.dispatch('getCampaignById', _this2.$route.params.projectId).then(function (res) {
+                  _this2.payment = res.payments || [];
+                  _this2.projectDetail = res.data;
+                  _this2.sumPayment = res.data.sum_payment;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     formatMoney: function formatMoney(money) {
       var moneyTemp = money ? parseInt(money) : 10000;
       var formatter = new Intl.NumberFormat('en-ID', {
@@ -5882,14 +5901,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -5926,16 +5937,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: 'UpdateTab',
   props: {
     campaignId: {
-      type: Number,
-      "default": 1
+      type: Number
     },
     userId: {
-      type: Number,
-      "default": 1
+      type: Number
     },
     ownerId: {
-      type: String,
-      "default": "0"
+      type: String
     }
   },
   data: function data() {
@@ -5962,34 +5970,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }]
     };
   },
-  created: function created() {
+  updated: function updated() {
     var _this = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var campaignId;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              campaignId = _this.campaignId;
-              _context.next = 3;
-              return _this.$store.dispatch('getUpdatesByCampaignId', campaignId).then(function (res) {
-                console.log(res);
-
-                if (res.success && res.data && res.data.length > 0) {
-                  _this.listData = res.data;
-                }
-              })["catch"](function (err) {
-                console.error(err);
-              });
-
-            case 3:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+    var campaignId = this.campaignId;
+    this.$store.dispatch('getUpdatesByCampaignId', campaignId).then(function (res) {
+      if (res.success && res.data && res.data.length > 0) {
+        _this.listData = res.data;
+      }
+    })["catch"](function (err) {
+      console.error(err);
+    });
   },
   computed: {
     checkUserOwner: function checkUserOwner() {
@@ -7661,13 +7652,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
