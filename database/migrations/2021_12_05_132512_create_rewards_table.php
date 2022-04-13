@@ -20,8 +20,11 @@ class CreateRewardsTable extends Migration
             $table->bigInteger('amount')->nullable();
             $table->text('description')->nullable();
             $table->string('estimated_delivery')->nullable();
-            
-            // $table->timestamps();
+            $table->timestamps();
+            // $table->foreign('campaign_id')
+            //       ->references('id')->on('campaigns')
+            //       ->onUpdate('cascade')
+            //       ->onDelete('cascade');
         });
     }
 

@@ -14,7 +14,7 @@ class CreateCampaignsTable extends Migration
     public function up()
     {
         Schema::create('campaigns', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->unsigned();
             $table->unsignedInteger('users_id');
             $table->unsignedInteger('category_id');
             $table->string('title');
@@ -24,6 +24,8 @@ class CreateCampaignsTable extends Migration
             $table->date('max_date');
             $table->string('image');
             $table->text('description');
+            $table->text('project_plan');
+            $table->json('collaborators');
             $table->timestamps();
         });
     }
