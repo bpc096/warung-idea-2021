@@ -43,7 +43,7 @@ class UpdateController extends Controller
 
         $data = array_merge(array_except($request->input(), '_token'), [
             'users_id'       => $user_id,
-            'campaign_id'   => $id,
+            'campaign_id'    => $id,
         ]);
 
         $create = Update::create($data);

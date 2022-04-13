@@ -9,7 +9,7 @@ class Campaign extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['users_id', 'category_id', 'title', 'slug', 'short_description', 'target_donation', 'max_date', 'description', 'image'];
+    protected $fillable = ['users_id', 'category_id', 'title', 'slug', 'short_description', 'target_donation', 'max_date', 'description', 'project_plan', 'collaborators', 'image'];
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -30,6 +30,10 @@ class Campaign extends Model
     public function faqs(){
         return $this->hasMany(Faq::class);
     }
+
+    protected $casts = [
+        'collaborators' => 'array'
+    ];
 
     /**
      * sumPayment
