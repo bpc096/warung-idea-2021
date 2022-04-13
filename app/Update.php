@@ -17,8 +17,12 @@ class Update extends Model
 
     protected $guarded = [];
 
-    // public function campaigns()
-    // {
-    //     return $this->belongsTo(Campaign::class);
-    // }
+    public function scopeCampaign($query, $id)
+    {
+        return $query->where('campaign_id', $id);
+    }
+
+    public function campaign(){
+        return $this->belongsTo(Campaign::class);
+    }
 }
