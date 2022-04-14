@@ -73,11 +73,21 @@ export default {
       ]
     }
   },
-  async created() {
-    //TODO fetch FAQ by Campaign ID
+  updated() {
+    const campaignId = this.campaignId
+    this.$store
+      .dispatch('getFaqByCampaignId', campaignId)
+      .then(res => {
+        if(res.success && res.data && res.data.length > 0) {
+          this.listData = res.data
+        }
+      })
+      .catch(err => {
+        console.error(err)
+      })
   },
   computed: {
-   checkUserOwner() {
+    checkUserOwner() {
       // return parseInt(this.ownerId) === userId
       return parseInt(this.ownerId) === this.userId
     }

@@ -84,7 +84,7 @@ export default {
   },
   data: () => {
     return {
-      data: [
+      listData: [
         {
           rewardId: '1',
           rewardPrice: 'Rp20.000',
@@ -96,21 +96,21 @@ export default {
           rewardId: '2',
           rewardPrice: 'Rp150.000',
           rewardAmount: '150000',
-          rewardTitle: 'Reward 04',
+          rewardTitle: 'Reward 02',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
           rewardId: '3',
           rewardPrice: 'Rp500.000',
           rewardAmount: '500000',
-          rewardTitle: 'Reward 02',
+          rewardTitle: 'Reward 03',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
           rewardId: '4',
           rewardPrice: 'Rp1.000.000',
           rewardAmount: '1000000',
-          rewardTitle: 'Reward 03',
+          rewardTitle: 'Reward 04',
           rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         },
         {
@@ -122,7 +122,21 @@ export default {
         }
       ],
       amountDonation: '0',
+      realListData: [],
     }
+  },
+  updated() {
+    const campaignId = this.campaignId
+    this.$store
+      .dispatch('getRewardsByCampaignId', campaignId)
+      .then(res => {
+        if(res.success && res.data && res.data.length > 0) {
+          this.listData = res.data
+        }
+      })
+      .catch(err => {
+        console.error(err)
+      })
   },
   computed: {
     amountDonationToNumber () {

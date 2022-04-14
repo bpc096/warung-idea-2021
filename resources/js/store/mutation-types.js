@@ -14,3 +14,11 @@ export const UPLOAD_CAMPAIGN = 'uploadCampaign'
 
 //DONATION
 export const SET_DONATION = 'setDonation'
+
+// UPDATES
+export const GET_UPDATES = 'getUpdates'
+export const CREATE_UPDATES = 'createUpdates'
+
+// REWARDS
+export const GET_REWARDS = 'getRewards'
+export const CREATE_REWARDS = 'createRewards'
