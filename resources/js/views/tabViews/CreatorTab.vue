@@ -1,4 +1,4 @@
-<template>
+rewar<template>
   <div class="wrap-creator-tab">
     <div v-if="listData.length > 0">
       <div class="title-creator">

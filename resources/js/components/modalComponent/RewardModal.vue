@@ -84,59 +84,14 @@ export default {
   },
   data: () => {
     return {
-      listData: [
-        {
-          rewardId: '1',
-          rewardPrice: 'Rp20.000',
-          rewardAmount: '20000',
-          rewardTitle: 'Reward 01',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        },
-        {
-          rewardId: '2',
-          rewardPrice: 'Rp150.000',
-          rewardAmount: '150000',
-          rewardTitle: 'Reward 02',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        },
-        {
-          rewardId: '3',
-          rewardPrice: 'Rp500.000',
-          rewardAmount: '500000',
-          rewardTitle: 'Reward 03',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        },
-        {
-          rewardId: '4',
-          rewardPrice: 'Rp1.000.000',
-          rewardAmount: '1000000',
-          rewardTitle: 'Reward 04',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        },
-        {
-          rewardId: '5',
-          rewardPrice: 'Rp10.000.000',
-          rewardAmount: '10000000',
-          rewardTitle: 'Reward 05',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        }
-      ],
+      listData: [],
       amountDonation: '0',
       realListData: [],
     }
   },
   updated() {
-    const campaignId = this.campaignId
-    this.$store
-      .dispatch('getRewardsByCampaignId', campaignId)
-      .then(res => {
-        if(res.success && res.data && res.data.length > 0) {
-          this.listData = res.data
-        }
-      })
-      .catch(err => {
-        console.error(err)
-      })
+    this.fetchingModalListData()
+    this.generateMockData()
   },
   computed: {
     amountDonationToNumber () {
@@ -155,6 +110,33 @@ export default {
     }
   },
   methods: {
+    generateMockData () {
+      let mockData = []
+      for(x=1;x<=5;x++){
+        let tempObj = {
+          rewardId: x,
+          rewardTitle: 'Price Name Number ' + x,
+          rewardAmount: x + '00000',
+          rewardPrice: 'Rp' + x + '00.000',
+          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
+        }
+        mockData.push(tempObj)
+      }
+      this.listData = mockData
+    },
+    async fetchingModalListData () {
+      const campaignId = this.campaignId
+      await this.$store
+        .dispatch('getRewardsByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.listData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
     closeModal () {
       this.$emit('close')
     },
