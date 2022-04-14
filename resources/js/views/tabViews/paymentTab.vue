@@ -1,50 +1,84 @@
 <template>
   <div class="wrap-payment-tab">
-    <div class="title-tab">
-      Donation Payment List
-    </div>
-    <div class="payment-card">
-      <div class="content-contributor">
-        <table>
-          <tr>
-            <th>No</th>
-            <th>Username</th>
-            <th>Amount</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Maria Anders</td>
-            <td>Rp 20.000</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Francisco Chang</td>
-            <td>Rp 80.000</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Roland Mendel</td>
-            <td>Rp 20.000</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Helen Bennett</td>
-            <td>Rp 2.330.000</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Yoshi Tannamuri</td>
-            <td>Rp 590.000</td>
-          </tr>
-        </table>
+    <div v-if="listData.length > 0">
+      <div class="title-tab">
+        Donation Payment List
       </div>
+      <div class="payment-card">
+        <div class="content-contributor">
+          <table>
+            <tr>
+              <th>No</th>
+              <th>Username</th>
+              <th>Amount</th>
+            </tr>
+            <tr v-for="(data, idx) in listData" :key="idx">
+              <td>{{ idx }}</td>
+              <td>{{ data.username }}</td>
+              <td>{{ data.amount }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <h2>Ups... There's no payment list for this project right now!</h2>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PaymentTab'
+  name: 'PaymentTab',
+  props: {
+    campaignId: {
+      type: Number,
+      default: 1,
+    },
+    userId: {
+      type: Number,
+      default: 1
+    },
+    ownerId: {
+      type: String,
+      default: "0"
+    }
+  },
+  data: () => {
+    return {
+      listData: [],
+    }
+  },
+  updated() {
+    this.generateMockData()
+    this.fetchingPaymentListData()
+  },
+  methods: {
+    generateMockData() {
+      let mockData = []
+      for(x=1;x<=5;x++){
+        let tempObj = {}
+        tempObj.userId = 'userId'+ x
+        tempObj.username = 'Username' + x
+        tempObj.amount = 'Rp ' + x + '00.000'
+        mockData.push(tempObj)
+      }
+      this.listData = mockData
+    },
+    fetchingPaymentListData() {
+      const campaignId = this.campaignId
+      this.$store
+        .dispatch('getPaymentByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.listData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    }
+  }
 }
 </script>
 

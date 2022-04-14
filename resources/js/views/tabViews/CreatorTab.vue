@@ -1,55 +1,70 @@
 <template>
   <div class="wrap-creator-tab">
-    <div class="title-creator">
-      Collaborator List
-    </div>
-    <div class="creator-card">
-      <div class="content-creator">
-        <table>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Country</th>
-          </tr>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-          </tr>
-          <tr>
-            <td>Ernst Handel</td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-          </tr>
-          <tr>
-            <td>Island Trading</td>
-            <td>Helen Bennett</td>
-            <td>UK</td>
-          </tr>
-          <tr>
-            <td>Laughing Bacchus Winecellars</td>
-            <td>Yoshi Tannamuri</td>
-            <td>Canada</td>
-          </tr>
-          <tr>
-            <td>Magazzini Alimentari Riuniti</td>
-            <td>Giovanni Rovelli</td>
-            <td>Italy</td>
-          </tr>
-        </table>
+    <div v-if="listData.length > 0">
+      <div class="title-creator">
+        Collaborator List
       </div>
+      <div class="creator-card">
+        <div class="content-creator">
+          <table>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Country</th>
+            </tr>
+            <tr v-for="(data, idx) in listData" :key="idx">
+              <td>{{ idx }}</td>
+              <td>{{ data.username }}</td>
+              <td>{{ data.country }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <h2>Ups... There's no payment list for this project right now !</h2>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CreatorTab'
+  name: 'CreatorTab',
+  data: () => {
+    return {
+      listData: []
+    }
+  },
+  update() {
+    this.generateMockData()
+    this.fetchingCollaboratorListData()
+  },
+  methods: {
+    generateMockData () {
+      let tempData = []
+      for(x=1;x<=5;x++){
+        let tempObj = []
+        tempObj.userId = 'userId' + x
+        tempObj.username = 'userName' + x
+        tempObj.country = 'Indonesia'
+        tempData.push(tempObj)
+      }
+      this.listData = tempData
+    },
+    fetchingCollaboratorListData () {
+      const campaignId = this.campaignId
+      this.$store
+        .dispatch('getCollaboratorByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.listData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    }
+  }
 }
 </script>
 
