@@ -22,7 +22,7 @@ rewar<template>
       </div>
     </div>
     <div v-else>
-      <h2>Ups... There's no payment list for this project right now !</h2>
+      <h2>Ups... There's no Collaborator list for this project right now !</h2>
     </div>
   </div>
 </template>
@@ -35,14 +35,14 @@ export default {
       listData: []
     }
   },
-  update() {
-    this.generateMockData()
+  mounted() {
+    // this.generateMockData()
     this.fetchingCollaboratorListData()
   },
   methods: {
     generateMockData () {
       let tempData = []
-      for(x=1;x<=5;x++){
+      for(let x=1;x<=10;x++){
         let tempObj = []
         tempObj.userId = 'userId' + x
         tempObj.username = 'userName' + x
@@ -75,6 +75,10 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
+
+  h2 {
+    margin-top: 5rem;
+  }
 
   .title-creator {
     margin-top: 5rem;

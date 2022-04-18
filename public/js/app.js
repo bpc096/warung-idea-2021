@@ -2762,7 +2762,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2841,45 +2848,45 @@ __webpack_require__.r(__webpack_exports__);
       "default": 1
     },
     ownerId: {
-      type: String,
-      "default": "0"
+      type: Number,
+      "default": 1
     }
   },
   data: function data() {
     return {
-      data: [{
-        rewardId: '1',
-        rewardPrice: 'Rp20.000',
-        rewardAmount: '20000',
-        rewardTitle: 'Reward 01',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }, {
-        rewardId: '2',
-        rewardPrice: 'Rp150.000',
-        rewardAmount: '150000',
-        rewardTitle: 'Reward 04',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }, {
-        rewardId: '3',
-        rewardPrice: 'Rp500.000',
-        rewardAmount: '500000',
-        rewardTitle: 'Reward 02',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }, {
-        rewardId: '4',
-        rewardPrice: 'Rp1.000.000',
-        rewardAmount: '1000000',
-        rewardTitle: 'Reward 03',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }, {
-        rewardId: '5',
-        rewardPrice: 'Rp10.000.000',
-        rewardAmount: '10000000',
-        rewardTitle: 'Reward 05',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }],
-      amountDonation: '0'
+      listData: [],
+      amountDonation: '0',
+      realListData: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.fetchingModalListData();
+
+            case 2:
+              if (!(_this.listData.length <= 0)) {
+                _context.next = 6;
+                break;
+              }
+
+              console.log('mocking data');
+              _context.next = 6;
+              return _this.generateMockData();
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   computed: {
     amountDonationToNumber: function amountDonationToNumber() {
@@ -2893,10 +2900,55 @@ __webpack_require__.r(__webpack_exports__);
       return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0;
     },
     checkUserOwner: function checkUserOwner() {
-      return true; // return parseInt(this.ownerId) === this.userId
+      // return parseInt(this.ownerId) === userId
+      return parseInt(this.ownerId) === this.userId;
     }
   },
   methods: {
+    generateMockData: function generateMockData() {
+      var mockData = [];
+
+      for (var x = 1; x <= 5; x++) {
+        var tempObj = {
+          rewardId: x,
+          rewardTitle: 'Price Name Number ' + x,
+          rewardAmount: x + '00000',
+          rewardPrice: 'Rp' + x + '00.000',
+          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
+        };
+        mockData.push(tempObj);
+      }
+
+      console.log(mockData);
+      this.listData = mockData;
+    },
+    fetchingModalListData: function fetchingModalListData() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var campaignId;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                campaignId = _this2.campaignId;
+                _context2.next = 3;
+                return _this2.$store.dispatch('getRewardsByCampaignId', campaignId).then(function (res) {
+                  if (res.success && res.data && res.data.length > 0) {
+                    _this2.listData = res.data;
+                  }
+                })["catch"](function (err) {
+                  console.error(err);
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     closeModal: function closeModal() {
       this.$emit('close');
     },
@@ -5745,28 +5797,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'CreatorTab'
+  name: 'CreatorTab',
+  data: function data() {
+    return {
+      listData: []
+    };
+  },
+  mounted: function mounted() {
+    // this.generateMockData()
+    this.fetchingCollaboratorListData();
+  },
+  methods: {
+    generateMockData: function generateMockData() {
+      var tempData = [];
+
+      for (var x = 1; x <= 10; x++) {
+        var tempObj = [];
+        tempObj.userId = 'userId' + x;
+        tempObj.username = 'userName' + x;
+        tempObj.country = 'Indonesia';
+        tempData.push(tempObj);
+      }
+
+      this.listData = tempData;
+    },
+    fetchingCollaboratorListData: function fetchingCollaboratorListData() {
+      var _this = this;
+
+      var campaignId = this.campaignId;
+      this.$store.dispatch('getCollaboratorByCampaignId', campaignId).then(function (res) {
+        if (res.success && res.data && res.data.length > 0) {
+          _this.listData = res.data;
+        }
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -5782,14 +5850,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -5842,38 +5902,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       mockUpdatesId: 1,
       // TODO : Change realListData with listData, and listData with mock
       realListData: [],
-      listData: [{
-        "id": 1,
-        "users_id": 1,
-        "campaign_id": 2,
-        "title": "FAQ #1 ?",
-        "description": "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
-        "created_at": "2022-01-05T09:47:17.000000Z",
-        "updated_at": "2022-01-05T09:47:17.000000Z"
-      }, {
-        "id": 2,
-        "users_id": 1,
-        "campaign_id": 2,
-        "title": "FAQ #2 ?",
-        "description": "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
-        "created_at": "2022-01-05T09:47:17.000000Z",
-        "updated_at": "2022-01-05T09:47:17.000000Z"
-      }]
+      listData: []
     };
   },
-  created: function created() {//TODO fetch FAQ by Campaign ID
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+  mounted: function mounted() {
+    this.fetchingFaqListData(); // this.generateMockData()
   },
   computed: {
     checkUserOwner: function checkUserOwner() {
@@ -5882,6 +5915,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    fetchingFaqListData: function fetchingFaqListData() {
+      var _this = this;
+
+      var campaignId = this.campaignId;
+      this.$store.dispatch('getFaqByCampaignId', campaignId).then(function (res) {
+        if (res.success && res.data && res.data.length > 0) {
+          _this.listData = res.data;
+        }
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
+    generateMockData: function generateMockData() {
+      var mockData = [];
+
+      for (var x = 1; x <= 5; x++) {
+        var tempObj = {
+          id: x,
+          users_id: 1,
+          campaign_id: 1,
+          title: '#FAQ 2 ?',
+          description: 'Kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya.',
+          "created_at": "2022-01-05T09:47:17.000000Z",
+          "updated_at": "2022-01-05T09:47:17.000000Z"
+        };
+        mockData.push(tempObj);
+      }
+
+      this.listData = mockData;
+    },
     deleteFaqs: function deleteFaqs() {
       console.log('delete faqs');
     }
@@ -6117,23 +6180,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'PaymentTab'
+  name: 'PaymentTab',
+  props: {
+    campaignId: {
+      type: Number,
+      "default": 1
+    },
+    userId: {
+      type: Number,
+      "default": 1
+    },
+    ownerId: {
+      type: String,
+      "default": "0"
+    }
+  },
+  data: function data() {
+    return {
+      listData: []
+    };
+  },
+  mounted: function mounted() {
+    // this.generateMockData()
+    this.fetchingPaymentListData();
+  },
+  methods: {
+    generateMockData: function generateMockData() {
+      var mockData = [];
+
+      for (var x = 1; x <= 10; x++) {
+        var tempObj = {};
+        tempObj.userId = 'userId' + x;
+        tempObj.username = 'Username' + x;
+        tempObj.amount = 'Rp ' + x + '00.000';
+        mockData.push(tempObj);
+      }
+
+      this.listData = mockData;
+    },
+    fetchingPaymentListData: function fetchingPaymentListData() {
+      var _this = this;
+
+      var campaignId = this.campaignId;
+      this.$store.dispatch('getPaymentByCampaignId', campaignId).then(function (res) {
+        if (res.success && res.data && res.data.length > 0) {
+          _this.listData = res.data;
+        }
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -7151,8 +7249,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutation-types */ "./resources/js/store/mutation-types.js");
 /* harmony import */ var _modules_authStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/authStore */ "./resources/js/store/modules/authStore.js");
 /* harmony import */ var _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/profileStore */ "./resources/js/store/modules/profileStore.js");
@@ -7160,6 +7258,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/campaignStore */ "./resources/js/store/modules/campaignStore.js");
 /* harmony import */ var _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/donateStore */ "./resources/js/store/modules/donateStore.js");
 /* harmony import */ var _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/updatesStore */ "./resources/js/store/modules/updatesStore.js");
+/* harmony import */ var _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/rewardsStore */ "./resources/js/store/modules/rewardsStore.js");
+/* harmony import */ var _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/faqStore */ "./resources/js/store/modules/faqStore.js");
 var _mutations__;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
@@ -7171,6 +7271,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
  // Module Store
+
+
 
 
 
@@ -7199,12 +7301,12 @@ var mutations__ = (_mutations__ = {}, _defineProperty(_mutations__, _mutation_ty
   state.number = state.number - data;
 }), _mutations__);
 var getters__ = {};
-vue__WEBPACK_IMPORTED_MODULE_7__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_8__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_8__["default"].Store({
-  state: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, state__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].state), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].state), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].state), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].state), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].state), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].state),
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, actions__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].actions), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].actions), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].actions), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].actions), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].actions), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].actions),
-  mutations: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, mutations__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].mutations), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].mutations), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].mutations), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].mutations), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].mutations), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].mutations),
-  getters: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, getters__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].getters), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].getters), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].getters), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].getters), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].getters), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].getters)
+vue__WEBPACK_IMPORTED_MODULE_9__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_10__["default"]);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_10__["default"].Store({
+  state: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, state__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].state), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].state), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].state), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].state), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].state), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].state), _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__["default"].state), _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__["default"].state),
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, actions__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].actions), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].actions), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].actions), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].actions), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].actions), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].actions), _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__["default"].actions), _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__["default"].actions),
+  mutations: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, mutations__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].mutations), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].mutations), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].mutations), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].mutations), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].mutations), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].mutations), _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__["default"].mutations), _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__["default"].mutations),
+  getters: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, getters__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].getters), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].getters), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].getters), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].getters), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].getters), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].getters), _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__["default"].getters), _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__["default"].getters)
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
@@ -7615,6 +7717,71 @@ var getters = {};
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/faqStore.js":
+/*!************************************************!*\
+  !*** ./resources/js/store/modules/faqStore.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var state = {
+  editFaqData: '',
+  getFaqData: ''
+};
+var actions = {
+  getFaqByCampaignId: function getFaqByCampaignId(_ref, campaignId) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + campaignId + '/faqs';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_FAQ, res.data.data);
+        resolve(res.data);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  createFaq: function createFaq(_ref2, param) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + param.campaignId + '/faqs';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_FAQ, res.data);
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  }
+};
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_FAQ, function (state, data) {
+  state.editFaqData = data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_FAQ, function (state, data) {
+  state.getFaqData = data;
+}), _mutations);
+var getters = {};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/profileStore.js":
 /*!****************************************************!*\
   !*** ./resources/js/store/modules/profileStore.js ***!
@@ -7629,6 +7796,71 @@ __webpack_require__.r(__webpack_exports__);
 var state = {};
 var actions = {};
 var mutations = {};
+var getters = {};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/rewardsStore.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/rewardsStore.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var state = {
+  editRewardsData: '',
+  getRewardsData: ''
+};
+var actions = {
+  getRewardsByCampaignId: function getRewardsByCampaignId(_ref, campaignId) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + campaignId + '/rewards';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_REWARDS, res.data.data);
+        resolve(res.data);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  createRewards: function createRewards(_ref2, param) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + param.campaignId + '/rewards';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_REWARDS, res.data);
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  }
+};
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_REWARDS, function (state, data) {
+  state.editRewardsData = data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_REWARDS, function (state, data) {
+  state.getRewardsData = data;
+}), _mutations);
 var getters = {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   state: state,
@@ -7659,8 +7891,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var CREATE_UPDATES = 'createUpdates';
-var GET_UPDATES = 'getUpdates';
 var state = {
   editUpdateData: '',
   getUpdateData: ''
@@ -7671,7 +7901,7 @@ var actions = {
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + campaignId + '/updates';
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl).then(function (res) {
-        commit(GET_UPDATES, res.data.data);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_UPDATES, res.data.data);
         resolve(res.data);
       })["catch"](function (err) {
         reject(err);
@@ -7683,7 +7913,7 @@ var actions = {
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + param.campaignId + '/updates';
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
-        commit(CREATE_UPDATES, res.data);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_UPDATES, res.data);
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -7691,9 +7921,9 @@ var actions = {
     });
   }
 };
-var mutations = (_mutations = {}, _defineProperty(_mutations, CREATE_UPDATES, function (state, data) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_UPDATES, function (state, data) {
   state.editUpdateData = data;
-}), _defineProperty(_mutations, GET_UPDATES, function (state, data) {
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_UPDATES, function (state, data) {
   state.getupdateData = data;
 }), _mutations);
 var getters = {};
@@ -7716,7 +7946,13 @@ var getters = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ADDING_NUMBER": () => (/* binding */ ADDING_NUMBER),
+/* harmony export */   "CREATE_FAQ": () => (/* binding */ CREATE_FAQ),
+/* harmony export */   "CREATE_REWARDS": () => (/* binding */ CREATE_REWARDS),
+/* harmony export */   "CREATE_UPDATES": () => (/* binding */ CREATE_UPDATES),
 /* harmony export */   "GET_CAMPAIGN": () => (/* binding */ GET_CAMPAIGN),
+/* harmony export */   "GET_FAQ": () => (/* binding */ GET_FAQ),
+/* harmony export */   "GET_REWARDS": () => (/* binding */ GET_REWARDS),
+/* harmony export */   "GET_UPDATES": () => (/* binding */ GET_UPDATES),
 /* harmony export */   "RESET_USER": () => (/* binding */ RESET_USER),
 /* harmony export */   "SET_ARTICLE": () => (/* binding */ SET_ARTICLE),
 /* harmony export */   "SET_DONATION": () => (/* binding */ SET_DONATION),
@@ -7735,7 +7971,16 @@ var RESET_USER = 'resetUser'; // CAMPAIGN
 var GET_CAMPAIGN = 'getCampaign';
 var UPLOAD_CAMPAIGN = 'uploadCampaign'; //DONATION
 
-var SET_DONATION = 'setDonation';
+var SET_DONATION = 'setDonation'; // UPDATES
+
+var GET_UPDATES = 'getUpdates';
+var CREATE_UPDATES = 'createUpdates'; // FAQS
+
+var GET_FAQ = 'getFaqs';
+var CREATE_FAQ = 'createFaqs'; // REWARDS
+
+var GET_REWARDS = 'getRewards';
+var CREATE_REWARDS = 'createRewards';
 
 /***/ }),
 
@@ -12986,7 +13231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-creator-tab[data-v-5b9b7b30] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 5rem;\n}\n.wrap-creator-tab .title-creator[data-v-5b9b7b30] {\n  margin-top: 5rem;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-creator-tab .creator-card[data-v-5b9b7b30] {\n  border: 1px solid black;\n  width: 50rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-creator-tab .creator-card .content-creator[data-v-5b9b7b30] {\n  font-size: 20px;\n}\n.wrap-creator-tab .creator-card .content-creator table[data-v-5b9b7b30] {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\n.wrap-creator-tab .creator-card .content-creator td[data-v-5b9b7b30],\n.wrap-creator-tab .creator-card .content-creator th[data-v-5b9b7b30] {\n  border: 1px solid #dddddd;\n  text-align: left;\n  padding: 8px;\n}\n.wrap-creator-tab .creator-card .content-creator tr[data-v-5b9b7b30]:nth-child(even) {\n  background-color: #dddddd;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-creator-tab[data-v-5b9b7b30] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 5rem;\n}\n.wrap-creator-tab h2[data-v-5b9b7b30] {\n  margin-top: 5rem;\n}\n.wrap-creator-tab .title-creator[data-v-5b9b7b30] {\n  margin-top: 5rem;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-creator-tab .creator-card[data-v-5b9b7b30] {\n  border: 1px solid black;\n  width: 50rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-creator-tab .creator-card .content-creator[data-v-5b9b7b30] {\n  font-size: 20px;\n}\n.wrap-creator-tab .creator-card .content-creator table[data-v-5b9b7b30] {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\n.wrap-creator-tab .creator-card .content-creator td[data-v-5b9b7b30],\n.wrap-creator-tab .creator-card .content-creator th[data-v-5b9b7b30] {\n  border: 1px solid #dddddd;\n  text-align: left;\n  padding: 8px;\n}\n.wrap-creator-tab .creator-card .content-creator tr[data-v-5b9b7b30]:nth-child(even) {\n  background-color: #dddddd;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13082,7 +13327,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-payment-tab[data-v-8ea3d814] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 5rem;\n}\n.wrap-payment-tab .title-tab[data-v-8ea3d814] {\n  margin-top: 5rem;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-payment-tab .payment-card[data-v-8ea3d814] {\n  border: 1px solid black;\n  width: 50rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-payment-tab .payment-card .content-contributor[data-v-8ea3d814] {\n  font-size: 20px;\n}\n.wrap-payment-tab .payment-card .content-contributor table[data-v-8ea3d814] {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\n.wrap-payment-tab .payment-card .content-contributor td[data-v-8ea3d814],\n.wrap-payment-tab .payment-card .content-contributor th[data-v-8ea3d814] {\n  border: 1px solid #dddddd;\n  text-align: left;\n  padding: 8px;\n}\n.wrap-payment-tab .payment-card .content-contributor tr[data-v-8ea3d814]:nth-child(even) {\n  background-color: #dddddd;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-payment-tab[data-v-8ea3d814] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 5rem;\n}\n.wrap-payment-tab h2[data-v-8ea3d814] {\n  margin-top: 5rem;\n}\n.wrap-payment-tab .title-tab[data-v-8ea3d814] {\n  margin-top: 5rem;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-payment-tab .payment-card[data-v-8ea3d814] {\n  border: 1px solid black;\n  width: 50rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-payment-tab .payment-card .content-contributor[data-v-8ea3d814] {\n  font-size: 20px;\n}\n.wrap-payment-tab .payment-card .content-contributor table[data-v-8ea3d814] {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\n.wrap-payment-tab .payment-card .content-contributor td[data-v-8ea3d814],\n.wrap-payment-tab .payment-card .content-contributor th[data-v-8ea3d814] {\n  border: 1px solid #dddddd;\n  text-align: left;\n  padding: 8px;\n}\n.wrap-payment-tab .payment-card .content-contributor tr[data-v-8ea3d814]:nth-child(even) {\n  background-color: #dddddd;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51646,7 +51891,7 @@ var render = function () {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm._l(_vm.data, function (d, idx) {
+            _vm._l(_vm.listData, function (d, idx) {
               return _c(
                 "div",
                 { key: idx },
@@ -54416,79 +54661,55 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "wrap-creator-tab" }, [
+    _vm.listData.length > 0
+      ? _c("div", [
+          _c("div", { staticClass: "title-creator" }, [
+            _vm._v("\n      Collaborator List\n    "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "creator-card" }, [
+            _c("div", { staticClass: "content-creator" }, [
+              _c(
+                "table",
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._l(_vm.listData, function (data, idx) {
+                    return _c("tr", { key: idx }, [
+                      _c("td", [_vm._v(_vm._s(idx))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(data.username))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(data.country))]),
+                    ])
+                  }),
+                ],
+                2
+              ),
+            ]),
+          ]),
+        ])
+      : _c("div", [
+          _c("h2", [
+            _vm._v(
+              "Ups... There's no Collaborator list for this project right now !"
+            ),
+          ]),
+        ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrap-creator-tab" }, [
-      _c("div", { staticClass: "title-creator" }, [
-        _vm._v("\n    Collaborator List\n  "),
-      ]),
+    return _c("tr", [
+      _c("th", [_vm._v("Username")]),
       _vm._v(" "),
-      _c("div", { staticClass: "creator-card" }, [
-        _c("div", { staticClass: "content-creator" }, [
-          _c("table", [
-            _c("tr", [
-              _c("th", [_vm._v("Username")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Email")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Country")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Alfreds Futterkiste")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Maria Anders")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Germany")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Centro comercial Moctezuma")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Francisco Chang")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Mexico")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Ernst Handel")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Roland Mendel")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Austria")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Island Trading")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Helen Bennett")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("UK")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Laughing Bacchus Winecellars")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Yoshi Tannamuri")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Canada")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Magazzini Alimentari Riuniti")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Giovanni Rovelli")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Italy")]),
-            ]),
-          ]),
-        ]),
-      ]),
+      _c("th", [_vm._v("Email")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Country")]),
     ])
   },
 ]
@@ -54711,71 +54932,55 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "wrap-payment-tab" }, [
+    _vm.listData.length > 0
+      ? _c("div", [
+          _c("div", { staticClass: "title-tab" }, [
+            _vm._v("\n      Donation Payment List\n    "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "payment-card" }, [
+            _c("div", { staticClass: "content-contributor" }, [
+              _c(
+                "table",
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._l(_vm.listData, function (data, idx) {
+                    return _c("tr", { key: idx }, [
+                      _c("td", [_vm._v(_vm._s(idx))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(data.username))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(data.amount))]),
+                    ])
+                  }),
+                ],
+                2
+              ),
+            ]),
+          ]),
+        ])
+      : _c("div", [
+          _c("h2", [
+            _vm._v(
+              "Ups... There's no payment list for this project right now!"
+            ),
+          ]),
+        ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrap-payment-tab" }, [
-      _c("div", { staticClass: "title-tab" }, [
-        _vm._v("\n    Donation Payment List\n  "),
-      ]),
+    return _c("tr", [
+      _c("th", [_vm._v("No")]),
       _vm._v(" "),
-      _c("div", { staticClass: "payment-card" }, [
-        _c("div", { staticClass: "content-contributor" }, [
-          _c("table", [
-            _c("tr", [
-              _c("th", [_vm._v("No")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Username")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Amount")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Maria Anders")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 20.000")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Francisco Chang")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 80.000")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Roland Mendel")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 20.000")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Helen Bennett")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 2.330.000")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("5")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Yoshi Tannamuri")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 590.000")]),
-            ]),
-          ]),
-        ]),
-      ]),
+      _c("th", [_vm._v("Username")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Amount")]),
     ])
   },
 ]

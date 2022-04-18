@@ -54,9 +54,9 @@ export default {
       listData: [],
     }
   },
-  updated() {
+  mounted() {
     this.fetchingFaqListData()
-    this.generateMockData()
+    // this.generateMockData()
   },
   computed: {
     checkUserOwner() {
@@ -80,7 +80,7 @@ export default {
     },
     generateMockData () {
       let mockData = []
-      for(x=1;x<=5;x++){
+      for(let x=1;x<=5;x++){
         let tempObj = {
           id: x,
           users_id: 1,

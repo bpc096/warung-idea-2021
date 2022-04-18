@@ -49,14 +49,14 @@ export default {
       listData: [],
     }
   },
-  updated() {
-    this.generateMockData()
+  mounted() {
+    // this.generateMockData()
     this.fetchingPaymentListData()
   },
   methods: {
     generateMockData() {
       let mockData = []
-      for(x=1;x<=5;x++){
+      for(let x=1;x<=10;x++){
         let tempObj = {}
         tempObj.userId = 'userId'+ x
         tempObj.username = 'Username' + x
@@ -89,6 +89,10 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
+
+  h2 {
+    margin-top: 5rem;
+  }
 
   .title-tab {
     margin-top: 5rem;

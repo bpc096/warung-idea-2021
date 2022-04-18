@@ -19,8 +19,7 @@
             </form>
           </div>
           <div v-if="checkRegexAlphabet || checkAmountInvalid" class="text-error">Please Input Valid Number!</div>
-
-          <div v-for="(d, idx) in data" :key="idx">
+          <div v-for="(d, idx) in listData" :key="idx">
             <router-link :to="{path: '/checkout', query: {campaignId: campaignId, totalAmount: d.rewardAmount }}">
               <div class="reward-card-container">
                 <div class="reward-price">
@@ -78,20 +77,24 @@ export default {
       default: 1
     },
     ownerId: {
-      type: String,
-      default: "0"
+      type: Number,
+      default: 1
     }
   },
   data: () => {
     return {
       listData: [],
       amountDonation: '0',
-      realListData: [],
+      realListData: []
     }
   },
-  updated() {
-    this.fetchingModalListData()
-    this.generateMockData()
+  async created() {
+    // this.generateMockData()
+    await this.fetchingModalListData()
+    if(this.listData.length <= 0) {
+      console.log('mocking data')
+      await this.generateMockData()
+    }
   },
   computed: {
     amountDonationToNumber () {
@@ -104,16 +107,16 @@ export default {
     checkAmountInvalid () {
       return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0
     },
-    checkUserOwner() {
-      return true
-      // return parseInt(this.ownerId) === this.userId
+     checkUserOwner() {
+      // return parseInt(this.ownerId) === userId
+      return parseInt(this.ownerId) === this.userId
     }
   },
   methods: {
     generateMockData () {
       let mockData = []
-      for(x=1;x<=5;x++){
-        let tempObj = {
+      for(let x=1;x<=5;x++){
+        const tempObj = {
           rewardId: x,
           rewardTitle: 'Price Name Number ' + x,
           rewardAmount: x + '00000',
@@ -122,6 +125,7 @@ export default {
         }
         mockData.push(tempObj)
       }
+      console.log(mockData)
       this.listData = mockData
     },
     async fetchingModalListData () {
