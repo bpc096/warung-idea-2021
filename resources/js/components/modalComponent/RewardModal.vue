@@ -92,7 +92,6 @@ export default {
     // this.generateMockData()
     await this.fetchingModalListData()
     if(this.listData.length <= 0) {
-      console.log('mocking data')
       await this.generateMockData()
     }
   },
@@ -107,7 +106,7 @@ export default {
     checkAmountInvalid () {
       return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0
     },
-     checkUserOwner() {
+    checkUserOwner() {
       // return parseInt(this.ownerId) === userId
       return parseInt(this.ownerId) === this.userId
     }
@@ -125,7 +124,6 @@ export default {
         }
         mockData.push(tempObj)
       }
-      console.log(mockData)
       this.listData = mockData
     },
     async fetchingModalListData () {

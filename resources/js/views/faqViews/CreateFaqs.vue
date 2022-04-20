@@ -100,7 +100,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10rem 0;
+  margin: 5rem 0 10rem 0;
 
   .title-page {
     font-size: 30px;

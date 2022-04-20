@@ -41,7 +41,7 @@ export default {
       type: Number,
     },
     ownerId: {
-      type: String,
+      type: Number,
     }
   },
   data: () => {

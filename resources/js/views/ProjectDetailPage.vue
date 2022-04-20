@@ -220,6 +220,7 @@ export default {
       }).format(moneyTemp)
       .replace(/[IDR]/gi, '')
       .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
       .trimLeft()
       return formatter
     },

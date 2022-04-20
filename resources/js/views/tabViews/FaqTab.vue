@@ -42,8 +42,8 @@ export default {
       default: 1
     },
     ownerId: {
-      type: String,
-      default: "0"
+      type: Number,
+      default: 0
     }
   },
   data: () => {
