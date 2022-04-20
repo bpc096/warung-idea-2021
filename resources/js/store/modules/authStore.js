@@ -12,18 +12,18 @@ const actions = {
   login({ dispatch, commit }, data) {
     return new Promise((resolve, reject) => {
       axios.post('login', data)
-       .then(response => {
-         const token = response.data.token
-         localStorage.setItem('token', token)
-         setHeaderToken(token)
-         dispatch('get_user')
-         resolve(response)
-       })
-       .catch(err => {
-         commit(RESET_USER)
-         localStorage.removeItem('token')
-         reject(err)
-      })
+        .then(response => {
+          const token = response.data.token
+          localStorage.setItem('token', token)
+          setHeaderToken(token)
+          dispatch('get_user')
+          resolve(response)
+        })
+        .catch(err => {
+          commit(RESET_USER)
+          localStorage.removeItem('token')
+          reject(err)
+        })
     })
   },
   logout({commit}) {

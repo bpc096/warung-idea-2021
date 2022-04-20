@@ -12,17 +12,17 @@
       </div>
       <div class="card-additional">
         <div class="creator-info">
-          By Creator-name
+          <i>Created by <b>{{ creatorName }}</b></i>
         </div>
         <div class="icon-info">
           <div class="icon-love">
             <a href="#addToLove">
-              <img src="../../assets/images/icon/love.png" alt="love-icon">
+              <img src="images/icon/love.png" alt="love-icon">
             </a>
           </div>
           <div class="icon-bookmark">
             <a href="#addToBookmark">
-              <img src="../../assets/images/icon/bookmark.svg" alt="bookmark-icon">
+              <img src="images/icon/bookmark.svg" alt="bookmark-icon">
             </a>
           </div>
         </div>
@@ -56,6 +56,10 @@ export default {
     }
   },
   computed: {
+    creatorName () {
+      const name = this.projectData?.user?.name? this.projectData.user.name : 'Anonymous'
+      return name
+    },
     imageUrl () {
       return this.projectData?.image? this.projectData.image : this.dummyData.contentImageURL
     },
@@ -70,7 +74,7 @@ export default {
     projectDesc () {
       const contentDesc = this.projectData?.description? this.projectData.description : this.dummyData.contentDescription
       if(this.isInHomePage) {
-        return contentDesc.slice(0,250) + '...'
+        return contentDesc.slice(0,200) + '...'
       } else {
         return contentDesc
       }
@@ -90,16 +94,21 @@ export default {
   flex-direction: row;
   margin: 0 20px;
   border: 1px solid rgba(0,0,0,.5);
+  border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   .card-image {
     width: 40%;
     height: 100%;
-    background-color: pink;
+    background-color: #7CD1B8;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 
     img {
       height: 100%;
       width: 100%;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
     }
   }
 
@@ -107,35 +116,35 @@ export default {
     text-align: left;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100%;
     margin-left: 10px;
 
     .card-title {
-      margin-top: 2rem;
+      margin-top: 1rem;
       font-size: 28px;
       font-weight: bold;
     }
 
     .card-description {
-      margin: 2rem 0;
       width: 20rem;
     }
 
     .card-additional {
-      height: 100%;
+      height: 4rem;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
 
       .creator-info {
         text-align: center;
-        margin-bottom: 8px;
       }
 
       .icon-info {
         display: flex;
         flex-direction: row;
+        align-items: center;
 
         .icon-bookmark, .icon-love {
           margin: 0 6px;

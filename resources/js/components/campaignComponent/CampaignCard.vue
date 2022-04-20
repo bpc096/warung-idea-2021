@@ -1,5 +1,9 @@
 <template>
   <div class="campaign-card">
+      <DeleteModal
+        :showModal="showDeleteModal"
+        @closeModal="closeDeleteModal"
+      />
       <div class="campaign-image">
         <img :src="imageUrl" alt="campaign-image-project">
       </div>
@@ -7,55 +11,68 @@
         <div class="campaign-title">
           {{ projectTitle }}
         </div>
-        <div class="campaign-desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, quaerat.
-        </div>
-        <div class="campaign-donation-status">
-          Donation Target
-          <div class="shell">
-            <div
-              class="bar-progress"
-              :style="{width: progressPercentage + '%'}"
-            >
-              <span>{{ progressPercentage }}%</span>
-            </div>
-          </div>
-          <div class="campaign-wrap-button" v-if="!isInHistoryCampaignPage">
-            <a
-              :href="`/projectdetail/${campaignId}`"
-              class="btn-view-campaign mr"
-            >
-             View Campaign
-            </a>
-          </div>
-        </div>
-        <div v-if="!isInHistoryCampaignPage" class="campaign-donation-amount">
+        <!-- <div class="campaign-desc">
+          {{ projectDesc.slice(0,75) }} ...
+        </div> -->
+        <div v-if="!isInHistoryOwnedPage" class="campaign-donation-amount">
           Donation Amount
           <div class="donation-text">
-            Rp {{ infoDonationAmount }}
+            Rp {{ formatMoney(infoDonationAmount) }}
           </div>
         </div>
-        <div v-if="!isInHistoryCampaignPage" class="campaign-payment-status">
+        <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
           Payment status
           <div :class="['text-status', paymentStatus]">
             {{ paymentTextStatus }}
           </div>
           <button
+            v-if="paymentStatus !== 'success-status'"
             class="btn-payment"
             @click="payment"
           >
             Pay Now !
           </button>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryCampaignPage">
-          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          <b>Campaign Config :</b>
+          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
             View Campaign
           </a>
-          <a href="/campaign/edit" class="btn-edit-campaign">
+          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
             Edit Campaign
           </a>
-          <a href="#deleteCampaign" class="btn-delete-campaign">
+          <button
+            @click="openDeleteModal"
+            class="btn-delete-campaign"
+          >
             Delete Campaign
+          </button>
+        </div>
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          <b>Updates Config :</b>
+          <a :href="`/projectdetail/${campaignId}#updates`" class="btn-view-campaign">
+            View Updates
+          </a>
+          <a :href="`/updates/create/${campaignId}`" class="btn-edit-campaign mr">
+            Add New Updates
+          </a>
+        </div>
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          <b>FAQ Config :</b>
+          <a :href="`/projectdetail/${campaignId}#faqs`" class="btn-view-campaign">
+            View FAQ
+          </a>
+          <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign mr">
+            Add New FAQ
+          </a>
+        </div>
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          <b>Reward Config :</b>
+          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
+            View Rewards
+          </a>
+          <a :href="`/rewards/create/${campaignId}`" class="btn-edit-campaign mr">
+            Add New Reward
           </a>
         </div>
       </div>
@@ -63,10 +80,15 @@
 </template>
 
 <script>
+import DeleteModal from '../modalComponent/DeleteModal.vue'
+
 export default {
   name: 'CampaignCard',
+  components: {
+    DeleteModal,
+  },
   props: {
-    isInHistoryCampaignPage: {
+    isInHistoryOwnedPage: {
       type: Boolean,
       default: true,
     },
@@ -81,6 +103,8 @@ export default {
 },
   data: () => {
     return {
+      showDeleteModal: false,
+      continueDelete: false,
       progress: '59',
       paymentTextStatus: 'PENDING',
       paymentStat: 'pending',
@@ -88,6 +112,9 @@ export default {
     }
   },
   computed: {
+    projectDesc() {
+      return this.campaignInfo?.description? this.campaignInfo.description : 'Lorem ipsum dolor sitamet consectetur adipisicing elit. Ratione, quaerat.'
+    },
     campaignId (){
       return this.campaignInfo?.id? this.campaignInfo.id : '1'
     },
@@ -99,17 +126,6 @@ export default {
     },
     projectTitle () {
       return this.campaignInfo?.title? this.campaignInfo.title : 'Title Campaign'
-    },
-    progressPercentage() {
-      if(parseInt(this.progress) <= 0) {
-        return '1'
-      }
-      else if (parseInt(this.progress) >= 100) {
-        return '100'
-      }
-      else {
-        return this.progress
-      }
     },
     checkEligibleToEdit() {
       // TODO : Check Eligiblelity to edit campaign
@@ -127,11 +143,43 @@ export default {
         this.paymentTextStatus = 'FAILED'
         paymentStyle = 'failed-status'
       }
-
       return paymentStyle
     }
   },
   methods: {
+    closeDeleteModal(isContinue) {
+      this.showDeleteModal = false
+      if(isContinue) {
+        this.deleteCampaign()
+      }
+    },
+    openDeleteModal(){
+      this.showDeleteModal = true
+    },
+    formatMoney(money) {
+      const moneyTemp = money ? parseInt(money) : 10000
+      const formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp)
+      .replace(/[IDR]/gi, '')
+      .replace(/(\.+\d{2})/, '')
+      .trimLeft()
+      return formatter
+    },
+    deleteCampaign () {
+      console.log('Request Delete Approval')
+      // TODO : Uncomment Code
+      /*
+      this.$store.dispatch('deleteCampaign', this.campaignId)
+        .then(res => {
+          this.$router.go(0)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+      */
+    },
     payment() {
       if(!this.donationInfo || !this.donationInfo.snap_token) return
 
@@ -176,9 +224,10 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      width: 100%;
 
       .campaign-title {
-        text-align: left;
+        text-align: center;
         font-size: 20px;
         font-weight: bold;
         margin-top: 10px;
@@ -279,7 +328,8 @@ export default {
       .campaign-wrap-button {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
+        align-items: center;
         margin: 10px 0;
 
         .btn-view-campaign {
@@ -297,20 +347,20 @@ export default {
         .btn-edit-campaign {
           text-decoration: none;
           color: black;
-          border: 1px solid blueviolet;
+          border: 1px solid #4FBDBA;
           border-radius: 10px;
           padding: 5px;
-          background-color: blueviolet;
+          background-color: #4FBDBA;
           margin: 0 10px;
         }
 
         .btn-delete-campaign {
           text-decoration: none;
           color: black;
-          border: 1px solid #FF1700;
+          border: 1px solid #FF5959;
           border-radius: 10px;
           padding: 5px;
-          background-color: #FF1700;
+          background-color: #FF5959;
         }
       }
     }

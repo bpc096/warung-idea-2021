@@ -7,7 +7,7 @@
       :taggable="true"
       @tag="addTag"
       tag-placeholder="Add this as new tag"
-      placeholder="Type to search or add tag"
+      placeholder="Optional - Add Collaborator"
       label="name"
       track-by="code"
     >
@@ -29,7 +29,15 @@
           { name: 'Vuang agung', code: 'vu' },
           { name: 'Joni Yes', code: 'js' },
           { name: 'Onad sodin', code: 'os' },
-          { name: 'Janto pasto', code: 'jp' },
+          { name: 'Janto 1', code: 'jp' },
+          { name: 'Janto 2', code: 'j23p' },
+          { name: 'Janto pas3to', code: 'jgp' },
+          { name: 'Janto 4', code: 'fjp' },
+          { name: 'Janto 5', code: 'djp' },
+          { name: 'Janto 6', code: 'jfqp' },
+          { name: 'Janto 65', code: 'jcvp' },
+          { name: 'Janto 656', code: 'jtsp' },
+          { name: 'Janto 47', code: 'jqwep' },
         ],
       }
     },

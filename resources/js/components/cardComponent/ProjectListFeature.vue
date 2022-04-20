@@ -84,11 +84,11 @@ export default {
     .list-image {
       border-top-left-radius: 30px;
       border-bottom-left-radius: 30px;
-      background-color: salmon;
-      max-width: 40%;
+      background-color: #7CD1B8;
+      width: 8rem;
 
       img {
-        max-width: 100%;
+        width: 8rem;
         height: 100%;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;

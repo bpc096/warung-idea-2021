@@ -2,7 +2,9 @@
   <div class="project-detail-page">
     <RewardModal
       v-if="showRewardModal"
-      :campaignId="projectId"
+      :userId="user.id"
+      :ownerId="projectDetail.users_id"
+      :campaignId="projectDetail.id"
       @close="closeModal"
     />
     <div class="wrap-title">
@@ -18,13 +20,16 @@
           ></div>
         </div>
         <div class="total-donate-info">
-          Rp 1.000.000 dari Rp {{ projectTargetDonation }}
+          Rp {{ formatMoney(totalPayment) }} dari Rp {{ formatMoney(projectTargetDonation) }}
         </div>
         <div class="supporter-info">
-          270 Penyumbang
+          {{ totalBacker }} Penyumbang
         </div>
         <div class="day-left-info">
-          {{ daysBetween }} Hari lagi
+          {{ daysBetween }}
+        </div>
+        <div class="day-left-info">
+          Created by <b>{{ displayCreatorName }}</b>
         </div>
         <div class="button-wrapper">
           <button
@@ -55,13 +60,29 @@
           />
         </tab>
         <tab name="Updates">
-          <updateTab />
+          <updateTab
+            :userId="user.id"
+            :ownerId="projectDetail.users_id"
+            :campaignId="projectDetail.id"
+          />
         </tab>
         <tab name="FAQ">
-          <faqTab />
+          <faqTab
+            :userId="user.id"
+            :ownerId="projectDetail.users_id"
+            :campaignId="projectDetail.id"
+          />
         </tab>
         <tab name="Collaborator">
           <creatorTab />
+        </tab>
+        <tab name="Payment">
+          <paymentTab />
+        </tab>
+        <tab name="Forum">
+          <forumTab
+            :projectData="projectDetail"
+          />
         </tab>
       </tabs>
     </div>
@@ -78,9 +99,13 @@ import campaignTab from '../views/tabViews/CampaignTab.vue'
 import updateTab from '../views/tabViews/UpdateTab.vue'
 import faqTab from '../views/tabViews/FaqTab.vue'
 import creatorTab from '../views/tabViews/CreatorTab.vue'
+import forumTab from '../views/tabViews/forumTab.vue'
+import paymentTab from '../views/tabViews/paymentTab.vue'
 
 // Modal
-import RewardModal from '../components/RewardModal.vue'
+import RewardModal from '../components/modalComponent/RewardModal.vue'
+
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ProjectDetail',
@@ -92,6 +117,8 @@ export default {
     faqTab,
     RewardModal,
     creatorTab,
+    forumTab,
+    paymentTab
   },
   data: () => {
     return {
@@ -101,26 +128,30 @@ export default {
       },
       sumPayment: [],
       progress: '80',
+      payment: [],
     }
   },
   async created () {
-    await this.$store
-      .dispatch('getCampaignById', this.$route.params.projectId)
-      .then((res) => {
-        this.projectDetail = res.data
-        this.sumPayment = res.data.sum_payment
-        console.log('sumPayment', this.sumPayment)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    await this.fetchingCampaignInfo()
   },
   computed: {
-     progressPercentage() {
-      const randomNumb = Math.floor((Math.random() * 100) + 1)
-      let progressBar = randomNumb.toString()
+    ...mapGetters({
+      user: 'user'
+    }),
+    displayCreatorName () {
+      const name = this.projectDetail?.user?.name? this.projectDetail.user.name : 'Anonymous'
+      return name
+    },
+    totalBacker() {
+      return this.payment.length
+    },
+    totalPayment() {
+      return this.sumPayment[0]?.total? this.sumPayment[0].total : '0'
+    },
+    progressPercentage() {
+      let progressBar = '1'
       if(this.sumPayment.length > 0) {
-        progressBar = this.sumPayment[0]?.total? this.sumPayment[0].total : randomNumb.toString()
+        progressBar = this.sumPayment[0]?.total? this.paymentPercentage : '1'
       }
       if(parseInt(progressBar) <= 0) {
         progressBar = '1'
@@ -130,6 +161,10 @@ export default {
       }
       return progressBar
     },
+    paymentPercentage() {
+      const mathPercentage = Math.floor((parseInt(this.totalPayment)/parseInt(this.projectTargetDonation)) * 100)
+      return mathPercentage
+    },
     projectId () {
       return this.$route.params.projectId
     },
@@ -138,12 +173,18 @@ export default {
     },
     daysBetween () {
       const maxDate = this.projectDetail?.max_date? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30'
+      let dayBetween = ''
 
-      const oneDay = 24 * 60 * 60 * 1000
-      const firstDate = new Date()
-      const secondDate = new Date(maxDate)
-      const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay))
-      return diffDays.toString()
+      if(maxDate.datePass) {
+        dayBetween = 'Proyek telah selesai!'
+      } else {
+        const oneDay = 24 * 60 * 60 * 1000
+        const firstDate = new Date()
+        const secondDate = new Date(maxDate.tempDate)
+        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay))
+        dayBetween = diffDays.toString() + ' Hari Lagi'
+      }
+      return dayBetween
     },
     projectTitle () {
       return this.projectDetail?.title? this.projectDetail.title : 'Project Title'
@@ -159,12 +200,41 @@ export default {
     }
   },
   methods: {
+    async fetchingCampaignInfo () {
+      await this.$store
+        .dispatch('getCampaignById', this.$route.params.projectId)
+        .then((res) => {
+          this.payment = res.payments || []
+          this.projectDetail = res.data
+          this.sumPayment = res.data.sum_payment
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    formatMoney(money) {
+      const moneyTemp = money ? parseInt(money) : 10000
+      const formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp)
+      .replace(/[IDR]/gi, '')
+      .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
+      .trimLeft()
+      return formatter
+    },
     checkMaxDate(date){
-      let tempDate = '2055-05-05'
+      // let tempDate = '2055-05-05'
+      let checkMaxDate = ''
+      let datePassed = false
       if(new Date(date).getTime() > new Date().getTime()) {
-        tempDate = date
+        checkMaxDate = date
+      } else {
+        checkMaxDate = date
+        datePassed = true
       }
-      return tempDate
+      return {tempDate: checkMaxDate, datePass: datePassed}
     },
     btnSupportHandle () {
       console.log('CLICK SUPPORT')
@@ -192,7 +262,7 @@ export default {
   }
 
   .wrap-main-section{
-    border: 1px solid black;
+    border-top: 1px solid black;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -207,11 +277,13 @@ export default {
         width: 20rem;
         height: 1.5rem;
         border: 2px solid black;
+        border-radius: 10px;
         margin-bottom: 30px;
 
         .progress-color-custom{
           height: 100%;
-          background-color: green;
+          background-color: #1FAB89;
+          border-radius: 10px;
         }
       }
 
@@ -239,7 +311,7 @@ export default {
           padding: 10px;
           margin-right: 1rem;
           &:hover{
-            background-color: black;
+            background-color: green;
             color: white;
           }
         }
@@ -251,7 +323,7 @@ export default {
           padding: 10px;
 
           &:hover{
-            background-color: black;
+            background-color: blueviolet;
             color: white;
           }
         }
@@ -266,7 +338,6 @@ export default {
       .image {
         width: 80%;
         height: 80%;
-        background-color: blue;
 
         img {
           width: 100%;

@@ -12,17 +12,17 @@
       </div>
       <div class="content-addition">
         <div class="total-funded-label">
-          Total Funded {{ this.projectPercentage }}%
+          Total Funded {{ this.paymentPercentage }}%
         </div>
         <div class="icon-label">
           <div class="icon-love">
             <a href="#addToLove">
-              <img src="../../assets/images/icon/love.png" alt="love-icon">
+              <img src="images/icon/love.png" alt="love-icon">
             </a>
           </div>
           <div class="icon-bookmark">
             <a href="#addToBookmark">
-              <img src="../../assets/images/icon/bookmark.svg" alt="bookmark-icon">
+              <img src="images/icon/bookmark.svg" alt="bookmark-icon">
             </a>
           </div>
         </div>
@@ -75,10 +75,19 @@ export default {
         return contentDesc
       }
     },
-    projectPercentage () {
-      const randomNumb = Math.floor((Math.random() * 100) + 1)
-      return randomNumb
-    }
+    projectTargetDonation() {
+     if(!this.projectData || !this.projectData.target_donation) return '0'
+     else return this.projectData.target_donation
+    },
+    totalPayment() {
+      if(!this.projectData || !this.projectData.sum_payment || this.projectData.sum_payment.length <=0 || !this.projectData.sum_payment[0].total) return '0'
+      else return this.projectData.sum_payment[0].total
+    },
+    paymentPercentage() {
+      if(this.totalpayment === '0' || this.projectTargetDonation === '0') return '0'
+      const mathPercentage = Math.floor((parseInt(this.totalPayment)/parseInt(this.projectTargetDonation)) * 100)
+      return mathPercentage
+    },
   }
 }
 </script>
@@ -90,13 +99,14 @@ export default {
   width: 100%;
   border: 1px solid black;
   border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
 
   .content-image {
     border-top-left-radius: 29px;
     border-top-right-radius: 29px;
     height: 50%;
-    background-color: salmon;
+    background-color: #7CD1B8;
     img {
       width: 100%;
       height: 100%;

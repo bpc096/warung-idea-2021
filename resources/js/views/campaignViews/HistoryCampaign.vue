@@ -11,12 +11,16 @@
         History Donation Page
       </router-link>
     </div>
-    <CampaignCard />
-    <CampaignCard
-      v-for="(campaign, idx) in listCreatedCampaign"
-      :key="idx"
-      :campaignInfo="campaign"
-    />
+    <div v-if="listCreatedCampaign.length > 0">
+      <CampaignCard
+        v-for="(campaign, idx) in listCreatedCampaign"
+        :key="idx"
+        :campaignInfo="campaign"
+      />
+    </div>
+    <div v-else>
+      You dont have created campaign !
+    </div>
   </div>
 </template>
 

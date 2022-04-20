@@ -14,23 +14,23 @@
     </div>
     <div class="info-app">
       <div class="logo-image">
-        <img src="../assets/images/icon/light-bulb.png" alt="bright-lamp">
+        <img src="images/icon/light-bulb.png" alt="bright-lamp">
         <div class="text-image">WarungIde.com</div>
       </div>
       <div class="love-text">
-        <a href="https://github.com/mfaisalghozi/warung-ide-2021">
+        <a href="https://github.com/mfaisalghozi/warung-ide-2021" target="blank">
           Made with 🖤 from us
         </a>
       </div>
       <div class="logo-socmed">
         <a href="#twitter">
-          <img src="../assets/images/icon/twitter.svg" alt="twitter-icon">
+          <img src="images/icon/twitter.svg" alt="twitter-icon">
         </a>
         <a href="#instagram">
-          <img src="../assets/images/icon/instagram.svg" alt="instagram-icon">
+          <img src="images/icon/instagram.svg" alt="instagram-icon">
         </a>
         <a href="#facebook">
-          <img src="../assets/images/icon/facebook.svg" alt="facebook-icon">
+          <img src="images/icon/facebook.svg" alt="facebook-icon">
         </a>
       </div>
     </div>
@@ -45,8 +45,8 @@ export default {
 
 <style lang="less" scoped>
 .footer-wrapper {
-  background-color: rgba(0,0,0,.05);
-  border: 1px solid grey;
+  background-color: rgba(0,0,0,.01);
+  border-top: 1px solid rgba(0,0,0,.1);
   display: flex;
   flex-direction: column;
   height: 25rem;

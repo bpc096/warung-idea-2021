@@ -66,7 +66,7 @@ export default {
           })
         })
         .catch(err => {
-          this.errors = err.response.data.errors || [['Register Failed Please Try Again!']]
+          this.errors = err.response.data || [['Register Failed Please Try Again!']]
         })
     }
   }

@@ -1,11 +1,11 @@
 <template>
   <div class="aboutus-wrapper">
     <div class="image-wrapper">
-      <img src="../assets/images/aboutus.jpg" alt="about-us-image">
+      <img src="images/aboutus.jpg" alt="about-us-image">
     </div>
     <div class="text-wrapper">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Libero ut sequi ad veniam tempora dolorem quisquam labore quo inventore optio odit, 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Libero ut sequi ad veniam tempora dolorem quisquam labore quo inventore optio odit,
       qui sint aliquam, aut quod sit? Alias, dolore vel?
     </div>
   </div>
@@ -19,7 +19,7 @@ export default {
 
 <style lang="less" scoped>
 .aboutus-wrapper {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,14 +28,17 @@ export default {
 
   .image-wrapper {
     img {
-      width: 33rem;
-      height: 33rem;
+      border-radius: 50%;
+      width: 35rem;
+      height: 35rem;
     }
+    margin-top: 2rem;
     margin-bottom: 2rem;
   }
 
   .text-wrapper {
     margin-top: 5rem;
+    margin-bottom: 5rem;
     width: 50%;
     font-size: 26px;
     font-weight: 500;

@@ -41,11 +41,17 @@
         </a>
       </div>
       <div class="button-wrap">
-         <a
+        <a
           class="button-invitation"
           @click="redirectInvitation"
         >
           Invitation
+        </a>
+        <a
+          class="button-private-chat"
+          @click="redirectPrivateChat"
+        >
+          Private Chat
         </a>
       </div>
     </div>
@@ -92,6 +98,11 @@ export default {
       this.$router.push({
         path: '/profile/invitation'
       })
+    },
+    redirectPrivateChat() {
+      this.$router.push({
+        path: '/chat'
+      })
     }
   }
 
@@ -100,7 +111,8 @@ export default {
 
 <style lang="less" scoped>
 .user-profile-page {
-  height: 100vh;
+  min-height: 100vh;
+  margin: 5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,6 +196,16 @@ export default {
 
         .button-invitation {
           background-color: #2EB086;
+          width: 13rem;
+          height: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+        }
+
+        .button-private-chat {
+          background-color: salmon;
           width: 13rem;
           height: 2.5rem;
           display: flex;
