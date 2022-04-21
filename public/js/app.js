@@ -6985,7 +6985,21 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 var devApp = true; //TODO : change this before deploy
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = devApp ? 'http://localhost:8000/api/' : 'https://www.warungidea.com/api/';
+var isProdHeroku = true; // TODO : change this to false when deploy cpanel
+
+var setBaseUrl = '';
+
+if (devApp) {
+  setBaseUrl = 'http://localhost:8000/api/';
+} else {
+  if (isProdHeroku) {
+    setBaseUrl = 'https://warungidea.herokuapp.com/api/';
+  } else {
+    setBaseUrl = 'https://www.warungidea.com/api/';
+  }
+}
+
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = setBaseUrl;
 vue__WEBPACK_IMPORTED_MODULE_7__["default"].config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_7__["default"].use((axios__WEBPACK_IMPORTED_MODULE_1___default()));
 var token = localStorage.getItem('token');
