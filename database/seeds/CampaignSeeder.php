@@ -16,6 +16,7 @@ class CampaignSeeder extends Seeder
     public function run()
     {
         // Campaign::factory()->count(8)->create();
+      $collection = collect(['Name1','Name2']);
         for($x=1;$x<=5;$x++){
           for($c=1;$c<=5;$c++){
             $day = rand(1,28);
