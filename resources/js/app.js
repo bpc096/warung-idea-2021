@@ -17,18 +17,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { setHeaderToken } from './utils/auth'
 
 const devApp = true //TODO : change this before deploy
-const isProdHeroku = true // TODO : change this to false when deploy cpanel
+const isDeployHeroku = true // TODO : change this to false when deploy cpanel
 
 let setBaseUrl = ''
 if(devApp) {
-  setBaseUrl = 'http://localhost:8000/api/'
-} else {
-  if(isProdHeroku){
+  if(isDeployHeroku) {
     setBaseUrl = 'https://warungidea.herokuapp.com/api/'
-  } else {
-    setBaseUrl = 'https://www.warungidea.com/api/'
+  }else {
+    setBaseUrl = 'http://localhost:8000/api/'
   }
+} else {
+  setBaseUrl = 'https://www.warungidea.com/api/'
 }
+
 Axios.defaults.baseURL = setBaseUrl
 
 

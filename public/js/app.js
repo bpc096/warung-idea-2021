@@ -6985,18 +6985,18 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 var devApp = true; //TODO : change this before deploy
 
-var isProdHeroku = true; // TODO : change this to false when deploy cpanel
+var isDeployHeroku = true; // TODO : change this to false when deploy cpanel
 
 var setBaseUrl = '';
 
 if (devApp) {
-  setBaseUrl = 'http://localhost:8000/api/';
-} else {
-  if (isProdHeroku) {
+  if (isDeployHeroku) {
     setBaseUrl = 'https://warungidea.herokuapp.com/api/';
   } else {
-    setBaseUrl = 'https://www.warungidea.com/api/';
+    setBaseUrl = 'http://localhost:8000/api/';
   }
+} else {
+  setBaseUrl = 'https://www.warungidea.com/api/';
 }
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = setBaseUrl;
