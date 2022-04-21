@@ -1,5 +1,4 @@
 import { removeHeaderToken, setHeaderToken } from '../../utils/auth'
-import { reject } from 'lodash'
 import { SET_USER, RESET_USER } from '../mutation-types'
 import axios from 'axios'
 

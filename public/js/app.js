@@ -7443,11 +7443,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/auth */ "./resources/js/utils/auth.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -7461,7 +7459,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 var state = {
   user: null,
   isLoggedIn: false
@@ -7471,14 +7468,14 @@ var actions = {
     var dispatch = _ref.dispatch,
         commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('login', data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('login', data).then(function (response) {
         var token = response.data.token;
         localStorage.setItem('token', token);
         (0,_utils_auth__WEBPACK_IMPORTED_MODULE_1__.setHeaderToken)(token);
         dispatch('get_user');
         resolve(response);
       })["catch"](function (err) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER);
         localStorage.removeItem('token');
         reject(err);
       });
@@ -7487,7 +7484,7 @@ var actions = {
   logout: function logout(_ref2) {
     var commit = _ref2.commit;
     return new Promise(function (resolve) {
-      commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER);
+      commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER);
       localStorage.removeItem('token');
       (0,_utils_auth__WEBPACK_IMPORTED_MODULE_1__.removeHeaderToken)();
       resolve();
@@ -7496,10 +7493,10 @@ var actions = {
   register: function register(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('register', data).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('register', data).then(function (res) {
         resolve(res);
       })["catch"](function (err) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER);
         reject(err);
       });
     });
@@ -7507,8 +7504,8 @@ var actions = {
   updateProfile: function updateProfile(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('profile', data).then(function (res) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.SET_USER, res.data.data);
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('profile', data).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.SET_USER, res.data.data);
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -7518,7 +7515,7 @@ var actions = {
   updatePassword: function updatePassword(_ref5, data) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('profile/password', data).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('profile/password', data).then(function (res) {
         resolve(res);
         console.log('res', res);
       })["catch"](function (err) {
@@ -7546,18 +7543,18 @@ var actions = {
             case 3:
               _context.prev = 3;
               _context.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default().get('profile');
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().get('profile');
 
             case 6:
               response = _context.sent;
-              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.SET_USER, response.data.data);
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.SET_USER, response.data.data);
               _context.next = 16;
               break;
 
             case 10:
               _context.prev = 10;
               _context.t0 = _context["catch"](3);
-              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER);
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER);
               (0,_utils_auth__WEBPACK_IMPORTED_MODULE_1__.removeHeaderToken)();
               localStorage.removeItem('token');
               return _context.abrupt("return", _context.t0);
@@ -7571,10 +7568,10 @@ var actions = {
     }))();
   }
 };
-var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_3__.SET_USER, function (state, data) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__.SET_USER, function (state, data) {
   state.user = data;
   state.isLoggedIn = true;
-}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER, function (state) {
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER, function (state) {
   state.user = null;
   state.isLoggedIn = false;
 }), _mutations);
