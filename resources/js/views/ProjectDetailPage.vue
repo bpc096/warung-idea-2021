@@ -132,16 +132,7 @@ export default {
     }
   },
   async created () {
-    await this.$store
-      .dispatch('getCampaignById', this.$route.params.projectId)
-      .then((res) => {
-        this.payment = res.payments || []
-        this.projectDetail = res.data
-        this.sumPayment = res.data.sum_payment
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    await this.fetchingCampaignInfo()
   },
   computed: {
     ...mapGetters({
@@ -209,6 +200,18 @@ export default {
     }
   },
   methods: {
+    async fetchingCampaignInfo () {
+      await this.$store
+        .dispatch('getCampaignById', this.$route.params.projectId)
+        .then((res) => {
+          this.payment = res.payments || []
+          this.projectDetail = res.data
+          this.sumPayment = res.data.sum_payment
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     formatMoney(money) {
       const moneyTemp = money ? parseInt(money) : 10000
       const formatter = new Intl.NumberFormat('en-ID', {
@@ -217,6 +220,7 @@ export default {
       }).format(moneyTemp)
       .replace(/[IDR]/gi, '')
       .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
       .trimLeft()
       return formatter
     },

@@ -18,7 +18,7 @@
         <div class="text-image">WarungIde.com</div>
       </div>
       <div class="love-text">
-        <a href="https://github.com/mfaisalghozi/warung-ide-2021">
+        <a href="https://github.com/mfaisalghozi/warung-ide-2021" target="blank">
           Made with 🖤 from us
         </a>
       </div>

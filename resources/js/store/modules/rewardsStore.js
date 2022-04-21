@@ -1,18 +1,18 @@
 import Axios from "axios"
-import { GET_UPDATES, CREATE_UPDATES } from "../mutation-types"
+import { GET_REWARDS, CREATE_REWARDS } from "../mutation-types"
 
 const state = {
-  editUpdateData: '',
-  getUpdateData: '',
+  editRewardsData: '',
+  getRewardsData: '',
 }
 
 const actions = {
-  getUpdatesByCampaignId({commit}, campaignId){
+  getRewardsByCampaignId({commit}, campaignId){
     return new Promise((resolve, reject) => {
-      const apiUrl = 'campaign/' + campaignId + '/updates'
+      const apiUrl = 'campaign/' + campaignId + '/rewards'
       Axios.get(apiUrl)
         .then(res => {
-          commit(GET_UPDATES, res.data.data)
+          commit(GET_REWARDS, res.data.data)
           resolve(res.data)
         })
         .catch(err => {
@@ -20,12 +20,12 @@ const actions = {
         })
     })
   },
-  createUpdates({commit}, param) {
+  createRewards({commit}, param) {
     return new Promise((resolve, reject) => {
-      const apiUrl = 'campaign/' + param.campaignId + '/updates'
+      const apiUrl = 'campaign/' + param.campaignId + '/rewards'
       Axios.post(apiUrl, param.data)
         .then(res => {
-          commit(CREATE_UPDATES, res.data)
+          commit(CREATE_REWARDS, res.data)
           resolve(res)
         })
         .catch(err => {
@@ -36,11 +36,11 @@ const actions = {
 }
 
 const mutations = {
-  [CREATE_UPDATES](state, data) {
-    state.editUpdateData = data
+  [CREATE_REWARDS](state, data) {
+    state.editRewardsData = data
   },
-  [GET_UPDATES](state, data) {
-    state.getupdateData = data
+  [GET_REWARDS](state, data) {
+    state.getRewardsData = data
   }
 }
 

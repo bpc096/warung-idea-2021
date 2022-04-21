@@ -13,12 +13,13 @@
                 type="text"
                 name="amount"
               >
-              <button class="btn-donate" type="submit">Donate!</button>
+              <a class="btn-donate" type="submit">
+                Donate!
+              </a>
             </form>
           </div>
           <div v-if="checkRegexAlphabet || checkAmountInvalid" class="text-error">Please Input Valid Number!</div>
-
-          <div v-for="(d, idx) in data" :key="idx">
+          <div v-for="(d, idx) in listData" :key="idx">
             <router-link :to="{path: '/checkout', query: {campaignId: campaignId, totalAmount: d.rewardAmount }}">
               <div class="reward-card-container">
                 <div class="reward-price">
@@ -40,10 +41,10 @@
               v-if="checkUserOwner"
               class="button-wrap"
             >
-              <a :href="`/rewards/edit/${campaignId}/${d.rewardId}`" class="btn">
+              <a :href="`/rewards/edit/${campaignId}/${d.rewardId}`" class="btn btn-edit">
                 Edit
               </a>
-              <a @click="deleteReward" class="btn">
+              <a @click="deleteReward" class="btn btn-delete">
                 Delete
               </a>
             </div>
@@ -76,50 +77,22 @@ export default {
       default: 1
     },
     ownerId: {
-      type: String,
-      default: "0"
+      type: Number,
+      default: 1
     }
   },
   data: () => {
     return {
-      data: [
-        {
-          rewardId: '1',
-          rewardPrice: 'Rp20.000',
-          rewardAmount: '20000',
-          rewardTitle: 'Reward 01',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        },
-        {
-          rewardId: '2',
-          rewardPrice: 'Rp150.000',
-          rewardAmount: '150000',
-          rewardTitle: 'Reward 04',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        },
-        {
-          rewardId: '3',
-          rewardPrice: 'Rp500.000',
-          rewardAmount: '500000',
-          rewardTitle: 'Reward 02',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        },
-        {
-          rewardId: '4',
-          rewardPrice: 'Rp1.000.000',
-          rewardAmount: '1000000',
-          rewardTitle: 'Reward 03',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        },
-        {
-          rewardId: '5',
-          rewardPrice: 'Rp10.000.000',
-          rewardAmount: '10000000',
-          rewardTitle: 'Reward 05',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-        }
-      ],
+      listData: [],
       amountDonation: '0',
+      realListData: []
+    }
+  },
+  async created() {
+    // this.generateMockData()
+    await this.fetchingModalListData()
+    if(this.listData.length <= 0) {
+      await this.generateMockData()
     }
   },
   computed: {
@@ -134,11 +107,38 @@ export default {
       return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0
     },
     checkUserOwner() {
-      return true
-      // return parseInt(this.ownerId) === this.userId
+      // return parseInt(this.ownerId) === userId
+      return parseInt(this.ownerId) === this.userId
     }
   },
   methods: {
+    generateMockData () {
+      let mockData = []
+      for(let x=1;x<=5;x++){
+        const tempObj = {
+          rewardId: x,
+          rewardTitle: 'Price Name Number ' + x,
+          rewardAmount: x + '00000',
+          rewardPrice: 'Rp' + x + '00.000',
+          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
+        }
+        mockData.push(tempObj)
+      }
+      this.listData = mockData
+    },
+    async fetchingModalListData () {
+      const campaignId = this.campaignId
+      await this.$store
+        .dispatch('getRewardsByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.listData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
     closeModal () {
       this.$emit('close')
     },
@@ -196,14 +196,14 @@ export default {
         overflow: auto;
       }
 
-     div > a {
-       text-decoration: none;
-       color: black;
-     }
+      div > a {
+        text-decoration: none;
+        color: black;
+      }
 
-     .text-error {
-       color: red;
-     }
+      .text-error {
+        color: red;
+      }
 
       .modal-non-reward {
         display: flex;
@@ -223,6 +223,20 @@ export default {
           margin: 0 10px;
           width: 300px;
         }
+
+        a {
+          border: 1px solid black;
+          border-radius: 10px;
+          margin-left: .5rem;
+          text-decoration: none;
+          color: black;
+          min-width: 5rem;
+
+          &:hover {
+            color: white;
+            background-color: green;
+          }
+        }
       }
 
       .button-wrap {
@@ -233,6 +247,14 @@ export default {
             border: 1px solid black;
             border-radius: 10px;
             margin-left: .5rem;
+            &-delete:hover {
+              background-color: red;
+              color: white
+            }
+            &-edit:hover {
+              background-color: green;
+              color: white;
+            }
           }
         }
 

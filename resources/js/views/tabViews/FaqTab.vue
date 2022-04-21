@@ -42,8 +42,8 @@ export default {
       default: 1
     },
     ownerId: {
-      type: String,
-      default: "0"
+      type: Number,
+      default: 0
     }
   },
   data: () => {
@@ -51,38 +51,49 @@ export default {
       mockUpdatesId: 1,
       // TODO : Change realListData with listData, and listData with mock
       realListData: [],
-      listData: [
-        {
-            "id": 1,
-            "users_id": 1,
-            "campaign_id": 2,
-            "title": "FAQ #1 ?",
-            "description": "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
-            "created_at": "2022-01-05T09:47:17.000000Z",
-            "updated_at": "2022-01-05T09:47:17.000000Z"
-        },
-        {
-            "id": 2,
-            "users_id": 1,
-            "campaign_id": 2,
-            "title": "FAQ #2 ?",
-            "description": "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
-            "created_at": "2022-01-05T09:47:17.000000Z",
-            "updated_at": "2022-01-05T09:47:17.000000Z"
-        }
-      ]
+      listData: [],
     }
   },
-  async created() {
-    //TODO fetch FAQ by Campaign ID
+  mounted() {
+    this.fetchingFaqListData()
+    // this.generateMockData()
   },
   computed: {
-   checkUserOwner() {
+    checkUserOwner() {
       // return parseInt(this.ownerId) === userId
       return parseInt(this.ownerId) === this.userId
     }
   },
   methods: {
+    fetchingFaqListData () {
+      const campaignId = this.campaignId
+      this.$store
+        .dispatch('getFaqByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.listData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    generateMockData () {
+      let mockData = []
+      for(let x=1;x<=5;x++){
+        let tempObj = {
+          id: x,
+          users_id: 1,
+          campaign_id: 1,
+          title: '#FAQ 2 ?',
+          description: 'Kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya.',
+          "created_at": "2022-01-05T09:47:17.000000Z",
+          "updated_at": "2022-01-05T09:47:17.000000Z"
+        }
+        mockData.push(tempObj)
+      }
+      this.listData = mockData
+    },
     deleteFaqs() {
       console.log('delete faqs')
     }
@@ -92,7 +103,7 @@ export default {
 
 .<style lang="less" scoped>
 .wrap-faq-tab {
-  min-height: 70vh;
+  min-height: 90vh;
   text-align: left;
   padding: 0 20rem;
   display: flex;

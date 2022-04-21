@@ -36,15 +36,12 @@ export default {
   props: {
     campaignId: {
       type: Number,
-      default: 1,
     },
     userId: {
       type: Number,
-      default: 1
     },
     ownerId: {
-      type: String,
-      default: "0"
+      type: Number,
     }
   },
   data: () => {
@@ -74,12 +71,11 @@ export default {
       ],
     }
   },
-  async created() {
+  updated() {
     const campaignId = this.campaignId
-    await this.$store
+    this.$store
       .dispatch('getUpdatesByCampaignId', campaignId)
       .then(res => {
-        console.log(res)
         if(res.success && res.data && res.data.length > 0) {
           this.listData = res.data
         }
@@ -104,7 +100,7 @@ export default {
 
 <style lang="less" scoped>
 .wrap-update-tab{
-  min-height: 70vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +121,6 @@ export default {
   }
 
   .update-card {
-    border: 1px solid black;
     border-radius: 5px;
     width: 60rem;
     min-height: 10rem;
@@ -134,6 +129,10 @@ export default {
     padding: 10px;
     display: flex;
     flex-direction: column;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+
+
 
     .title-update {
       margin: 1rem 0;

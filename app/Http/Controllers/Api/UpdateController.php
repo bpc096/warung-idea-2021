@@ -87,7 +87,7 @@ class UpdateController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * 
+     *
      * @param  int  $id
      * @param  \App\Update  $update
      * @return \Illuminate\Http\Response
