@@ -6136,6 +6136,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ForumTab',
@@ -13364,7 +13368,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".forum-tab-wrap[data-v-ca8ed78a] {\n  height: 90vh;\n  margin-top: 3rem;\n}\n.forum-tab-wrap .title-tab[data-v-ca8ed78a] {\n  margin: 5rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".forum-tab-wrap[data-v-ca8ed78a] {\n  min-height: 100vh;\n  margin-top: 5rem 0 10rem 0;\n}\n.forum-tab-wrap .title-tab[data-v-ca8ed78a] {\n  margin: 5rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.forum-tab-wrap .disqus-wrap[data-v-ca8ed78a] {\n  width: 100%;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.forum-tab-wrap .disqus-wrap .disqus-center[data-v-ca8ed78a] {\n  width: 70%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -55037,16 +55041,24 @@ var render = function () {
         _vm._v("\n    Forum Discussion\n  "),
       ]),
       _vm._v(" "),
-      _c("Disqus", {
-        attrs: {
-          shortname: "warungidea",
-          pageConfig: _vm.pageConfig,
-          lang: _vm.lang,
-        },
-        on: { "new-comment": _vm.newComment },
-      }),
-    ],
-    1
+      _c("div", { staticClass: "disqus-wrap" }, [
+        _c(
+          "div",
+          { staticClass: "disqus-center" },
+          [
+            _c("Disqus", {
+              attrs: {
+                shortname: "warungidea",
+                pageConfig: _vm.pageConfig,
+                lang: _vm.lang,
+              },
+              on: { "new-comment": _vm.newComment },
+            }),
+          ],
+          1
+        ),
+      ]),
+    ]
   )
 }
 var staticRenderFns = []
