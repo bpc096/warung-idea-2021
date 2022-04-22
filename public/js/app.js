@@ -55038,7 +55038,7 @@ var render = function () {
     { staticClass: "forum-tab-wrap", attrs: { "aria-labelledby": "comment" } },
     [
       _c("div", { staticClass: "title-tab" }, [
-        _vm._v("\n    Forum Discussion\n  "),
+        _vm._v("\n    Discussion Forum\n  "),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "disqus-wrap" }, [

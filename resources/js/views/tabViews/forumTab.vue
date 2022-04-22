@@ -1,7 +1,7 @@
 <template>
   <section class='forum-tab-wrap' aria-labelledby="comment">
     <div class="title-tab">
-      Forum Discussion
+      Discussion Forum
     </div>
     <div class="disqus-wrap">
       <div class="disqus-center">
