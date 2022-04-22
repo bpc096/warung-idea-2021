@@ -119,7 +119,7 @@ export default {
       return this.campaignInfo?.id? this.campaignInfo.id : '1'
     },
     imageUrl () {
-      return this.campaignInfo?.image? this.campaignInfo.image : this.dummyImgUrl
+      return (this.campaignInfo && this.campaignInfo.image) ? this.campaignInfo.image : this.dummyImgUrl
     },
     infoDonationAmount () {
       return this.donationInfo?.amount? this.donationInfo.amount : '10000'

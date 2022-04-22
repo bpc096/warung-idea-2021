@@ -169,7 +169,7 @@ export default {
       return this.$route.params.projectId
     },
     imageUrl () {
-      return this.projectDetail?.image? this.projectDetail.image : this.projectDetail.dummyUrlImage
+      return (this.projectDetail && this.projectDetail.image) ?  this.projectDetail.image : this.projectDetail.dummyUrlImage
     },
     daysBetween () {
       const maxDate = this.projectDetail?.max_date? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30'

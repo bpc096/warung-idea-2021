@@ -8,7 +8,7 @@
         {{ this.projectName }}
       </div>
       <div class="card-description">
-       {{ this.projectDesc }}
+        {{ this.projectDesc }}
       </div>
       <div class="card-additional">
         <div class="creator-info">
@@ -61,7 +61,7 @@ export default {
       return name
     },
     imageUrl () {
-      return this.projectData?.image? this.projectData.image : this.dummyData.contentImageURL
+      return (this.projectData && this.projectData.image) ? this.projectData.image : this.dummyData.contentImageURL
     },
     projectName () {
       const projectTitle = this.projectData?.title? this.projectData.title : this.dummyData.contentTitle
