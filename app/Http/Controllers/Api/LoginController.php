@@ -29,10 +29,15 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user) {
             return response()->json([
                 'success' => false,
-                'message' => 'Login Failed!',
+                'message' => 'User Not Registered!',
+            ], 401);
+        } else if (!Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Wrong Password!',
             ], 401);
         }
 
@@ -40,10 +45,10 @@ class LoginController extends Controller
             'success' => true,
             'message' => 'Login Berhasil!',
             'data'    => $user,
-            'token'   => $user->createToken('authToken')->accessToken    
+            'token'   => $user->createToken('authToken')->accessToken
         ], 200);
     }
-    
+
     /**
      * logout
      *
@@ -53,11 +58,10 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $removeToken = $request->user()->tokens()->delete();
-
         if($removeToken) {
             return response()->json([
                 'success' => true,
-                'message' => 'Logout Berhasil!',  
+                'message' => 'Logout Berhasil!',
             ]);
         }
     }

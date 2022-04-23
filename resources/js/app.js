@@ -5,28 +5,39 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+import App from './App.vue'
+import Axios from 'axios'
+import Vue from 'vue'
+import router from './router'
+import store from './store'
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { setHeaderToken } from './utils/auth'
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+const devApp = true //TODO : change this before deploy
+Axios.defaults.baseURL = devApp ? 'http://localhost:8000/api/' : 'https://www.warungidea.com/api/'
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.config.productionTip = false
+Vue.use(Axios)
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+const token = localStorage.getItem('token')
+if(token) {
+  setHeaderToken(token)
+}
 
-const app = new Vue({
-    el: '#app',
-});
+store.dispatch('get_user', token)
+.then( () => {
+  new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount('#app')
+})
+.catch(err => {
+  console.error(err)
+})
+
+
+

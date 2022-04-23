@@ -20,6 +20,11 @@ class CreateUpdatesTable extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+
+            // $table->foreign('campaign_id')
+            //       ->references('id')->on('campaigns')
+            //       ->onUpdate('cascade')
+            //       ->onDelete('cascade');
         });
     }
 
