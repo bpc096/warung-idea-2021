@@ -2291,9 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
       return (_this$campaignInfo2 = this.campaignInfo) !== null && _this$campaignInfo2 !== void 0 && _this$campaignInfo2.id ? this.campaignInfo.id : '1';
     },
     imageUrl: function imageUrl() {
-      var _this$campaignInfo3;
-
-      return (_this$campaignInfo3 = this.campaignInfo) !== null && _this$campaignInfo3 !== void 0 && _this$campaignInfo3.image ? this.campaignInfo.image : this.dummyImgUrl;
+      return this.campaignInfo && this.campaignInfo.image ? this.campaignInfo.image : this.dummyImgUrl;
     },
     infoDonationAmount: function infoDonationAmount() {
       var _this$donationInfo;
@@ -2301,9 +2299,9 @@ __webpack_require__.r(__webpack_exports__);
       return (_this$donationInfo = this.donationInfo) !== null && _this$donationInfo !== void 0 && _this$donationInfo.amount ? this.donationInfo.amount : '10000';
     },
     projectTitle: function projectTitle() {
-      var _this$campaignInfo4;
+      var _this$campaignInfo3;
 
-      return (_this$campaignInfo4 = this.campaignInfo) !== null && _this$campaignInfo4 !== void 0 && _this$campaignInfo4.title ? this.campaignInfo.title : 'Title Campaign';
+      return (_this$campaignInfo3 = this.campaignInfo) !== null && _this$campaignInfo3 !== void 0 && _this$campaignInfo3.title ? this.campaignInfo.title : 'Title Campaign';
     },
     checkEligibleToEdit: function checkEligibleToEdit() {
       // TODO : Check Eligiblelity to edit campaign
@@ -2531,14 +2529,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     imageUrl: function imageUrl() {
-      var _this$projectData;
-
-      return (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
+      return this.projectData && this.projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
     },
     projectName: function projectName() {
-      var _this$projectData2;
+      var _this$projectData;
 
-      var projectTitle = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.title ? this.projectData.title : this.dummyData.contentTitle;
+      var projectTitle = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.title ? this.projectData.title : this.dummyData.contentTitle;
 
       if (this.isInHomePage) {
         return projectTitle.slice(0, 30);
@@ -2547,9 +2543,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectDesc: function projectDesc() {
-      var _this$projectData3;
+      var _this$projectData2;
 
-      var contentDesc = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.description ? this.projectData.description : this.dummyData.contentDescription;
+      var contentDesc = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.description ? this.projectData.description : this.dummyData.contentDescription;
 
       if (this.isInHomePage) {
         return contentDesc.slice(0, 180) + '...';
@@ -2648,14 +2644,12 @@ __webpack_require__.r(__webpack_exports__);
       return name;
     },
     imageUrl: function imageUrl() {
-      var _this$projectData2;
-
-      return (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.image ? this.projectData.image : this.dummyData.contentImageURL;
+      return this.projectData && this.projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
     },
     projectName: function projectName() {
-      var _this$projectData3;
+      var _this$projectData2;
 
-      var projectTitle = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.title ? this.projectData.title : this.dummyData.contentTitle;
+      var projectTitle = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.title ? this.projectData.title : this.dummyData.contentTitle;
 
       if (this.isInHomePage) {
         return projectTitle.slice(0, 30);
@@ -2664,9 +2658,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectDesc: function projectDesc() {
-      var _this$projectData4;
+      var _this$projectData3;
 
-      var contentDesc = (_this$projectData4 = this.projectData) !== null && _this$projectData4 !== void 0 && _this$projectData4.description ? this.projectData.description : this.dummyData.contentDescription;
+      var contentDesc = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.description ? this.projectData.description : this.dummyData.contentDescription;
 
       if (this.isInHomePage) {
         return contentDesc.slice(0, 200) + '...';
@@ -2736,14 +2730,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     imageUrl: function imageUrl() {
-      var _this$projectData;
-
-      return (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
+      return this.projectData && this.projectData.image ? this.projectData.image : this.dummyData.contentImageURL;
     },
     projectName: function projectName() {
-      var _this$projectData2;
+      var _this$projectData;
 
-      var projectTitle = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.title ? this.projectData.title : this.dummyData.contentTitle;
+      var projectTitle = (_this$projectData = this.projectData) !== null && _this$projectData !== void 0 && _this$projectData.title ? this.projectData.title : this.dummyData.contentTitle;
 
       if (this.isInHomePage) {
         return projectTitle.slice(0, 20);
@@ -2752,9 +2744,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     projectDesc: function projectDesc() {
-      var _this$projectData3;
+      var _this$projectData2;
 
-      var contentDesc = (_this$projectData3 = this.projectData) !== null && _this$projectData3 !== void 0 && _this$projectData3.description ? this.projectData.description : this.dummyData.contentDescription;
+      var contentDesc = (_this$projectData2 = this.projectData) !== null && _this$projectData2 !== void 0 && _this$projectData2.description ? this.projectData.description : this.dummyData.contentDescription;
 
       if (this.isInHomePage) {
         return contentDesc.slice(0, 100) + '...';
@@ -2837,6 +2829,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
 //
 //
 //
@@ -2914,45 +2915,44 @@ __webpack_require__.r(__webpack_exports__);
       "default": 1
     },
     ownerId: {
-      type: String,
-      "default": "0"
+      type: Number,
+      "default": 1
     }
   },
   data: function data() {
     return {
-      data: [{
-        rewardId: '1',
-        rewardPrice: 'Rp20.000',
-        rewardAmount: '20000',
-        rewardTitle: 'Reward 01',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }, {
-        rewardId: '2',
-        rewardPrice: 'Rp150.000',
-        rewardAmount: '150000',
-        rewardTitle: 'Reward 04',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }, {
-        rewardId: '3',
-        rewardPrice: 'Rp500.000',
-        rewardAmount: '500000',
-        rewardTitle: 'Reward 02',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }, {
-        rewardId: '4',
-        rewardPrice: 'Rp1.000.000',
-        rewardAmount: '1000000',
-        rewardTitle: 'Reward 03',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }, {
-        rewardId: '5',
-        rewardPrice: 'Rp10.000.000',
-        rewardAmount: '10000000',
-        rewardTitle: 'Reward 05',
-        rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
-      }],
-      amountDonation: '0'
+      listData: [],
+      amountDonation: '0',
+      realListData: []
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.fetchingModalListData();
+
+            case 2:
+              if (!(_this.listData.length <= 0)) {
+                _context.next = 5;
+                break;
+              }
+
+              _context.next = 5;
+              return _this.generateMockData();
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   computed: {
     amountDonationToNumber: function amountDonationToNumber() {
@@ -2966,10 +2966,54 @@ __webpack_require__.r(__webpack_exports__);
       return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0;
     },
     checkUserOwner: function checkUserOwner() {
-      return true; // return parseInt(this.ownerId) === this.userId
+      // return parseInt(this.ownerId) === userId
+      return parseInt(this.ownerId) === this.userId;
     }
   },
   methods: {
+    generateMockData: function generateMockData() {
+      var mockData = [];
+
+      for (var x = 1; x <= 5; x++) {
+        var tempObj = {
+          rewardId: x,
+          rewardTitle: 'Price Name Number ' + x,
+          rewardAmount: x + '00000',
+          rewardPrice: 'Rp' + x + '00.000',
+          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
+        };
+        mockData.push(tempObj);
+      }
+
+      this.listData = mockData;
+    },
+    fetchingModalListData: function fetchingModalListData() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var campaignId;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                campaignId = _this2.campaignId;
+                _context2.next = 3;
+                return _this2.$store.dispatch('getRewardsByCampaignId', campaignId).then(function (res) {
+                  if (res.success && res.data && res.data.length > 0) {
+                    _this2.listData = res.data;
+                  }
+                })["catch"](function (err) {
+                  console.error(err);
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     closeModal: function closeModal() {
       this.$emit('close');
     },
@@ -3366,6 +3410,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    formatMoney: function formatMoney(money) {
+      var moneyTemp = money ? parseInt(money) : 10000;
+      var formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp).replace(/[IDR]/gi, '').replace(/(\.+\d{2})/, '').replace(/,/g, '.').trimLeft();
+      return formatter;
+    },
     checkout: function checkout() {
       var _this2 = this;
 
@@ -4054,13 +4106,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.$store.dispatch('getCampaignById', _this.$route.params.projectId).then(function (res) {
-                _this.payment = res.payments || [];
-                _this.projectDetail = res.data;
-                _this.sumPayment = res.data.sum_payment;
-              })["catch"](function (err) {
-                console.log(err);
-              });
+              return _this.fetchingCampaignInfo();
 
             case 2:
             case "end":
@@ -4112,14 +4158,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.$route.params.projectId;
     },
     imageUrl: function imageUrl() {
-      var _this$projectDetail2;
-
-      return (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.image ? this.projectDetail.image : this.projectDetail.dummyUrlImage;
+      return this.projectDetail && this.projectDetail.image ? this.projectDetail.image : this.projectDetail.dummyUrlImage;
     },
     daysBetween: function daysBetween() {
-      var _this$projectDetail3;
+      var _this$projectDetail2;
 
-      var maxDate = (_this$projectDetail3 = this.projectDetail) !== null && _this$projectDetail3 !== void 0 && _this$projectDetail3.max_date ? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30';
+      var maxDate = (_this$projectDetail2 = this.projectDetail) !== null && _this$projectDetail2 !== void 0 && _this$projectDetail2.max_date ? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30';
       var dayBetween = '';
 
       if (maxDate.datePass) {
@@ -4135,33 +4179,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return dayBetween;
     },
     projectTitle: function projectTitle() {
-      var _this$projectDetail4;
+      var _this$projectDetail3;
 
-      return (_this$projectDetail4 = this.projectDetail) !== null && _this$projectDetail4 !== void 0 && _this$projectDetail4.title ? this.projectDetail.title : 'Project Title';
+      return (_this$projectDetail3 = this.projectDetail) !== null && _this$projectDetail3 !== void 0 && _this$projectDetail3.title ? this.projectDetail.title : 'Project Title';
     },
     projectTargetDonation: function projectTargetDonation() {
-      var _this$projectDetail5;
+      var _this$projectDetail4;
 
-      return (_this$projectDetail5 = this.projectDetail) !== null && _this$projectDetail5 !== void 0 && _this$projectDetail5.target_donation ? this.projectDetail.target_donation.toString() : '10.000.000';
+      return (_this$projectDetail4 = this.projectDetail) !== null && _this$projectDetail4 !== void 0 && _this$projectDetail4.target_donation ? this.projectDetail.target_donation.toString() : '10.000.000';
     },
     projectQuickDesc: function projectQuickDesc() {
-      var _this$projectDetail6;
+      var _this$projectDetail5;
 
-      return (_this$projectDetail6 = this.projectDetail) !== null && _this$projectDetail6 !== void 0 && _this$projectDetail6.description ? this.projectDetail.description.slice(0, 100) : 'Project Description';
+      return (_this$projectDetail5 = this.projectDetail) !== null && _this$projectDetail5 !== void 0 && _this$projectDetail5.description ? this.projectDetail.description.slice(0, 100) : 'Project Description';
     },
     projectFullDesc: function projectFullDesc() {
-      var _this$projectDetail7;
+      var _this$projectDetail6;
 
-      return (_this$projectDetail7 = this.projectDetail) !== null && _this$projectDetail7 !== void 0 && _this$projectDetail7.description ? this.projectDetail.description : 'Project Description';
+      return (_this$projectDetail6 = this.projectDetail) !== null && _this$projectDetail6 !== void 0 && _this$projectDetail6.description ? this.projectDetail.description : 'Project Description';
     }
   }),
   methods: {
+    fetchingCampaignInfo: function fetchingCampaignInfo() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.$store.dispatch('getCampaignById', _this2.$route.params.projectId).then(function (res) {
+                  _this2.payment = res.payments || [];
+                  _this2.projectDetail = res.data;
+                  _this2.sumPayment = res.data.sum_payment;
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     formatMoney: function formatMoney(money) {
       var moneyTemp = money ? parseInt(money) : 10000;
       var formatter = new Intl.NumberFormat('en-ID', {
         style: 'currency',
         currency: 'IDR'
-      }).format(moneyTemp).replace(/[IDR]/gi, '').replace(/(\.+\d{2})/, '').trimLeft();
+      }).format(moneyTemp).replace(/[IDR]/gi, '').replace(/(\.+\d{2})/, '').replace(/,/g, '.').trimLeft();
       return formatter;
     },
     checkMaxDate: function checkMaxDate(date) {
@@ -4429,12 +4498,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_Multiselect_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Multiselect.vue */ "./resources/js/components/Multiselect.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4555,7 +4655,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       targetDonation: '1',
       maxDate: null,
       description: '',
+      shortDescription: '',
+      projectPlan: '',
       previewImage: null,
+      collaborators: ['andi'],
       tempImage: 'data:image/png;base64,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'
     };
   },
@@ -4585,6 +4688,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: {
+    isNumber: function isNumber(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+
+      if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+        evt.preventDefault();
+        ;
+      } else {
+        return true;
+      }
+    },
     addTag: function addTag(newTag) {
       var tag = {
         name: newTag,
@@ -4597,12 +4711,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       var data = new FormData();
+      var dataCollaborator = this.collaborators.map(function (e) {
+        return e;
+      });
+      console.log(dataCollaborator, _typeof(dataCollaborator), _typeof(this.collaborators));
       data.append('image', this.image);
       data.append('title', this.title);
       data.append('category_id', parseInt(this.categoryId));
       data.append('target_donation', parseInt(this.targetDonation));
       data.append('max_date', this.maxDate);
       data.append('description', this.description);
+      data.append('short_description', this.shortDescription);
+      data.append('project_plan', this.projectPlan);
+      data.append('collaborators', this.collaborators);
       this.$store.dispatch('uploadCampaign', data).then(function () {
         _this.$router.push({
           name: 'HomePage'
@@ -5799,28 +5920,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'CreatorTab'
+  name: 'CreatorTab',
+  data: function data() {
+    return {
+      listData: []
+    };
+  },
+  mounted: function mounted() {
+    // this.generateMockData()
+    this.fetchingCollaboratorListData();
+  },
+  methods: {
+    generateMockData: function generateMockData() {
+      var tempData = [];
+
+      for (var x = 1; x <= 10; x++) {
+        var tempObj = [];
+        tempObj.userId = 'userId' + x;
+        tempObj.username = 'userName' + x;
+        tempObj.country = 'Indonesia';
+        tempData.push(tempObj);
+      }
+
+      this.listData = tempData;
+    },
+    fetchingCollaboratorListData: function fetchingCollaboratorListData() {
+      var _this = this;
+
+      var campaignId = this.campaignId;
+      this.$store.dispatch('getCollaboratorByCampaignId', campaignId).then(function (res) {
+        if (res.success && res.data && res.data.length > 0) {
+          _this.listData = res.data;
+        }
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -5836,14 +5973,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -5887,8 +6016,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "default": 1
     },
     ownerId: {
-      type: String,
-      "default": "0"
+      type: Number,
+      "default": 0
     }
   },
   data: function data() {
@@ -5896,38 +6025,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       mockUpdatesId: 1,
       // TODO : Change realListData with listData, and listData with mock
       realListData: [],
-      listData: [{
-        "id": 1,
-        "users_id": 1,
-        "campaign_id": 2,
-        "title": "FAQ #1 ?",
-        "description": "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
-        "created_at": "2022-01-05T09:47:17.000000Z",
-        "updated_at": "2022-01-05T09:47:17.000000Z"
-      }, {
-        "id": 2,
-        "users_id": 1,
-        "campaign_id": 2,
-        "title": "FAQ #2 ?",
-        "description": "kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya",
-        "created_at": "2022-01-05T09:47:17.000000Z",
-        "updated_at": "2022-01-05T09:47:17.000000Z"
-      }]
+      listData: []
     };
   },
-  created: function created() {//TODO fetch FAQ by Campaign ID
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+  mounted: function mounted() {
+    this.fetchingFaqListData(); // this.generateMockData()
   },
   computed: {
     checkUserOwner: function checkUserOwner() {
@@ -5936,6 +6038,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    fetchingFaqListData: function fetchingFaqListData() {
+      var _this = this;
+
+      var campaignId = this.campaignId;
+      this.$store.dispatch('getFaqByCampaignId', campaignId).then(function (res) {
+        if (res.success && res.data && res.data.length > 0) {
+          _this.listData = res.data;
+        }
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
+    generateMockData: function generateMockData() {
+      var mockData = [];
+
+      for (var x = 1; x <= 5; x++) {
+        var tempObj = {
+          id: x,
+          users_id: 1,
+          campaign_id: 1,
+          title: '#FAQ 2 ?',
+          description: 'Kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya.',
+          "created_at": "2022-01-05T09:47:17.000000Z",
+          "updated_at": "2022-01-05T09:47:17.000000Z"
+        };
+        mockData.push(tempObj);
+      }
+
+      this.listData = mockData;
+    },
     deleteFaqs: function deleteFaqs() {
       console.log('delete faqs');
     }
@@ -5955,14 +6087,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 //
 //
 //
@@ -5999,16 +6123,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: 'UpdateTab',
   props: {
     campaignId: {
-      type: Number,
-      "default": 1
+      type: Number
     },
     userId: {
-      type: Number,
-      "default": 1
+      type: Number
     },
     ownerId: {
-      type: String,
-      "default": "0"
+      type: Number
     }
   },
   data: function data() {
@@ -6035,34 +6156,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }]
     };
   },
-  created: function created() {
+  updated: function updated() {
     var _this = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var campaignId;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              campaignId = _this.campaignId;
-              _context.next = 3;
-              return _this.$store.dispatch('getUpdatesByCampaignId', campaignId).then(function (res) {
-                console.log(res);
-
-                if (res.success && res.data && res.data.length > 0) {
-                  _this.listData = res.data;
-                }
-              })["catch"](function (err) {
-                console.error(err);
-              });
-
-            case 3:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+    var campaignId = this.campaignId;
+    this.$store.dispatch('getUpdatesByCampaignId', campaignId).then(function (res) {
+      if (res.success && res.data && res.data.length > 0) {
+        _this.listData = res.data;
+      }
+    })["catch"](function (err) {
+      console.error(err);
+    });
   },
   computed: {
     checkUserOwner: function checkUserOwner() {
@@ -6091,6 +6195,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue_disqus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-disqus */ "./node_modules/vue-disqus/dist/vue-disqus.esm.js");
+//
+//
+//
+//
 //
 //
 //
@@ -6199,23 +6307,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'PaymentTab'
+  name: 'PaymentTab',
+  props: {
+    campaignId: {
+      type: Number,
+      "default": 1
+    },
+    userId: {
+      type: Number,
+      "default": 1
+    },
+    ownerId: {
+      type: String,
+      "default": "0"
+    }
+  },
+  data: function data() {
+    return {
+      listData: []
+    };
+  },
+  mounted: function mounted() {
+    // this.generateMockData()
+    this.fetchingPaymentListData();
+  },
+  methods: {
+    generateMockData: function generateMockData() {
+      var mockData = [];
+
+      for (var x = 1; x <= 10; x++) {
+        var tempObj = {};
+        tempObj.userId = 'userId' + x;
+        tempObj.username = 'Username' + x;
+        tempObj.amount = 'Rp ' + x + '00.000';
+        mockData.push(tempObj);
+      }
+
+      this.listData = mockData;
+    },
+    fetchingPaymentListData: function fetchingPaymentListData() {
+      var _this = this;
+
+      var campaignId = this.campaignId;
+      this.$store.dispatch('getPaymentByCampaignId', campaignId).then(function (res) {
+        if (res.success && res.data && res.data.length > 0) {
+          _this.listData = res.data;
+        }
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -6919,7 +7062,21 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 var devApp = true; //TODO : change this before deploy
 
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = devApp ? 'http://localhost:8000/api/' : 'https://www.warungidea.com/api/';
+var isDeployHeroku = false; // TODO : change this to false when deploy cpanel
+
+var setBaseUrl = '';
+
+if (devApp) {
+  if (isDeployHeroku) {
+    setBaseUrl = 'https://warungidea.herokuapp.com/api/';
+  } else {
+    setBaseUrl = 'http://localhost:8000/api/';
+  }
+} else {
+  setBaseUrl = 'https://www.warungidea.com/api/';
+}
+
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = setBaseUrl;
 vue__WEBPACK_IMPORTED_MODULE_7__["default"].config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_7__["default"].use((axios__WEBPACK_IMPORTED_MODULE_1___default()));
 var token = localStorage.getItem('token');
@@ -7236,8 +7393,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mutation-types */ "./resources/js/store/mutation-types.js");
 /* harmony import */ var _modules_authStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/authStore */ "./resources/js/store/modules/authStore.js");
 /* harmony import */ var _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/profileStore */ "./resources/js/store/modules/profileStore.js");
@@ -7245,6 +7402,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/campaignStore */ "./resources/js/store/modules/campaignStore.js");
 /* harmony import */ var _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/donateStore */ "./resources/js/store/modules/donateStore.js");
 /* harmony import */ var _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/updatesStore */ "./resources/js/store/modules/updatesStore.js");
+/* harmony import */ var _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/rewardsStore */ "./resources/js/store/modules/rewardsStore.js");
+/* harmony import */ var _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/faqStore */ "./resources/js/store/modules/faqStore.js");
 var _mutations__;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
@@ -7256,6 +7415,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
  // Module Store
+
+
 
 
 
@@ -7284,12 +7445,12 @@ var mutations__ = (_mutations__ = {}, _defineProperty(_mutations__, _mutation_ty
   state.number = state.number - data;
 }), _mutations__);
 var getters__ = {};
-vue__WEBPACK_IMPORTED_MODULE_7__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_8__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_8__["default"].Store({
-  state: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, state__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].state), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].state), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].state), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].state), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].state), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].state),
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, actions__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].actions), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].actions), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].actions), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].actions), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].actions), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].actions),
-  mutations: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, mutations__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].mutations), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].mutations), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].mutations), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].mutations), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].mutations), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].mutations),
-  getters: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, getters__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].getters), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].getters), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].getters), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].getters), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].getters), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].getters)
+vue__WEBPACK_IMPORTED_MODULE_9__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_10__["default"]);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_10__["default"].Store({
+  state: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, state__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].state), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].state), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].state), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].state), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].state), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].state), _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__["default"].state), _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__["default"].state),
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, actions__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].actions), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].actions), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].actions), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].actions), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].actions), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].actions), _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__["default"].actions), _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__["default"].actions),
+  mutations: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, mutations__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].mutations), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].mutations), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].mutations), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].mutations), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].mutations), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].mutations), _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__["default"].mutations), _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__["default"].mutations),
+  getters: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, getters__), _modules_authStore__WEBPACK_IMPORTED_MODULE_1__["default"].getters), _modules_profileStore__WEBPACK_IMPORTED_MODULE_2__["default"].getters), _modules_articleStore__WEBPACK_IMPORTED_MODULE_3__["default"].getters), _modules_campaignStore__WEBPACK_IMPORTED_MODULE_4__["default"].getters), _modules_donateStore__WEBPACK_IMPORTED_MODULE_5__["default"].getters), _modules_updatesStore__WEBPACK_IMPORTED_MODULE_6__["default"].getters), _modules_rewardsStore__WEBPACK_IMPORTED_MODULE_7__["default"].getters), _modules_faqStore__WEBPACK_IMPORTED_MODULE_8__["default"].getters)
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
@@ -7362,11 +7523,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/auth */ "./resources/js/utils/auth.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -7380,7 +7539,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-
 var state = {
   user: null,
   isLoggedIn: false
@@ -7390,14 +7548,14 @@ var actions = {
     var dispatch = _ref.dispatch,
         commit = _ref.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('login', data).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('login', data).then(function (response) {
         var token = response.data.token;
         localStorage.setItem('token', token);
         (0,_utils_auth__WEBPACK_IMPORTED_MODULE_1__.setHeaderToken)(token);
         dispatch('get_user');
         resolve(response);
       })["catch"](function (err) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER);
         localStorage.removeItem('token');
         reject(err);
       });
@@ -7406,7 +7564,7 @@ var actions = {
   logout: function logout(_ref2) {
     var commit = _ref2.commit;
     return new Promise(function (resolve) {
-      commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER);
+      commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER);
       localStorage.removeItem('token');
       (0,_utils_auth__WEBPACK_IMPORTED_MODULE_1__.removeHeaderToken)();
       resolve();
@@ -7415,10 +7573,10 @@ var actions = {
   register: function register(_ref3, data) {
     var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('register', data).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('register', data).then(function (res) {
         resolve(res);
       })["catch"](function (err) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER);
         reject(err);
       });
     });
@@ -7426,8 +7584,8 @@ var actions = {
   updateProfile: function updateProfile(_ref4, data) {
     var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('profile', data).then(function (res) {
-        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.SET_USER, res.data.data);
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('profile', data).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.SET_USER, res.data.data);
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -7437,7 +7595,7 @@ var actions = {
   updatePassword: function updatePassword(_ref5, data) {
     var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('profile/password', data).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default().post('profile/password', data).then(function (res) {
         resolve(res);
         console.log('res', res);
       })["catch"](function (err) {
@@ -7465,18 +7623,18 @@ var actions = {
             case 3:
               _context.prev = 3;
               _context.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default().get('profile');
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().get('profile');
 
             case 6:
               response = _context.sent;
-              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.SET_USER, response.data.data);
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.SET_USER, response.data.data);
               _context.next = 16;
               break;
 
             case 10:
               _context.prev = 10;
               _context.t0 = _context["catch"](3);
-              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER);
+              commit(_mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER);
               (0,_utils_auth__WEBPACK_IMPORTED_MODULE_1__.removeHeaderToken)();
               localStorage.removeItem('token');
               return _context.abrupt("return", _context.t0);
@@ -7490,10 +7648,10 @@ var actions = {
     }))();
   }
 };
-var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_3__.SET_USER, function (state, data) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__.SET_USER, function (state, data) {
   state.user = data;
   state.isLoggedIn = true;
-}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_3__.RESET_USER, function (state) {
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_2__.RESET_USER, function (state) {
   state.user = null;
   state.isLoggedIn = false;
 }), _mutations);
@@ -7700,6 +7858,71 @@ var getters = {};
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/faqStore.js":
+/*!************************************************!*\
+  !*** ./resources/js/store/modules/faqStore.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var state = {
+  editFaqData: '',
+  getFaqData: ''
+};
+var actions = {
+  getFaqByCampaignId: function getFaqByCampaignId(_ref, campaignId) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + campaignId + '/faqs';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_FAQ, res.data.data);
+        resolve(res.data);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  createFaq: function createFaq(_ref2, param) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + param.campaignId + '/faqs';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_FAQ, res.data);
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  }
+};
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_FAQ, function (state, data) {
+  state.editFaqData = data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_FAQ, function (state, data) {
+  state.getFaqData = data;
+}), _mutations);
+var getters = {};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/profileStore.js":
 /*!****************************************************!*\
   !*** ./resources/js/store/modules/profileStore.js ***!
@@ -7724,6 +7947,71 @@ var getters = {};
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/rewardsStore.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/rewardsStore.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+var _mutations;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var state = {
+  editRewardsData: '',
+  getRewardsData: ''
+};
+var actions = {
+  getRewardsByCampaignId: function getRewardsByCampaignId(_ref, campaignId) {
+    var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + campaignId + '/rewards';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_REWARDS, res.data.data);
+        resolve(res.data);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  createRewards: function createRewards(_ref2, param) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + param.campaignId + '/rewards';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_REWARDS, res.data);
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  }
+};
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_REWARDS, function (state, data) {
+  state.editRewardsData = data;
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_REWARDS, function (state, data) {
+  state.getRewardsData = data;
+}), _mutations);
+var getters = {};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: state,
+  actions: actions,
+  mutations: mutations,
+  getters: getters
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/modules/updatesStore.js":
 /*!****************************************************!*\
   !*** ./resources/js/store/modules/updatesStore.js ***!
@@ -7737,18 +8025,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+/* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
 var _mutations;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-
-var CREATE_UPDATES = 'createUpdates';
-var GET_UPDATES = 'getUpdates';
 var state = {
   editUpdateData: '',
   getUpdateData: ''
@@ -7759,7 +8042,7 @@ var actions = {
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + campaignId + '/updates';
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl).then(function (res) {
-        commit(GET_UPDATES, res.data.data);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_UPDATES, res.data.data);
         resolve(res.data);
       })["catch"](function (err) {
         reject(err);
@@ -7771,7 +8054,7 @@ var actions = {
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + param.campaignId + '/updates';
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
-        commit(CREATE_UPDATES, res.data);
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_UPDATES, res.data);
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -7779,9 +8062,9 @@ var actions = {
     });
   }
 };
-var mutations = (_mutations = {}, _defineProperty(_mutations, CREATE_UPDATES, function (state, data) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_UPDATES, function (state, data) {
   state.editUpdateData = data;
-}), _defineProperty(_mutations, GET_UPDATES, function (state, data) {
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_UPDATES, function (state, data) {
   state.getupdateData = data;
 }), _mutations);
 var getters = {};
@@ -7804,7 +8087,13 @@ var getters = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ADDING_NUMBER": () => (/* binding */ ADDING_NUMBER),
+/* harmony export */   "CREATE_FAQ": () => (/* binding */ CREATE_FAQ),
+/* harmony export */   "CREATE_REWARDS": () => (/* binding */ CREATE_REWARDS),
+/* harmony export */   "CREATE_UPDATES": () => (/* binding */ CREATE_UPDATES),
 /* harmony export */   "GET_CAMPAIGN": () => (/* binding */ GET_CAMPAIGN),
+/* harmony export */   "GET_FAQ": () => (/* binding */ GET_FAQ),
+/* harmony export */   "GET_REWARDS": () => (/* binding */ GET_REWARDS),
+/* harmony export */   "GET_UPDATES": () => (/* binding */ GET_UPDATES),
 /* harmony export */   "RESET_USER": () => (/* binding */ RESET_USER),
 /* harmony export */   "SET_ARTICLE": () => (/* binding */ SET_ARTICLE),
 /* harmony export */   "SET_DONATION": () => (/* binding */ SET_DONATION),
@@ -7823,7 +8112,16 @@ var RESET_USER = 'resetUser'; // CAMPAIGN
 var GET_CAMPAIGN = 'getCampaign';
 var UPLOAD_CAMPAIGN = 'uploadCampaign'; //DONATION
 
-var SET_DONATION = 'setDonation';
+var SET_DONATION = 'setDonation'; // UPDATES
+
+var GET_UPDATES = 'getUpdates';
+var CREATE_UPDATES = 'createUpdates'; // FAQS
+
+var GET_FAQ = 'getFaqs';
+var CREATE_FAQ = 'createFaqs'; // REWARDS
+
+var GET_REWARDS = 'getRewards';
+var CREATE_REWARDS = 'createRewards';
 
 /***/ }),
 
@@ -12501,7 +12799,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".modal-mask[data-v-3ecc962c] {\n  position: fixed;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.3s ease;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: column;\n}\n.modal-mask .modal-wrapper .modal-container[data-v-3ecc962c] {\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 20px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-mask .modal-wrapper .modal-container .modal-scroll[data-v-3ecc962c] {\n  width: 700px;\n  height: 700px;\n  overflow: auto;\n}\n.modal-mask .modal-wrapper .modal-container div > a[data-v-3ecc962c] {\n  text-decoration: none;\n  color: black;\n}\n.modal-mask .modal-wrapper .modal-container .text-error[data-v-3ecc962c] {\n  color: red;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: row;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .text-label[data-v-3ecc962c] {\n  margin: 0 10px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .input-amount[data-v-3ecc962c] {\n  margin: 0 10px;\n  width: 300px;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap[data-v-3ecc962c] {\n  margin: 1rem 0;\n  text-align: center;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn[data-v-3ecc962c] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-3ecc962c] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-3ecc962c]:hover {\n  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-image[data-v-3ecc962c] {\n  background-color: black;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-text-price[data-v-3ecc962c] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-title[data-v-3ecc962c] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-desc[data-v-3ecc962c] {\n  font-size: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".modal-mask[data-v-3ecc962c] {\n  position: fixed;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.3s ease;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: column;\n}\n.modal-mask .modal-wrapper .modal-container[data-v-3ecc962c] {\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 20px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-mask .modal-wrapper .modal-container .modal-scroll[data-v-3ecc962c] {\n  width: 700px;\n  height: 700px;\n  overflow: auto;\n}\n.modal-mask .modal-wrapper .modal-container div > a[data-v-3ecc962c] {\n  text-decoration: none;\n  color: black;\n}\n.modal-mask .modal-wrapper .modal-container .text-error[data-v-3ecc962c] {\n  color: red;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: row;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .text-label[data-v-3ecc962c] {\n  margin: 0 10px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .input-amount[data-v-3ecc962c] {\n  margin: 0 10px;\n  width: 300px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward a[data-v-3ecc962c] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n  text-decoration: none;\n  color: black;\n  min-width: 5rem;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward a[data-v-3ecc962c]:hover {\n  color: white;\n  background-color: green;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap[data-v-3ecc962c] {\n  margin: 1rem 0;\n  text-align: center;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn[data-v-3ecc962c] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn-delete[data-v-3ecc962c]:hover {\n  background-color: red;\n  color: white;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn-edit[data-v-3ecc962c]:hover {\n  background-color: green;\n  color: white;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-3ecc962c] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-3ecc962c]:hover {\n  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-image[data-v-3ecc962c] {\n  background-color: black;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-text-price[data-v-3ecc962c] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-title[data-v-3ecc962c] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-desc[data-v-3ecc962c] {\n  font-size: 15px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12741,7 +13039,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-register-page[data-v-30ebab71] {\n  height: 90vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrap-register-page .register-card[data-v-30ebab71] {\n  max-width: 30%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-register-page[data-v-30ebab71] {\n  min-height: 90vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.wrap-register-page .register-card[data-v-30ebab71] {\n  max-width: 30%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12789,7 +13087,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-3070b13c] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-3070b13c] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-3070b13c] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-3070b13c] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-3070b13c] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-3070b13c] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-3070b13c] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-3070b13c] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-3070b13c] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-3070b13c] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-3070b13c] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-3070b13c]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-3070b13c] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-3070b13c] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-3070b13c] {\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 5rem 0 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-3070b13c] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-3070b13c] {\n  width: 45rem;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-3070b13c] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-3070b13c] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-3070b13c] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-3070b13c] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-3070b13c] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-3070b13c] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-3070b13c],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-3070b13c] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-3070b13c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-3070b13c] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-3070b13c]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-3070b13c] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-3070b13c] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12981,7 +13279,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-30698ba1] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-30698ba1] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-30698ba1] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-30698ba1] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-30698ba1] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-30698ba1] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-30698ba1] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-30698ba1] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-30698ba1] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-30698ba1] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-30698ba1] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-30698ba1] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-30698ba1] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-30698ba1] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-30698ba1]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-30698ba1] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-30698ba1] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-30698ba1] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 5rem 0 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-30698ba1] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-30698ba1] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-30698ba1] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-30698ba1] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-30698ba1] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-30698ba1] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-30698ba1] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-30698ba1] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-30698ba1] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-30698ba1] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-30698ba1],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-30698ba1] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-30698ba1] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-30698ba1] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-30698ba1]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-30698ba1] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-30698ba1] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13029,7 +13327,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-47186e2e] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-47186e2e] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-47186e2e] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-47186e2e] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-47186e2e] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-47186e2e] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-47186e2e] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-47186e2e] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-47186e2e] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-47186e2e] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-47186e2e] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-47186e2e] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-47186e2e] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-47186e2e] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-47186e2e]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-47186e2e] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-47186e2e] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-47186e2e] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 5rem 0 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-47186e2e] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-47186e2e] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-47186e2e] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-47186e2e] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-47186e2e] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-47186e2e] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-47186e2e] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-47186e2e] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-47186e2e] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-47186e2e] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-47186e2e],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-47186e2e] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-47186e2e] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-47186e2e] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-47186e2e]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-47186e2e] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-47186e2e] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13077,7 +13375,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-creator-tab[data-v-5b9b7b30] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 5rem;\n}\n.wrap-creator-tab .title-creator[data-v-5b9b7b30] {\n  margin-top: 5rem;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-creator-tab .creator-card[data-v-5b9b7b30] {\n  border: 1px solid black;\n  width: 50rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-creator-tab .creator-card .content-creator[data-v-5b9b7b30] {\n  font-size: 20px;\n}\n.wrap-creator-tab .creator-card .content-creator table[data-v-5b9b7b30] {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\n.wrap-creator-tab .creator-card .content-creator td[data-v-5b9b7b30],\n.wrap-creator-tab .creator-card .content-creator th[data-v-5b9b7b30] {\n  border: 1px solid #dddddd;\n  text-align: left;\n  padding: 8px;\n}\n.wrap-creator-tab .creator-card .content-creator tr[data-v-5b9b7b30]:nth-child(even) {\n  background-color: #dddddd;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-creator-tab[data-v-5b9b7b30] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 5rem;\n}\n.wrap-creator-tab h2[data-v-5b9b7b30] {\n  margin-top: 5rem;\n}\n.wrap-creator-tab .title-creator[data-v-5b9b7b30] {\n  margin-top: 5rem;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-creator-tab .creator-card[data-v-5b9b7b30] {\n  border: 1px solid black;\n  width: 50rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-creator-tab .creator-card .content-creator[data-v-5b9b7b30] {\n  font-size: 20px;\n}\n.wrap-creator-tab .creator-card .content-creator table[data-v-5b9b7b30] {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\n.wrap-creator-tab .creator-card .content-creator td[data-v-5b9b7b30],\n.wrap-creator-tab .creator-card .content-creator th[data-v-5b9b7b30] {\n  border: 1px solid #dddddd;\n  text-align: left;\n  padding: 8px;\n}\n.wrap-creator-tab .creator-card .content-creator tr[data-v-5b9b7b30]:nth-child(even) {\n  background-color: #dddddd;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13101,7 +13399,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 70vh;\n  text-align: left;\n  padding: 0 20rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-faq-tab h2[data-v-119d3486] {\n  margin-top: 5rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin: 5rem 0 2rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 2rem 0;\n  border-radius: 10px;\n  padding: 1rem;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n.wrap-faq-tab .faq-content .btn-content[data-v-119d3486] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-faq-tab .faq-content .btn-content .btn[data-v-119d3486] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.wrap-faq-tab .faq-content .btn-content .btn-delete[data-v-119d3486]:hover {\n  background-color: red;\n  color: white;\n}\n.wrap-faq-tab .faq-content .btn-content .btn-edit[data-v-119d3486]:hover {\n  background-color: green;\n  color: white;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 90vh;\n  text-align: left;\n  padding: 0 20rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-faq-tab h2[data-v-119d3486] {\n  margin-top: 5rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin: 5rem 0 2rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 2rem 0;\n  border-radius: 10px;\n  padding: 1rem;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n.wrap-faq-tab .faq-content .btn-content[data-v-119d3486] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-faq-tab .faq-content .btn-content .btn[data-v-119d3486] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.wrap-faq-tab .faq-content .btn-content .btn-delete[data-v-119d3486]:hover {\n  background-color: red;\n  color: white;\n}\n.wrap-faq-tab .faq-content .btn-content .btn-edit[data-v-119d3486]:hover {\n  background-color: green;\n  color: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13125,7 +13423,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab .empty-update[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab h2[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab .update-title[data-v-0f7a7116] {\n  margin: 5rem 0 0 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 5px;\n  width: 60rem;\n  min-height: 10rem;\n  margin: 4rem 0;\n  text-align: left;\n  padding: 10px;\n  display: flex;\n  flex-direction: column;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-update-tab .update-card .button-wrap[data-v-0f7a7116] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-update-tab .update-card .button-wrap .btn[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.wrap-update-tab .update-card .button-wrap .btn-delete[data-v-0f7a7116]:hover {\n  background-color: red;\n  color: white;\n}\n.wrap-update-tab .update-card .button-wrap .btn-edit[data-v-0f7a7116]:hover {\n  background-color: green;\n  color: white;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab .empty-update[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab h2[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab .update-title[data-v-0f7a7116] {\n  margin: 5rem 0 0 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border-radius: 5px;\n  width: 60rem;\n  min-height: 10rem;\n  margin: 4rem 0;\n  text-align: left;\n  padding: 10px;\n  display: flex;\n  flex-direction: column;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-update-tab .update-card .button-wrap[data-v-0f7a7116] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-update-tab .update-card .button-wrap .btn[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.wrap-update-tab .update-card .button-wrap .btn-delete[data-v-0f7a7116]:hover {\n  background-color: red;\n  color: white;\n}\n.wrap-update-tab .update-card .button-wrap .btn-edit[data-v-0f7a7116]:hover {\n  background-color: green;\n  color: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13149,7 +13447,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".forum-tab-wrap[data-v-ca8ed78a] {\n  height: 90vh;\n  margin-top: 3rem;\n}\n.forum-tab-wrap .title-tab[data-v-ca8ed78a] {\n  margin: 5rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".forum-tab-wrap[data-v-ca8ed78a] {\n  min-height: 100vh;\n  margin-top: 5rem 0 10rem 0;\n}\n.forum-tab-wrap .title-tab[data-v-ca8ed78a] {\n  margin: 5rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.forum-tab-wrap .disqus-wrap[data-v-ca8ed78a] {\n  width: 100%;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.forum-tab-wrap .disqus-wrap .disqus-center[data-v-ca8ed78a] {\n  width: 70%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13173,7 +13471,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-payment-tab[data-v-8ea3d814] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 5rem;\n}\n.wrap-payment-tab .title-tab[data-v-8ea3d814] {\n  margin-top: 5rem;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-payment-tab .payment-card[data-v-8ea3d814] {\n  border: 1px solid black;\n  width: 50rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-payment-tab .payment-card .content-contributor[data-v-8ea3d814] {\n  font-size: 20px;\n}\n.wrap-payment-tab .payment-card .content-contributor table[data-v-8ea3d814] {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\n.wrap-payment-tab .payment-card .content-contributor td[data-v-8ea3d814],\n.wrap-payment-tab .payment-card .content-contributor th[data-v-8ea3d814] {\n  border: 1px solid #dddddd;\n  text-align: left;\n  padding: 8px;\n}\n.wrap-payment-tab .payment-card .content-contributor tr[data-v-8ea3d814]:nth-child(even) {\n  background-color: #dddddd;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-payment-tab[data-v-8ea3d814] {\n  min-height: 70vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 5rem;\n}\n.wrap-payment-tab h2[data-v-8ea3d814] {\n  margin-top: 5rem;\n}\n.wrap-payment-tab .title-tab[data-v-8ea3d814] {\n  margin-top: 5rem;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-payment-tab .payment-card[data-v-8ea3d814] {\n  border: 1px solid black;\n  width: 50rem;\n  min-height: 20rem;\n  margin: 5rem 0;\n  text-align: left;\n  padding: 10px;\n}\n.wrap-payment-tab .payment-card .content-contributor[data-v-8ea3d814] {\n  font-size: 20px;\n}\n.wrap-payment-tab .payment-card .content-contributor table[data-v-8ea3d814] {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\n.wrap-payment-tab .payment-card .content-contributor td[data-v-8ea3d814],\n.wrap-payment-tab .payment-card .content-contributor th[data-v-8ea3d814] {\n  border: 1px solid #dddddd;\n  text-align: left;\n  padding: 8px;\n}\n.wrap-payment-tab .payment-card .content-contributor tr[data-v-8ea3d814]:nth-child(even) {\n  background-color: #dddddd;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13197,7 +13495,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-32d613c2] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-32d613c2] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-32d613c2] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-32d613c2] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-32d613c2] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-32d613c2] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-32d613c2] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-32d613c2] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-32d613c2] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-32d613c2] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-32d613c2] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-32d613c2] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-32d613c2] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-32d613c2] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-32d613c2]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-32d613c2] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-32d613c2] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-32d613c2] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 5rem 0 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-32d613c2] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-32d613c2] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-32d613c2] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-32d613c2] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-32d613c2] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-32d613c2] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-32d613c2] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-32d613c2] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-32d613c2] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-32d613c2] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-32d613c2],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-32d613c2] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-32d613c2] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-32d613c2] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-32d613c2]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-32d613c2] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-32d613c2] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51227,6 +51525,7 @@ var staticRenderFns = [
             {
               attrs: {
                 href: "https://github.com/mfaisalghozi/warung-ide-2021",
+                target: "blank",
               },
             },
             [_vm._v("\n        Made with 🖤 from us\n      ")]
@@ -51799,7 +52098,7 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-description" }, [
-        _vm._v("\n     " + _vm._s(this.projectDesc) + "\n    "),
+        _vm._v("\n      " + _vm._s(this.projectDesc) + "\n    "),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-additional" }, [
@@ -52045,9 +52344,9 @@ var render = function () {
                   }),
                   _vm._v(" "),
                   _c(
-                    "button",
+                    "a",
                     { staticClass: "btn-donate", attrs: { type: "submit" } },
-                    [_vm._v("Donate!")]
+                    [_vm._v("\n              Donate!\n            ")]
                   ),
                 ]
               ),
@@ -52059,7 +52358,7 @@ var render = function () {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm._l(_vm.data, function (d, idx) {
+            _vm._l(_vm.listData, function (d, idx) {
               return _c(
                 "div",
                 { key: idx },
@@ -52115,7 +52414,7 @@ var render = function () {
                         _c(
                           "a",
                           {
-                            staticClass: "btn",
+                            staticClass: "btn btn-edit",
                             attrs: {
                               href:
                                 "/rewards/edit/" +
@@ -52130,7 +52429,7 @@ var render = function () {
                         _c(
                           "a",
                           {
-                            staticClass: "btn",
+                            staticClass: "btn btn-delete",
                             on: { click: _vm.deleteReward },
                           },
                           [_vm._v("\n              Delete\n            ")]
@@ -52405,7 +52704,9 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "reward-price" }, [
             _vm._v(
-              "\n          Rp" + _vm._s(_vm.donationAmount) + "\n        "
+              "\n          Rp " +
+                _vm._s(_vm.formatMoney(_vm.donationAmount)) +
+                "\n        "
             ),
           ]),
         ]),
@@ -52425,7 +52726,9 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "subtotal-price" }, [
             _vm._v(
-              "\n          Rp" + _vm._s(_vm.donationAmount) + ",-\n        "
+              "\n          Rp " +
+                _vm._s(_vm.formatMoney(_vm.donationAmount)) +
+                "\n        "
             ),
           ]),
         ]),
@@ -52439,7 +52742,9 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "total-price" }, [
             _vm._v(
-              "\n          Rp" + _vm._s(_vm.donationAmount) + ",-\n        "
+              "\n          Rp " +
+                _vm._s(_vm.formatMoney(_vm.donationAmount)) +
+                "\n        "
             ),
           ]),
         ]),
@@ -53637,6 +53942,9 @@ var render = function () {
                   attrs: { type: "text", placeholder: "Target Donation.." },
                   domProps: { value: _vm.targetDonation },
                   on: {
+                    keypress: function ($event) {
+                      return _vm.isNumber($event)
+                    },
                     input: function ($event) {
                       if ($event.target.composing) {
                         return
@@ -53683,6 +53991,41 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "user-name" }, [
               _c("div", { staticClass: "text-label" }, [
+                _vm._v("Campaign Short Description"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-desc-form" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.shortDescription,
+                      expression: "shortDescription",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Short Desc ...",
+                    rows: "4",
+                    cols: "50",
+                  },
+                  domProps: { value: _vm.shortDescription },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.shortDescription = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-name" }, [
+              _c("div", { staticClass: "text-label" }, [
                 _vm._v("Campaign Description"),
               ]),
               _vm._v(" "),
@@ -53710,6 +54053,41 @@ var render = function () {
                         return
                       }
                       _vm.description = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-name" }, [
+              _c("div", { staticClass: "text-label" }, [
+                _vm._v("Campaign Project Plan"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-desc-form" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.projectPlan,
+                      expression: "projectPlan",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Project Plan ..",
+                    rows: "4",
+                    cols: "50",
+                  },
+                  domProps: { value: _vm.projectPlan },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.projectPlan = $event.target.value
                     },
                   },
                 }),
@@ -54829,79 +55207,55 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "wrap-creator-tab" }, [
+    _vm.listData.length > 0
+      ? _c("div", [
+          _c("div", { staticClass: "title-creator" }, [
+            _vm._v("\n      Collaborator List\n    "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "creator-card" }, [
+            _c("div", { staticClass: "content-creator" }, [
+              _c(
+                "table",
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._l(_vm.listData, function (data, idx) {
+                    return _c("tr", { key: idx }, [
+                      _c("td", [_vm._v(_vm._s(idx))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(data.username))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(data.country))]),
+                    ])
+                  }),
+                ],
+                2
+              ),
+            ]),
+          ]),
+        ])
+      : _c("div", [
+          _c("h2", [
+            _vm._v(
+              "Ups... There's no Collaborator list for this project right now !"
+            ),
+          ]),
+        ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrap-creator-tab" }, [
-      _c("div", { staticClass: "title-creator" }, [
-        _vm._v("\n    Collaborator List\n  "),
-      ]),
+    return _c("tr", [
+      _c("th", [_vm._v("Username")]),
       _vm._v(" "),
-      _c("div", { staticClass: "creator-card" }, [
-        _c("div", { staticClass: "content-creator" }, [
-          _c("table", [
-            _c("tr", [
-              _c("th", [_vm._v("Username")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Email")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Country")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Alfreds Futterkiste")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Maria Anders")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Germany")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Centro comercial Moctezuma")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Francisco Chang")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Mexico")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Ernst Handel")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Roland Mendel")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Austria")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Island Trading")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Helen Bennett")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("UK")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Laughing Bacchus Winecellars")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Yoshi Tannamuri")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Canada")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Magazzini Alimentari Riuniti")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Giovanni Rovelli")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Italy")]),
-            ]),
-          ]),
-        ]),
-      ]),
+      _c("th", [_vm._v("Email")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Country")]),
     ])
   },
 ]
@@ -55086,19 +55440,27 @@ var render = function () {
     { staticClass: "forum-tab-wrap", attrs: { "aria-labelledby": "comment" } },
     [
       _c("div", { staticClass: "title-tab" }, [
-        _vm._v("\n    Forum Discussion\n  "),
+        _vm._v("\n    Discussion Forum\n  "),
       ]),
       _vm._v(" "),
-      _c("Disqus", {
-        attrs: {
-          shortname: "warungidea",
-          pageConfig: _vm.pageConfig,
-          lang: _vm.lang,
-        },
-        on: { "new-comment": _vm.newComment },
-      }),
-    ],
-    1
+      _c("div", { staticClass: "disqus-wrap" }, [
+        _c(
+          "div",
+          { staticClass: "disqus-center" },
+          [
+            _c("Disqus", {
+              attrs: {
+                shortname: "warungidea",
+                pageConfig: _vm.pageConfig,
+                lang: _vm.lang,
+              },
+              on: { "new-comment": _vm.newComment },
+            }),
+          ],
+          1
+        ),
+      ]),
+    ]
   )
 }
 var staticRenderFns = []
@@ -55124,71 +55486,55 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "wrap-payment-tab" }, [
+    _vm.listData.length > 0
+      ? _c("div", [
+          _c("div", { staticClass: "title-tab" }, [
+            _vm._v("\n      Donation Payment List\n    "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "payment-card" }, [
+            _c("div", { staticClass: "content-contributor" }, [
+              _c(
+                "table",
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._l(_vm.listData, function (data, idx) {
+                    return _c("tr", { key: idx }, [
+                      _c("td", [_vm._v(_vm._s(idx))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(data.username))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(data.amount))]),
+                    ])
+                  }),
+                ],
+                2
+              ),
+            ]),
+          ]),
+        ])
+      : _c("div", [
+          _c("h2", [
+            _vm._v(
+              "Ups... There's no payment list for this project right now!"
+            ),
+          ]),
+        ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrap-payment-tab" }, [
-      _c("div", { staticClass: "title-tab" }, [
-        _vm._v("\n    Donation Payment List\n  "),
-      ]),
+    return _c("tr", [
+      _c("th", [_vm._v("No")]),
       _vm._v(" "),
-      _c("div", { staticClass: "payment-card" }, [
-        _c("div", { staticClass: "content-contributor" }, [
-          _c("table", [
-            _c("tr", [
-              _c("th", [_vm._v("No")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Username")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Amount")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Maria Anders")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 20.000")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("2")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Francisco Chang")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 80.000")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("3")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Roland Mendel")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 20.000")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("4")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Helen Bennett")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 2.330.000")]),
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("5")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Yoshi Tannamuri")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Rp 590.000")]),
-            ]),
-          ]),
-        ]),
-      ]),
+      _c("th", [_vm._v("Username")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Amount")]),
     ])
   },
 ]

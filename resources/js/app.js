@@ -17,7 +17,21 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { setHeaderToken } from './utils/auth'
 
 const devApp = true //TODO : change this before deploy
-Axios.defaults.baseURL = devApp ? 'http://localhost:8000/api/' : 'https://www.warungidea.com/api/'
+const isDeployHeroku = false // TODO : change this to false when deploy cpanel
+
+let setBaseUrl = ''
+if(devApp) {
+  if(isDeployHeroku) {
+    setBaseUrl = 'https://warungidea.herokuapp.com/api/'
+  }else {
+    setBaseUrl = 'http://localhost:8000/api/'
+  }
+} else {
+  setBaseUrl = 'https://www.warungidea.com/api/'
+}
+
+Axios.defaults.baseURL = setBaseUrl
+
 
 Vue.config.productionTip = false
 Vue.use(Axios)

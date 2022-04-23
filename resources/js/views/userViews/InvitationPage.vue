@@ -19,18 +19,8 @@
             <td>Gaming NFT in digital era</td>
             <td>Pending</td>
             <td>
-              <button>Accept</button>
-              <button>Reject</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Group ID 2</td>
-            <td>Francisco Chang</td>
-            <td>Creating NFT with homeTools and integrating market</td>
-            <td>Pending</td>
-            <td>
-              <button>Accept</button>
-              <button>Reject</button>
+              <button @click="btnAccept">Accept</button>
+              <button @click="btnReject">Reject</button>
             </td>
           </tr>
         </table>
@@ -51,10 +41,21 @@ export default {
       listCreatedCampaign: [],
     }
   },
+  created () {
+    // TODO: Fetching get list api invitation
+  },
   computed: {
     ...mapGetters({
       user: 'user',
     })
+  },
+  methods: {
+    btnAccept() {
+      // TODO: Hitting api accept
+    },
+    btnReject() {
+      // TODO: Hitting api reject
+    }
   }
 }
 </script>
@@ -66,7 +67,7 @@ export default {
   flex-direction: column;
   align-items: center;
 
-   .title-page {
+  .title-page {
     font-size: 30px;
     font-weight: bold;
     margin: 2rem 0;

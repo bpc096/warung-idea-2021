@@ -26,7 +26,7 @@
             Donasi Sukarela
           </div>
           <div class="reward-price">
-            Rp{{ donationAmount }}
+            Rp {{ formatMoney(donationAmount) }}
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
             Subtotal
           </div>
           <div class="subtotal-price">
-            Rp{{ donationAmount }},-
+            Rp {{ formatMoney(donationAmount) }}
           </div>
         </div>
         <div class="shipping-text">
@@ -55,7 +55,7 @@
             TOTAL
           </div>
           <div class="total-price">
-            Rp{{ donationAmount }},-
+            Rp {{ formatMoney(donationAmount) }}
           </div>
         </div>
       </div>
@@ -107,6 +107,18 @@ export default {
     }
   },
   methods: {
+    formatMoney(money) {
+      const moneyTemp = money ? parseInt(money) : 10000
+      const formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp)
+      .replace(/[IDR]/gi, '')
+      .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
+      .trimLeft()
+      return formatter
+    },
     async checkout() {
       const donation = {
         amount: this.donationAmount,

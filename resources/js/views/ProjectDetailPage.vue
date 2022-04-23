@@ -132,16 +132,7 @@ export default {
     }
   },
   async created () {
-    await this.$store
-      .dispatch('getCampaignById', this.$route.params.projectId)
-      .then((res) => {
-        this.payment = res.payments || []
-        this.projectDetail = res.data
-        this.sumPayment = res.data.sum_payment
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    await this.fetchingCampaignInfo()
   },
   computed: {
     ...mapGetters({
@@ -178,7 +169,7 @@ export default {
       return this.$route.params.projectId
     },
     imageUrl () {
-      return this.projectDetail?.image? this.projectDetail.image : this.projectDetail.dummyUrlImage
+      return (this.projectDetail && this.projectDetail.image) ?  this.projectDetail.image : this.projectDetail.dummyUrlImage
     },
     daysBetween () {
       const maxDate = this.projectDetail?.max_date? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30'
@@ -209,6 +200,18 @@ export default {
     }
   },
   methods: {
+    async fetchingCampaignInfo () {
+      await this.$store
+        .dispatch('getCampaignById', this.$route.params.projectId)
+        .then((res) => {
+          this.payment = res.payments || []
+          this.projectDetail = res.data
+          this.sumPayment = res.data.sum_payment
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     formatMoney(money) {
       const moneyTemp = money ? parseInt(money) : 10000
       const formatter = new Intl.NumberFormat('en-ID', {
@@ -217,6 +220,7 @@ export default {
       }).format(moneyTemp)
       .replace(/[IDR]/gi, '')
       .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
       .trimLeft()
       return formatter
     },

@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     imageUrl () {
-      return this.projectData?.image? this.projectData.image : this.dummyData.contentImageURL
+      return (this.projectData && this.projectData.image) ? this.projectData.image : this.dummyData.contentImageURL
     },
     projectName () {
       const projectTitle = this.projectData?.title? this.projectData.title : this.dummyData.contentTitle

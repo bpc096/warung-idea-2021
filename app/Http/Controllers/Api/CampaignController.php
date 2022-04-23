@@ -32,7 +32,7 @@ class CampaignController extends Controller
             'message' => 'List Data Campaigns',
             'data'    => $campaigns
         ], 200);
-        
+
     }
 
     public function index_user($users_id)
@@ -56,7 +56,7 @@ class CampaignController extends Controller
                 'message' => 'Data Campaign Tidak Ditemukan!',
             ], 404);
         }
-        
+
     }
 
     /**
@@ -68,17 +68,17 @@ class CampaignController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image'                    => 'required|image|mimes:png,jpg,jpeg',
-            'title'                    => 'required|string',
-            'category_id'              => 'required|string',
-            'short_description'        => 'required|string',
-            'target_donation'          => 'required|numeric',
-            'max_date'                 => 'required|string',
-            'description'              => 'required|string',
-            'project_plan'             => 'required|string',
-            'collaborators'            => 'nullable|array',
-            // 'collaborators.*.name'     => 'nullable|string|distinct|min:3',
-            'collaborators.*.id'       => 'nullable|numeric'
+          'image'                    => 'required|image|mimes:png,jpg,jpeg',
+          'title'                    => 'required|string',
+          'category_id'              => 'required|string',
+          'short_description'        => 'required|string',
+          'target_donation'          => 'required|numeric',
+          'max_date'                 => 'required|string',
+          'description'              => 'required|string',
+          'project_plan'             => 'required|string',
+          'collaborators'            => 'nullable|array',
+          'collaborators.*.name'     => 'nullable|string|distinct|min:3',
+          // 'collaborators.*.id'       => 'nullable|numeric'
         ]);
 
 
@@ -185,7 +185,7 @@ class CampaignController extends Controller
 
          //check jika image kosong
         if($request->file('image') == '') {
-            
+
             //update data tanpa image
             $campaign = Campaign::findOrFail($campaign->id);
             $campaign->update([

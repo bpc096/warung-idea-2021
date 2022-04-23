@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCampaignsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -25,7 +26,7 @@ class CreateCampaignsTable extends Migration
             $table->string('image');
             $table->text('description');
             $table->text('project_plan');
-            $table->json('collaborators')->default(json_encode(['userId1, userId2']));
+            $table->json('collaborators')->default(json_encode([]));
             $table->timestamps();
         });
     }

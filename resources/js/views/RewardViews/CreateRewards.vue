@@ -74,9 +74,11 @@ export default {
     submitCampaign() {
       let data = new FormData()
       const campaignId = this.$route.params.projectId || 1
+
       data.append('title', this.title)
       data.append('description', this.description)
-      let param = { campaignId, data}
+      const param = { campaignId, data}
+
       this.$store
         .dispatch('createRewards', param)
         .then(() => {
@@ -100,7 +102,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10rem 0;
+  margin: 5rem 0 10rem 0;
 
   .title-page {
     font-size: 30px;
