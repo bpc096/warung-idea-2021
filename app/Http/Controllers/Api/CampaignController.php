@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Campaign;
 use App\Payment;
 use App\Collaboration;
+use App\CampaignDetail;
 
 class CampaignController extends Controller
 {
@@ -102,6 +103,14 @@ class CampaignController extends Controller
             'users_id'           => auth()->guard('api')->user()->id,
             'image'              => $image->hashName()
         ]);
+
+        foreach ($request->collaborators as $collaborator) {
+            CampaignDetail::create([
+                'campaign_id' => $campaign->id,
+                'users_id'    => $collaborator,
+                'status'      => 'pending'
+            ]);
+        }
 
         //return JSON
         return response()->json([

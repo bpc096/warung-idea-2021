@@ -38,5 +38,6 @@ class CampaignSeeder extends Seeder
           ]);
           }
         }
+      }
     }
 }

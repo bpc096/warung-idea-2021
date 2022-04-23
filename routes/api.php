@@ -45,10 +45,13 @@ Route::post('/campaign/{campaign}', [CampaignController::class, 'update'])->midd
 Route::delete('/campaign/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
 
 /**
- * Api Collaborators
+ * Api Campaign Detail (Invitation)
  */
-// Route::post('/campaign/{campaign}/collaborators', [CampaignCollaboratorsController::class, 'addCollaborator'])->middleware('auth:api');
-// Route::delete('/campaign/{campaign}/collaborators/{collaborators}', [CampaignCollaboratorsController::class, 'deleteOneCollaborator']);
+Route::get('/profile/invitation/{users_id}', [InvitationController::class, 'index']);
+// Route::get('/profile/invitation/{users_id}/accept/{campaign_id}', [InvitationController::class, 'accept']);
+// Route::get('/profile/invitation/{users_id}/reject/{campaign_id}', [InvitationController::class, 'reject']);
+Route::post('/profile/invitation/accept', [InvitationController::class, 'accept']);
+Route::post('/profile/invitation/reject', [InvitationController::class, 'reject']);
 
 /**
  * Api Updates
