@@ -34,6 +34,7 @@ class CampaignSeeder extends Seeder
               'short_description' => 'testing short desc',
               'project_plan' => 'testing project plan',
               'image' => 'dummy-campaign-image.jpg',
+              'collaborators' => json_encode([])
           ]);
           }
         }

@@ -73,9 +73,11 @@ export default {
 }
 </script>
 
+
+
 <style lang="less" scoped>
 .wrap-register-page {
-  height: 90vh;
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -17,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { setHeaderToken } from './utils/auth'
 
 const devApp = true //TODO : change this before deploy
-const isDeployHeroku = true // TODO : change this to false when deploy cpanel
+const isDeployHeroku = false // TODO : change this to false when deploy cpanel
 
 let setBaseUrl = ''
 if(devApp) {
