@@ -32,6 +32,18 @@ const actions = {
           reject(err)
         })
     })
+  },
+  editUpdates({commit}, param) {
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'campaign/' + param.campaignId + '/updates/update/' + param.updatesId
+      Axios.post(apiUrl, param.data)
+        .then(res => {
+          resolve(res)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
   }
 }
 

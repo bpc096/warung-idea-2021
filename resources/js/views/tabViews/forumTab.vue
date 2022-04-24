@@ -9,7 +9,6 @@
           shortname="warungidea"
           :pageConfig="pageConfig"
           :lang="lang"
-          @new-comment="newComment"
         />
       </div>
     </div>
@@ -64,9 +63,6 @@ export default {
         category_id: this.getCategoryId
       }
     },
-    newComment(e){
-      console.log(e)
-    }
   }
 }
 </script>

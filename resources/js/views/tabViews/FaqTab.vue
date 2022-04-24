@@ -1,12 +1,12 @@
 <template>
   <div class="wrap-faq-tab">
-    <div v-if="listData.length > 0">
+    <div v-if="faqListData.length > 0">
       <div class="faq-title">
         Frequently Asked Question
       </div>
-      <div class="faq-content"  v-for="data in listData" :key="data.id">
+      <div class="faq-content"  v-for="(data,idx) in faqListData" :key="data.id">
         <div class="question-content">
-          {{ data.title }}
+          #{{idx+1}} {{ data.title }}
         </div>
         <div class="answer-content">
           {{ data.description }}
@@ -44,19 +44,18 @@ export default {
     ownerId: {
       type: Number,
       default: 0
+    },
+    faqListData: {
+      type: Array,
+      default: [],
     }
   },
   data: () => {
     return {
       mockUpdatesId: 1,
-      // TODO : Change realListData with listData, and listData with mock
       realListData: [],
       listData: [],
     }
-  },
-  mounted() {
-    this.fetchingFaqListData()
-    // this.generateMockData()
   },
   computed: {
     checkUserOwner() {
@@ -65,35 +64,6 @@ export default {
     }
   },
   methods: {
-    fetchingFaqListData () {
-      const campaignId = this.campaignId
-      this.$store
-        .dispatch('getFaqByCampaignId', campaignId)
-        .then(res => {
-          if(res.success && res.data && res.data.length > 0) {
-            this.listData = res.data
-          }
-        })
-        .catch(err => {
-          console.error(err)
-        })
-    },
-    generateMockData () {
-      let mockData = []
-      for(let x=1;x<=5;x++){
-        let tempObj = {
-          id: x,
-          users_id: 1,
-          campaign_id: 1,
-          title: '#FAQ 2 ?',
-          description: 'Kami telah mengembangkan game ini di versi yang lebih baik, silahkan menunggu untuk update berikutnya.',
-          "created_at": "2022-01-05T09:47:17.000000Z",
-          "updated_at": "2022-01-05T09:47:17.000000Z"
-        }
-        mockData.push(tempObj)
-      }
-      this.listData = mockData
-    },
     deleteFaqs() {
       console.log('delete faqs')
     }
@@ -121,9 +91,11 @@ export default {
     text-align: center;
   }
   .faq-content {
-    margin: 2rem 0;
+    margin: 4rem 0;
     border-radius: 10px;
     padding: 1rem;
+    width: 60rem;
+    min-height: 10rem;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
     .question-content {

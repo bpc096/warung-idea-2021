@@ -78,7 +78,7 @@ export default {
       data.append('description', this.description)
       let param = { campaignId, data}
       this.$store
-        .dispatch('createFaqs', param)
+        .dispatch('createFaq', param)
         .then(() => {
           this.$router.push({
             name: 'HistoryCampaign'

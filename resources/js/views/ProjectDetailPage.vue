@@ -57,6 +57,7 @@
         <tab name="Campaign" :selected="true">
           <campaignTab
             :projectDesc="projectFullDesc"
+            :projectPlan="projectPlanDesc"
           />
         </tab>
         <tab name="Updates">
@@ -64,6 +65,7 @@
             :userId="user.id"
             :ownerId="projectDetail.users_id"
             :campaignId="projectDetail.id"
+            :updateListData="updateTabData"
           />
         </tab>
         <tab name="FAQ">
@@ -71,6 +73,7 @@
             :userId="user.id"
             :ownerId="projectDetail.users_id"
             :campaignId="projectDetail.id"
+            :faqListData="faqTabData"
           />
         </tab>
         <tab name="Collaborator">
@@ -129,10 +132,14 @@ export default {
       sumPayment: [],
       progress: '80',
       payment: [],
+      updateTabData: [],
+      faqTabData: [],
     }
   },
   async created () {
     await this.fetchingCampaignInfo()
+    await this.fetchingUpdateTabData()
+    await this.fetchingFaqTabData()
   },
   computed: {
     ...mapGetters({
@@ -193,13 +200,42 @@ export default {
       return this.projectDetail?.target_donation? this.projectDetail.target_donation.toString() : '10.000.000'
     },
     projectQuickDesc () {
-      return this.projectDetail?.description? this.projectDetail.description.slice(0,100) : 'Project Description'
+      return this.projectDetail?.short_description ? this.projectDetail.short_description.slice(0,100) : 'Project Short Desc'
     },
     projectFullDesc () {
       return this.projectDetail?.description? this.projectDetail.description : 'Project Description'
+    },
+    projectPlanDesc() {
+      return this.projectDetail?.project_plan ? this.projectDetail.project_plan : 'Project Plan'
     }
   },
   methods: {
+    async fetchingFaqTabData () {
+      const campaignId = this.$route.params.projectId
+      await this.$store
+        .dispatch('getFaqByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.faqTabData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    async fetchingUpdateTabData () {
+      const campaignId = this.$route.params.projectId
+      await this.$store
+        .dispatch('getUpdatesByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.updateTabData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
     async fetchingCampaignInfo () {
       await this.$store
         .dispatch('getCampaignById', this.$route.params.projectId)

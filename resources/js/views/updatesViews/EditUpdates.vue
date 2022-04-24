@@ -58,7 +58,7 @@ export default {
   },
   async created() {
     const campaignId = this.$route.params.projectId || 1
-    const updatesId = this.$route.params.updatesId || 1
+    const updatesId = this.$route.params.updateId || 1
   // TODO: Fetching getUpdatesByCampagnidAndUpdateId
   },
   computed: {
@@ -73,9 +73,12 @@ export default {
     submitCampaign() {
       let data = new FormData()
       const campaignId = this.$route.params.projectId || 1
+      const updatesId = this.$route.params.updateId || 1
+
+
       data.append('title', this.title)
       data.append('description', this.description)
-      let param = { campaignId, data}
+      let param = { campaignId, updatesId, data}
       this.$store
         .dispatch('editUpdates', param)
         .then(() => {

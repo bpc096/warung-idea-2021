@@ -90,7 +90,7 @@ export default {
 .category-wrapper {
   height: 100%;
   min-height: 100vh;
-  margin: 0 2rem;
+  margin: 0 2rem 10rem 0;
 
   .title-category {
     margin: 5rem 0;
