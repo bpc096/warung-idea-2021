@@ -82,8 +82,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10rem;
 
-   .title-page {
+
+  .title-page {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 2rem;

@@ -1,12 +1,12 @@
 <template>
   <div class="wrap-update-tab">
-    <div v-if="listData.length > 0">
+    <div v-if="updateListData.length > 0">
       <div class="update-title">
         Project Update
       </div>
-      <div class="update-card" v-for="data in listData" :key="data.id">
+      <div class="update-card" v-for="(data,idx) in updateListData" :key="data.id">
         <div class="title-update">
-          {{ data.title }}
+          #{{idx+1}} {{ data.title }}
         </div>
         <div class="content-update">
           {{ data.description }}
@@ -42,12 +42,15 @@ export default {
     },
     ownerId: {
       type: Number,
+    },
+    updateListData: {
+      type: Array,
+      default: [],
     }
   },
   data: () => {
     return {
       mockUpdatesId: 1,
-      // TODO : Change realListData with listData, and listData with mock
       realListData: [],
       listData: [
         {
@@ -70,19 +73,6 @@ export default {
         },
       ],
     }
-  },
-  updated() {
-    const campaignId = this.campaignId
-    this.$store
-      .dispatch('getUpdatesByCampaignId', campaignId)
-      .then(res => {
-        if(res.success && res.data && res.data.length > 0) {
-          this.listData = res.data
-        }
-      })
-      .catch(err => {
-        console.error(err)
-      })
   },
   computed: {
     checkUserOwner() {

@@ -26,3 +26,6 @@ export const CREATE_FAQ = 'createFaqs'
 // REWARDS
 export const GET_REWARDS = 'getRewards'
 export const CREATE_REWARDS = 'createRewards'
+
+// COLLABORATOR
+export const GET_COLLABORATOR = 'getCollaborator'

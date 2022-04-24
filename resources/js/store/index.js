@@ -14,6 +14,7 @@ import donateStore from './modules/donateStore'
 import updateStore from './modules/updatesStore'
 import rewardsStore from './modules/rewardsStore'
 import faqStore from './modules/faqStore'
+import collabStore from './modules/collabStore'
 
 const state__ = {
   number: 1,
@@ -53,6 +54,7 @@ const store = new Vuex.Store({
     ...updateStore.state,
     ...rewardsStore.state,
     ...faqStore.state,
+    ...collabStore.state,
   },
   actions: {
     ...actions__,
@@ -64,6 +66,7 @@ const store = new Vuex.Store({
     ...updateStore.actions,
     ...rewardsStore.actions,
     ...faqStore.actions,
+    ...collabStore.actions,
   },
   mutations: {
     ...mutations__,
@@ -75,6 +78,7 @@ const store = new Vuex.Store({
     ...updateStore.mutations,
     ...rewardsStore.mutations,
     ...faqStore.mutations,
+    ...collabStore.mutations,
   },
   getters: {
     ...getters__,
@@ -86,6 +90,7 @@ const store = new Vuex.Store({
     ...updateStore.getters,
     ...rewardsStore.getters,
     ...faqStore.getters,
+    ...collabStore.getters,
   },
 })
 
