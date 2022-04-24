@@ -63,7 +63,7 @@ class FaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $faq_id)
+    public function update(Request $request)
     {
         $rules = [
             'title'                => 'required',
@@ -73,7 +73,7 @@ class FaqController extends Controller
 
         $data = array_merge(array_except($request->input(), '_token'));
 
-        $faq = Faq::whereId($faq_id);
+        $faq = Faq::where('id', $request->faq_id)->first();
         $faq->update($data);
 
         //return JSON

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Campaign;
 use App\Payment;
-use App\Collaboration;
 use App\CampaignDetail;
 
 class CampaignController extends Controller
@@ -140,11 +139,11 @@ class CampaignController extends Controller
 
             //return with response JSON
             return response()->json([
-                'success'   => true,
-                'message'   => 'Detail Data Campaign : '. $campaign->title,
-                'data'      => $campaign,
-                'collaborator' => $collaborators,
-                'payments'  => $payments
+                'success'       => true,
+                'message'       => 'Detail Data Campaign : '. $campaign->title,
+                'data'          => $campaign,
+                'collaborators' => $collaborators,
+                'payments'      => $payments
             ], 200);
         }
 
@@ -153,12 +152,6 @@ class CampaignController extends Controller
             'success' => false,
             'message' => 'Data Campaign Tidak Ditemukan!',
         ], 404);
-    }
-
-    public function getCollaborators($id)
-    {
-        $collaborators = Collaboration::project($id)->get();
-        return $collaborators;
     }
 
     /**

@@ -63,7 +63,7 @@ class UpdateController extends Controller
      * @param  \App\Update  $update
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $update_id)
+    public function update(Request $request)
     {
         $rules = [
             'title'                => 'required',
@@ -73,7 +73,7 @@ class UpdateController extends Controller
 
         $data = array_merge(array_except($request->input(), '_token'));
 
-        $update = Update::whereId($update_id);
+        $update = Update::where('id', $request->update_id)->first();
         $update->update($data);
 
         //return JSON
