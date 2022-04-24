@@ -35,8 +35,8 @@ class RewardController extends Controller
     {
         $rules = [
             'amount'                => 'required',
+            'title'                 => 'required',
             'description'           => 'required',
-            'estimated_delivery'    => 'required',
         ];
         $this->validate($request, $rules);
 
@@ -68,8 +68,8 @@ class RewardController extends Controller
     {
         $rules = [
             'amount'                => 'required',
+            'title'                 => 'required',
             'description'           => 'required',
-            'estimated_delivery'    => 'required',
         ];
         $this->validate($request, $rules);
 
