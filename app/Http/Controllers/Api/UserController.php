@@ -14,7 +14,6 @@ class UserController extends Controller
     {
         $users = Campaign::with('user:id,name')->get(['users_id']);
 
-
         $tempUsers = [];
         for($i = 0; $i < count($users); $i++){
           if ($i < 5) {
