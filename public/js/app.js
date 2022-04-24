@@ -2019,6 +2019,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'MutliSelectComponent',
@@ -2030,51 +2032,38 @@ __webpack_require__.r(__webpack_exports__);
       value: [],
       options: [{
         name: 'Vuang agung',
-        code: 'vu'
+        userId: 'vu'
       }, {
         name: 'Joni Yes',
-        code: 'js'
+        userId: 'js'
       }, {
         name: 'Onad sodin',
-        code: 'os'
-      }, {
-        name: 'Janto 1',
-        code: 'jp'
-      }, {
-        name: 'Janto 2',
-        code: 'j23p'
-      }, {
-        name: 'Janto pas3to',
-        code: 'jgp'
-      }, {
-        name: 'Janto 4',
-        code: 'fjp'
-      }, {
-        name: 'Janto 5',
-        code: 'djp'
-      }, {
-        name: 'Janto 6',
-        code: 'jfqp'
-      }, {
-        name: 'Janto 65',
-        code: 'jcvp'
-      }, {
-        name: 'Janto 656',
-        code: 'jtsp'
-      }, {
-        name: 'Janto 47',
-        code: 'jqwep'
+        userId: 'os'
       }]
     };
   },
+  created: function created() {
+    // Fetching API Collaborator Available
+    console.log('created');
+  },
   methods: {
     addTag: function addTag(newTag) {
+      console.log('addTag');
       var tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        userId: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
       };
+      this.$emit('addNewUser', tag);
       this.options.push(tag);
       this.value.push(tag);
+    },
+    addNewUser: function addNewUser(user) {
+      var userId = user.userId;
+      this.$emit('addNewUser', userId);
+    },
+    removeNewUser: function removeNewUser(user) {
+      var userId = user.userId;
+      this.$emit('removeNewUser', userId);
     }
   }
 });
@@ -3588,6 +3577,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: {
+    getRandomNumber: function getRandomNumber() {
+      var totalProject = this.allProjectList.length;
+      var randomNumb = 0;
+
+      if (totalProject > 0) {
+        randomNumb = Math.floor(Math.random() * (totalProject - 1)) + 1;
+      }
+
+      return randomNumb;
+    },
     checkAvailableContent: function checkAvailableContent() {
       var _this = this;
 
@@ -3642,35 +3641,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }))();
     },
     checkAvailableProjectFeatureList: function checkAvailableProjectFeatureList() {
-      // GET 3 Random Project from project list
+      var randomNumb1 = 1,
+          randomNumb2 = 2,
+          randomNumb3 = 3;
+      randomNumb1 = this.getRandomNumber();
+      randomNumb2 = this.getRandomNumber();
+      randomNumb3 = this.getRandomNumber();
+      if (randomNumb1 === randomNumb2 || randomNumb1 === randomNumb3) randomNumb1++;
+      if (randomNumb2 === randomNumb3) randomNumb2++;
       this.projectFeatureList = this.allProjectList.filter(function (project, idx) {
-        if (idx <= 2) return project;
+        if (idx === randomNumb1 || idx === randomNumb2 || idx === randomNumb3) return project;
       });
     },
     checkAvailableProjectFeatureSingle: function checkAvailableProjectFeatureSingle() {
-      // CHECKING API FOR AVAILABLE PROJECT FEATURE
-      var maxProjectTotal = this.allProjectList.length;
-      var randomNum = Math.floor(Math.random() * (maxProjectTotal - 1)) + 1;
+      var randomNum = this.getRandomNumber();
       var resFeatureSingle = this.allProjectList[randomNum];
       this.projectFeatureSingle = resFeatureSingle;
     },
     checkAvailableProjectPopular: function checkAvailableProjectPopular() {
-      // CHECKING API FOR AVAILABLE PROJECT POPULAR
+      var randomNumb1 = 1,
+          randomNumb2 = 2;
+      randomNumb1 = this.getRandomNumber();
+      randomNumb2 = this.getRandomNumber();
+      if (randomNumb1 === randomNumb2) randomNumb2++;
       this.projectPopular = this.allProjectList.filter(function (project, idx) {
-        if (idx <= 1) return project;
+        if (idx === randomNumb1 || idx === randomNumb2) return project;
       });
     },
     checkAvailableProjectMostFunding: function checkAvailableProjectMostFunding() {
-      // CHECKING API FOR AVAILABLE PROJECT MOST FUNDING
+      var randomNumb1 = 1,
+          randomNumb2 = 2;
+      randomNumb1 = this.getRandomNumber();
+      randomNumb2 = this.getRandomNumber();
+      if (randomNumb1 === randomNumb2) randomNumb2++;
       this.projectMostFunding = this.allProjectList.filter(function (project, idx) {
-        if (idx <= 1) return project;
+        if (idx === randomNumb1 || idx === randomNumb2) return project;
       });
     },
     checkAvailableArticleAndNews: function checkAvailableArticleAndNews() {
       var _this3 = this;
 
-      // CHECKING API FOR AVAILABLE ARTICLE AND NEWS
-      this.$store.dispatch('initArticle').then(function (res) {
+      this.$store.dispatch('initArticle').then(function () {
         _this3.articleAndNews = _this3.articles;
       })["catch"](function (err) {
         console.error(err);
@@ -4635,6 +4646,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -4689,18 +4703,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
         evt.preventDefault();
-        ;
       } else {
         return true;
       }
     },
-    addTag: function addTag(newTag) {
-      var tag = {
-        name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
-      };
-      this.options.push(tag);
-      this.value.push(tag);
+    addNewUser: function addNewUser(userId) {
+      this.collaboratorId.push(userId);
+    },
+    removeNewUser: function removeNewUser(userId) {
+      console.log('removeUser');
+      var index = this.collaboratorId.indexOf(userId);
+      if (index > -1) this.collaboratorId.splice(index, 1);
     },
     submitCampaign: function submitCampaign() {
       var _this = this;
@@ -4716,8 +4729,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       data.append('short_description', this.shortDescription);
       data.append('project_plan', this.projectPlan);
 
-      for (var i = 0; i < arrayCollab.length; i++) {
-        data.append('collaborators[]', arrayCollab[i]);
+      if (arrayCollab.length === 0) {
+        data.append('collaborators[]', []);
+      } else {
+        for (var i = 0; i < arrayCollab.length; i++) {
+          data.append('collaborators[]', arrayCollab[i]);
+        }
       }
 
       this.$store.dispatch('uploadCampaign', data).then(function () {
@@ -5178,7 +5195,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     backBtnLabel: function backBtnLabel() {
-      return '<- Back to history';
+      return '< Back to history';
     },
     backBtnHomeLabel: function backBtnHomeLabel() {
       return 'Back to home';
@@ -5701,13 +5718,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var data = new FormData();
       var campaignId = this.$route.params.projectId || 1;
+      var updatesId = this.$route.params.updatesId || 1;
       data.append('title', this.title);
       data.append('description', this.description);
       var param = {
         campaignId: campaignId,
+        updatesId: updatesId,
         data: data
       };
-      this.$store.dispatch('editFaqs', param).then(function () {
+      this.$store.dispatch('editFaq', param).then(function () {
         _this2.$router.push({
           name: 'HistoryCampaign'
         });
@@ -5785,6 +5804,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'CreateRewards',
@@ -5793,7 +5824,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       image: null,
       title: '',
       categoryId: '',
-      targetDonation: '1',
+      rewardPrice: '1',
       maxDate: null,
       description: '',
       previewImage: null,
@@ -5808,15 +5839,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: {
+    isNumber: function isNumber(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+
+      if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
     submitCampaign: function submitCampaign() {
       var _this = this;
 
       var data = new FormData();
       var campaignId = this.$route.params.projectId || 1;
+      var updatesId = this.$route.params.updatesId || 1;
       data.append('title', this.title);
       data.append('description', this.description);
+      data.append('amount', this.rewardPrice);
       var param = {
         campaignId: campaignId,
+        updatesId: updatesId,
         data: data
       };
       this.$store.dispatch('createRewards', param).then(function () {
@@ -7907,6 +7951,17 @@ var actions = {
       var apiUrl = 'campaign/' + param.campaignId + '/faqs';
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
         commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_FAQ, res.data);
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  editFaq: function editFaq(_ref3, param) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + param.campaignId + '/faqs/faq/' + param.updatesId;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -13416,7 +13471,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 90vh;\n  text-align: left;\n  padding: 0 20rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-faq-tab h2[data-v-119d3486] {\n  margin-top: 5rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin: 5rem 0 2rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 4rem 0;\n  border-radius: 10px;\n  padding: 1rem;\n  width: 60rem;\n  min-height: 10rem;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n.wrap-faq-tab .faq-content .btn-content[data-v-119d3486] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-faq-tab .faq-content .btn-content .btn[data-v-119d3486] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.wrap-faq-tab .faq-content .btn-content .btn-delete[data-v-119d3486]:hover {\n  background-color: red;\n  color: white;\n}\n.wrap-faq-tab .faq-content .btn-content .btn-edit[data-v-119d3486]:hover {\n  background-color: green;\n  color: white;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-faq-tab[data-v-119d3486] {\n  min-height: 90vh;\n  margin-bottom: 10rem;\n  text-align: left;\n  padding: 0 20rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-faq-tab h2[data-v-119d3486] {\n  margin-top: 5rem;\n}\n.wrap-faq-tab .faq-title[data-v-119d3486] {\n  margin: 5rem 0 2rem 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-faq-tab .faq-content[data-v-119d3486] {\n  margin: 4rem 0;\n  border-radius: 10px;\n  padding: 1rem;\n  width: 60rem;\n  min-height: 10rem;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.wrap-faq-tab .faq-content .question-content[data-v-119d3486] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.wrap-faq-tab .faq-content .answer-content[data-v-119d3486] {\n  font-size: 20px;\n}\n.wrap-faq-tab .faq-content .btn-content[data-v-119d3486] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-faq-tab .faq-content .btn-content .btn[data-v-119d3486] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.wrap-faq-tab .faq-content .btn-content .btn-delete[data-v-119d3486]:hover {\n  background-color: red;\n  color: white;\n}\n.wrap-faq-tab .faq-content .btn-content .btn-edit[data-v-119d3486]:hover {\n  background-color: green;\n  color: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13440,7 +13495,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab .empty-update[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab h2[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab .update-title[data-v-0f7a7116] {\n  margin: 5rem 0 0 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border-radius: 5px;\n  width: 60rem;\n  min-height: 10rem;\n  margin: 4rem 0;\n  text-align: left;\n  padding: 10px;\n  display: flex;\n  flex-direction: column;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-update-tab .update-card .button-wrap[data-v-0f7a7116] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-update-tab .update-card .button-wrap .btn[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.wrap-update-tab .update-card .button-wrap .btn-delete[data-v-0f7a7116]:hover {\n  background-color: red;\n  color: white;\n}\n.wrap-update-tab .update-card .button-wrap .btn-edit[data-v-0f7a7116]:hover {\n  background-color: green;\n  color: white;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrap-update-tab[data-v-0f7a7116] {\n  min-height: 90vh;\n  margin-bottom: 10rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n.wrap-update-tab h2[data-v-0f7a7116] {\n  margin-top: 5rem;\n}\n.wrap-update-tab .update-title[data-v-0f7a7116] {\n  margin: 5rem 0 0 0;\n  font-size: 30px;\n  font-weight: bold;\n  text-align: center;\n}\n.wrap-update-tab .update-card[data-v-0f7a7116] {\n  border-radius: 5px;\n  width: 60rem;\n  min-height: 10rem;\n  margin: 4rem 0;\n  text-align: left;\n  padding: 10px;\n  display: flex;\n  flex-direction: column;\n  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;\n}\n.wrap-update-tab .update-card .title-update[data-v-0f7a7116] {\n  margin: 1rem 0;\n  font-size: 30px;\n  font-weight: bold;\n}\n.wrap-update-tab .update-card .button-wrap[data-v-0f7a7116] {\n  margin: 1rem 0;\n  text-align: end;\n}\n.wrap-update-tab .update-card .button-wrap .btn[data-v-0f7a7116] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.wrap-update-tab .update-card .button-wrap .btn-delete[data-v-0f7a7116]:hover {\n  background-color: red;\n  color: white;\n}\n.wrap-update-tab .update-card .button-wrap .btn-edit[data-v-0f7a7116]:hover {\n  background-color: green;\n  color: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51434,9 +51489,13 @@ var render = function () {
           "tag-placeholder": "Add this as new tag",
           placeholder: "Optional - Add Collaborator",
           label: "name",
-          "track-by": "code",
+          "track-by": "userId",
         },
-        on: { tag: _vm.addTag },
+        on: {
+          tag: _vm.addTag,
+          select: _vm.addNewUser,
+          remove: _vm.removeNewUser,
+        },
         model: {
           value: _vm.value,
           callback: function ($$v) {
@@ -52611,7 +52670,7 @@ var render = function () {
           _vm._l(_vm.projectPopular, function (project, index) {
             return _c(
               "div",
-              { key: index + project.Id },
+              { key: index },
               [
                 _c(
                   "router-link",
@@ -52642,7 +52701,7 @@ var render = function () {
           _vm._l(_vm.projectMostFunding, function (project, index) {
             return _c(
               "div",
-              { key: index + project.id },
+              { key: index },
               [
                 _c(
                   "router-link",
@@ -53801,7 +53860,14 @@ var render = function () {
               _c(
                 "div",
                 { staticClass: "text-collaborator" },
-                [_c("MultiselectIde")],
+                [
+                  _c("MultiselectIde", {
+                    on: {
+                      addNewUser: _vm.addNewUser,
+                      removeNewUser: _vm.removeNewUser,
+                    },
+                  }),
+                ],
                 1
               ),
             ]),
@@ -54168,7 +54234,7 @@ var render = function () {
         _c(
           "router-link",
           { staticClass: "button-create", attrs: { to: "/campaign/history" } },
-          [_vm._v("\n       " + _vm._s(_vm.backBtnLabel) + "\n    ")]
+          [_vm._v("\n      " + _vm._s(_vm.backBtnLabel) + "\n    ")]
         ),
         _vm._v(" "),
         _c(
@@ -54195,7 +54261,7 @@ var render = function () {
           }),
           1
         )
-      : _c("div", [_vm._v("\n     You dont have any donation list !\n  ")]),
+      : _c("div", [_vm._v("\n    You dont have any donation list !\n  ")]),
   ])
 }
 var staticRenderFns = []
@@ -54768,6 +54834,39 @@ var render = function () {
                         return
                       }
                       _vm.title = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-name" }, [
+              _c("div", { staticClass: "text-label" }, [
+                _vm._v("Rewards Price"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-value" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.rewardPrice,
+                      expression: "rewardPrice",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Target Donation.." },
+                  domProps: { value: _vm.rewardPrice },
+                  on: {
+                    keypress: function ($event) {
+                      return _vm.isNumber($event)
+                    },
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.rewardPrice = $event.target.value
                     },
                   },
                 }),

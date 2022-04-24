@@ -5,7 +5,7 @@
     </div>
     <div class="button-upper-campaign">
       <router-link to="/campaign/history" class="button-create">
-         {{ backBtnLabel }}
+        {{ backBtnLabel }}
       </router-link>
       <router-link to="/home" class="button-history-donation">
         {{ backBtnHomeLabel }}
@@ -21,7 +21,7 @@
       />
     </div>
     <div v-else>
-       You dont have any donation list !
+      You dont have any donation list !
     </div>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
       listDonation: [],
     }
   },
-   async created() {
+  async created() {
     await this.$store
       .dispatch('getDonation')
       .then(res => {
@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     backBtnLabel() {
-      return '<- Back to history'
+      return '< Back to history'
     },
     backBtnHomeLabel() {
       return 'Back to home'

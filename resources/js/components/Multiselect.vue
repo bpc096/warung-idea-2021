@@ -5,11 +5,13 @@
       :options="options"
       :multiple="true"
       :taggable="true"
-      @tag="addTag"
       tag-placeholder="Add this as new tag"
       placeholder="Optional - Add Collaborator"
       label="name"
-      track-by="code"
+      track-by="userId"
+      @tag="addTag"
+      @select="addNewUser"
+      @remove="removeNewUser"
     >
     </multiselect>
   </div>
@@ -26,29 +28,34 @@
       return {
         value:  [],
         options:  [
-          { name: 'Vuang agung', code: 'vu' },
-          { name: 'Joni Yes', code: 'js' },
-          { name: 'Onad sodin', code: 'os' },
-          { name: 'Janto 1', code: 'jp' },
-          { name: 'Janto 2', code: 'j23p' },
-          { name: 'Janto pas3to', code: 'jgp' },
-          { name: 'Janto 4', code: 'fjp' },
-          { name: 'Janto 5', code: 'djp' },
-          { name: 'Janto 6', code: 'jfqp' },
-          { name: 'Janto 65', code: 'jcvp' },
-          { name: 'Janto 656', code: 'jtsp' },
-          { name: 'Janto 47', code: 'jqwep' },
+          { name: 'Vuang agung', userId: 'vu' },
+          { name: 'Joni Yes', userId: 'js' },
+          { name: 'Onad sodin', userId: 'os' },
         ],
       }
     },
+    created() {
+      // Fetching API Collaborator Available
+      console.log('created')
+    },
     methods: {
       addTag (newTag) {
+        console.log('addTag')
         const tag = {
           name: newTag,
-          code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+          userId: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
         }
+        this.$emit('addNewUser', tag)
         this.options.push(tag)
         this.value.push(tag)
+      },
+      addNewUser (user) {
+        const { userId } = user
+        this.$emit('addNewUser', userId)
+      },
+      removeNewUser (user) {
+        const { userId } = user
+        this.$emit('removeNewUser', userId)
       }
     }
   }

@@ -16,9 +16,16 @@ class CampaignSeeder extends Seeder
 public function run()
 {
   // Campaign::factory()->count(8)->create();
-  $collection = collect(['Name1','Name2']);
-    for($x=1;$x<=5;$x++){
-      for($c=1;$c<=5;$c++){
+    $title=[
+      'Monalisa Art',
+      'Innovative Core Computer',
+      'Newest RPG Mode Idea',
+      'Fairy Tale Interactive Book',
+      'Movie Selling Book Idea',
+      'Healty Idea Stuff'
+    ];
+    for($x=1;$x<=6;$x++){
+      for($c=1;$c<=6;$c++){
         $day = rand(1,28);
         $month = rand(1,12);
         $year = rand(23,50);
@@ -26,7 +33,7 @@ public function run()
         DB::table('campaigns')->insert([
           'users_id' => strval($x),
           'category_id' => strval($c),
-          'title' => 'Monalisa Art by John Doe',
+          'title' => $title[$c-1],
           'slug' => 'monalisa-art-by-john-doe',
           'target_donation' => strval($td),
           'max_date' => "20{$year}-{$month}-{$day}",

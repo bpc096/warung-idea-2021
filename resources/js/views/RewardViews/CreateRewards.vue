@@ -18,6 +18,18 @@
             </div>
           </div>
           <div class="user-name">
+            <div class="text-label">Rewards Price</div>
+            <div class="text-value">
+              <input
+                v-model="rewardPrice"
+                @keypress="isNumber($event)"
+                type="text"
+                class="form-control"
+                placeholder="Target Donation.."
+              >
+            </div>
+          </div>
+          <div class="user-name">
             <div class="text-label">Rewards Description</div>
             <div class="text-desc-form">
               <textarea
@@ -55,7 +67,7 @@ export default {
       image: null,
       title: '',
       categoryId: '',
-      targetDonation: '1',
+      rewardPrice: '1',
       maxDate: null,
       description: '',
       previewImage: null,
@@ -71,13 +83,24 @@ export default {
     },
   },
   methods: {
+    isNumber (evt) {
+      evt = (evt) ? evt : window.event;
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
     submitCampaign() {
       let data = new FormData()
       const campaignId = this.$route.params.projectId || 1
+      const updatesId = this.$route.params.updatesId || 1
 
       data.append('title', this.title)
       data.append('description', this.description)
-      const param = { campaignId, data}
+      data.append('amount', this.rewardPrice)
+      const param = { campaignId, updatesId, data}
 
       this.$store
         .dispatch('createRewards', param)

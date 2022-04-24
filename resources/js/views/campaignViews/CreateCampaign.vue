@@ -115,7 +115,10 @@
           <div class="user-name">
             <div class="text-label">Campaign Collaborator</div>
             <div class="text-collaborator">
-              <MultiselectIde />
+              <MultiselectIde
+                @addNewUser="addNewUser"
+                @removeNewUser="removeNewUser"
+              />
             </div>
           </div>
         </div>
@@ -184,18 +187,18 @@ export default {
       evt = (evt) ? evt : window.event;
       var charCode = (evt.which) ? evt.which : evt.keyCode;
       if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-        evt.preventDefault();;
+        evt.preventDefault();
       } else {
         return true;
       }
     },
-    addTag (newTag) {
-      const tag = {
-        name: newTag,
-        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
-      }
-      this.options.push(tag)
-      this.value.push(tag)
+    addNewUser (userId) {
+      this.collaboratorId.push(userId)
+    },
+    removeNewUser (userId) {
+      console.log('removeUser')
+      const index = this.collaboratorId.indexOf(userId)
+      if(index>-1) this.collaboratorId.splice(index,1)
     },
     submitCampaign() {
       let data = new FormData()
@@ -209,9 +212,15 @@ export default {
       data.append('description', this.description)
       data.append('short_description', this.shortDescription)
       data.append('project_plan', this.projectPlan)
-      for (let i=0;i<arrayCollab.length;i++) {
-        data.append('collaborators[]', arrayCollab[i]);
+
+      if(arrayCollab.length === 0) {
+        data.append('collaborators[]', [])
+      } else {
+        for (let i=0;i<arrayCollab.length;i++) {
+          data.append('collaborators[]', arrayCollab[i]);
+        }
       }
+
 
       this.$store
         .dispatch('uploadCampaign', data)

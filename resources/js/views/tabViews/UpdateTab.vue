@@ -91,13 +91,10 @@ export default {
 <style lang="less" scoped>
 .wrap-update-tab{
   min-height: 90vh;
+  margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .empty-update {
-    margin-top: 5rem;
-  }
 
   h2 {
     margin-top: 5rem;

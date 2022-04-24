@@ -136,7 +136,6 @@ class CampaignController extends Controller
         $payments = Payment::with('user')->where('campaign_id', $campaign->id)->where('status', 'success')->latest()->get();
 
         if($campaign) {
-
             //return with response JSON
             return response()->json([
                 'success'       => true,

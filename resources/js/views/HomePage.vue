@@ -26,7 +26,7 @@
           Popular Project
         </div>
         <div class="section-content">
-          <div v-for="(project, index) in projectPopular" :key="index + project.Id">
+          <div v-for="(project, index) in projectPopular" :key="index">
             <router-link :to="`/projectdetail/${project.id}`">
               <ProjectMainCard
                 :projectData="project"
@@ -41,7 +41,7 @@
           Most Funding Project
         </div>
         <div class="section-content">
-          <div v-for="(project, index) in projectMostFunding" :key="index + project.id">
+          <div v-for="(project, index) in projectMostFunding" :key="index">
             <router-link :to="`/projectdetail/${project.id}`">
               <ProjectMainCard
                 :projectData="project"
@@ -78,7 +78,6 @@ import ArticleCard from '../components/cardComponent/ArticleCard.vue'
 import { Carousel, Slide } from 'vue-carousel'
 import { mapGetters } from 'vuex'
 
-
 export default {
   name: "HomePage",
   components: {
@@ -110,13 +109,19 @@ export default {
     }),
     totalCampaignProject () {
       return this.allProjectList.length
-    }
+    },
   },
   methods: {
+    getRandomNumber () {
+      const totalProject = this.allProjectList.length
+      let randomNumb=0
+      if(totalProject>0) {
+        randomNumb = Math.floor(Math.random() * (totalProject-1)) + 1
+      }
+      return randomNumb
+    },
     async checkAvailableContent () {
       await this.getAllProjectList()
-
-
       this.checkAvailableProjectFeatureSingle()
       this.checkAvailableProjectFeatureList()
       this.checkAvailableProjectPopular()
@@ -134,34 +139,43 @@ export default {
         })
     },
     checkAvailableProjectFeatureList () {
-      // GET 3 Random Project from project list
+      let randomNumb1 = 1, randomNumb2 = 2, randomNumb3 = 3
+      randomNumb1 = this.getRandomNumber()
+      randomNumb2 = this.getRandomNumber()
+      randomNumb3 = this.getRandomNumber()
+
+      if(randomNumb1===randomNumb2||randomNumb1===randomNumb3) randomNumb1++
+      if(randomNumb2===randomNumb3) randomNumb2++
       this.projectFeatureList = this.allProjectList.filter((project, idx) => {
-        if(idx <= 2) return project
+        if(idx===randomNumb1||idx===randomNumb2||idx===randomNumb3) return project
       })
     },
     checkAvailableProjectFeatureSingle () {
-      // CHECKING API FOR AVAILABLE PROJECT FEATURE
-      const maxProjectTotal = this.allProjectList.length
-      const randomNum = Math.floor(Math.random() * (maxProjectTotal-1)) + 1;
+      const randomNum = this.getRandomNumber()
       const resFeatureSingle = this.allProjectList[randomNum]
       this.projectFeatureSingle = resFeatureSingle
     },
     checkAvailableProjectPopular () {
-      // CHECKING API FOR AVAILABLE PROJECT POPULAR
+      let randomNumb1 = 1, randomNumb2 = 2
+      randomNumb1 = this.getRandomNumber()
+      randomNumb2 = this.getRandomNumber()
+      if(randomNumb1===randomNumb2) randomNumb2++
       this.projectPopular = this.allProjectList.filter((project, idx) => {
-        if(idx <= 1) return project
+        if(idx === randomNumb1 || idx === randomNumb2) return project
       })
     },
     checkAvailableProjectMostFunding () {
-      // CHECKING API FOR AVAILABLE PROJECT MOST FUNDING
+      let randomNumb1 = 1, randomNumb2 = 2
+      randomNumb1 = this.getRandomNumber()
+      randomNumb2 = this.getRandomNumber()
+      if(randomNumb1===randomNumb2) randomNumb2++
       this.projectMostFunding = this.allProjectList.filter((project, idx) => {
-        if(idx <= 1) return project
+        if(idx===randomNumb1 || idx===randomNumb2) return project
       })
     },
     checkAvailableArticleAndNews () {
-      // CHECKING API FOR AVAILABLE ARTICLE AND NEWS
       this.$store.dispatch('initArticle')
-        .then(res => {
+        .then(() => {
           this.articleAndNews = this.articles
         })
         .catch(err => {
