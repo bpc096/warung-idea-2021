@@ -67,17 +67,16 @@ class CampaignController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-          'image'                    => 'required|image|mimes:png,jpg,jpeg',
-          'title'                    => 'required|string',
-          'category_id'              => 'required|string',
-          'short_description'        => 'required|string',
-          'target_donation'          => 'required|numeric',
-          'max_date'                 => 'required|string',
-          'description'              => 'required|string',
-          'project_plan'             => 'required|string',
-          'collaborators'            => 'nullable|array',
-          'collaborators.*.name'     => 'nullable|string|distinct|min:3',
-          // 'collaborators.*.id'       => 'nullable|numeric'
+            'image'                    => 'required|image|mimes:png,jpg,jpeg',
+            'title'                    => 'required|string',
+            'category_id'              => 'required|string',
+            'short_description'        => 'required|string',
+            'target_donation'          => 'required|numeric',
+            'max_date'                 => 'required|string',
+            'description'              => 'required|string',
+            'project_plan'             => 'required|string',
+            'collaborators'            => 'nullable|array',
+            'collaborators.*.id'       => 'nullable|numeric'
         ]);
 
 
@@ -161,19 +160,18 @@ class CampaignController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Campaign $campaign)
+    public function update(Request $request, Campaign $campaign, CampaignDetail $campaignDetail)
     {
         $validator = Validator::make($request->all(), [
-            'title'                   => 'required|string',
-            'category_id'             => 'required|string',
-            'short_description'       => 'required|string',
-            'target_donation'         => 'required|numeric',
-            'max_date'                => 'required|string',
-            'description'             => 'required|string',
-            'project_plan'            => 'required|string',
-            'collaborators'           => 'nullable|array',
-            'collaborators.*name'     => 'nullable|string|distinct|min:3',
-            'collaborators.*id'       => 'nullable|numeric'
+            'title'                    => 'required|string',
+            'category_id'              => 'required|string',
+            'short_description'        => 'required|string',
+            'target_donation'          => 'required|numeric',
+            'max_date'                 => 'required|string',
+            'description'              => 'required|string',
+            'project_plan'             => 'required|string',
+            'collaborators'            => 'nullable|array',
+            'collaborators.*.id'       => 'nullable|numeric'
         ]);
 
          //check jika image kosong
@@ -194,8 +192,17 @@ class CampaignController extends Controller
                 'users_id'           => auth()->guard('api')->user()->id,
             ]);
 
-        } else {
+            // $campaignDetail = CampaignDetail::findOrFail($campaignDetail->campaign_id);
 
+            foreach ($request->collaborators as $collaborator) {
+                $campaignDetail->update([
+                    'campaign_id' => $campaign->id,
+                    'users_id'    => $collaborator,
+                    'status'      => 'pending'
+                ]);
+            }
+        } 
+        else {
             //hapus image lama
             Storage::disk('local')->delete('public/campaigns/'.basename($campaign->image));
 
@@ -206,18 +213,28 @@ class CampaignController extends Controller
             //update dengan image baru
             $campaign = Campaign::findOrFail($campaign->id);
             $campaign->update([
-                'title'             => $request->title,
-                'slug'              => Str::slug($request->title, '-'),
-                'category_id'       => $request->category_id,
-                'short_description' => $request->short_description,
-                'target_donation'   => $request->target_donation,
-                'max_date'          => $request->max_date,
-                'description'       => $request->description,
+                'title'              => $request->title,
+                'slug'               => Str::slug($request->title, '-'),
+                'category_id'        => $request->category_id,
+                'short_description'  => $request->short_description,
+                'target_donation'    => $request->target_donation,
+                'max_date'           => $request->max_date,
+                'description'        => $request->description,
                 'project_plan'       => $request->project_plan,
                 'collaborators'      => $request->collaborators,
                 'users_id'           => auth()->guard('api')->user()->id,
-                'image'             => $image->hashName()
+                'image'              => $image->hashName()
             ]);
+
+            $campaignDetail = CampaignDetail::findOrFail($campaignDetail->campaign_id);
+
+            foreach ($request->collaborators as $collaborator) {
+                $campaignDetail->update([
+                    'campaign_id' => $campaign->id,
+                    'users_id'    => $collaborator,
+                    'status'      => 'pending'
+                ]);
+            }
         }
 
         //return JSON
