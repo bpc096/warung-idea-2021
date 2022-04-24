@@ -64,7 +64,7 @@ class RewardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $reward_id)
+    public function update(Request $request)
     {
         $rules = [
             'amount'                => 'required',
@@ -75,7 +75,7 @@ class RewardController extends Controller
 
         $data = array_merge(array_except($request->input(), '_token'));
 
-        $reward = Reward::whereId($reward_id);
+        $reward = Reward::where('id', $request->reward_id);
         $reward->update($data);
 
         //return JSON
