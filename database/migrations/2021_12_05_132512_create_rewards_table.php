@@ -18,13 +18,9 @@ class CreateRewardsTable extends Migration
             $table->unsignedInteger('users_id')->nullable();
             $table->unsignedInteger('campaign_id')->nullable();
             $table->bigInteger('amount')->nullable();
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->string('estimated_delivery')->nullable();
             $table->timestamps();
-            // $table->foreign('campaign_id')
-            //       ->references('id')->on('campaigns')
-            //       ->onUpdate('cascade')
-            //       ->onDelete('cascade');
         });
     }
 
