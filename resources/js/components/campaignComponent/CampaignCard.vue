@@ -50,27 +50,18 @@
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           <b>Updates Config :</b>
-          <a :href="`/projectdetail/${campaignId}#updates`" class="btn-view-campaign">
-            View Updates
-          </a>
           <a :href="`/updates/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Updates
           </a>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           <b>FAQ Config :</b>
-          <a :href="`/projectdetail/${campaignId}#faqs`" class="btn-view-campaign">
-            View FAQ
-          </a>
           <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New FAQ
           </a>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           <b>Reward Config :</b>
-          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign">
-            View Rewards
-          </a>
           <a :href="`/rewards/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Reward
           </a>

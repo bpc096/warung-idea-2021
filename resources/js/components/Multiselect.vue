@@ -28,9 +28,9 @@
       return {
         value:  [],
         options:  [
-          { name: 'Vuang agung', userId: 'vu' },
-          { name: 'Joni Yes', userId: 'js' },
-          { name: 'Onad sodin', userId: 'os' },
+          { name: 'Vuang agung', userId: 1 },
+          { name: 'Joni Yes', userId: 2 },
+          { name: 'Onad sodin', userId: 3 },
         ],
       }
     },

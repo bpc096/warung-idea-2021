@@ -1,28 +1,16 @@
 <template>
   <div class="list-chat-page">
     <div class="user-wrap">
-      <div class="user-card">
+      <div
+        v-for="(user,idx) in userList"
+        :key="idx"
+        class="user-card"
+      >
         <div class="user-image">
-          <img src="https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6" alt="">
+          <img :src="user.sourceImg" alt="user-image-profile">
         </div>
         <div class="user-name">
-          <b>M Faisal Ghozi</b>
-        </div>
-      </div>
-      <div class="user-card">
-        <div class="user-image">
-          <img src="https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6" alt="">
-        </div>
-        <div class="user-name">
-          <b>Bill Petrus</b>
-        </div>
-      </div>
-      <div class="user-card">
-        <div class="user-image">
-          <img src="https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6" alt="">
-        </div>
-        <div class="user-name">
-          <b>Jeffrey Marcellino</b>
+          <b>{{user.name}}</b>
         </div>
       </div>
     </div>
@@ -31,7 +19,21 @@
 
 <script>
 export default {
-  name: 'ListChatPage'
+  name: 'ListChatPage',
+  data: () => {
+    return {
+      userList: [
+        {
+          sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
+          name: 'M Faisal Ghozi',
+        },
+        {
+          sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
+          name: 'Bill Petrus'
+        }
+      ]
+    }
+  }
 }
 </script>
 

@@ -1,5 +1,3 @@
-// resources/assets/js/components/ChatMessages.vue
-
 <template>
   <ul id="chatlogs" class="chat-messages-wrap">
     <li class="left clearfix" v-for="message in messages" :key="message.id">
@@ -21,7 +19,7 @@
 export default {
   props: ["messages"],
   updated () {
-    var element = document.getElementById('chatlogs');
+    let element = document.getElementById('chatlogs');
     element.scrollTop = element.scrollHeight;
   }
 };
