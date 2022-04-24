@@ -2885,16 +2885,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    formatMoney: function formatMoney(money) {
+      var moneyTemp = money ? parseInt(money) : 10000;
+      var formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp).replace(/[IDR]/gi, '').replace(/(\.+\d{2})/, '').replace(/,/g, '.').trimLeft();
+      return formatter;
+    },
     generateMockData: function generateMockData() {
       var mockData = [];
 
       for (var x = 1; x <= 5; x++) {
         var tempObj = {
-          rewardId: x,
-          rewardTitle: 'Price Name Number ' + x,
-          rewardAmount: x + '00000',
+          id: x,
+          title: 'Price Name Number ' + x,
+          amount: x + '00000',
           rewardPrice: 'Rp' + x + '00.000',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         };
         mockData.push(tempObj);
       }
@@ -2942,9 +2950,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       });
     },
-    deleteReward: function deleteReward() {
-      // TODO: TB Developed once can create
-      console.log('delete reward');
+    deleteReward: function deleteReward(rewardId) {
+      var _this3 = this;
+
+      this.$store.dispatch('deleteRewards', rewardId).then(function (res) {
+        _this3.$router.go(0);
+      })["catch"](function (err) {
+        console.error(err);
+      });
     }
   }
 });
@@ -4432,13 +4445,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'EditRewards',
   data: function data() {
     return {
       title: '',
-      description: ''
+      description: '',
+      rewardPrice: 1
     };
   },
   created: function created() {
@@ -4469,15 +4495,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   }),
   methods: {
+    isNumber: function isNumber(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+
+      if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
     submitCampaign: function submitCampaign() {
       var _this2 = this;
 
       var data = new FormData();
       var campaignId = this.$route.params.projectId || 1;
+      var updatesId = this.$route.params.updateId || 1;
       data.append('title', this.title);
       data.append('description', this.description);
+      data.append('amount', this.rewardPrice);
       var param = {
         campaignId: campaignId,
+        updatesId: updatesId,
         data: data
       };
       this.$store.dispatch('editRewards', param).then(function () {
@@ -6082,8 +6121,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    deleteFaqs: function deleteFaqs() {
-      console.log('delete faqs');
+    deleteFaqs: function deleteFaqs(faqId) {
+      var _this = this;
+
+      this.$store.dispatch('deleteFaq', faqId).then(function (res) {
+        _this.$router.go(0);
+      })["catch"](function (err) {
+        console.error(err);
+      });
     }
   }
 });
@@ -6180,8 +6225,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    deleteUpdates: function deleteUpdates() {
-      console.log('delete updates');
+    deleteUpdates: function deleteUpdates(updateId) {
+      var _this = this;
+
+      console.log(updateId);
+      this.$store.dispatch('deleteUpdates', updateId).then(function (res) {
+        _this.$router.go(0);
+      })["catch"](function (err) {
+        console.error(err);
+      });
     }
   }
 });
@@ -7967,6 +8019,18 @@ var actions = {
         reject(err);
       });
     });
+  },
+  deleteFaq: function deleteFaq(_ref4, param) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/delete_faq/' + param;
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](apiUrl, param).then(function (res) {
+        commit('');
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
   }
 };
 var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_FAQ, function (state, data) {
@@ -8056,6 +8120,29 @@ var actions = {
         reject(err);
       });
     });
+  },
+  editRewards: function editRewards(_ref3, param) {
+    var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/' + param.campaignId + '/rewards/reward/' + param.updatesId;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  deleteRewards: function deleteRewards(_ref4, param) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/delete_reward/' + param;
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](apiUrl, param).then(function (res) {
+        commit('');
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
   }
 };
 var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.CREATE_REWARDS, function (state, data) {
@@ -8127,6 +8214,18 @@ var actions = {
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + param.campaignId + '/updates/update/' + param.updatesId;
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(apiUrl, param.data).then(function (res) {
+        resolve(res);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  deleteUpdates: function deleteUpdates(_ref4, param) {
+    var commit = _ref4.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'campaign/delete_update/' + param;
+      axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"](apiUrl, param).then(function (res) {
+        commit('');
         resolve(res);
       })["catch"](function (err) {
         reject(err);
@@ -52124,7 +52223,7 @@ var render = function () {
                           path: "/checkout",
                           query: {
                             campaignId: _vm.campaignId,
-                            totalAmount: d.rewardAmount,
+                            totalAmount: d.amount,
                           },
                         },
                       },
@@ -52136,8 +52235,8 @@ var render = function () {
                           _vm._v(" "),
                           _c("div", { staticClass: "reward-text-price" }, [
                             _vm._v(
-                              "\n                  " +
-                                _vm._s(d.rewardPrice) +
+                              "\n                  Rp " +
+                                _vm._s(_vm.formatMoney(d.amount)) +
                                 "\n                "
                             ),
                           ]),
@@ -52146,7 +52245,7 @@ var render = function () {
                         _c("div", { staticClass: "reward-title" }, [
                           _vm._v(
                             "\n                " +
-                              _vm._s(d.rewardTitle) +
+                              _vm._s(d.title) +
                               "\n              "
                           ),
                         ]),
@@ -52154,7 +52253,7 @@ var render = function () {
                         _c("div", { staticClass: "reward-desc" }, [
                           _vm._v(
                             "\n                " +
-                              _vm._s(d.rewardDesc) +
+                              _vm._s(d.description) +
                               "\n              "
                           ),
                         ]),
@@ -52170,10 +52269,7 @@ var render = function () {
                             staticClass: "btn btn-edit",
                             attrs: {
                               href:
-                                "/rewards/edit/" +
-                                _vm.campaignId +
-                                "/" +
-                                d.rewardId,
+                                "/rewards/edit/" + _vm.campaignId + "/" + d.id,
                             },
                           },
                           [_vm._v("\n              Edit\n            ")]
@@ -52183,7 +52279,11 @@ var render = function () {
                           "a",
                           {
                             staticClass: "btn btn-delete",
-                            on: { click: _vm.deleteReward },
+                            on: {
+                              click: function ($event) {
+                                return _vm.deleteReward(d.id)
+                              },
+                            },
                           },
                           [_vm._v("\n              Delete\n            ")]
                         ),
@@ -53467,6 +53567,39 @@ var render = function () {
                         return
                       }
                       _vm.title = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "user-name" }, [
+              _c("div", { staticClass: "text-label" }, [
+                _vm._v("Rewards Price"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-value" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.rewardPrice,
+                      expression: "rewardPrice",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Reward Price ..." },
+                  domProps: { value: _vm.rewardPrice },
+                  on: {
+                    keypress: function ($event) {
+                      return _vm.isNumber($event)
+                    },
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.rewardPrice = $event.target.value
                     },
                   },
                 }),
@@ -55113,7 +55246,11 @@ var render = function () {
                         "a",
                         {
                           staticClass: "btn btn-delete",
-                          on: { click: _vm.deleteFaqs },
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteFaqs(data.id)
+                            },
+                          },
                         },
                         [_vm._v("\n          Delete\n        ")]
                       ),
@@ -55197,7 +55334,11 @@ var render = function () {
                         "a",
                         {
                           staticClass: "btn btn-delete",
-                          on: { click: _vm.deleteUpdates },
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteUpdates(data.id)
+                            },
+                          },
                         },
                         [_vm._v("\n          Delete\n        ")]
                       ),

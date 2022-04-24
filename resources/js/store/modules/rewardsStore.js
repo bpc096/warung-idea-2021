@@ -32,6 +32,31 @@ const actions = {
           reject(err)
         })
     })
+  },
+  editRewards({commit}, param) {
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'campaign/' + param.campaignId + '/rewards/reward/' + param.updatesId
+      Axios.post(apiUrl, param.data)
+        .then(res => {
+          resolve(res)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  },
+  deleteRewards({commit}, param) {
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'campaign/delete_reward/' + param
+      Axios.delete(apiUrl, param)
+        .then(res => {
+          commit('')
+          resolve(res)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
   }
 }
 

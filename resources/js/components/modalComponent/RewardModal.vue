@@ -20,20 +20,20 @@
           </div>
           <div v-if="checkRegexAlphabet || checkAmountInvalid" class="text-error">Please Input Valid Number!</div>
           <div v-for="(d, idx) in listData" :key="idx">
-            <router-link :to="{path: '/checkout', query: {campaignId: campaignId, totalAmount: d.rewardAmount }}">
+            <router-link :to="{path: '/checkout', query: {campaignId: campaignId, totalAmount: d.amount }}">
               <div class="reward-card-container">
                 <div class="reward-price">
                   <div class="reward-image">
                   </div>
                   <div class="reward-text-price">
-                    {{ d.rewardPrice }}
+                    Rp {{ formatMoney(d.amount) }}
                   </div>
                 </div>
                 <div class="reward-title">
-                  {{ d.rewardTitle }}
+                  {{ d.title }}
                 </div>
                 <div class="reward-desc">
-                  {{ d.rewardDesc }}
+                  {{ d.description }}
                 </div>
               </div>
             </router-link>
@@ -41,10 +41,10 @@
               v-if="checkUserOwner"
               class="button-wrap"
             >
-              <a :href="`/rewards/edit/${campaignId}/${d.rewardId}`" class="btn btn-edit">
+              <a :href="`/rewards/edit/${campaignId}/${d.id}`" class="btn btn-edit">
                 Edit
               </a>
-              <a @click="deleteReward" class="btn btn-delete">
+              <a @click="deleteReward(d.id)" class="btn btn-delete">
                 Delete
               </a>
             </div>
@@ -112,15 +112,27 @@ export default {
     }
   },
   methods: {
+    formatMoney(money) {
+      const moneyTemp = money ? parseInt(money) : 10000
+      const formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp)
+      .replace(/[IDR]/gi, '')
+      .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
+      .trimLeft()
+      return formatter
+    },
     generateMockData () {
       let mockData = []
       for(let x=1;x<=5;x++){
         const tempObj = {
-          rewardId: x,
-          rewardTitle: 'Price Name Number ' + x,
-          rewardAmount: x + '00000',
+          id: x,
+          title: 'Price Name Number ' + x,
+          amount: x + '00000',
           rewardPrice: 'Rp' + x + '00.000',
-          rewardDesc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
+          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
         }
         mockData.push(tempObj)
       }
@@ -154,9 +166,15 @@ export default {
         }
       })
     },
-    deleteReward() {
-      // TODO: TB Developed once can create
-      console.log('delete reward')
+    deleteReward(rewardId) {
+      this.$store
+        .dispatch('deleteRewards', rewardId)
+        .then(res => {
+          this.$router.go(0)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 }

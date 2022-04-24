@@ -17,7 +17,7 @@
           <a :href="`/faqs/edit/${campaignId}/${data.id}`" class="btn btn-edit">
             Edit
           </a>
-          <a @click="deleteFaqs" class="btn btn-delete">
+          <a @click="deleteFaqs(data.id)" class="btn btn-delete">
             Delete
           </a>
         </div>
@@ -64,8 +64,15 @@ export default {
     }
   },
   methods: {
-    deleteFaqs() {
-      console.log('delete faqs')
+    deleteFaqs(faqId) {
+      this.$store
+        .dispatch('deleteFaq', faqId)
+        .then(res => {
+          this.$router.go(0)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 }

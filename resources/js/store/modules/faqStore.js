@@ -44,6 +44,19 @@ const actions = {
           reject(err)
         })
     })
+  },
+  deleteFaq({commit}, param){
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'campaign/delete_faq/' + param
+      Axios.delete(apiUrl, param)
+        .then(res => {
+          commit('')
+          resolve(res)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
   }
 }
 

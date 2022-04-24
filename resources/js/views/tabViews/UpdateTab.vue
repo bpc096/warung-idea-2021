@@ -18,7 +18,7 @@
           <a :href="`/updates/edit/${campaignId}/${data.id}`" class="btn btn-edit">
             Edit
           </a>
-          <a @click="deleteUpdates" class="btn btn-delete">
+          <a @click="deleteUpdates(data.id)" class="btn btn-delete">
             Delete
           </a>
         </div>
@@ -81,8 +81,16 @@ export default {
     }
   },
   methods: {
-    deleteUpdates() {
-      console.log('delete updates')
+    deleteUpdates(updateId) {
+      console.log(updateId)
+      this.$store
+        .dispatch('deleteUpdates', updateId)
+        .then(res => {
+          this.$router.go(0)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 }

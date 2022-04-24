@@ -18,6 +18,18 @@
             </div>
           </div>
           <div class="user-name">
+            <div class="text-label">Rewards Price</div>
+            <div class="text-value">
+              <input
+                v-model="rewardPrice"
+                @keypress="isNumber($event)"
+                type="text"
+                class="form-control"
+                placeholder="Reward Price ..."
+              >
+            </div>
+          </div>
+          <div class="user-name">
             <div class="text-label">Rewards Description</div>
             <div class="text-desc-form">
               <textarea
@@ -54,12 +66,13 @@ export default {
     return {
       title: '',
       description: '',
+      rewardPrice: 1,
     }
   },
   async created() {
     const campaignId = this.$route.params.projectId || 1
     const updatesId = this.$route.params.updatesId || 1
-  // TODO: Fetching getUpdatesByCampagnidAndUpdateId
+    // TODO: Fetching getUpdatesByCampagnidAndUpdateId
   },
   computed: {
     ...mapGetters({
@@ -70,12 +83,25 @@ export default {
     },
   },
   methods: {
+    isNumber (evt) {
+      evt = (evt) ? evt : window.event;
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
     submitCampaign() {
       let data = new FormData()
       const campaignId = this.$route.params.projectId || 1
+      const updatesId = this.$route.params.updateId || 1
+
       data.append('title', this.title)
       data.append('description', this.description)
-      let param = { campaignId, data}
+      data.append('amount', this.rewardPrice)
+      const param = { campaignId, updatesId, data}
+
       this.$store
         .dispatch('editRewards', param)
         .then(() => {
