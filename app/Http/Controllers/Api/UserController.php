@@ -12,12 +12,6 @@ class UserController extends Controller
     public function index()
     {
         $users = Campaign::with('user:id,name')->get(['users_id']);
-        // $totalUsers = 0;
-        // if(count($users) >= 2) {
-        //     $totalUsers = 2;
-        // } else {
-        //     $totalUsers = count($users);
-        // }
 
         $tempUsers = [];
         for($i = 0; $i < count($users); $i++){
