@@ -73,7 +73,7 @@ class FaqController extends Controller
 
         $data = array_merge(array_except($request->input(), '_token'));
 
-        $faq = Faq::where('id', $request->faq_id);
+        $faq = Faq::where('id', $request->faq_id)->first();
         $faq->update($data);
 
         //return JSON

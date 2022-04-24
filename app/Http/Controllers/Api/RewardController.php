@@ -75,7 +75,7 @@ class RewardController extends Controller
 
         $data = array_merge(array_except($request->input(), '_token'));
 
-        $reward = Reward::where('id', $request->reward_id);
+        $reward = Reward::where('id', $request->reward_id)->first();
         $reward->update($data);
 
         //return JSON
