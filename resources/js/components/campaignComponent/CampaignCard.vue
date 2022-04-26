@@ -272,7 +272,7 @@ export default {
           padding: 2px;
           min-width: 10rem;
           border-radius: 10px;
-          align-self: center;
+          justify-self: center;
         }
       }
 
@@ -282,6 +282,7 @@ export default {
         margin-bottom: 10px;
         align-items: center;
         justify-content: space-between;
+        margin-right: 1.5rem;
 
         .text-status {
           font-weight: 500;

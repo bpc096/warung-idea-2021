@@ -3291,11 +3291,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'CheckoutPage',
   data: function data() {
     return {
-      projectData: {}
+      projectData: {},
+      serviceFeeAmount: 1000
     };
   },
   created: function created() {
@@ -3309,6 +3318,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
   },
   computed: {
+    projectRewardName: function projectRewardName() {
+      return this.$route.query.rewardName || 'Default Reward Name';
+    },
     dummyImage: function dummyImage() {
       return 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80';
     },
@@ -3325,6 +3337,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     infoCampaignId: function infoCampaignId() {
       return this.$route.params.campaignId || this.$route.query.campaignId;
+    },
+    totalPriceAmount: function totalPriceAmount() {
+      var totalPrice = parseInt(this.donationAmount) + parseInt(this.serviceFeeAmount);
+      return totalPrice;
     }
   },
   methods: {
@@ -12859,7 +12875,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: center;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  align-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  justify-content: space-between;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #4FBDBA;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #4FBDBA;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF5959;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF5959;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 50rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: center;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  justify-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  justify-content: space-between;\n  margin-right: 1.5rem;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #4FBDBA;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #4FBDBA;\n  margin: 0 10px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF5959;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF5959;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13099,7 +13115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".checkout-page-wrap[data-v-198111d8] {\n  height: 90vh;\n  display: flex;\n  flex-direction: row;\n}\n.checkout-page-wrap .content-right[data-v-198111d8] {\n  border-right: 1px solid black;\n  width: 50%;\n  padding: 5rem;\n}\n.checkout-page-wrap .content-right .checkout-title[data-v-198111d8] {\n  text-align: left;\n  margin: 2rem 0;\n}\n.checkout-page-wrap .content-right .checkout-title .project-title[data-v-198111d8] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.checkout-page-wrap .content-right .checkout-perks[data-v-198111d8] {\n  text-align: left;\n  margin: 2rem 0;\n}\n.checkout-page-wrap .content-right .checkout-perks .perks-title[data-v-198111d8] {\n  font-size: 25px;\n}\n.checkout-page-wrap .content-right .checkout-info[data-v-198111d8] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n.checkout-page-wrap .content-right .checkout-info .checkout-image[data-v-198111d8] {\n  width: 50%;\n}\n.checkout-page-wrap .content-right .checkout-info .checkout-image img[data-v-198111d8] {\n  width: 50%;\n}\n.checkout-page-wrap .content-right .checkout-info .checkout-reward[data-v-198111d8] {\n  display: flex;\n}\n.checkout-page-wrap .content-right .checkout-info .checkout-reward .reward-title[data-v-198111d8] {\n  margin: 0 20px;\n}\n.checkout-page-wrap .content-left[data-v-198111d8] {\n  border-left: 1px solid black;\n  width: 50%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-page-wrap .content-left .content-contribution[data-v-198111d8] {\n  width: 50%;\n}\n.checkout-page-wrap .content-left .content-contribution .subtotal-text[data-v-198111d8] {\n  display: flex;\n  justify-content: space-between;\n}\n.checkout-page-wrap .content-left .content-contribution .shipping-text[data-v-198111d8] {\n  display: flex;\n  justify-content: space-between;\n}\n.checkout-page-wrap .content-left .content-contribution .total-text[data-v-198111d8] {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 5rem;\n  margin-bottom: 1rem;\n}\n.checkout-page-wrap .content-left .btn-checkout[data-v-198111d8] {\n  border-top: 1px solid black;\n  width: 50%;\n  margin: 1rem 0;\n}\n.checkout-page-wrap .content-left .btn-checkout button[data-v-198111d8] {\n  margin: 1rem 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".checkout-page-wrap[data-v-198111d8] {\n  height: 90vh;\n  display: flex;\n  flex-direction: row;\n}\n.checkout-page-wrap .content-right[data-v-198111d8] {\n  border-right: 1px solid black;\n  width: 50%;\n  padding: 5rem;\n}\n.checkout-page-wrap .content-right .checkout-title[data-v-198111d8] {\n  text-align: left;\n  margin: 7rem 0 2rem 0;\n}\n.checkout-page-wrap .content-right .checkout-title .project-title[data-v-198111d8] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.checkout-page-wrap .content-right .checkout-perks[data-v-198111d8] {\n  text-align: left;\n  margin: 2rem 0;\n}\n.checkout-page-wrap .content-right .checkout-perks .perks-title[data-v-198111d8] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.checkout-page-wrap .content-right .checkout-info[data-v-198111d8] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n}\n.checkout-page-wrap .content-right .checkout-info .checkout-image[data-v-198111d8] {\n  width: 50%;\n}\n.checkout-page-wrap .content-right .checkout-info .checkout-image img[data-v-198111d8] {\n  width: 50%;\n}\n.checkout-page-wrap .content-right .checkout-info .checkout-reward[data-v-198111d8] {\n  display: flex;\n}\n.checkout-page-wrap .content-right .checkout-info .checkout-reward .reward-title[data-v-198111d8] {\n  margin: 0 20px;\n}\n.checkout-page-wrap .content-left[data-v-198111d8] {\n  border-left: 1px solid black;\n  width: 50%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.checkout-page-wrap .content-left .content-contribution[data-v-198111d8] {\n  width: 50%;\n}\n.checkout-page-wrap .content-left .content-contribution .subtotal-text[data-v-198111d8],\n.checkout-page-wrap .content-left .content-contribution .service-fee-text[data-v-198111d8] {\n  display: flex;\n  justify-content: space-between;\n}\n.checkout-page-wrap .content-left .content-contribution .shipping-text[data-v-198111d8],\n.checkout-page-wrap .content-left .content-contribution .service-fee-text[data-v-198111d8] {\n  display: flex;\n  justify-content: space-between;\n}\n.checkout-page-wrap .content-left .content-contribution .total-text[data-v-198111d8] {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 5rem;\n  margin-bottom: 1rem;\n}\n.checkout-page-wrap .content-left .btn-checkout[data-v-198111d8] {\n  border-top: 1px solid black;\n  width: 50%;\n  margin: 1rem 0;\n}\n.checkout-page-wrap .content-left .btn-checkout button[data-v-198111d8] {\n  margin: 1rem 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52228,6 +52244,7 @@ var render = function () {
                           query: {
                             campaignId: _vm.campaignId,
                             totalAmount: d.amount,
+                            rewardName: d.title,
                           },
                         },
                       },
@@ -52544,7 +52561,12 @@ var render = function () {
         ]),
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "checkout-perks" }, [
+        _vm._v("\n      Review Your Package Rewards Information\n      "),
+        _c("div", { staticClass: "perks-title" }, [
+          _vm._v("\n        " + _vm._s(_vm.projectRewardName) + "\n      "),
+        ]),
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "checkout-info" }, [
         _c("div", { staticClass: "checkout-image" }, [
@@ -52590,7 +52612,21 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _c("div", { staticClass: "service-fee-text" }, [
+          _c("div", { staticClass: "service-fee-title" }, [
+            _vm._v("\n          Service Fee\n        "),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "service-fee-price" }, [
+            _vm._v(
+              "\n          Rp " +
+                _vm._s(_vm.formatMoney(_vm.serviceFeeAmount)) +
+                "\n      "
+            ),
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "total-text" }, [
           _c("div", { staticClass: "total-title" }, [
@@ -52600,7 +52636,7 @@ var render = function () {
           _c("div", { staticClass: "total-price" }, [
             _vm._v(
               "\n          Rp " +
-                _vm._s(_vm.formatMoney(_vm.donationAmount)) +
+                _vm._s(_vm.formatMoney(_vm.totalPriceAmount)) +
                 "\n        "
             ),
           ]),
@@ -52620,24 +52656,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "checkout-perks" }, [
-      _vm._v("\n      Review Your Contribution\n      "),
-      _c("div", { staticClass: "perks-title" }, [
-        _vm._v("\n        PERKS\n      "),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "shipping-text" }, [
       _c("div", { staticClass: "shipping-title" }, [
         _vm._v("\n          Shipping\n        "),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "shipping-price" }, [
-        _vm._v("\n          Rp0,-\n        "),
+        _vm._v("\n          Rp0\n        "),
       ]),
     ])
   },

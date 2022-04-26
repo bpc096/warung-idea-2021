@@ -8,9 +8,9 @@
         </div>
       </div>
       <div class="checkout-perks">
-        Review Your Contribution
+        Review Your Package Rewards Information
         <div class="perks-title">
-          PERKS
+          {{ projectRewardName }}
         </div>
       </div>
       <div class="checkout-info">
@@ -42,20 +42,28 @@
             Rp {{ formatMoney(donationAmount) }}
           </div>
         </div>
+        <div class="service-fee-text">
+          <div class="service-fee-title">
+            Service Fee
+          </div>
+          <div class="service-fee-price">
+            Rp {{ formatMoney(serviceFeeAmount) }}
+        </div>
         <div class="shipping-text">
           <div class="shipping-title">
             Shipping
           </div>
           <div class="shipping-price">
-            Rp0,-
+            Rp0
           </div>
+        </div>
         </div>
         <div class="total-text">
           <div class="total-title">
             TOTAL
           </div>
           <div class="total-price">
-            Rp {{ formatMoney(donationAmount) }}
+            Rp {{ formatMoney(totalPriceAmount) }}
           </div>
         </div>
       </div>
@@ -75,7 +83,8 @@ export default {
   name: 'CheckoutPage',
   data: () => {
     return {
-      projectData: {}
+      projectData: {},
+      serviceFeeAmount: 1000,
     }
   },
   created() {
@@ -90,6 +99,9 @@ export default {
       })
   },
   computed: {
+    projectRewardName () {
+      return this.$route.query.rewardName || 'Default Reward Name'
+    },
     dummyImage() {
       return 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
     },
@@ -104,7 +116,11 @@ export default {
     },
     infoCampaignId () {
       return this.$route.params.campaignId || this.$route.query.campaignId
-    }
+    },
+    totalPriceAmount () {
+      const totalPrice = parseInt(this.donationAmount) + parseInt(this.serviceFeeAmount)
+      return totalPrice
+    },
   },
   methods: {
     formatMoney(money) {
@@ -155,7 +171,7 @@ export default {
 
     .checkout-title {
       text-align: left;
-      margin: 2rem 0;
+      margin: 7rem 0 2rem 0;
       .project-title {
         font-size: 25px;
         font-weight: bold;
@@ -167,6 +183,7 @@ export default {
       margin: 2rem 0;
       .perks-title {
         font-size: 25px;
+        font-weight: bold;
       }
     }
 
@@ -199,15 +216,17 @@ export default {
 
     .content-contribution {
       width: 50%;
-      .subtotal-text {
+      .subtotal-text,
+      .service-fee-text {
         display: flex;
         justify-content: space-between;
       }
-      .shipping-text {
+      .shipping-text,
+      .service-fee-text {
         display: flex;
         justify-content: space-between;
       }
-      .total-text {
+      .total-text{
         display: flex;
         justify-content: space-between;
         margin-top: 5rem;

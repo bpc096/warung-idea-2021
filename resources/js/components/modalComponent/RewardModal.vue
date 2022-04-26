@@ -20,7 +20,7 @@
           </div>
           <div v-if="checkRegexAlphabet || checkAmountInvalid" class="text-error">Please Input Valid Number!</div>
           <div v-for="(d, idx) in listData" :key="idx">
-            <router-link :to="{path: '/checkout', query: {campaignId: campaignId, totalAmount: d.amount }}">
+            <router-link :to="{path: '/checkout', query: {campaignId: campaignId, totalAmount: d.amount, rewardName: d.title }}">
               <div class="reward-card-container">
                 <div class="reward-price">
                   <div class="reward-image">
@@ -109,7 +109,7 @@ export default {
     checkUserOwner() {
       // return parseInt(this.ownerId) === userId
       return parseInt(this.ownerId) === this.userId
-    }
+    },
   },
   methods: {
     formatMoney(money) {
@@ -162,7 +162,7 @@ export default {
         name: 'CheckoutPage',
         params: {
           totalAmount: totalAmount,
-          campaignId: this.campaignId
+          campaignId: this.campaignId,
         }
       })
     },
