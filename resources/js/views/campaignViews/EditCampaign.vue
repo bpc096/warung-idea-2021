@@ -153,6 +153,7 @@ export default {
       projectDetail: {},
       shortDesc: '',
       projectPlan: '',
+      collaboratorId: [],
     }
   },
   async created () {
@@ -202,6 +203,8 @@ export default {
   methods: {
     editCampaign() {
       const campaignId = this.$route.params.projectId || 1
+      const listCollaborator = this.collaboratorId
+
       let data = new FormData()
       data.append('image', this.image)
       data.append('title', this.title)
@@ -209,6 +212,15 @@ export default {
       data.append('target_donation', this.targetDonation)
       data.append('max_date', this.maxDate)
       data.append('description', this.description)
+      data.append('short_description', this.shortDesc)
+      data.append('project_plan', this.projectPlan)
+      if(listCollaborator.length > 0) {
+        for(let x=0;x<listCollaborator.length;x++){
+          data.append('collaborators[]', listCollaborator[x])
+        }
+      } else {
+        data.append('collaborators[]', [])
+      }
 
       let param = {campaignId, data}
       this.$store
