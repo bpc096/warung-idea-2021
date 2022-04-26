@@ -1,4 +1,7 @@
 {
+  "name": "WarungIdeaApp",
+  "version": "2.0.0",
+  "description": "Frontend Code Base for WarungIdea Application",
   "private": true,
   "scripts": {
     "dev": "npm run development",
