@@ -20,12 +20,15 @@
           ></div>
         </div>
         <div class="total-donate-info">
+          <img src="\images\icon\money-bag.svg" alt="icon-backers">
           Rp {{ formatMoney(totalPayment) }} dari Rp {{ formatMoney(projectTargetDonation) }}
         </div>
         <div class="supporter-info">
+          <img src="\images\icon\solidarity.svg" alt="icon-backers">
           {{ totalBacker }} Penyumbang
         </div>
         <div class="day-left-info">
+          <img src="\images\icon\hourglass.svg" alt="icon-backers">
           {{ daysBetween }}
         </div>
         <div class="day-left-info">
@@ -304,14 +307,14 @@ export default {
     width: 100%;
     .project-detail-section{
       width: 100%;
-      height: 40vh;
+      height: 45vh;
       text-align: left;
-      margin: 3rem 0 3rem 3rem;
+      margin: 3rem 0 3rem 7rem;
       font-size: 1.5rem;
 
       .progress-bar-custom{
-        width: 20rem;
-        height: 1.5rem;
+        width: 25rem;
+        height: 2rem;
         border: 2px solid black;
         border-radius: 10px;
         margin-bottom: 30px;
@@ -325,16 +328,26 @@ export default {
 
       .total-donate-info{
         margin-bottom: 30px;
+        img {
+          margin-right: 1rem;
+        }
       }
 
       .supporter-info{
         display: flex;
         flex-direction: row;
         margin-bottom: 30px;
+        align-items: center;
+        img {
+          margin-right: 1.7rem;
+        }
       }
 
       .day-left-info{
         margin-bottom: 30px;
+        img {
+          margin-right: 1rem;
+        }
       }
 
       .button-wrapper {
@@ -367,13 +380,14 @@ export default {
     }
     .project-image-section{
       width: 100%;
-      height: 50vh;
+      height: 55vh;
       display: flex;
       justify-content: center;
       align-items: center;
       .image {
         width: 80%;
         height: 80%;
+        max-width: 48rem;
 
         img {
           width: 100%;

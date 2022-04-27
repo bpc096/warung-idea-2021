@@ -88,8 +88,8 @@ export default {
 
 <style lang="less" scoped>
 .project-main-card {
-  height: 340px;
-  width: 620px;
+  height: 22rem;
+  width: 40rem;
   display: flex;
   flex-direction: row;
   margin: 0 20px;

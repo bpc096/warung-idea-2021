@@ -74,15 +74,7 @@ export default {
       // });
     },
     async addMessage(message) {
-      // await this.scrollTopChat()
-
-      // console.log(message)
-      const msg = {
-        message: message.message,
-        user: message.user
-      }
-
-      this.messages.push(msg)
+      this.messages.push(message)
 
       // axios.post('/messages', message).then(response => {
       //   console.log(response.data);

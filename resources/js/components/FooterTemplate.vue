@@ -24,13 +24,13 @@
       </div>
       <div class="logo-socmed">
         <a href="#twitter">
-          <img src="images/icon/twitter.svg" alt="twitter-icon">
+          <img src="\images\icon\twitter.svg" alt="twitter-icon">
         </a>
         <a href="#instagram">
-          <img src="images/icon/instagram.svg" alt="instagram-icon">
+          <img src="\images\icon\instagram.svg" alt="instagram-icon">
         </a>
         <a href="#facebook">
-          <img src="images/icon/facebook.svg" alt="facebook-icon">
+          <img src="\images\icon\facebook.svg" alt="facebook-icon">
         </a>
       </div>
     </div>
