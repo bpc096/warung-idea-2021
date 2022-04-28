@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-
 let ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
 
 
@@ -28,8 +27,8 @@ mix.copy( 'resources/js/assets/images', 'public/images', false );
  */
 
 mix
-  .vue()
   .js('resources/js/app.js', 'public/js')
+  .vue()
   .sass('resources/sass/app.scss', 'public/css')
   .less('resources/less/app.less', 'public/css')
   .disableNotifications();
