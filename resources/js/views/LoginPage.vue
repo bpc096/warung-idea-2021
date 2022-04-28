@@ -53,6 +53,7 @@ export default {
     userLogin() {
       this.$store.dispatch('login', this.form)
       .then(res => {
+        this.$toasted.success("Login Successfull", {position: 'top-left', duration: 1500})
         this.$router.push({name: 'HomePage', path: '/home'})
       }).catch(err => {
         this.errors = err.response.data.message

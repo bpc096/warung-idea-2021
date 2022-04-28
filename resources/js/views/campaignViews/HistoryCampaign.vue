@@ -21,7 +21,7 @@
         :campaignInfo="campaign"
       />
     </div>
-    <div v-else>
+    <div v-else class="empty-state">
       You dont have created campaign !
     </div>
   </div>
@@ -87,6 +87,11 @@ export default {
   align-items: center;
   margin-bottom: 10rem;
 
+  .empty-state {
+    margin-top: 10rem;
+    font-size: 25px;
+  }
+
   .title-page {
     font-size: 30px;
     font-weight: bold;
@@ -108,7 +113,7 @@ export default {
       padding: 10px;
 
       &:hover {
-        background-color: black;
+        background-color: #A1E3D8;
         color: white;
       }
     }
@@ -122,7 +127,7 @@ export default {
       margin-left: 10px;
 
       &:hover {
-        background-color: black;
+        background-color: #A1E3D8;
         color: white;
       }
     }

@@ -65,7 +65,7 @@ export default {
       return this.$route.name
     },
     isInLanding () {
-      return this.$route.name === 'LandingPage' || this.$route.name === 'AboutUsPage'
+      return this.$route.name === 'LandingPage' || this.$route.name === 'AboutUsPage' || this.$route.name === 'DiscoveryPage'
     },
     isUserLoggedIn() {
       return this.loginMock
@@ -73,6 +73,7 @@ export default {
   },
   methods: {
     logout () {
+      this.$toasted.error("Logout Complete", {position: 'top-center', duration: 1500})
       this.$store
         .dispatch('logout')
         .then(() => {

@@ -211,6 +211,7 @@ router.beforeEach((to, from, next) => {
       next()
       return
     }
+    Vue.toasted.info("You Need To Login First!", {position: 'top-center', duration: 2000})
     next('/login')
   }
 

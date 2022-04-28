@@ -20,7 +20,7 @@
         :key="idx"
       />
     </div>
-    <div v-else>
+    <div v-else class="empty-state">
       You dont have any donation list !
     </div>
   </div>
@@ -84,6 +84,10 @@ export default {
   align-items: center;
   margin-bottom: 10rem;
 
+  .empty-state {
+    margin-top: 10rem;
+    font-size: 25px;
+  }
 
   .title-page {
     font-size: 30px;

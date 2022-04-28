@@ -88,6 +88,7 @@ export default {
 
 <style lang="less" scoped>
 .landingPageWrapper {
+  background-color: white;
 
   .section {
     height: 95vh;

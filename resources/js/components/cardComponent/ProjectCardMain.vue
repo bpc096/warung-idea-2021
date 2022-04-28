@@ -106,6 +106,11 @@ export default {
   border: 1px solid rgba(0,0,0,.5);
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: 0.4s;
+
+  &:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
 
   .card-image {
     width: 40%;
@@ -114,11 +119,12 @@ export default {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 
-    img {
+  img {
       height: 100%;
       width: 100%;
       border-top-left-radius: 20px;
       border-bottom-left-radius: 20px;
+      object-fit: cover;
     }
   }
 
@@ -128,7 +134,8 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    margin-left: 10px;
+    width: 55%;
+    margin-left: 1rem;
 
     .card-title {
       margin-top: 1rem;

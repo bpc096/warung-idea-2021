@@ -14,7 +14,7 @@
     </div>
     <div class="info-app">
       <div class="logo-image">
-        <img src="images/icon/light-bulb.png" alt="bright-lamp">
+        <img src="\images\icon\light-bulb.png" alt="bright-lamp">
         <div class="text-image">WarungIde.com</div>
       </div>
       <div class="love-text">

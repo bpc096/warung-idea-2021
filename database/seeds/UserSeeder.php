@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-      $user = ['BillPetrus', 'JeffreyMarcellino', 'FaisalGhozi', 'AndiHehe', 'BudiHoho','IndiraFlewx'];
+      $user = ['Bill Petrus', 'Jeffrey Marcellino', 'Faisal Ghozi', 'Andi Hehe', 'Budi Hoho','Indira Flewx'];
       for($c=1;$c<=6;$c++){
         DB::table('users')->insert([
           'name' => $user[$c-1],
