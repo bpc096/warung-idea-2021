@@ -12,6 +12,7 @@ import Axios from 'axios'
 import Vue from 'vue'
 import router from './router'
 import store from './store'
+import Toasted from 'vue-toasted'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { setHeaderToken } from './utils/auth'
@@ -35,6 +36,7 @@ Axios.defaults.baseURL = setBaseUrl
 
 Vue.config.productionTip = false
 Vue.use(Axios)
+Vue.use(Toasted)
 
 const token = localStorage.getItem('token')
 if(token) {

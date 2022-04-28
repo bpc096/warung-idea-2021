@@ -286,6 +286,8 @@ export default {
     },
     btnRemindMeHandle () {
       console.log('CLICK REMIND ME')
+      let toast = this.$toasted.success("We Will Remind You Later ❤️")
+      toast.goAway(1500);
     }
   }
 }

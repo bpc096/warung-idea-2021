@@ -173,19 +173,21 @@ export default {
     },
     payment() {
       if(!this.donationInfo || !this.donationInfo.snap_token) return
-
       window.snap.pay(this.donationInfo.snap_token, {
         onSuccess: () => {
           this.paymentStat = 'success'
-          console.log('SUCCESS')
+          let toast = this.$toasted.success('Payment Success ⌛ ✅')
+          toast.goAway(1500)
         },
         onPending: () => {
           this.paymentStat = 'pending'
-          console.log('PENDING')
+          let toast = this.$toasted.info('Payment Pending ⚠️')
+          toast.goAway(1500)
         },
         onError: () => {
           this.paymentStat = 'failed'
-          console.log('ERROR')
+          let toast = this.$toasted.error('Payment Failed ❌')
+          toast.goAway(1500)
         }
       })
     }
