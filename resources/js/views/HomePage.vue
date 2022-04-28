@@ -207,10 +207,10 @@ export default {
       height: 50vh;
       display: flex;
       flex-direction: row;
-      margin-top: 2rem;
+      margin-top: 5rem;
       .project-feature-card {
         width: 100%;
-        padding: 2rem;
+        padding-left: 2rem;
         a {
           text-decoration: none;
         }

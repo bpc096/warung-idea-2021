@@ -139,7 +139,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 15%;
+    width: 20%;
     margin-right: 2rem;
 
     a {
@@ -153,7 +153,7 @@ export default {
       justify-content: center;
       border: 1px solid black;
       margin-left: 1rem;
-      width: 40%;
+      min-width: 7rem;
       height: 2rem;
       border-radius: 20px;
       &:hover {
@@ -167,7 +167,7 @@ export default {
       justify-content: center;
       border: 1px solid black;
       margin-right: 1rem;
-      width: 40%;
+      min-width: 7rem;
       height: 2rem;
       border-radius: 20px;
       &:hover {

@@ -30,7 +30,7 @@
             class="btn-payment"
             @click="payment"
           >
-            Pay Now !
+           {{ payNowLabel }}
           </button>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
@@ -103,6 +103,9 @@ export default {
     }
   },
   computed: {
+    payNowLabel() {
+      return '💸 Pay Now !'
+    },
     projectDesc() {
       return this.campaignInfo?.description? this.campaignInfo.description : 'Lorem ipsum dolor sitamet consectetur adipisicing elit. Ratione, quaerat.'
     },
@@ -173,19 +176,21 @@ export default {
     },
     payment() {
       if(!this.donationInfo || !this.donationInfo.snap_token) return
-
       window.snap.pay(this.donationInfo.snap_token, {
         onSuccess: () => {
           this.paymentStat = 'success'
-          console.log('SUCCESS')
+          let toast = this.$toasted.success('Payment Success ⌛ ✅')
+          toast.goAway(1500)
         },
         onPending: () => {
           this.paymentStat = 'pending'
-          console.log('PENDING')
+          let toast = this.$toasted.info('Payment Pending ⚠️')
+          toast.goAway(1500)
         },
         onError: () => {
           this.paymentStat = 'failed'
-          console.log('ERROR')
+          let toast = this.$toasted.error('Payment Failed ❌')
+          toast.goAway(1500)
         }
       })
     }
@@ -198,7 +203,7 @@ export default {
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-    width: 50rem;
+    width: 55rem;
     min-height: 10rem;
     margin: 2rem 0;
 
@@ -281,7 +286,6 @@ export default {
         flex-direction: row;
         margin-bottom: 10px;
         align-items: center;
-        justify-content: space-between;
         margin-right: 1.5rem;
 
         .text-status {
@@ -291,6 +295,8 @@ export default {
           min-width: 10rem;
           letter-spacing: 2px;
           border-radius: 10px;
+          margin-left: 2rem;
+
 
           &.pending-status {
             background-color: yellow;
@@ -322,7 +328,7 @@ export default {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin: 10px 0;
+        margin: 10px 0 20px 25px;
 
         .btn-view-campaign {
           text-decoration: none;
@@ -331,6 +337,7 @@ export default {
           border-radius: 10px;
           padding: 5px;
           background-color: pink;
+          min-width: 150px;
           &.mr {
             margin-left: 1rem;
           }
@@ -344,6 +351,7 @@ export default {
           padding: 5px;
           background-color: #4FBDBA;
           margin: 0 10px;
+          min-width: 150px;
         }
 
         .btn-delete-campaign {
@@ -353,6 +361,8 @@ export default {
           border-radius: 10px;
           padding: 5px;
           background-color: #FF5959;
+          margin-right: 10px;
+          min-width: 150px;
         }
       }
     }
