@@ -307,7 +307,7 @@ export default {
     width: 100%;
     .project-detail-section{
       width: 100%;
-      height: 45vh;
+      height: 50vh;
       text-align: left;
       margin: 3rem 0 3rem 7rem;
       font-size: 1.5rem;
