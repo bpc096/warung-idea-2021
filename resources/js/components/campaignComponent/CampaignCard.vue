@@ -198,7 +198,7 @@ export default {
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-    width: 50rem;
+    width: 55rem;
     min-height: 10rem;
     margin: 2rem 0;
 
@@ -323,7 +323,7 @@ export default {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin: 10px 0;
+        margin: 10px 0 20px 25px;
 
         .btn-view-campaign {
           text-decoration: none;
@@ -332,6 +332,7 @@ export default {
           border-radius: 10px;
           padding: 5px;
           background-color: pink;
+          min-width: 150px;
           &.mr {
             margin-left: 1rem;
           }
@@ -345,6 +346,7 @@ export default {
           padding: 5px;
           background-color: #4FBDBA;
           margin: 0 10px;
+          min-width: 150px;
         }
 
         .btn-delete-campaign {
@@ -354,6 +356,8 @@ export default {
           border-radius: 10px;
           padding: 5px;
           background-color: #FF5959;
+          margin-right: 10px;
+          min-width: 150px;
         }
       }
     }

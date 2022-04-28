@@ -130,7 +130,7 @@ export default {
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-    width: 50rem;
+    width: 45rem;
     min-height: 10rem;
     margin: 2rem 0;
 
@@ -142,6 +142,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      padding: 0 3rem;
 
       .campaign-title {
         text-align: left;
@@ -200,7 +201,6 @@ export default {
           padding: 5px;
           background-color: pink;
         }
-
       }
     }
   }

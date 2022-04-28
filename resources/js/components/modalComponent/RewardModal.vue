@@ -13,7 +13,7 @@
                 type="text"
                 name="amount"
               >
-              <a class="btn-donate" type="submit">
+              <a @click="donateAmount" class="btn-donate" type="submit">
                 Donate!
               </a>
             </form>
@@ -104,7 +104,7 @@ export default {
       return !pattern.test(this.amountDonation)
     },
     checkAmountInvalid () {
-      return this.amountDonationToNumber > 10000000000000 || this.amountDonationToNumber < 0
+      return  this.amountDonationToNumber < 0
     },
     checkUserOwner() {
       // return parseInt(this.ownerId) === userId
@@ -155,7 +155,10 @@ export default {
       this.$emit('close')
     },
     donateAmount () {
-      if( this.checkRegexAlphabet || this.checkAmountInvalid || this.amountDonationToNumber === 0) return
+      if( this.checkRegexAlphabet || this.checkAmountInvalid || this.amountDonationToNumber === 0) {
+        console.log('Invalid Donate Amount')
+        return
+      }
 
       const totalAmount = this.amountDonationToNumber
       this.$router.push({
