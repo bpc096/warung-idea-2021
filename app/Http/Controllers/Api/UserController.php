@@ -12,7 +12,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = Campaign::with('user:id,name')->get(['users_id']);
+        $users = Campaign::with('user:id,name')->distinct()->get(['users_id']);
+
+        // $users->when(request('filter_by'))
 
         $tempUsers = [];
         for($i = 0; $i < count($users); $i++){
