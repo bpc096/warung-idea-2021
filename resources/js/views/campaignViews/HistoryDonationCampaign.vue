@@ -52,10 +52,10 @@ export default {
   },
   computed: {
     backBtnLabel() {
-      return '< Back to history'
+      return '⬅️ Back To History Page'
     },
     backBtnHomeLabel() {
-      return 'Back to home'
+      return '🏠 Back To Home Page'
     },
     progressPercentage() {
       if(parseInt(this.progress) <= 0) {
@@ -88,7 +88,7 @@ export default {
   .title-page {
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
   }
 
   .button-upper-campaign {

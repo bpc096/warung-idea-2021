@@ -2185,6 +2185,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    payNowLabel: function payNowLabel() {
+      return '💸 Pay Now !';
+    },
     projectDesc: function projectDesc() {
       var _this$campaignInfo;
 
@@ -2584,6 +2587,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     projectPercentage: function projectPercentage() {
       return 90;
+    }
+  },
+  methods: {
+    clickLoveBtn: function clickLoveBtn() {
+      var toast = this.$toasted.success("Loved The Project ⭐");
+      toast.goAway(2000);
+    },
+    clickBookmarkBtn: function clickBookmarkBtn() {
+      var toast = this.$toasted.info('Bookmarked The Project 📑');
+      toast.goAway(2000);
     }
   }
 });
@@ -3170,7 +3183,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 }, _defineProperty(_name$components$data, "computed", {
   queryCategoryId: function queryCategoryId() {
     this.updateProjectBasedOnCategory();
-    return this.$route.params.categoryId.toUpperCase();
+    var title = this.$route.params.categoryId.toUpperCase() || 'DEFAULT CATEGORY TITLE';
+    return title.replaceAll('-', ' ');
   },
   getCategoryId: function getCategoryId() {
     var checkExistId = this.categoryList.indexOf(this.$route.params.categoryId.toLowerCase());
@@ -5181,6 +5195,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5220,6 +5237,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)({
     user: 'user'
   })), {}, {
+    addNewCampaignLabel: function addNewCampaignLabel() {
+      return '➕ Add New Campaign';
+    },
     progressPercentage: function progressPercentage() {
       if (parseInt(this.progress) <= 0) {
         return '1';
@@ -5323,10 +5343,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     backBtnLabel: function backBtnLabel() {
-      return '< Back to history';
+      return '⬅️ Back To History Page';
     },
     backBtnHomeLabel: function backBtnHomeLabel() {
-      return 'Back to home';
+      return '🏠 Back To Home Page';
     },
     progressPercentage: function progressPercentage() {
       if (parseInt(this.progress) <= 0) {
@@ -12888,7 +12908,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.01);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap .btn-main[data-v-ed47945c] {\n  font-weight: 500;\n  letter-spacing: 2px;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: blue;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 15%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-left: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n  cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.01);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap .btn-main[data-v-ed47945c] {\n  font-weight: 500;\n  letter-spacing: 2px;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: blue;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 20%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-left: 1rem;\n  min-width: 7rem;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  min-width: 7rem;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13008,7 +13028,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".project-list-wrapper[data-v-f0e7e5e8] {\n  padding: 0.9rem;\n  margin: 20px 0;\n}\n.project-list-wrapper .card-list[data-v-f0e7e5e8] {\n  border-radius: 30px;\n  width: 100%;\n  height: 6rem;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n}\n.project-list-wrapper .card-list .list-image[data-v-f0e7e5e8] {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n  background-color: #7CD1B8;\n  width: 8rem;\n}\n.project-list-wrapper .card-list .list-image img[data-v-f0e7e5e8] {\n  width: 8rem;\n  height: 100%;\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n.project-list-wrapper .card-list .list-content[data-v-f0e7e5e8] {\n  text-align: left;\n  padding: 0.5rem;\n}\n.project-list-wrapper .card-list .list-content .content-title[data-v-f0e7e5e8] {\n  font-weight: bold;\n}\n.project-list-wrapper .card-list .list-content .content-description[data-v-f0e7e5e8] {\n  font-weight: lighter;\n  margin-top: 0.2rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".project-list-wrapper[data-v-f0e7e5e8] {\n  padding: 0.9rem;\n}\n.project-list-wrapper .card-list[data-v-f0e7e5e8] {\n  border-radius: 30px;\n  width: 100%;\n  height: 6rem;\n  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n}\n.project-list-wrapper .card-list .list-image[data-v-f0e7e5e8] {\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n  background-color: #7CD1B8;\n  width: 8rem;\n}\n.project-list-wrapper .card-list .list-image img[data-v-f0e7e5e8] {\n  width: 8rem;\n  height: 100%;\n  border-top-left-radius: 30px;\n  border-bottom-left-radius: 30px;\n}\n.project-list-wrapper .card-list .list-content[data-v-f0e7e5e8] {\n  text-align: left;\n  padding: 0.5rem;\n}\n.project-list-wrapper .card-list .list-content .content-title[data-v-f0e7e5e8] {\n  font-weight: bold;\n}\n.project-list-wrapper .card-list .list-content .content-description[data-v-f0e7e5e8] {\n  font-weight: lighter;\n  margin-top: 0.2rem;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13128,7 +13148,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".category-wrapper[data-v-fe10a268] {\n  height: 100%;\n  min-height: 100vh;\n  margin: 0 2rem 10rem 0;\n}\n.category-wrapper .title-category[data-v-fe10a268] {\n  margin: 5rem 0;\n}\n.category-wrapper .content-category[data-v-fe10a268] {\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: row;\n  height: 100%;\n  width: 100%;\n}\n.category-wrapper .project-card-wrap[data-v-fe10a268] {\n  width: 20%;\n  position: static;\n  margin: 5rem 0;\n}\n.category-wrapper .project-card-wrap a[data-v-fe10a268] {\n  text-decoration: none;\n  color: black;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".category-wrapper[data-v-fe10a268] {\n  height: 100%;\n  min-height: 100vh;\n  margin: 0 5rem 10rem 5rem;\n}\n.category-wrapper .title-category[data-v-fe10a268] {\n  margin: 5rem 0;\n}\n.category-wrapper .content-category[data-v-fe10a268] {\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: row;\n  height: 100%;\n  width: 100%;\n}\n.category-wrapper .project-card-wrap[data-v-fe10a268] {\n  width: 20%;\n  position: static;\n  margin: 5rem 0;\n}\n.category-wrapper .project-card-wrap a[data-v-fe10a268] {\n  text-decoration: none;\n  color: black;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13200,7 +13220,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".home-wrapper[data-v-9872dda6] {\n  margin-bottom: 5rem;\n  display: flex;\n  justify-content: center;\n}\n.home-wrapper .section[data-v-9872dda6] {\n  padding: 0 4rem;\n  width: 80%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.home-wrapper .section .feature-section[data-v-9872dda6] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  flex-direction: row;\n  margin-top: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card[data-v-9872dda6] {\n  width: 100%;\n  padding: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card a[data-v-9872dda6] {\n  text-decoration: none;\n}\n.home-wrapper .section .feature-section .project-feature-list[data-v-9872dda6] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.home-wrapper .section .feature-section .project-feature-list a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6] {\n  margin: 20px 0 0 0;\n  height: 70vh;\n}\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  height: 70vh;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6],\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.home-wrapper .section .popular-section .section-title[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .popular-section .section-content[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content[data-v-9872dda6] {\n  display: flex;\n  flex-direction: row;\n  height: 70%;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n.home-wrapper .section .popular-section .section-content a[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .article-section[data-v-9872dda6] {\n  height: 30vh;\n  width: 100%;\n  margin-bottom: 20rem;\n}\n.home-wrapper .section .article-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .article-section .section-content[data-v-9872dda6] {\n  min-height: 100%;\n  display: flex;\n  flex-direction: row;\n  margin-top: 4rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".home-wrapper[data-v-9872dda6] {\n  margin-bottom: 5rem;\n  display: flex;\n  justify-content: center;\n}\n.home-wrapper .section[data-v-9872dda6] {\n  padding: 0 4rem;\n  width: 80%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n.home-wrapper .section .feature-section[data-v-9872dda6] {\n  width: 100%;\n  height: 50vh;\n  display: flex;\n  flex-direction: row;\n  margin-top: 5rem;\n}\n.home-wrapper .section .feature-section .project-feature-card[data-v-9872dda6] {\n  width: 100%;\n  padding-left: 2rem;\n}\n.home-wrapper .section .feature-section .project-feature-card a[data-v-9872dda6] {\n  text-decoration: none;\n}\n.home-wrapper .section .feature-section .project-feature-list[data-v-9872dda6] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n.home-wrapper .section .feature-section .project-feature-list a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6] {\n  margin: 20px 0 0 0;\n  height: 70vh;\n}\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  height: 70vh;\n}\n.home-wrapper .section .popular-section[data-v-9872dda6],\n.home-wrapper .section .most-funding-section[data-v-9872dda6] {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n.home-wrapper .section .popular-section .section-title[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .popular-section .section-content[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content[data-v-9872dda6] {\n  display: flex;\n  flex-direction: row;\n  height: 70%;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n.home-wrapper .section .popular-section .section-content a[data-v-9872dda6],\n.home-wrapper .section .most-funding-section .section-content a[data-v-9872dda6] {\n  text-decoration: none;\n  color: black;\n}\n.home-wrapper .section .article-section[data-v-9872dda6] {\n  height: 30vh;\n  width: 100%;\n  margin-bottom: 20rem;\n}\n.home-wrapper .section .article-section .section-title[data-v-9872dda6] {\n  height: 10%;\n  text-align: left;\n  font-size: 48px;\n  font-weight: 500;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  margin-left: 1.2rem;\n}\n.home-wrapper .section .article-section .section-content[data-v-9872dda6] {\n  min-height: 100%;\n  display: flex;\n  flex-direction: row;\n  margin-top: 4rem;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13392,7 +13412,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".history-campaign-wrap[data-v-3a664ae4] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.history-campaign-wrap .title-page[data-v-3a664ae4] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-3a664ae4] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".history-campaign-wrap[data-v-3a664ae4] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.history-campaign-wrap .title-page[data-v-3a664ae4] {\n  font-size: 30px;\n  font-weight: bold;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-3a664ae4] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-3a664ae4]:hover {\n  background-color: black;\n  color: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13416,7 +13436,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-33df5f96] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 45rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 0 3rem;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-33df5f96] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 45rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 0 3rem;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57933,7 +57953,11 @@ var render = function () {
                 ? _c(
                     "button",
                     { staticClass: "btn-payment", on: { click: _vm.payment } },
-                    [_vm._v("\n          Pay Now !\n        ")]
+                    [
+                      _vm._v(
+                        "\n         " + _vm._s(_vm.payNowLabel) + "\n        "
+                      ),
+                    ]
                   )
                 : _vm._e(),
             ])
@@ -58189,35 +58213,31 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "icon-info" }, [
+          _c("div", { staticClass: "icon-love" }, [
+            _c("a", { on: { click: _vm.clickLoveBtn } }, [
+              _c("img", {
+                attrs: { src: "images/icon/love.png", alt: "love-icon" },
+              }),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "icon-bookmark" }, [
+            _c("a", { on: { click: _vm.clickBookmarkBtn } }, [
+              _c("img", {
+                attrs: {
+                  src: "images/icon/bookmark.svg",
+                  alt: "bookmark-icon",
+                },
+              }),
+            ]),
+          ]),
+        ]),
       ]),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "icon-info" }, [
-      _c("div", { staticClass: "icon-love" }, [
-        _c("a", { attrs: { href: "#addToLove" } }, [
-          _c("img", {
-            attrs: { src: "images/icon/love.png", alt: "love-icon" },
-          }),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "icon-bookmark" }, [
-        _c("a", { attrs: { href: "#addToBookmark" } }, [
-          _c("img", {
-            attrs: { src: "images/icon/bookmark.svg", alt: "bookmark-icon" },
-          }),
-        ]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -60655,7 +60675,7 @@ var render = function () {
         _c(
           "router-link",
           { staticClass: "button-create", attrs: { to: "/campaign/create" } },
-          [_vm._v("\n      + Add New Campaign\n    ")]
+          [_vm._v("\n      " + _vm._s(_vm.addNewCampaignLabel) + "\n    ")]
         ),
         _vm._v(" "),
         _c(
@@ -60665,6 +60685,15 @@ var render = function () {
             attrs: { to: "/campaign/history/donation" },
           },
           [_vm._v("\n      History Donation Page\n    ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "button-history-donation",
+            attrs: { to: "/campaign/history/donation" },
+          },
+          [_vm._v("\n      Campaign Collaboration\n    ")]
         ),
       ],
       1

@@ -5,10 +5,13 @@
     </div>
     <div class="button-upper-campaign">
       <router-link to="/campaign/create" class="button-create">
-        + Add New Campaign
+        {{ addNewCampaignLabel }}
       </router-link>
       <router-link to="/campaign/history/donation" class="button-history-donation">
         History Donation Page
+      </router-link>
+      <router-link to="/campaign/history/donation" class="button-history-donation">
+        Campaign Collaboration
       </router-link>
     </div>
     <div v-if="listCreatedCampaign.length > 0">
@@ -54,6 +57,9 @@ export default {
     ...mapGetters({
       user: 'user',
     }),
+    addNewCampaignLabel() {
+      return '➕ Add New Campaign'
+    },
     progressPercentage() {
       if(parseInt(this.progress) <= 0) {
         return '1'
@@ -84,7 +90,7 @@ export default {
   .title-page {
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
   }
 
   .button-upper-campaign {

@@ -16,12 +16,12 @@
         </div>
         <div class="icon-info">
           <div class="icon-love">
-            <a href="#addToLove">
+            <a @click="clickLoveBtn">
               <img src="images/icon/love.png" alt="love-icon">
             </a>
           </div>
           <div class="icon-bookmark">
-            <a href="#addToBookmark">
+            <a @click="clickBookmarkBtn">
               <img src="images/icon/bookmark.svg" alt="bookmark-icon">
             </a>
           </div>
@@ -81,6 +81,16 @@ export default {
     },
     projectPercentage () {
       return 90
+    }
+  },
+  methods: {
+    clickLoveBtn() {
+      let toast = this.$toasted.success("Loved The Project ⭐")
+      toast.goAway(2000)
+    },
+    clickBookmarkBtn() {
+      let toast = this.$toasted.info('Bookmarked The Project 📑')
+      toast.goAway(2000)
     }
   }
 }

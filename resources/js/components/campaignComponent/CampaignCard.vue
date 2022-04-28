@@ -30,7 +30,7 @@
             class="btn-payment"
             @click="payment"
           >
-            Pay Now !
+           {{ payNowLabel }}
           </button>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
@@ -103,6 +103,9 @@ export default {
     }
   },
   computed: {
+    payNowLabel() {
+      return '💸 Pay Now !'
+    },
     projectDesc() {
       return this.campaignInfo?.description? this.campaignInfo.description : 'Lorem ipsum dolor sitamet consectetur adipisicing elit. Ratione, quaerat.'
     },

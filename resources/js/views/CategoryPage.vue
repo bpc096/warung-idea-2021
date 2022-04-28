@@ -56,7 +56,8 @@ export default {
   computed: {
     queryCategoryId () {
       this.updateProjectBasedOnCategory()
-      return this.$route.params.categoryId.toUpperCase()
+      const title = this.$route.params.categoryId.toUpperCase() || 'DEFAULT CATEGORY TITLE'
+      return title.replaceAll('-',' ')
     },
     getCategoryId () {
       const checkExistId = this.categoryList.indexOf(this.$route.params.categoryId.toLowerCase())
@@ -90,7 +91,7 @@ export default {
 .category-wrapper {
   height: 100%;
   min-height: 100vh;
-  margin: 0 2rem 10rem 0;
+  margin: 0 5rem 10rem 5rem;
 
   .title-category {
     margin: 5rem 0;

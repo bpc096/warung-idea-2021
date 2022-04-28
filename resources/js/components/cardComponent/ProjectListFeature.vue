@@ -70,7 +70,6 @@ export default {
 <style lang="less" scoped>
 .project-list-wrapper {
   padding: .9rem;
-  margin: 20px 0;
 
   .card-list {
     border-radius: 30px;
