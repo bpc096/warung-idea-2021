@@ -85,6 +85,7 @@ export default {
     return {
       projectData: {},
       serviceFeeAmount: 1000,
+      errMsg: '',
     }
   },
   created() {
@@ -151,7 +152,8 @@ export default {
           })
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err.message)
+          this.errMsg = err.message
         })
     }
   }

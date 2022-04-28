@@ -3312,7 +3312,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       projectData: {},
-      serviceFeeAmount: 1000
+      serviceFeeAmount: 1000,
+      errMsg: ''
     };
   },
   created: function created() {
@@ -3381,7 +3382,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     name: 'HistoryDonationCampaign'
                   });
                 })["catch"](function (err) {
-                  console.log(err);
+                  console.log(err.message);
+                  _this2.errMsg = err.message;
                 });
 
               case 3:
