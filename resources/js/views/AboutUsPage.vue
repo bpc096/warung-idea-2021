@@ -7,6 +7,10 @@
       Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Libero ut sequi ad veniam tempora dolorem quisquam labore quo inventore optio odit,
       qui sint aliquam, aut quod sit? Alias, dolore vel?
+
+      <div class="text-version">
+        <p>WarungIdea @2022 - App Version 2.0.0</p>
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +47,12 @@ export default {
     font-size: 26px;
     font-weight: 500;
     text-align: center;
+
+    .text-version {
+      margin-top: 5rem;
+      font-size: 20px;
+      font-weight: 100;
+    }
   }
 }
 
