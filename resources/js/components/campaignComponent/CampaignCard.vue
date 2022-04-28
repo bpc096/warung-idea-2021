@@ -281,7 +281,6 @@ export default {
         flex-direction: row;
         margin-bottom: 10px;
         align-items: center;
-        justify-content: space-between;
         margin-right: 1.5rem;
 
         .text-status {
@@ -291,6 +290,8 @@ export default {
           min-width: 10rem;
           letter-spacing: 2px;
           border-radius: 10px;
+          margin-left: 2rem;
+
 
           &.pending-status {
             background-color: yellow;

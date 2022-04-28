@@ -48,6 +48,7 @@
           </div>
           <div class="service-fee-price">
             Rp {{ formatMoney(serviceFeeAmount) }}
+          </div>
         </div>
         <div class="shipping-text">
           <div class="shipping-title">
@@ -56,7 +57,6 @@
           <div class="shipping-price">
             Rp0
           </div>
-        </div>
         </div>
         <div class="total-text">
           <div class="total-title">
