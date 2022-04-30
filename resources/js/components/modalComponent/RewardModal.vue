@@ -185,32 +185,42 @@ export default {
 
 <style lang="less" scoped>
 .modal-mask {
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // position: fixed;
+  // z-index: 2;
+  // top: 0;
+  // left: 0;
+  // width: 100%;
+  // height: 100%;
+  // background-color: rgba(0, 0, 0, 0.5);
+  // display: table;
+  // transition: opacity 0.3s ease;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
+
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    background: #FFF;
+    z-index: 999;
+    transform: none;
 
   .modal-wrapper {
     display: flex;
     flex-direction: column;
 
     .modal-container {
-      margin: 0px auto;
-      padding: 20px 30px;
-      background-color: #fff;
-      border-radius: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-      transition: all 0.3s ease;
-      font-family: Helvetica, Arial, sans-serif;
-
       .modal-scroll {
         width: 700px;
         height: 700px;

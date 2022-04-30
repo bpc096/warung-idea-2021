@@ -4093,6 +4093,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 // Tab Component
 
  // Content Tab Component
@@ -13427,7 +13434,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".modal-mask[data-v-3ecc962c] {\n  position: fixed;\n  z-index: 2;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.3s ease;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: column;\n}\n.modal-mask .modal-wrapper .modal-container[data-v-3ecc962c] {\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 20px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-mask .modal-wrapper .modal-container .modal-scroll[data-v-3ecc962c] {\n  width: 700px;\n  height: 700px;\n  overflow: auto;\n}\n.modal-mask .modal-wrapper .modal-container div > a[data-v-3ecc962c] {\n  text-decoration: none;\n  color: black;\n}\n.modal-mask .modal-wrapper .modal-container .text-error[data-v-3ecc962c] {\n  color: red;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: row;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .text-label[data-v-3ecc962c] {\n  margin: 0 10px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .input-amount[data-v-3ecc962c] {\n  margin: 0 10px;\n  width: 300px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward a[data-v-3ecc962c] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n  text-decoration: none;\n  color: black;\n  min-width: 5rem;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward a[data-v-3ecc962c]:hover {\n  color: white;\n  background-color: green;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap[data-v-3ecc962c] {\n  margin: 1rem 0;\n  text-align: center;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn[data-v-3ecc962c] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn-delete[data-v-3ecc962c]:hover {\n  background-color: red;\n  color: white;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn-edit[data-v-3ecc962c]:hover {\n  background-color: green;\n  color: white;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-3ecc962c] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-3ecc962c]:hover {\n  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-image[data-v-3ecc962c] {\n  background-color: black;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-text-price[data-v-3ecc962c] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-title[data-v-3ecc962c] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-desc[data-v-3ecc962c] {\n  font-size: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".modal-mask[data-v-3ecc962c] {\n  position: absolute;\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  text-align: center;\n  width: -webkit-fit-content;\n  width: -moz-fit-content;\n  width: fit-content;\n  height: -webkit-fit-content;\n  height: -moz-fit-content;\n  height: fit-content;\n  padding: 2rem;\n  border-radius: 1rem;\n  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);\n  background: #FFF;\n  z-index: 999;\n  transform: none;\n}\n.modal-mask .modal-wrapper[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: column;\n}\n.modal-mask .modal-wrapper .modal-container .modal-scroll[data-v-3ecc962c] {\n  width: 700px;\n  height: 700px;\n  overflow: auto;\n}\n.modal-mask .modal-wrapper .modal-container div > a[data-v-3ecc962c] {\n  text-decoration: none;\n  color: black;\n}\n.modal-mask .modal-wrapper .modal-container .text-error[data-v-3ecc962c] {\n  color: red;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: row;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  justify-content: center;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .text-label[data-v-3ecc962c] {\n  margin: 0 10px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward .input-amount[data-v-3ecc962c] {\n  margin: 0 10px;\n  width: 300px;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward a[data-v-3ecc962c] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n  text-decoration: none;\n  color: black;\n  min-width: 5rem;\n}\n.modal-mask .modal-wrapper .modal-container .modal-non-reward a[data-v-3ecc962c]:hover {\n  color: white;\n  background-color: green;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap[data-v-3ecc962c] {\n  margin: 1rem 0;\n  text-align: center;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn[data-v-3ecc962c] {\n  border: 1px solid black;\n  border-radius: 10px;\n  margin-left: 0.5rem;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn-delete[data-v-3ecc962c]:hover {\n  background-color: red;\n  color: white;\n}\n.modal-mask .modal-wrapper .modal-container .button-wrap .btn-edit[data-v-3ecc962c]:hover {\n  background-color: green;\n  color: white;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-3ecc962c] {\n  text-align: left;\n  display: flex;\n  flex-direction: column;\n  padding: 10px;\n  border-radius: 10px;\n  margin: 30px 0;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container[data-v-3ecc962c]:hover {\n  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price[data-v-3ecc962c] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-image[data-v-3ecc962c] {\n  background-color: black;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-price .reward-text-price[data-v-3ecc962c] {\n  font-size: 25px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-title[data-v-3ecc962c] {\n  font-size: 20px;\n  font-weight: bold;\n}\n.modal-mask .modal-wrapper .modal-container .reward-card-container .reward-desc[data-v-3ecc962c] {\n  font-size: 15px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13643,7 +13650,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".project-detail-page .wrap-title[data-v-385e7eea] {\n  margin-bottom: 2rem;\n}\n.project-detail-page .wrap-title .main-title[data-v-385e7eea] {\n  font-size: 4rem;\n}\n.project-detail-page .wrap-main-section[data-v-385e7eea] {\n  border-top: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\n.project-detail-page .wrap-main-section .project-detail-section[data-v-385e7eea] {\n  width: 100%;\n  height: 50vh;\n  text-align: left;\n  margin: 3rem 0 3rem 7rem;\n  font-size: 1.5rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom[data-v-385e7eea] {\n  width: 25rem;\n  height: 2rem;\n  border: 2px solid black;\n  border-radius: 10px;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom .progress-color-custom[data-v-385e7eea] {\n  height: 100%;\n  background-color: #1FAB89;\n  border-radius: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info img[data-v-385e7eea] {\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 30px;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info img[data-v-385e7eea] {\n  margin-right: 1.7rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info img[data-v-385e7eea] {\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea] {\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea]:hover {\n  background-color: green;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea] {\n  margin: 0 0.5rem;\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea]:hover {\n  background-color: blueviolet;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-image-section[data-v-385e7eea] {\n  width: 100%;\n  height: 55vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-image-section .image[data-v-385e7eea] {\n  width: 80%;\n  height: 80%;\n  max-width: 48rem;\n}\n.project-detail-page .wrap-main-section .project-image-section .image img[data-v-385e7eea] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".project-detail-page .modal-overlay[data-v-385e7eea] {\n  content: '';\n  position: absolute;\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 998;\n  background: black;\n  opacity: 0.6;\n  cursor: pointer;\n}\n.project-detail-page .fade-enter-active[data-v-385e7eea],\n.project-detail-page .fade-leave-active[data-v-385e7eea] {\n  transition: opacity 0.4s linear;\n}\n.project-detail-page .fade-enter[data-v-385e7eea],\n.project-detail-page .fade-leave-to[data-v-385e7eea] {\n  opacity: 0;\n}\n.project-detail-page .pop-enter-active[data-v-385e7eea],\n.project-detail-page .pop-leave-active[data-v-385e7eea] {\n  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;\n}\n.project-detail-page .pop-enter[data-v-385e7eea],\n.project-detail-page .pop-leave-to[data-v-385e7eea] {\n  opacity: 0;\n  transform: scale(0.3) translateY(-50%);\n}\n.project-detail-page .wrap-title[data-v-385e7eea] {\n  margin-bottom: 2rem;\n}\n.project-detail-page .wrap-title .main-title[data-v-385e7eea] {\n  font-size: 4rem;\n}\n.project-detail-page .wrap-main-section[data-v-385e7eea] {\n  border-top: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\n.project-detail-page .wrap-main-section .project-detail-section[data-v-385e7eea] {\n  width: 100%;\n  height: 50vh;\n  text-align: left;\n  margin: 3rem 0 3rem 7rem;\n  font-size: 1.5rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom[data-v-385e7eea] {\n  width: 25rem;\n  height: 2rem;\n  border: 2px solid black;\n  border-radius: 10px;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom .progress-color-custom[data-v-385e7eea] {\n  height: 100%;\n  background-color: #1FAB89;\n  border-radius: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info img[data-v-385e7eea] {\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 30px;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info img[data-v-385e7eea] {\n  margin-right: 1.7rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info img[data-v-385e7eea] {\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea] {\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea]:hover {\n  background-color: #4E944F;\n  border: 1px solid white;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea] {\n  margin: 0 0.5rem;\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea]:hover {\n  background-color: #A85CF9;\n  border: 1px solid white;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-image-section[data-v-385e7eea] {\n  width: 100%;\n  height: 55vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-image-section .image[data-v-385e7eea] {\n  width: 80%;\n  height: 80%;\n  max-width: 48rem;\n}\n.project-detail-page .wrap-main-section .project-image-section .image img[data-v-385e7eea] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -59731,16 +59738,36 @@ var render = function () {
     "div",
     { staticClass: "project-detail-page" },
     [
-      _vm.showRewardModal
-        ? _c("RewardModal", {
-            attrs: {
-              userId: _vm.user.id,
-              ownerId: _vm.projectDetail.users_id,
-              campaignId: _vm.projectDetail.id,
-            },
-            on: { close: _vm.closeModal },
-          })
-        : _vm._e(),
+      _c("transition", { attrs: { name: "fade", appear: "" } }, [
+        _vm.showRewardModal
+          ? _c("div", {
+              staticClass: "modal-overlay",
+              on: {
+                click: function ($event) {
+                  _vm.showRewardModal = false
+                },
+              },
+            })
+          : _vm._e(),
+      ]),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { name: "pop", appear: "" } },
+        [
+          _vm.showRewardModal
+            ? _c("RewardModal", {
+                attrs: {
+                  userId: _vm.user.id,
+                  ownerId: _vm.projectDetail.users_id,
+                  campaignId: _vm.projectDetail.id,
+                },
+                on: { close: _vm.closeModal },
+              })
+            : _vm._e(),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "wrap-title" }, [
         _c("div", { staticClass: "main-title" }, [
@@ -59811,7 +59838,7 @@ var render = function () {
                 staticClass: "btn-support",
                 on: { click: _vm.btnSupportHandle },
               },
-              [_vm._v("\n          Support Now\n        ")]
+              [_vm._v("\n          💰 Support Now\n        ")]
             ),
             _vm._v(" "),
             _c(
@@ -59820,7 +59847,7 @@ var render = function () {
                 staticClass: "btn-remind",
                 on: { click: _vm.btnRemindMeHandle },
               },
-              [_vm._v("\n          Remind Me Later\n        ")]
+              [_vm._v("\n          ⭐ Remind Me Later\n        ")]
             ),
           ]),
         ]),
