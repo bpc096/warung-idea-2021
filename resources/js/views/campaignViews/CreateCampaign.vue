@@ -225,9 +225,7 @@ export default {
       this.$store
         .dispatch('uploadCampaign', data)
         .then(() => {
-          this.$router.push({
-            name: 'HomePage'
-          })
+          this.$router.push({name: 'HistoryCampaign'})
         })
         .catch(err => {
           console.log(err)

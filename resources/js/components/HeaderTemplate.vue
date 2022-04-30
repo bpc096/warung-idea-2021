@@ -73,12 +73,29 @@ export default {
   },
   methods: {
     logout () {
-      this.$toasted.error("Logout Complete", {position: 'top-center', duration: 1500})
-      this.$store
-        .dispatch('logout')
-        .then(() => {
-          this.$router.push('/')
-        })
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You are going to logout",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$store
+            .dispatch('logout')
+            .then(() => {
+              this.$swal({
+                title: 'Logout Success',
+                icon: 'success',
+                timer: 3000,
+                timerProgressBar: true,
+              })
+              this.$router.push('/')
+            })
+        }
+      })
     }
   }
 }

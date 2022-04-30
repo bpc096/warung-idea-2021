@@ -140,6 +140,9 @@ export default {
 
     .campaign-image {
       width: 30%;
+      img {
+        object-fit: cover;
+      }
     }
 
     .campaign-content {

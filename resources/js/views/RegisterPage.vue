@@ -66,7 +66,15 @@ export default {
           })
         })
         .catch(err => {
-          this.errors = err.response.data || [['Register Failed Please Try Again!']]
+          if (err.response.data) {
+            this.errors = err.response.data || [['Register Failed Please Try Again!']]
+          } else {
+            this.$swal({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            })
+          }
         })
     }
   }

@@ -1,9 +1,5 @@
 <template>
   <div class="campaign-card">
-      <DeleteModal
-        :showModal="showDeleteModal"
-        @closeModal="closeDeleteModal"
-      />
       <div class="campaign-image">
         <img :src="imageUrl" alt="campaign-image-project">
       </div>
@@ -30,7 +26,7 @@
             class="btn-payment"
             @click="payment"
           >
-           {{ payNowLabel }}
+            {{ payNowLabel }}
           </button>
         </div>
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
@@ -42,7 +38,7 @@
             Edit Campaign
           </a>
           <button
-            @click="openDeleteModal"
+            @click="deleteCampaign"
             class="btn-delete-campaign"
           >
             Delete Campaign
@@ -71,13 +67,8 @@
 </template>
 
 <script>
-import DeleteModal from '../modalComponent/DeleteModal.vue'
-
 export default {
   name: 'CampaignCard',
-  components: {
-    DeleteModal,
-  },
   props: {
     isInHistoryOwnedPage: {
       type: Boolean,
@@ -94,7 +85,6 @@ export default {
 },
   data: () => {
     return {
-      showDeleteModal: false,
       continueDelete: false,
       progress: '59',
       paymentTextStatus: 'PENDING',
@@ -141,15 +131,6 @@ export default {
     }
   },
   methods: {
-    closeDeleteModal(isContinue) {
-      this.showDeleteModal = false
-      if(isContinue) {
-        this.deleteCampaign()
-      }
-    },
-    openDeleteModal(){
-      this.showDeleteModal = true
-    },
     formatMoney(money) {
       const moneyTemp = money ? parseInt(money) : 10000
       const formatter = new Intl.NumberFormat('en-ID', {
@@ -162,17 +143,54 @@ export default {
       return formatter
     },
     deleteCampaign () {
-      console.log('Request Delete Approval')
-      // TODO : Uncomment Code
-      /*
-      this.$store.dispatch('deleteCampaign', this.campaignId)
-        .then(res => {
-          this.$router.go(0)
+      let timerInterval;
+      this.$swal({
+          title: 'Are you sure ?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$store
+              .dispatch('deleteCampaign', this.campaignId)
+              .then(() => {
+                this.$swal({
+                  title: 'Deleted!',
+                  icon: 'success',
+                  html: 'Your Campaign has been deleted.<br>Page will refresh in <b></b> second.',
+                  timer: 5000,
+                  timerProgressBar: true,
+                  didOpen: () => {
+                    this.$swal.showLoading()
+                    timerInterval = setInterval(() => {
+                      this.$swal
+                        .getHtmlContainer()
+                        .querySelector('b')
+                        .textContent = (this.$swal.getTimerLeft()/1000).toFixed(0)
+                    }, 100)
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval)
+                  }
+                }).then((result) => {
+                  if(result.dismiss === this.$swal.DismissReason.timer) {
+                    this.$router.go()
+                  }
+                })
+              })
+              .catch((err) => {
+                console.error(err)
+                this.$swal({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!',
+                })
+              })
+          }
         })
-        .catch(err => {
-          console.error(err)
-        })
-      */
     },
     payment() {
       if(!this.donationInfo || !this.donationInfo.snap_token) return
@@ -213,6 +231,7 @@ export default {
       img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
       }
     }
 

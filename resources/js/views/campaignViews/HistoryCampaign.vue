@@ -8,10 +8,10 @@
         {{ addNewCampaignLabel }}
       </router-link>
       <router-link to="/campaign/history/donation" class="button-history-donation">
-        History Donation Page
+        🏢 History Donation Page
       </router-link>
       <router-link to="/campaign/collaboration" class="button-history-donation">
-        Campaign Collaboration
+        🏨 Campaign Collaboration
       </router-link>
     </div>
     <div v-if="listCreatedCampaign.length > 0">
@@ -58,23 +58,8 @@ export default {
       user: 'user',
     }),
     addNewCampaignLabel() {
-      return '➕ Add New Campaign'
+      return '➕ Create New Campaign'
     },
-    progressPercentage() {
-      if(parseInt(this.progress) <= 0) {
-        return '1'
-      }
-      else if (parseInt(this.progress) >= 100) {
-        return '100'
-      }
-      else {
-        return this.progress
-      }
-    },
-    checkEligibleToEdit() {
-      // TODO : Check Eligiblelity to edit campaign
-      return true
-    }
   }
 }
 </script>

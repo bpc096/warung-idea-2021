@@ -20,6 +20,42 @@ const actions = {
         })
     })
   },
+  acceptInvitation({commit}, param){
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'profile/invitation/accept'
+      Axios.post(apiUrl, param)
+        .then(res => {
+          resolve(res.data)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  },
+  rejectInvitation({commit}, param){
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'profile/invitation/reject'
+      Axios.post(apiUrl, param)
+        .then(res => {
+          resolve(res.data)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  },
+  getInvitationListByUserId({commit}, userId){
+    return new Promise((resolve, reject) => {
+      const apiUrl = 'profile/invitation/' + userId
+      Axios.get(apiUrl)
+        .then(res => {
+          resolve(res.data)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  },
   getCollaboratorByCampaignId({commit}, campaignId){
     return new Promise((resolve, reject) => {
       const apiUrl = 'campaign/' + campaignId + '/faqs'

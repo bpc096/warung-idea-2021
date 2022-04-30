@@ -4,11 +4,16 @@
   "description": "Frontend Code Base for WarungIdea Application",
   "private": true,
   "scripts": {
-    "dev": "mix",
-    "watch": "mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "mix watch --hot",
-    "prod": "mix --production"
+    "dev": "npm run development",
+    "dev-mix": "mix",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-mix": "mix watch",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod-mix": "mix --production"
   },
   "devDependencies": {
     "axios": "^0.19",
@@ -31,11 +36,13 @@
     "imagemin-webpack-plugin": "^2.4.2",
     "laravel-echo": "^1.11.7",
     "pusher-js": "^7.0.6",
+    "sweetalert2": "^11.4.10",
     "vue-axios": "^3.4.0",
     "vue-carousel": "^0.18.0",
     "vue-disqus": "^4.0.1",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.5.3",
+    "vue-sweetalert2": "^5.0.2",
     "vue-toasted": "^1.1.28",
     "vuex": "^3.6.2"
   }
