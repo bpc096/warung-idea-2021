@@ -2004,8 +2004,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
-/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2026,13 +2041,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'MutliSelectComponent',
   components: {
-    Multiselect: (vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default())
+    Multiselect: (vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default())
   },
   data: function data() {
     return {
+      rawUserList: [],
       value: [],
       options: [{
         name: 'Vuang agung',
@@ -2047,10 +2064,49 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    // Fetching API Collaborator Available
-    console.log('created');
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              console.log('Created Componetn MultiSelect');
+              _context.next = 3;
+              return _this.$store.dispatch('getCollaboratorAvailableList').then(function (res) {
+                if (res.data.length > 0) {
+                  _this.rawUserList = res.data;
+
+                  _this.mappingUserList();
+                }
+              })["catch"](function (err) {
+                console.error(err);
+              });
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)({
+    user: 'user'
+  })),
   methods: {
+    mappingUserList: function mappingUserList() {
+      var _this2 = this;
+
+      this.options = this.rawUserList.filter(function (x) {
+        return x.user.id !== _this2.user.id;
+      }).map(function (x) {
+        return {
+          name: x.user.name,
+          userId: x.user.id
+        };
+      });
+    },
     addTag: function addTag(newTag) {
       console.log('addTag');
       var tag = {
@@ -4579,6 +4635,114 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       })["catch"](function (err) {
         console.log(err);
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/campaignComponent/CampaignCard */ "./resources/js/components/campaignComponent/CampaignCard.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'HistoryDonationCampaign',
+  components: {
+    CampaignCard: _components_campaignComponent_CampaignCard__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      progress: '59',
+      listDonation: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch('getDonation').then(function (res) {
+                _this.listDonation = res;
+              })["catch"](function (err) {
+                console.log(err);
+              });
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  computed: {
+    backBtnLabel: function backBtnLabel() {
+      return '⬅️ Back To History Page';
+    },
+    backBtnHomeLabel: function backBtnHomeLabel() {
+      return '🏠 Back To Home Page';
+    },
+    progressPercentage: function progressPercentage() {
+      if (parseInt(this.progress) <= 0) {
+        return '1';
+      } else if (parseInt(this.progress) >= 100) {
+        return '100';
+      } else {
+        return this.progress;
+      }
+    },
+    checkEligibleToEdit: function checkEligibleToEdit() {
+      // TODO : Check Eligiblelity to edit campaign
+      return true;
     }
   }
 });
@@ -7321,8 +7485,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _views_LandingPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/LandingPage.vue */ "./resources/js/views/LandingPage.vue");
 /* harmony import */ var _views_HomePage_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/HomePage.vue */ "./resources/js/views/HomePage.vue");
 /* harmony import */ var _views_AboutUsPage_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/AboutUsPage.vue */ "./resources/js/views/AboutUsPage.vue");
@@ -7336,20 +7500,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_campaignViews_EditCampaign_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../views/campaignViews/EditCampaign.vue */ "./resources/js/views/campaignViews/EditCampaign.vue");
 /* harmony import */ var _views_campaignViews_HistoryCampaign_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../views/campaignViews/HistoryCampaign.vue */ "./resources/js/views/campaignViews/HistoryCampaign.vue");
 /* harmony import */ var _views_campaignViews_HistoryDonationCampaign_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../views/campaignViews/HistoryDonationCampaign.vue */ "./resources/js/views/campaignViews/HistoryDonationCampaign.vue");
-/* harmony import */ var _views_updatesViews_CreateUpdates_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../views/updatesViews/CreateUpdates.vue */ "./resources/js/views/updatesViews/CreateUpdates.vue");
-/* harmony import */ var _views_updatesViews_EditUpdates_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../views/updatesViews/EditUpdates.vue */ "./resources/js/views/updatesViews/EditUpdates.vue");
-/* harmony import */ var _views_faqViews_CreateFaqs_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../views/faqViews/CreateFaqs.vue */ "./resources/js/views/faqViews/CreateFaqs.vue");
-/* harmony import */ var _views_faqViews_EditFaqs_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../views/faqViews/EditFaqs.vue */ "./resources/js/views/faqViews/EditFaqs.vue");
-/* harmony import */ var _views_rewardViews_CreateRewards_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../views/rewardViews/CreateRewards.vue */ "./resources/js/views/rewardViews/CreateRewards.vue");
-/* harmony import */ var _views_RewardViews_EditRewards_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../views/RewardViews/EditRewards.vue */ "./resources/js/views/RewardViews/EditRewards.vue");
-/* harmony import */ var _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../views/userViews/UserProfile.vue */ "./resources/js/views/userViews/UserProfile.vue");
-/* harmony import */ var _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../views/userViews/ChangePassword.vue */ "./resources/js/views/userViews/ChangePassword.vue");
-/* harmony import */ var _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../views/userViews/EditProfile.vue */ "./resources/js/views/userViews/EditProfile.vue");
-/* harmony import */ var _views_userViews_invitationPage_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../views/userViews/invitationPage.vue */ "./resources/js/views/userViews/invitationPage.vue");
-/* harmony import */ var _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../views/tabViews/CampaignTab.vue */ "./resources/js/views/tabViews/CampaignTab.vue");
-/* harmony import */ var _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../views/tabViews/UpdateTab.vue */ "./resources/js/views/tabViews/UpdateTab.vue");
-/* harmony import */ var _views_chatViews_ChatPage_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../views/chatViews/ChatPage.vue */ "./resources/js/views/chatViews/ChatPage.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
+/* harmony import */ var _views_campaignViews_CampaignCollaboration_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../views/campaignViews/CampaignCollaboration.vue */ "./resources/js/views/campaignViews/CampaignCollaboration.vue");
+/* harmony import */ var _views_updatesViews_CreateUpdates_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../views/updatesViews/CreateUpdates.vue */ "./resources/js/views/updatesViews/CreateUpdates.vue");
+/* harmony import */ var _views_updatesViews_EditUpdates_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../views/updatesViews/EditUpdates.vue */ "./resources/js/views/updatesViews/EditUpdates.vue");
+/* harmony import */ var _views_faqViews_CreateFaqs_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../views/faqViews/CreateFaqs.vue */ "./resources/js/views/faqViews/CreateFaqs.vue");
+/* harmony import */ var _views_faqViews_EditFaqs_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../views/faqViews/EditFaqs.vue */ "./resources/js/views/faqViews/EditFaqs.vue");
+/* harmony import */ var _views_rewardViews_CreateRewards_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../views/rewardViews/CreateRewards.vue */ "./resources/js/views/rewardViews/CreateRewards.vue");
+/* harmony import */ var _views_RewardViews_EditRewards_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../views/RewardViews/EditRewards.vue */ "./resources/js/views/RewardViews/EditRewards.vue");
+/* harmony import */ var _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../views/userViews/UserProfile.vue */ "./resources/js/views/userViews/UserProfile.vue");
+/* harmony import */ var _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../views/userViews/ChangePassword.vue */ "./resources/js/views/userViews/ChangePassword.vue");
+/* harmony import */ var _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../views/userViews/EditProfile.vue */ "./resources/js/views/userViews/EditProfile.vue");
+/* harmony import */ var _views_userViews_invitationPage_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../views/userViews/invitationPage.vue */ "./resources/js/views/userViews/invitationPage.vue");
+/* harmony import */ var _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../views/tabViews/CampaignTab.vue */ "./resources/js/views/tabViews/CampaignTab.vue");
+/* harmony import */ var _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../views/tabViews/UpdateTab.vue */ "./resources/js/views/tabViews/UpdateTab.vue");
+/* harmony import */ var _views_chatViews_ChatPage_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../views/chatViews/ChatPage.vue */ "./resources/js/views/chatViews/ChatPage.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../store */ "./resources/js/store/index.js");
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 
  // Views
@@ -7363,6 +7528,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // Views Campaign
+
 
 
 
@@ -7389,7 +7555,7 @@ __webpack_require__.r(__webpack_exports__);
  // store
 
 
-vue__WEBPACK_IMPORTED_MODULE_27__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_28__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_28__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_29__["default"]);
 var routes = [{
   path: '/',
   name: 'LandingPage',
@@ -7420,10 +7586,10 @@ var routes = [{
   component: _views_CategoryPage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   children: [{
     path: 'campaigntab',
-    component: _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_23__["default"]
+    component: _views_tabViews_CampaignTab_vue__WEBPACK_IMPORTED_MODULE_24__["default"]
   }, {
     path: 'updatestab',
-    component: _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_24__["default"]
+    component: _views_tabViews_UpdateTab_vue__WEBPACK_IMPORTED_MODULE_25__["default"]
   }]
 }, {
   path: '/projectdetail/:projectId',
@@ -7442,28 +7608,28 @@ var routes = [{
 }, {
   path: '/profile',
   name: 'UserProfile',
-  component: _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_19__["default"],
+  component: _views_userViews_UserProfile_vue__WEBPACK_IMPORTED_MODULE_20__["default"],
   meta: {
     auth: true
   }
 }, {
   path: '/profile/changepassword',
   name: 'ChangePassword',
-  component: _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_20__["default"],
+  component: _views_userViews_ChangePassword_vue__WEBPACK_IMPORTED_MODULE_21__["default"],
   meta: {
     auth: true
   }
 }, {
   path: '/profile/editProfile',
   name: 'EditProfile',
-  component: _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_21__["default"],
+  component: _views_userViews_EditProfile_vue__WEBPACK_IMPORTED_MODULE_22__["default"],
   meta: {
     auth: true
   }
 }, {
   path: '/profile/invitation',
   name: 'InvitationPage',
-  component: _views_userViews_invitationPage_vue__WEBPACK_IMPORTED_MODULE_22__["default"],
+  component: _views_userViews_invitationPage_vue__WEBPACK_IMPORTED_MODULE_23__["default"],
   meta: {
     auth: true
   }
@@ -7476,6 +7642,10 @@ var routes = [{
   name: 'HistoryCampaign',
   component: _views_campaignViews_HistoryCampaign_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, {
+  path: '/campaign/collaboration',
+  name: 'CampaignCollaboration',
+  component: _views_campaignViews_CampaignCollaboration_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+}, {
   path: '/campaign/history/donation',
   name: 'HistoryDonationCampaign',
   component: _views_campaignViews_HistoryDonationCampaign_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
@@ -7486,33 +7656,33 @@ var routes = [{
 }, {
   path: '/updates/create/:projectId',
   name: 'CreateUpdates',
-  component: _views_updatesViews_CreateUpdates_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _views_updatesViews_CreateUpdates_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, {
   path: '/updates/edit/:projectId/:updateId',
   name: 'EditUpdates',
-  component: _views_updatesViews_EditUpdates_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _views_updatesViews_EditUpdates_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }, {
   path: '/faqs/create/:projectId',
   name: 'CreateFaqs',
-  component: _views_faqViews_CreateFaqs_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+  component: _views_faqViews_CreateFaqs_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
   path: '/faqs/edit/:projectId/:updateId',
   name: 'EditFaqs',
-  component: _views_faqViews_EditFaqs_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
+  component: _views_faqViews_EditFaqs_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
 }, {
   path: '/rewards/create/:projectId',
   name: 'CreateRewards',
-  component: _views_rewardViews_CreateRewards_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
+  component: _views_rewardViews_CreateRewards_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
 }, {
   path: '/rewards/edit/:projctId/:updateId',
   name: 'EditRewards',
-  component: _views_RewardViews_EditRewards_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
+  component: _views_RewardViews_EditRewards_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
 }, {
   path: '/chat',
   name: 'ChatPage',
-  component: _views_chatViews_ChatPage_vue__WEBPACK_IMPORTED_MODULE_25__["default"]
+  component: _views_chatViews_ChatPage_vue__WEBPACK_IMPORTED_MODULE_26__["default"]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_28__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_29__["default"]({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: routes
@@ -7521,12 +7691,12 @@ router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.auth;
   })) {
-    if (_store__WEBPACK_IMPORTED_MODULE_26__["default"].getters.isLoggedIn && _store__WEBPACK_IMPORTED_MODULE_26__["default"].getters.user) {
+    if (_store__WEBPACK_IMPORTED_MODULE_27__["default"].getters.isLoggedIn && _store__WEBPACK_IMPORTED_MODULE_27__["default"].getters.user) {
       next();
       return;
     }
 
-    vue__WEBPACK_IMPORTED_MODULE_27__["default"].toasted.info("You Need To Login First!", {
+    vue__WEBPACK_IMPORTED_MODULE_28__["default"].toasted.info("You Need To Login First!", {
       position: 'top-center',
       duration: 2000
     });
@@ -7536,7 +7706,7 @@ router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.guest;
   })) {
-    if (!_store__WEBPACK_IMPORTED_MODULE_26__["default"].getters.isLoggedIn) {
+    if (!_store__WEBPACK_IMPORTED_MODULE_27__["default"].getters.isLoggedIn) {
       next();
       return;
     }
@@ -7975,16 +8145,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _mutation_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mutation-types */ "./resources/js/store/mutation-types.js");
+var _mutations;
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 var state = {
-  getCollaboratorData: ''
+  getCollaboratorData: '',
+  availableCollaboratorData: ''
 };
 var actions = {
-  getCollaboratorByCampaignId: function getCollaboratorByCampaignId(_ref, campaignId) {
+  getCollaboratorAvailableList: function getCollaboratorAvailableList(_ref) {
     var commit = _ref.commit;
+    return new Promise(function (resolve, reject) {
+      var apiUrl = 'user';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl).then(function (res) {
+        commit(_mutation_types__WEBPACK_IMPORTED_MODULE_1__.SET_COLLABORATOR, res.data.data);
+        resolve(res.data);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  getCollaboratorByCampaignId: function getCollaboratorByCampaignId(_ref2, campaignId) {
+    var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
       var apiUrl = 'campaign/' + campaignId + '/faqs';
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(apiUrl).then(function (res) {
@@ -7996,11 +8181,11 @@ var actions = {
     });
   }
 };
-
-var mutations = _defineProperty({}, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_COLLABORATOR, function (state, data) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.GET_COLLABORATOR, function (state, data) {
   state.getCollaboratorData = data;
-});
-
+}), _defineProperty(_mutations, _mutation_types__WEBPACK_IMPORTED_MODULE_1__.SET_COLLABORATOR, function (state, data) {
+  state.availableCollaboratorData = data;
+}), _mutations);
 var getters = {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   state: state,
@@ -8386,6 +8571,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "GET_UPDATES": () => (/* binding */ GET_UPDATES),
 /* harmony export */   "RESET_USER": () => (/* binding */ RESET_USER),
 /* harmony export */   "SET_ARTICLE": () => (/* binding */ SET_ARTICLE),
+/* harmony export */   "SET_COLLABORATOR": () => (/* binding */ SET_COLLABORATOR),
 /* harmony export */   "SET_DONATION": () => (/* binding */ SET_DONATION),
 /* harmony export */   "SET_USER": () => (/* binding */ SET_USER),
 /* harmony export */   "SUBTRACT_NUMBER": () => (/* binding */ SUBTRACT_NUMBER),
@@ -8414,6 +8600,7 @@ var GET_REWARDS = 'getRewards';
 var CREATE_REWARDS = 'createRewards'; // COLLABORATOR
 
 var GET_COLLABORATOR = 'getCollaborator';
+var SET_COLLABORATOR = 'setCollaborator';
 
 /***/ }),
 
@@ -13353,6 +13540,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".user-profile-edit-page[data-v-fa37a58a] {\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 10rem 0;\n}\n.user-profile-edit-page .title-page[data-v-fa37a58a] {\n  font-size: 30px;\n  font-weight: bold;\n  margin-bottom: 2rem;\n}\n.user-profile-edit-page .user-profile-card[data-v-fa37a58a] {\n  width: 600px;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n  border-radius: 20px;\n  padding: 10px;\n}\n.user-profile-edit-page .user-profile-card .user-profile-content[data-v-fa37a58a] {\n  margin: 5rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-image[data-v-fa37a58a] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n.user-profile-edit-page .user-profile-card .user-image .image[data-v-fa37a58a] {\n  width: 100px;\n  height: 100px;\n  background-color: gray;\n  border-radius: 50%;\n}\n.user-profile-edit-page .user-profile-card .user-name[data-v-fa37a58a],\n.user-profile-edit-page .user-profile-card .user-avatar[data-v-fa37a58a] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin: 4rem 0;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-label[data-v-fa37a58a],\n.user-profile-edit-page .user-profile-card .user-avatar .text-label[data-v-fa37a58a] {\n  margin-left: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-value[data-v-fa37a58a],\n.user-profile-edit-page .user-profile-card .user-avatar .text-value[data-v-fa37a58a] {\n  margin-right: 2rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-desc-form[data-v-fa37a58a],\n.user-profile-edit-page .user-profile-card .user-avatar .text-desc-form[data-v-fa37a58a] {\n  margin-right: 2rem;\n  max-width: 21rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-collaborator[data-v-fa37a58a],\n.user-profile-edit-page .user-profile-card .user-avatar .text-collaborator[data-v-fa37a58a] {\n  margin-right: 2rem;\n  max-width: 18rem;\n}\n.user-profile-edit-page .user-profile-card .user-name .text-category[data-v-fa37a58a],\n.user-profile-edit-page .user-profile-card .user-avatar .text-category[data-v-fa37a58a] {\n  margin-right: 2rem;\n  min-width: 13.5rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap[data-v-fa37a58a] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  margin-bottom: 3rem;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-fa37a58a] {\n  text-decoration: none;\n  color: black;\n}\n.user-profile-edit-page .user-profile-card .button-wrap button[data-v-fa37a58a]:hover {\n  cursor: pointer;\n  background-color: pink;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-edit-profile[data-v-fa37a58a] {\n  background-color: #4FBDBA;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n.user-profile-edit-page .user-profile-card .button-wrap .button-change-password[data-v-fa37a58a] {\n  background-color: #F05454;\n  width: 13rem;\n  height: 2.5rem;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 20px;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".campaign-collaboration-wrap[data-v-25babc96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.campaign-collaboration-wrap .empty-state[data-v-25babc96] {\n  margin-top: 10rem;\n  font-size: 25px;\n}\n.campaign-collaboration-wrap .title-page[data-v-25babc96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin: 2rem 0;\n}\n.campaign-collaboration-wrap .button-upper-campaign[data-v-25babc96] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-create[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-create[data-v-25babc96]:hover {\n  background-color: black;\n  color: white;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-history-donation[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-history-donation[data-v-25babc96]:hover {\n  background-color: black;\n  color: white;\n}\n.campaign-collaboration-wrap .campaign-card[data-v-25babc96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 45rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-image[data-v-25babc96] {\n  width: 30%;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content[data-v-25babc96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 0 3rem;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-title[data-v-25babc96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-desc[data-v-25babc96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-25babc96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-25babc96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-25babc96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-25babc96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-25babc96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52561,6 +52772,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_laravel_mix_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_style_index_0_id_25babc96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_laravel_mix_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_style_index_0_id_25babc96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_laravel_mix_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_style_index_0_id_25babc96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CreateCampaign.vue?vue&type=style&index=0&id=3070b13c&lang=less&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CreateCampaign.vue?vue&type=style&index=0&id=3070b13c&lang=less&scoped=true& ***!
@@ -54504,6 +54745,47 @@ component.options.__file = "resources/js/views/RewardViews/EditRewards.vue"
 
 /***/ }),
 
+/***/ "./resources/js/views/campaignViews/CampaignCollaboration.vue":
+/*!********************************************************************!*\
+  !*** ./resources/js/views/campaignViews/CampaignCollaboration.vue ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CampaignCollaboration_vue_vue_type_template_id_25babc96_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CampaignCollaboration.vue?vue&type=template&id=25babc96&scoped=true& */ "./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=template&id=25babc96&scoped=true&");
+/* harmony import */ var _CampaignCollaboration_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CampaignCollaboration.vue?vue&type=script&lang=js& */ "./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CampaignCollaboration_vue_vue_type_style_index_0_id_25babc96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true& */ "./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _CampaignCollaboration_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CampaignCollaboration_vue_vue_type_template_id_25babc96_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CampaignCollaboration_vue_vue_type_template_id_25babc96_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "25babc96",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/campaignViews/CampaignCollaboration.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/campaignViews/CreateCampaign.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/views/campaignViews/CreateCampaign.vue ***!
@@ -55815,6 +56097,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CampaignCollaboration.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/views/campaignViews/CreateCampaign.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/views/campaignViews/CreateCampaign.vue?vue&type=script&lang=js& ***!
@@ -56465,6 +56763,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_laravel_mix_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_EditRewards_vue_vue_type_style_index_0_id_fa37a58a_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditRewards.vue?vue&type=style&index=0&id=fa37a58a&lang=less&scoped=true& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/RewardViews/EditRewards.vue?vue&type=style&index=0&id=fa37a58a&lang=less&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true&":
+/*!******************************************************************************************************************************!*\
+  !*** ./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true& ***!
+  \******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_laravel_mix_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_19_0_rules_0_use_2_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_style_index_0_id_25babc96_lang_less_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-19[0].rules[0].use[2]!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=style&index=0&id=25babc96&lang=less&scoped=true&");
 
 
 /***/ }),
@@ -57155,6 +57466,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditRewards_vue_vue_type_template_id_fa37a58a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditRewards_vue_vue_type_template_id_fa37a58a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditRewards.vue?vue&type=template&id=fa37a58a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/RewardViews/EditRewards.vue?vue&type=template&id=fa37a58a&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=template&id=25babc96&scoped=true&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=template&id=25babc96&scoped=true& ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_template_id_25babc96_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_template_id_25babc96_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignCollaboration_vue_vue_type_template_id_25babc96_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CampaignCollaboration.vue?vue&type=template&id=25babc96&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=template&id=25babc96&scoped=true&");
 
 
 /***/ }),
@@ -59977,6 +60305,73 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=template&id=25babc96&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CampaignCollaboration.vue?vue&type=template&id=25babc96&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "campaign-collaboration-wrap" }, [
+    _c("div", { staticClass: "title-page" }, [
+      _vm._v("\n    List Of Collaboration Campaign\n  "),
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "button-upper-campaign" },
+      [
+        _c(
+          "router-link",
+          { staticClass: "button-create", attrs: { to: "/campaign/history" } },
+          [_vm._v("\n      " + _vm._s(_vm.backBtnLabel) + "\n    ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          { staticClass: "button-history-donation", attrs: { to: "/home" } },
+          [_vm._v("\n      " + _vm._s(_vm.backBtnHomeLabel) + "\n    ")]
+        ),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.listDonation.length > 0
+      ? _c(
+          "div",
+          _vm._l(_vm.listDonation, function (donation, idx) {
+            return _c("CampaignCard", {
+              key: idx,
+              attrs: {
+                isInHistoryOwnedPage: false,
+                donationInfo: donation,
+                campaignInfo: donation.campaign,
+              },
+            })
+          }),
+          1
+        )
+      : _c("div", { staticClass: "empty-state" }, [
+          _vm._v("\n    You dont have any collaboration list!\n  "),
+        ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CreateCampaign.vue?vue&type=template&id=3070b13c&scoped=true&":
 /*!***********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/campaignViews/CreateCampaign.vue?vue&type=template&id=3070b13c&scoped=true& ***!
@@ -60718,7 +61113,7 @@ var render = function () {
           "router-link",
           {
             staticClass: "button-history-donation",
-            attrs: { to: "/campaign/history/donation" },
+            attrs: { to: "/campaign/collaboration" },
           },
           [_vm._v("\n      Campaign Collaboration\n    ")]
         ),

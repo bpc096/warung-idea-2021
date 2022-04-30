@@ -10,7 +10,7 @@
       <router-link to="/campaign/history/donation" class="button-history-donation">
         History Donation Page
       </router-link>
-      <router-link to="/campaign/history/donation" class="button-history-donation">
+      <router-link to="/campaign/collaboration" class="button-history-donation">
         Campaign Collaboration
       </router-link>
     </div>

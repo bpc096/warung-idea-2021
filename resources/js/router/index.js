@@ -17,6 +17,8 @@ import CreateCampaign from '../views/campaignViews/CreateCampaign.vue'
 import EditCampaign from '../views/campaignViews/EditCampaign.vue'
 import HistoryCampaign from '../views/campaignViews/HistoryCampaign.vue'
 import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampaign.vue'
+import CampaignCollaboration from '../views/campaignViews/CampaignCollaboration.vue'
+
 
 // Views Updates
 import CreateUpdates from '../views/updatesViews/CreateUpdates.vue'
@@ -151,6 +153,11 @@ const routes = [
     path: '/campaign/history',
     name: 'HistoryCampaign',
     component: HistoryCampaign,
+  },
+  {
+    path: '/campaign/collaboration',
+    name: 'CampaignCollaboration',
+    component: CampaignCollaboration,
   },
   {
     path: '/campaign/history/donation',
