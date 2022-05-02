@@ -46,7 +46,7 @@
             class="btn-support"
             @click="btnSupportHandle"
           >
-            💰 Support Now
+            🚀 Support Now
           </button>
           <button
             class="btn-remind"
@@ -407,7 +407,7 @@ export default {
           padding: 10px;
           margin-right: 1rem;
           &:hover{
-            background-color: #4E944F;
+            background-color: #B4E197;
             border: 1px solid white;
             color: white;
           }

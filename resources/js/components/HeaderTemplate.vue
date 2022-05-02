@@ -25,15 +25,42 @@
       <router-link to="/category/health-and-fitness">Health & Fitness</router-link>
     </div>
     <div v-if="isLoggedIn" class="button-wrap">
-      <router-link to="/profile" class="button-profile">
-        Profile
-      </router-link>
-      <router-link to="/campaign/history" class="button-profile">
-        Campaign
-      </router-link>
-      <a @click="logout" class="button-logout">
-        Logout
-      </a>
+      <div class="dropdown">
+        <button
+          class="btn button-login dropdown-toggle"
+          type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Campaign
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <router-link to="/campaign/create" class="dropdown-item item-click-menu">
+            ➕ Create New Campaign
+          </router-link>
+          <router-link to="/campaign/history" class="dropdown-item item-click-menu">
+            🏬 Campaign History
+          </router-link>
+          <router-link to="/campaign/history/donation" class="dropdown-item item-click-menu">
+            🏢 History Donation Page
+          </router-link>
+          <router-link to="/campaign/collaboration" class="dropdown-item item-click-menu">
+            🏨 Campaign Collaboration
+          </router-link>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button
+          class="btn button-login dropdown-toggle"
+          type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <router-link to="/profile" class="dropdown-item item-click-menu">
+            Profile
+          </router-link>
+          <a @click="logout" class="dropdown-item item-click-menu">
+            Logout
+          </a>
+        </div>
+      </div>
     </div>
     <div v-else class="button-wrap">
       <router-link to="/register" class="button-register">
@@ -160,6 +187,17 @@ export default {
     width: 20%;
     margin-right: 2rem;
 
+    .item-click-menu{
+      &:hover {
+        color: white;
+        background-color: #55D8C1;
+      }
+      &:active {
+        color: white;
+        background-color: #4E944F;
+      }
+    }
+
     a {
       text-decoration: none;
       color: black;
@@ -170,12 +208,14 @@ export default {
       align-items: center;
       justify-content: center;
       border: 1px solid black;
+      color: black;
+      background-color: white;
       margin-left: 1rem;
       min-width: 7rem;
       height: 2rem;
       border-radius: 20px;
       &:hover {
-        background-color: black;
+        background-color: #55D8C1;
         color: white;
       }
     }
@@ -189,7 +229,7 @@ export default {
       height: 2rem;
       border-radius: 20px;
       &:hover {
-        background-color: black;
+        background-color: #55D8C1;
         color: white;
       }
     }

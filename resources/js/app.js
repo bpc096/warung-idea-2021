@@ -14,10 +14,11 @@ import router from './router'
 import store from './store'
 import Toasted from 'vue-toasted'
 import VueSweetalert2 from 'vue-sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
 
 import 'bootstrap'
+import 'sweetalert2/dist/sweetalert2.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 import { setHeaderToken } from './utils/auth'
 
 const devApp = true //TODO : change this before deploy

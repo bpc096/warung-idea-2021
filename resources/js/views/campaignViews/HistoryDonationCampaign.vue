@@ -137,11 +137,14 @@ export default {
     width: 45rem;
     min-height: 10rem;
     margin: 2rem 0;
+    border-radius: 10px;
 
     .campaign-image {
       width: 30%;
       img {
         object-fit: cover;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
       }
     }
 

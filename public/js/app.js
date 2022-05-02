@@ -1954,6 +1954,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "HeaderTemplate",
@@ -5348,17 +5375,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7487,9 +7503,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_toasted__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_toasted__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/vue-sweetalert.umd.js");
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.min.css */ "./node_modules/sweetalert2/dist/sweetalert2.min.css");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var sweetalert2_dist_sweetalert2_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2/dist/sweetalert2.min.css */ "./node_modules/sweetalert2/dist/sweetalert2.min.css");
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils/auth */ "./resources/js/utils/auth.js");
 /**
@@ -7822,7 +7838,7 @@ router.beforeEach(function (to, from, next) {
       return;
     }
 
-    vue__WEBPACK_IMPORTED_MODULE_28__["default"].toasted.info("You Need To Login First!", {
+    vue__WEBPACK_IMPORTED_MODULE_28__["default"].toasted.error("Silahkan login terlebih dahulu!", {
       position: 'top-center',
       duration: 2000
     });
@@ -13290,7 +13306,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.01);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap .btn-main[data-v-ed47945c] {\n  font-weight: 500;\n  letter-spacing: 2px;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: blue;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 20%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-left: 1rem;\n  min-width: 7rem;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  min-width: 7rem;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n  cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".header-wrapper[data-v-ed47945c] {\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background-color: rgba(0, 0, 0, 0.01);\n}\n.header-wrapper .logo-wrap[data-v-ed47945c] {\n  width: 15%;\n}\n.header-wrapper .logo-wrap a[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  margin-left: 2rem;\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .logo-wrap .text-image[data-v-ed47945c] {\n  margin-left: 0.7rem;\n  font-size: 1.4rem;\n  font-family: 'Zen Antique Soft', serif;\n}\n.header-wrapper .logo-wrap img[data-v-ed47945c] {\n  height: 34px;\n  width: 28px;\n}\n.header-wrapper .category-wrap[data-v-ed47945c] {\n  width: 30%;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n}\n.header-wrapper .category-wrap .btn-main[data-v-ed47945c] {\n  font-weight: 500;\n  letter-spacing: 2px;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .category-wrap a[data-v-ed47945c]:hover {\n  color: blue;\n}\n.header-wrapper .button-wrap[data-v-ed47945c] {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  width: 20%;\n  margin-right: 2rem;\n}\n.header-wrapper .button-wrap .item-click-menu[data-v-ed47945c]:hover {\n  color: white;\n  background-color: #55D8C1;\n}\n.header-wrapper .button-wrap .item-click-menu[data-v-ed47945c]:active {\n  color: white;\n  background-color: #4E944F;\n}\n.header-wrapper .button-wrap a[data-v-ed47945c] {\n  text-decoration: none;\n  color: black;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  color: black;\n  background-color: white;\n  margin-left: 1rem;\n  min-width: 7rem;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-login[data-v-ed47945c]:hover {\n  background-color: #55D8C1;\n  color: white;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  min-width: 7rem;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-register[data-v-ed47945c]:hover {\n  background-color: #55D8C1;\n  color: white;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-profile[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid black;\n  margin-right: 1rem;\n  width: 40%;\n  height: 2rem;\n  border-radius: 20px;\n}\n.header-wrapper .button-wrap .button-logout[data-v-ed47945c]:hover {\n  background-color: black;\n  color: white;\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13314,7 +13330,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 55rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: center;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  justify-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  margin-right: 1.5rem;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n  margin-left: 2rem;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  margin: 10px 0 20px 25px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n  min-width: 150px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #4FBDBA;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #4FBDBA;\n  margin: 0 10px;\n  min-width: 150px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF5959;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF5959;\n  margin-right: 10px;\n  min-width: 150px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 55rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n  border-radius: 10px;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-top-left-radius: 10px;\n  border-bottom-left-radius: 10px;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: center;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  justify-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  margin-right: 1.5rem;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n  margin-left: 2rem;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  margin: 10px 0 20px 25px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n  min-width: 150px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #4FBDBA;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #4FBDBA;\n  margin: 0 10px;\n  min-width: 150px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF5959;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF5959;\n  margin-right: 10px;\n  min-width: 150px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13650,7 +13666,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".project-detail-page .modal-overlay[data-v-385e7eea] {\n  content: '';\n  position: absolute;\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 998;\n  background: black;\n  opacity: 0.6;\n  cursor: pointer;\n}\n.project-detail-page .fade-enter-active[data-v-385e7eea],\n.project-detail-page .fade-leave-active[data-v-385e7eea] {\n  transition: opacity 0.4s linear;\n}\n.project-detail-page .fade-enter[data-v-385e7eea],\n.project-detail-page .fade-leave-to[data-v-385e7eea] {\n  opacity: 0;\n}\n.project-detail-page .pop-enter-active[data-v-385e7eea],\n.project-detail-page .pop-leave-active[data-v-385e7eea] {\n  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;\n}\n.project-detail-page .pop-enter[data-v-385e7eea],\n.project-detail-page .pop-leave-to[data-v-385e7eea] {\n  opacity: 0;\n  transform: scale(0.3) translateY(-50%);\n}\n.project-detail-page .wrap-title[data-v-385e7eea] {\n  margin-bottom: 2rem;\n}\n.project-detail-page .wrap-title .main-title[data-v-385e7eea] {\n  font-size: 4rem;\n}\n.project-detail-page .wrap-main-section[data-v-385e7eea] {\n  border-top: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\n.project-detail-page .wrap-main-section .project-detail-section[data-v-385e7eea] {\n  width: 100%;\n  height: 50vh;\n  text-align: left;\n  margin: 3rem 0 3rem 7rem;\n  font-size: 1.5rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom[data-v-385e7eea] {\n  width: 25rem;\n  height: 2rem;\n  border: 2px solid black;\n  border-radius: 10px;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom .progress-color-custom[data-v-385e7eea] {\n  height: 100%;\n  background-color: #1FAB89;\n  border-radius: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info img[data-v-385e7eea] {\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 30px;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info img[data-v-385e7eea] {\n  margin-right: 1.7rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info img[data-v-385e7eea] {\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea] {\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea]:hover {\n  background-color: #4E944F;\n  border: 1px solid white;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea] {\n  margin: 0 0.5rem;\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea]:hover {\n  background-color: #A85CF9;\n  border: 1px solid white;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-image-section[data-v-385e7eea] {\n  width: 100%;\n  height: 55vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-image-section .image[data-v-385e7eea] {\n  width: 80%;\n  height: 80%;\n  max-width: 48rem;\n}\n.project-detail-page .wrap-main-section .project-image-section .image img[data-v-385e7eea] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".project-detail-page .modal-overlay[data-v-385e7eea] {\n  content: '';\n  position: absolute;\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 998;\n  background: black;\n  opacity: 0.6;\n  cursor: pointer;\n}\n.project-detail-page .fade-enter-active[data-v-385e7eea],\n.project-detail-page .fade-leave-active[data-v-385e7eea] {\n  transition: opacity 0.4s linear;\n}\n.project-detail-page .fade-enter[data-v-385e7eea],\n.project-detail-page .fade-leave-to[data-v-385e7eea] {\n  opacity: 0;\n}\n.project-detail-page .pop-enter-active[data-v-385e7eea],\n.project-detail-page .pop-leave-active[data-v-385e7eea] {\n  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;\n}\n.project-detail-page .pop-enter[data-v-385e7eea],\n.project-detail-page .pop-leave-to[data-v-385e7eea] {\n  opacity: 0;\n  transform: scale(0.3) translateY(-50%);\n}\n.project-detail-page .wrap-title[data-v-385e7eea] {\n  margin-bottom: 2rem;\n}\n.project-detail-page .wrap-title .main-title[data-v-385e7eea] {\n  font-size: 4rem;\n}\n.project-detail-page .wrap-main-section[data-v-385e7eea] {\n  border-top: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n}\n.project-detail-page .wrap-main-section .project-detail-section[data-v-385e7eea] {\n  width: 100%;\n  height: 50vh;\n  text-align: left;\n  margin: 3rem 0 3rem 7rem;\n  font-size: 1.5rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom[data-v-385e7eea] {\n  width: 25rem;\n  height: 2rem;\n  border: 2px solid black;\n  border-radius: 10px;\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .progress-bar-custom .progress-color-custom[data-v-385e7eea] {\n  height: 100%;\n  background-color: #1FAB89;\n  border-radius: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .total-donate-info img[data-v-385e7eea] {\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 30px;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-detail-section .supporter-info img[data-v-385e7eea] {\n  margin-right: 1.7rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info[data-v-385e7eea] {\n  margin-bottom: 30px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .day-left-info img[data-v-385e7eea] {\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper[data-v-385e7eea] {\n  display: flex;\n  flex-direction: row;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea] {\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n  margin-right: 1rem;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-support[data-v-385e7eea]:hover {\n  background-color: #B4E197;\n  border: 1px solid white;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea] {\n  margin: 0 0.5rem;\n  border: 1px solid black;\n  border-radius: 25px;\n  padding: 10px;\n}\n.project-detail-page .wrap-main-section .project-detail-section .button-wrapper .btn-remind[data-v-385e7eea]:hover {\n  background-color: #A85CF9;\n  border: 1px solid white;\n  color: white;\n}\n.project-detail-page .wrap-main-section .project-image-section[data-v-385e7eea] {\n  width: 100%;\n  height: 55vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.project-detail-page .wrap-main-section .project-image-section .image[data-v-385e7eea] {\n  width: 80%;\n  height: 80%;\n  max-width: 48rem;\n}\n.project-detail-page .wrap-main-section .project-image-section .image img[data-v-385e7eea] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13722,7 +13738,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".campaign-collaboration-wrap[data-v-25babc96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.campaign-collaboration-wrap .empty-state[data-v-25babc96] {\n  margin-top: 10rem;\n  font-size: 25px;\n}\n.campaign-collaboration-wrap .title-page[data-v-25babc96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin: 2rem 0;\n}\n.campaign-collaboration-wrap .button-upper-campaign[data-v-25babc96] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-create[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-create[data-v-25babc96]:hover {\n  background-color: black;\n  color: white;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-history-donation[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-history-donation[data-v-25babc96]:hover {\n  background-color: black;\n  color: white;\n}\n.campaign-collaboration-wrap .campaign-card[data-v-25babc96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 45rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-image[data-v-25babc96] {\n  width: 30%;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-image img[data-v-25babc96] {\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content[data-v-25babc96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 0 3rem;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-title[data-v-25babc96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-desc[data-v-25babc96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-25babc96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-25babc96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-25babc96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-25babc96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-25babc96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".campaign-collaboration-wrap[data-v-25babc96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.campaign-collaboration-wrap .empty-state[data-v-25babc96] {\n  margin-top: 10rem;\n  font-size: 25px;\n}\n.campaign-collaboration-wrap .title-page[data-v-25babc96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin: 2rem 0;\n}\n.campaign-collaboration-wrap .button-upper-campaign[data-v-25babc96] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-create[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-create[data-v-25babc96]:hover {\n  background-color: black;\n  color: white;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-history-donation[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.campaign-collaboration-wrap .button-upper-campaign .button-history-donation[data-v-25babc96]:hover {\n  background-color: black;\n  color: white;\n}\n.campaign-collaboration-wrap .campaign-card[data-v-25babc96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 45rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n  border-radius: 10px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-image[data-v-25babc96] {\n  width: 30%;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-image img[data-v-25babc96] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-top-left-radius: 10px;\n  border-bottom-left-radius: 10px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content[data-v-25babc96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 0 3rem;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-title[data-v-25babc96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-desc[data-v-25babc96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-25babc96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-25babc96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-25babc96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-25babc96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-25babc96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.campaign-collaboration-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-25babc96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -13818,7 +13834,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.history-campaign-wrap .empty-state[data-v-33df5f96] {\n  margin-top: 10rem;\n  font-size: 25px;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-33df5f96] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 45rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-image img[data-v-33df5f96] {\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 0 3rem;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".history-campaign-wrap[data-v-33df5f96] {\n  min-height: 90vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 10rem;\n}\n.history-campaign-wrap .empty-state[data-v-33df5f96] {\n  margin-top: 10rem;\n  font-size: 25px;\n}\n.history-campaign-wrap .title-page[data-v-33df5f96] {\n  font-size: 30px;\n  font-weight: bold;\n  margin: 2rem 0;\n}\n.history-campaign-wrap .button-upper-campaign[data-v-33df5f96] {\n  width: 50rem;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  margin: 10px 0;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-create[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid green;\n  border-radius: 20px;\n  padding: 10px;\n  margin-left: 10px;\n}\n.history-campaign-wrap .button-upper-campaign .button-history-donation[data-v-33df5f96]:hover {\n  background-color: black;\n  color: white;\n}\n.history-campaign-wrap .campaign-card[data-v-33df5f96] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 45rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n  border-radius: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-image[data-v-33df5f96] {\n  width: 30%;\n}\n.history-campaign-wrap .campaign-card .campaign-image img[data-v-33df5f96] {\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-top-left-radius: 10px;\n  border-bottom-left-radius: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content[data-v-33df5f96] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 0 3rem;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-title[data-v-33df5f96] {\n  text-align: left;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-desc[data-v-33df5f96] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell[data-v-33df5f96] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-33df5f96] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-33df5f96] {\n  float: right;\n  padding: 2px;\n  color: #fff;\n  font-size: 0.7em;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button[data-v-33df5f96] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  margin: 10px 0;\n}\n.history-campaign-wrap .campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-33df5f96] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -58182,33 +58198,115 @@ var render = function () {
         ),
     _vm._v(" "),
     _vm.isLoggedIn
-      ? _c(
-          "div",
-          { staticClass: "button-wrap" },
-          [
+      ? _c("div", { staticClass: "button-wrap" }, [
+          _c("div", { staticClass: "dropdown" }, [
             _c(
-              "router-link",
-              { staticClass: "button-profile", attrs: { to: "/profile" } },
-              [_vm._v("\n      Profile\n    ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
+              "button",
               {
-                staticClass: "button-profile",
-                attrs: { to: "/campaign/history" },
+                staticClass: "btn button-login dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "dropdownMenuButton",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false",
+                },
               },
-              [_vm._v("\n      Campaign\n    ")]
+              [_vm._v("\n        Campaign\n      ")]
             ),
             _vm._v(" "),
             _c(
-              "a",
-              { staticClass: "button-logout", on: { click: _vm.logout } },
-              [_vm._v("\n      Logout\n    ")]
+              "div",
+              {
+                staticClass: "dropdown-menu dropdown-menu-right",
+                attrs: { "aria-labelledby": "dropdownMenuButton" },
+              },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    attrs: { to: "/campaign/create" },
+                  },
+                  [_vm._v("\n          ➕ Create New Campaign\n        ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    attrs: { to: "/campaign/history" },
+                  },
+                  [_vm._v("\n          🏬 Campaign History\n        ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    attrs: { to: "/campaign/history/donation" },
+                  },
+                  [_vm._v("\n          🏢 History Donation Page\n        ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    attrs: { to: "/campaign/collaboration" },
+                  },
+                  [_vm._v("\n          🏨 Campaign Collaboration\n        ")]
+                ),
+              ],
+              1
             ),
-          ],
-          1
-        )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "dropdown" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn button-login dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "dropdownMenuButton",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false",
+                },
+              },
+              [_vm._v("\n        Profile\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dropdown-menu dropdown-menu-right",
+                attrs: { "aria-labelledby": "dropdownMenuButton" },
+              },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    attrs: { to: "/profile" },
+                  },
+                  [_vm._v("\n          Profile\n        ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    on: { click: _vm.logout },
+                  },
+                  [_vm._v("\n          Logout\n        ")]
+                ),
+              ],
+              1
+            ),
+          ]),
+        ])
       : _c(
           "div",
           { staticClass: "button-wrap" },
@@ -59838,7 +59936,7 @@ var render = function () {
                 staticClass: "btn-support",
                 on: { click: _vm.btnSupportHandle },
               },
-              [_vm._v("\n          💰 Support Now\n        ")]
+              [_vm._v("\n          🚀 Support Now\n        ")]
             ),
             _vm._v(" "),
             _c(
@@ -61076,37 +61174,6 @@ var render = function () {
     _c("div", { staticClass: "title-page" }, [
       _vm._v("\n    Owned Campaign List\n  "),
     ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "button-upper-campaign" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "button-create", attrs: { to: "/campaign/create" } },
-          [_vm._v("\n      " + _vm._s(_vm.addNewCampaignLabel) + "\n    ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "button-history-donation",
-            attrs: { to: "/campaign/history/donation" },
-          },
-          [_vm._v("\n      🏢 History Donation Page\n    ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "button-history-donation",
-            attrs: { to: "/campaign/collaboration" },
-          },
-          [_vm._v("\n      🏨 Campaign Collaboration\n    ")]
-        ),
-      ],
-      1
-    ),
     _vm._v(" "),
     _vm.listCreatedCampaign.length > 0
       ? _c(

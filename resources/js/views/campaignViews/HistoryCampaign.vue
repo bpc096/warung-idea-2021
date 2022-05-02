@@ -3,17 +3,6 @@
     <div class="title-page">
       Owned Campaign List
     </div>
-    <div class="button-upper-campaign">
-      <router-link to="/campaign/create" class="button-create">
-        {{ addNewCampaignLabel }}
-      </router-link>
-      <router-link to="/campaign/history/donation" class="button-history-donation">
-        🏢 History Donation Page
-      </router-link>
-      <router-link to="/campaign/collaboration" class="button-history-donation">
-        🏨 Campaign Collaboration
-      </router-link>
-    </div>
     <div v-if="listCreatedCampaign.length > 0">
       <CampaignCard
         v-for="(campaign, idx) in listCreatedCampaign"
