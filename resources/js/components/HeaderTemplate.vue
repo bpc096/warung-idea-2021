@@ -29,9 +29,9 @@
         <button
           class="btn button-login dropdown-toggle"
           type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Campaign
+          💡 Campaign
         </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
           <router-link to="/campaign/create" class="dropdown-item item-click-menu">
             ➕ Create New Campaign
           </router-link>
@@ -50,11 +50,19 @@
         <button
           class="btn button-login dropdown-toggle"
           type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profile
+          🙍 Profile
         </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
+          <h6 class="dropdown-header">{{ userEmailText }}</h6>
+          <div class="dropdown-divider"></div>
           <router-link to="/profile" class="dropdown-item item-click-menu">
             Profile
+          </router-link>
+          <router-link to="/profile/invitation" class="dropdown-item item-click-menu">
+            Invitation
+          </router-link>
+          <router-link to="/chat" class="dropdown-item item-click-menu">
+            Chat Message
           </router-link>
           <a @click="logout" class="dropdown-item item-click-menu">
             Logout
@@ -96,6 +104,9 @@ export default {
     },
     isUserLoggedIn() {
       return this.loginMock
+    },
+    userEmailText() {
+      return this.user.email || 'Default Email'
     }
   },
   methods: {

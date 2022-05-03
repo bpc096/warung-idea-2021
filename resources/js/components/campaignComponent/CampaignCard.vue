@@ -290,7 +290,7 @@ export default {
       .campaign-donation-amount {
         display: flex;
         flex-direction: row;
-        margin-bottom: 10px;
+        margin: 10px 0 20px 25px;
         align-items: center;
 
         .donation-text {
@@ -306,9 +306,8 @@ export default {
       .campaign-payment-status {
         display: flex;
         flex-direction: row;
-        margin-bottom: 10px;
         align-items: center;
-        margin-right: 1.5rem;
+        margin: 10px 0 20px 25px;
 
         .text-status {
           font-weight: 500;
@@ -341,6 +340,7 @@ export default {
           padding: 5px;
           background-color: salmon;
           margin-left: 1rem;
+          min-width: 10rem;
         }
       }
 

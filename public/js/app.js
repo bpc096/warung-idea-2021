@@ -1981,6 +1981,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "HeaderTemplate",
@@ -2001,6 +2009,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     isUserLoggedIn: function isUserLoggedIn() {
       return this.loginMock;
+    },
+    userEmailText: function userEmailText() {
+      return this.user.email || 'Default Email';
     }
   }),
   methods: {
@@ -4697,14 +4708,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'HistoryDonationCampaign',
@@ -5442,14 +5445,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7206,20 +7201,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'UserProfile',
@@ -7534,11 +7515,7 @@ var isDeployHeroku = false; // TODO : change this to false when deploy cpanel
 var setBaseUrl = '';
 
 if (devApp) {
-  if (isDeployHeroku) {
-    setBaseUrl = 'https://warungidea.herokuapp.com/api/';
-  } else {
-    setBaseUrl = 'http://localhost:8000/api/';
-  }
+  setBaseUrl = isDeployHeroku ? 'https://warungidea.herokuapp.com/api/' : 'http://localhost:8000/api/';
 } else {
   setBaseUrl = 'https://www.warungidea.com/api/';
 }
@@ -13330,7 +13307,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 55rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n  border-radius: 10px;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-top-left-radius: 10px;\n  border-bottom-left-radius: 10px;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: center;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  justify-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n  margin-right: 1.5rem;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n  margin-left: 2rem;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  margin: 10px 0 20px 25px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n  min-width: 150px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #4FBDBA;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #4FBDBA;\n  margin: 0 10px;\n  min-width: 150px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF5959;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF5959;\n  margin-right: 10px;\n  min-width: 150px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".campaign-card[data-v-66fc7d6d] {\n  border: 1px solid black;\n  display: flex;\n  flex-direction: row;\n  width: 55rem;\n  min-height: 10rem;\n  margin: 2rem 0;\n  border-radius: 10px;\n}\n.campaign-card .campaign-image[data-v-66fc7d6d] {\n  width: 30%;\n  margin-right: 3px;\n}\n.campaign-card .campaign-image img[data-v-66fc7d6d] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-top-left-radius: 10px;\n  border-bottom-left-radius: 10px;\n}\n.campaign-card .campaign-content[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  width: 100%;\n}\n.campaign-card .campaign-content .campaign-title[data-v-66fc7d6d] {\n  text-align: center;\n  font-size: 20px;\n  font-weight: bold;\n  margin-top: 10px;\n}\n.campaign-card .campaign-content .campaign-desc[data-v-66fc7d6d] {\n  text-align: left;\n  font-size: 15px;\n  font-weight: lighter;\n  margin: 10px 0;\n}\n.campaign-card .campaign-content .campaign-donation-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin-bottom: 10px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell[data-v-66fc7d6d] {\n  width: 250px;\n  border: 1px solid #aaa;\n  border-radius: 13px;\n  padding: 3px;\n  margin-left: 20px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress[data-v-66fc7d6d] {\n  background: linear-gradient(to right, #11998e, #38ef7d);\n  height: 20px;\n  width: 50%;\n  border-radius: 9px;\n}\n.campaign-card .campaign-content .campaign-donation-status .shell .bar-progress span[data-v-66fc7d6d] {\n  float: right;\n  padding: 2px;\n  color: black;\n  font-size: 0.7em;\n}\n.campaign-card .campaign-content .campaign-donation-amount[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  margin: 10px 0 20px 25px;\n  align-items: center;\n}\n.campaign-card .campaign-content .campaign-donation-amount .donation-text[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  border-radius: 10px;\n  justify-self: center;\n}\n.campaign-card .campaign-content .campaign-payment-status[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  margin: 10px 0 20px 25px;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status[data-v-66fc7d6d] {\n  font-weight: 500;\n  color: black;\n  padding: 2px;\n  min-width: 10rem;\n  letter-spacing: 2px;\n  border-radius: 10px;\n  margin-left: 2rem;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.pending-status[data-v-66fc7d6d] {\n  background-color: yellow;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.success-status[data-v-66fc7d6d] {\n  background-color: #38ef7d;\n}\n.campaign-card .campaign-content .campaign-payment-status .text-status.failed-status[data-v-66fc7d6d] {\n  background-color: red;\n}\n.campaign-card .campaign-content .campaign-payment-status .btn-payment[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: salmon;\n  margin-left: 1rem;\n  min-width: 10rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button[data-v-66fc7d6d] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  align-items: center;\n  margin: 10px 0 20px 25px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid pink;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: pink;\n  min-width: 150px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-view-campaign.mr[data-v-66fc7d6d] {\n  margin-left: 1rem;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-edit-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #4FBDBA;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #4FBDBA;\n  margin: 0 10px;\n  min-width: 150px;\n}\n.campaign-card .campaign-content .campaign-wrap-button .btn-delete-campaign[data-v-66fc7d6d] {\n  text-decoration: none;\n  color: black;\n  border: 1px solid #FF5959;\n  border-radius: 10px;\n  padding: 5px;\n  background-color: #FF5959;\n  margin-right: 10px;\n  min-width: 150px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -58212,13 +58189,13 @@ var render = function () {
                   "aria-expanded": "false",
                 },
               },
-              [_vm._v("\n        Campaign\n      ")]
+              [_vm._v("\n        💡 Campaign\n      ")]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "dropdown-menu dropdown-menu-right",
+                staticClass: "dropdown-menu dropdown-menu-right mt-2",
                 attrs: { "aria-labelledby": "dropdownMenuButton" },
               },
               [
@@ -58275,16 +58252,22 @@ var render = function () {
                   "aria-expanded": "false",
                 },
               },
-              [_vm._v("\n        Profile\n      ")]
+              [_vm._v("\n        🙍 Profile\n      ")]
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "dropdown-menu dropdown-menu-right",
+                staticClass: "dropdown-menu dropdown-menu-right mt-2",
                 attrs: { "aria-labelledby": "dropdownMenuButton" },
               },
               [
+                _c("h6", { staticClass: "dropdown-header" }, [
+                  _vm._v(_vm._s(_vm.userEmailText)),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
                 _c(
                   "router-link",
                   {
@@ -58292,6 +58275,24 @@ var render = function () {
                     attrs: { to: "/profile" },
                   },
                   [_vm._v("\n          Profile\n        ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    attrs: { to: "/profile/invitation" },
+                  },
+                  [_vm._v("\n          Invitation\n        ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    attrs: { to: "/chat" },
+                  },
+                  [_vm._v("\n          Chat Message\n        ")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -60411,25 +60412,6 @@ var render = function () {
       _vm._v("\n    List Of Collaboration Campaign\n  "),
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "button-upper-campaign" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "button-create", attrs: { to: "/campaign/history" } },
-          [_vm._v("\n      " + _vm._s(_vm.backBtnLabel) + "\n    ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          { staticClass: "button-history-donation", attrs: { to: "/home" } },
-          [_vm._v("\n      " + _vm._s(_vm.backBtnHomeLabel) + "\n    ")]
-        ),
-      ],
-      1
-    ),
-    _vm._v(" "),
     _vm.listDonation.length > 0
       ? _c(
           "div",
@@ -61218,25 +61200,6 @@ var render = function () {
     _c("div", { staticClass: "title-page" }, [
       _vm._v("\n    History Donation List\n  "),
     ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "button-upper-campaign" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "button-create", attrs: { to: "/campaign/history" } },
-          [_vm._v("\n      " + _vm._s(_vm.backBtnLabel) + "\n    ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          { staticClass: "button-history-donation", attrs: { to: "/home" } },
-          [_vm._v("\n      " + _vm._s(_vm.backBtnHomeLabel) + "\n    ")]
-        ),
-      ],
-      1
-    ),
     _vm._v(" "),
     _vm.listDonation.length > 0
       ? _c(
@@ -62881,26 +62844,6 @@ var render = function () {
             on: { click: _vm.changePassword },
           },
           [_vm._v("\n        Change Password\n      ")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "button-wrap" }, [
-        _c(
-          "a",
-          {
-            staticClass: "button-invitation",
-            on: { click: _vm.redirectInvitation },
-          },
-          [_vm._v("\n        Invitation\n      ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "button-private-chat",
-            on: { click: _vm.redirectPrivateChat },
-          },
-          [_vm._v("\n        Private Chat\n      ")]
         ),
       ]),
     ]),

@@ -26,11 +26,7 @@ const isDeployHeroku = false // TODO : change this to false when deploy cpanel
 
 let setBaseUrl = ''
 if(devApp) {
-  if(isDeployHeroku) {
-    setBaseUrl = 'https://warungidea.herokuapp.com/api/'
-  }else {
-    setBaseUrl = 'http://localhost:8000/api/'
-  }
+  setBaseUrl = isDeployHeroku ? 'https://warungidea.herokuapp.com/api/' :  'http://localhost:8000/api/'
 } else {
   setBaseUrl = 'https://www.warungidea.com/api/'
 }

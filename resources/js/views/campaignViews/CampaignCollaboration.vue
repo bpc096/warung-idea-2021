@@ -3,14 +3,6 @@
     <div class="title-page">
       List Of Collaboration Campaign
     </div>
-    <div class="button-upper-campaign">
-      <router-link to="/campaign/history" class="button-create">
-        {{ backBtnLabel }}
-      </router-link>
-      <router-link to="/home" class="button-history-donation">
-        {{ backBtnHomeLabel }}
-      </router-link>
-    </div>
     <div v-if="listDonation.length > 0">
       <CampaignCard
         v-for="(donation, idx) in listDonation"
