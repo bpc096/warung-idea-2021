@@ -225,6 +225,11 @@ export default {
         width: 700px;
         height: 700px;
         overflow: auto;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
       }
 
       div > a {
@@ -241,7 +246,7 @@ export default {
         flex-direction: row;
         padding: 10px;
         border-radius: 10px;
-        margin: 30px 0;
+        margin: 30px 1rem;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         justify-content: center;
         align-items: center;
@@ -295,11 +300,14 @@ export default {
         flex-direction: column;
         padding: 10px;
         border-radius: 10px;
-        margin: 30px 0;
+        margin: 2rem 1rem;
+        transition: 1s;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
+
         &:hover {
-          box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+          margin: 3rem 1rem;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
         }
 
         .reward-price {
