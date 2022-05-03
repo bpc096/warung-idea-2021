@@ -138,7 +138,7 @@ export default {
     },
     async checkout() {
       const donation = {
-        amount: this.donationAmount,
+        amount: this.totalPriceAmount,
         campaignId: this.infoCampaignId,
       }
 

@@ -186,7 +186,7 @@ export default {
       text-decoration: none;
       color: black;
       &:hover {
-        color: blue;
+        color: #83BD75;
       }
     }
   }
