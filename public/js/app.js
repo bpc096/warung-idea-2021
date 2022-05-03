@@ -58810,6 +58810,24 @@ var render = function () {
   return _c("div", { staticClass: "modal-mask" }, [
     _c("div", { staticClass: "modal-wrapper" }, [
       _c("div", { staticClass: "modal-container" }, [
+        _c("div", { staticClass: "modal-header" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "close",
+              attrs: {
+                type: "button",
+                "data-dismiss": "modal",
+                "aria-label": "Close",
+              },
+              on: { click: _vm.closeModal },
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          ),
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "modal-scroll" },
@@ -58958,31 +58976,20 @@ var render = function () {
           ],
           2
         ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "modal-footer" },
-          [
-            _vm._t("footer", function () {
-              return [
-                _c(
-                  "button",
-                  {
-                    staticClass: "modal-default-button",
-                    on: { click: _vm.closeModal },
-                  },
-                  [_vm._v("\n            X\n          ")]
-                ),
-              ]
-            }),
-          ],
-          2
-        ),
       ]),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "modal-title" }, [
+      _c("b", [_vm._v("Package Reward List")]),
+    ])
+  },
+]
 render._withStripped = true
 
 

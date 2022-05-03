@@ -2,6 +2,14 @@
   <div class="modal-mask">
     <div class="modal-wrapper">
       <div class="modal-container">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <b>Package Reward List</b>
+          </h5>
+          <button @click="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class="modal-scroll">
           <div class="modal-non-reward">
             <div class="text-label">Donasi Sukarela</div>
@@ -50,15 +58,7 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <slot name="footer">
-            <button
-              class="modal-default-button"
-              @click="closeModal">
-              X
-            </button>
-          </slot>
-        </div>
+
       </div>
     </div>
   </div>
