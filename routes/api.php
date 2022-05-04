@@ -112,6 +112,10 @@ Route::post('/payment/notification', [PaymentController::class, 'notificationHan
 // });
 
 /**
- * API Get Notification
+ * API Notification
  */
-Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:api');
+Route::prefix('notifications')->group(function(){
+    Route::get('/', [NotificationController::class, 'index'])->middleware('auth:api');
+    Route::get('/mark_notif_as_read', [NotificationController::class, 'mark_notif_as_read'])->middleware('auth:api');
+});
+

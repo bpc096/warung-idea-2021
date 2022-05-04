@@ -58,8 +58,8 @@
           <router-link to="/profile" class="dropdown-item item-click-menu">
             Profile
           </router-link>
-          <router-link to="/profile/invitation" class="dropdown-item item-click-menu">
-            Invitation
+          <router-link to="/profile/invitation" class="dropdown-item item-click-menu" @click.native="markNotifAsRead">
+            Invitation <span class="badge badge-pill badge-primary" v-if="getCountNotification > 0">{{getCountNotification}}</span>
           </router-link>
           <router-link to="/chat" class="dropdown-item item-click-menu">
             Chat Message
@@ -83,18 +83,20 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import axios from "axios"
 
 export default {
   name: "HeaderTemplate",
   data: () => {
     return {
       loginMock: true,
+      notifications: []
     }
   },
   computed: {
     ...mapGetters({
       isLoggedIn: 'isLoggedIn',
-      user: 'user',
+      user: 'user'
     }),
     currentRouteName () {
       return this.$route.name
@@ -107,6 +109,9 @@ export default {
     },
     userEmailText() {
       return this.user.email || 'Default Email'
+    },
+    getCountNotification() {
+      return this.notifications.count
     }
   },
   methods: {
@@ -134,10 +139,25 @@ export default {
             })
         }
       })
+    },
+    async markNotifAsRead() {
+      try {
+        await axios.get('notifications/mark_notif_as_read')
+        this.$store.dispatch('getNotifications')
+          .then(() => {
+            this.notifications = this.$store.state.notifications
+          })
+      } catch(e) {
+        console.error(e)
+      }
     }
   },
   created() {
     this.$store.dispatch('getNotifications')
+      .then(() => {
+        this.notifications = this.$store.state.notifications
+      })
+    
   }
 }
 </script>
