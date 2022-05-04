@@ -139,7 +139,7 @@ class CampaignController extends Controller
         //get detail data campaign
         $campaign = Campaign::with('user')->with('sumPayment')->where('id', $id)->first();
 
-        $collaborators = CampaignDetail::with('users')->get();
+        $collaborators = CampaignDetail::with('users')->where("campaign_id", $id)->get();
 
         //get data donation by campaign
         $payments = Payment::with('user')->where('campaign_id', $campaign->id)->where('status', 'success')->latest()->get();

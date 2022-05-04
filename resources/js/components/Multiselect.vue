@@ -23,13 +23,16 @@
 
   export default {
     name: 'MutliSelectComponent',
+    props: {
+      defaultValue: Array
+    },
     components: {
       Multiselect
     },
     data: () => {
       return {
         rawUserList: [],
-        value:  [],
+        value: [] ,
         options:  [
           { name: 'Vuang agung', userId: 1 },
           { name: 'Joni Yes', userId: 2 },
@@ -78,6 +81,11 @@
       removeNewUser (user) {
         const { userId } = user
         this.$emit('removeNewUser', userId)
+      }
+    },
+    watch: {
+      'defaultValue'(newValue) {
+        this.value = newValue
       }
     }
   }
