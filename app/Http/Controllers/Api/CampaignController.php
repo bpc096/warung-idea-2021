@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Campaign;
 use App\Payment;
 use App\CampaignDetail;
+use App\Notifications;
 
 class CampaignController extends Controller
 {
@@ -108,6 +109,15 @@ class CampaignController extends Controller
                 'users_id'    => $collaborator,
                 'status'      => 'pending'
             ]);
+
+            // ** Create notification for each collaborators
+            $notif = new Notifications;
+            $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
+            $notif->from    = auth()->guard('api')->user()->id;
+            $notif->to      = $collaborator;
+            $notif->content = "You have been invited to join in ".$request->title." campaign.";
+            $notif->is_read = '0';
+            $notif->save();
         }
 
         //return JSON

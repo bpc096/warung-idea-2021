@@ -135,6 +135,9 @@ export default {
         }
       })
     }
+  },
+  created() {
+    this.$store.dispatch('getNotifications')
   }
 }
 </script>

@@ -30,3 +30,6 @@ export const CREATE_REWARDS = 'createRewards'
 // COLLABORATOR
 export const GET_COLLABORATOR = 'getCollaborator'
 export const SET_COLLABORATOR = 'setCollaborator'
+
+// GET NOTIFICATIONS
+export const SET_NOTIFICATIONS = 'setNotifications'

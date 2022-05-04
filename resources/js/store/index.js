@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import {
   ADDING_NUMBER,
-  SUBTRACT_NUMBER,
+  SET_NOTIFICATIONS,
+  SUBTRACT_NUMBER
 } from './mutation-types'
 
 // Module Store
@@ -15,9 +16,11 @@ import updateStore from './modules/updatesStore'
 import rewardsStore from './modules/rewardsStore'
 import faqStore from './modules/faqStore'
 import collabStore from './modules/collabStore'
+import axios from "axios"
 
 const state__ = {
   number: 1,
+  notifications: []
 }
 
 const actions__ = {
@@ -27,6 +30,15 @@ const actions__ = {
   subtractNumber({commit, state}) {
     commit(SUBTRACT_NUMBER, 1)
   },
+  async getNotifications({commit}) {
+    try {
+      const req = await axios.get('notifications')
+      const res = req.data
+      commit(SET_NOTIFICATIONS, res)
+    } catch(e) {
+      console.error(e)
+    }
+  }
 }
 
 const mutations__ = {
@@ -36,6 +48,9 @@ const mutations__ = {
   [SUBTRACT_NUMBER] (state, data) {
     state.number = state.number - data
   },
+  [SET_NOTIFICATIONS] (state, data) {
+    state.notifications = data
+  }
 }
 
 const getters__ = {

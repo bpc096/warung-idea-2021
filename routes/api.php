@@ -110,3 +110,8 @@ Route::post('/payment/notification', [PaymentController::class, 'notificationHan
 //     Route::get('conversation/{user_two}', [ConversationController::class, 'show'])->name('conversation.show');
 //     Route::post('conversation/{conversation}/message', [ConversationController::class, 'store'])->name('conversation.store');
 // });
+
+/**
+ * API Get Notification
+ */
+Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:api');
