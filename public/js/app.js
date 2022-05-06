@@ -2052,9 +2052,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.notifications.count > 0) {
         var listNotif = this.notifications.notifications;
-        this.$toasted.info(listNotif[this.notifIndex].title, {
+        this.$toasted.info(listNotif[this.notifIndex].content, {
           position: "top-right",
-          duration: 7000,
+          duration: 5000,
+          containerClass: 'wrap-toast-notif',
           action: {
             text: "View",
             onClick: function onClick(e, toastObject) {
