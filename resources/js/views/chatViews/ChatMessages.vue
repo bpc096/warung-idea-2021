@@ -1,7 +1,8 @@
 <template>
-  <ul id="chatlogs" class="chat-messages-wrap">
-    <li class="left clearfix" v-for="message in messages" :key="message.id">
-      <div class="clearfix">
+  <div id="chatlogs" class="chat-messages-wrap">
+    <div class="left clearfix icon" v-for="message in messages" :key="message.id">
+      ●
+      <div class="clearfix wrap-head">
         <div class="header">
           <strong>
             {{ message.user.name }}
@@ -11,8 +12,8 @@
           {{ message.message }}
         </p>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -29,6 +30,15 @@ export default {
 .chat-messages-wrap {
   height: 70vh;
   overflow-y: scroll;
+
+  .icon {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .wrap-head {
+    margin-left: 1rem;
+  }
 
   .left {
     text-align: left;
