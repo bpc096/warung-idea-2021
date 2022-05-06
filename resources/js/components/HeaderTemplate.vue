@@ -50,7 +50,19 @@
         <button
           class="btn button-login dropdown-toggle"
           type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          🙍 Profile
+          ✉️ Notif
+        </button>
+        <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
+          <router-link to="/campaign/create" class="dropdown-item item-click-menu">
+            ➕ New Notification
+          </router-link>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button
+          class="btn button-login dropdown-toggle"
+          type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          🙍 {{userNameText}}
         </button>
         <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
           <h6 class="dropdown-header">{{ userEmailText }}</h6>
@@ -107,6 +119,9 @@ export default {
     isUserLoggedIn() {
       return this.loginMock
     },
+    userNameText() {
+      return this.user.name || 'Default Name'
+    },
     userEmailText() {
       return this.user.email || 'Default Email'
     },
@@ -157,7 +172,7 @@ export default {
       .then(() => {
         this.notifications = this.$store.state.notifications
       })
-    
+
   }
 }
 </script>

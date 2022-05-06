@@ -38,6 +38,7 @@ export default {
 
   .wrap-head {
     margin-left: 1rem;
+    width: 65%;
   }
 
   .left {

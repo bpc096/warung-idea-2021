@@ -1999,6 +1999,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2021,6 +2033,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     isUserLoggedIn: function isUserLoggedIn() {
       return this.loginMock;
+    },
+    userNameText: function userNameText() {
+      return this.user.name || 'Default Name';
     },
     userEmailText: function userEmailText() {
       return this.user.email || 'Default Email';
@@ -13980,7 +13995,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".chat-messages-wrap[data-v-05e6d19c] {\n  height: 70vh;\n  overflow-y: scroll;\n}\n.chat-messages-wrap .icon[data-v-05e6d19c] {\n  display: flex;\n  flex-direction: row;\n}\n.chat-messages-wrap .wrap-head[data-v-05e6d19c] {\n  margin-left: 1rem;\n}\n.chat-messages-wrap .left[data-v-05e6d19c] {\n  text-align: left;\n}\n.chat-messages-wrap p[data-v-05e6d19c] {\n  width: 90%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".chat-messages-wrap[data-v-05e6d19c] {\n  height: 70vh;\n  overflow-y: scroll;\n}\n.chat-messages-wrap .icon[data-v-05e6d19c] {\n  display: flex;\n  flex-direction: row;\n}\n.chat-messages-wrap .wrap-head[data-v-05e6d19c] {\n  margin-left: 1rem;\n  width: 65%;\n}\n.chat-messages-wrap .left[data-v-05e6d19c] {\n  text-align: left;\n}\n.chat-messages-wrap p[data-v-05e6d19c] {\n  width: 90%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -58373,7 +58388,43 @@ var render = function () {
                   "aria-expanded": "false",
                 },
               },
-              [_vm._v("\n        🙍 Profile\n      ")]
+              [_vm._v("\n        ✉️ Notif\n      ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dropdown-menu dropdown-menu-right mt-2",
+                attrs: { "aria-labelledby": "dropdownMenuButton" },
+              },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "dropdown-item item-click-menu",
+                    attrs: { to: "/campaign/create" },
+                  },
+                  [_vm._v("\n          ➕ New Notification\n        ")]
+                ),
+              ],
+              1
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "dropdown" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn button-login dropdown-toggle",
+                attrs: {
+                  type: "button",
+                  id: "dropdownMenuButton",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false",
+                },
+              },
+              [_vm._v("\n        🙍 " + _vm._s(_vm.userNameText) + "\n      ")]
             ),
             _vm._v(" "),
             _c(
