@@ -44,6 +44,7 @@ import UpdateTab from '../views/tabViews/UpdateTab.vue'
 
 // Private Message
 import ChatPage from '../views/chatViews/ChatPage.vue'
+import ChatPageAdvance from '../views/chatViews/ChatPageAdvance.vue'
 
 // store
 import store from '../store'
@@ -203,6 +204,11 @@ const routes = [
     path: '/chat',
     name: 'ChatPage',
     component: ChatPage,
+  },
+  {
+    path: '/chat/advance',
+    name: 'ChatPageAdvance',
+    component: ChatPageAdvance,
   }
 ]
 
