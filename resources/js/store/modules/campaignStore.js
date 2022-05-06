@@ -23,7 +23,7 @@ const actions = {
   },
   getCampaignById({commit}, data) {
     return new Promise((resolve, reject) => {
-      const apiUrl = 'campaign/' + data
+      const apiUrl = 'campaign/get_campaign/' + data
       Axios.get(apiUrl)
         .then(res => {
           resolve(res.data)
