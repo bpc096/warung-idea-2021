@@ -2000,17 +2000,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2018,15 +2007,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       loginMock: true,
-      notifications: []
+      notifications: [],
+      notifInterval: 0,
+      notifIndex: 0
     };
   },
   created: function created() {
-    var _this = this;
-
-    this.$store.dispatch('getNotifications').then(function () {
-      _this.notifications = _this.$store.state.notifications;
-    });
+    this.fetchNotification();
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)({
     isLoggedIn: 'isLoggedIn',
@@ -2051,9 +2038,56 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.notifications.count;
     }
   }),
+  watch: {
+    isLoggedIn: function isLoggedIn(newValue, oldValue) {
+      if (newValue) {
+        this.notifIndex = 0;
+        this.fetchNotification();
+      }
+    }
+  },
   methods: {
-    logout: function logout() {
+    notifyUser: function notifyUser() {
+      var _this = this;
+
+      if (this.notifications.count > 0) {
+        var listNotif = this.notifications.notifications;
+        this.$toasted.info(listNotif[this.notifIndex].title, {
+          position: "top-right",
+          duration: 7000,
+          action: {
+            text: "View",
+            onClick: function onClick(e, toastObject) {
+              toastObject.goAway(0);
+
+              _this.markNotifAsRead();
+
+              _this.$router.push('/profile/invitation');
+            }
+          }
+        });
+      }
+    },
+    fetchNotification: function fetchNotification() {
       var _this2 = this;
+
+      this.$store.dispatch('getNotifications').then(function () {
+        _this2.notifications = _this2.$store.state.notifications;
+
+        if (_this2.notifications.count > 0) {
+          _this2.notifInterval = setInterval(function () {
+            this.notifyUser(this.notifIndex);
+            this.notifIndex++;
+
+            if (this.notifIndex === this.notifications.count) {
+              clearInterval(this.notifInterval);
+            }
+          }.bind(_this2), 1500);
+        }
+      });
+    },
+    logout: function logout() {
+      var _this3 = this;
 
       this.$swal({
         title: 'Are you sure?',
@@ -2065,21 +2099,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmButtonText: 'Yes'
       }).then(function (result) {
         if (result.isConfirmed) {
-          _this2.$store.dispatch('logout').then(function () {
-            _this2.$swal({
+          _this3.$store.dispatch('logout').then(function () {
+            _this3.$swal({
               title: 'Logout Success',
               icon: 'success',
               timer: 3000,
               timerProgressBar: true
             });
 
-            _this2.$router.push('/');
+            _this3.$router.push('/');
           });
         }
       });
     },
     markNotifAsRead: function markNotifAsRead() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2091,8 +2125,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('notifications/markNotifAsRead');
 
               case 3:
-                _this3.$store.dispatch('getNotifications').then(function () {
-                  _this3.notifications = _this3.$store.state.notifications;
+                _this4.$store.dispatch('getNotifications').then(function () {
+                  _this4.notifications = _this4.$store.state.notifications;
                 });
 
                 _context.next = 9;
@@ -58388,42 +58422,6 @@ var render = function () {
                   "aria-expanded": "false",
                 },
               },
-              [_vm._v("\n        ✉️ Notif\n      ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "dropdown-menu dropdown-menu-right mt-2",
-                attrs: { "aria-labelledby": "dropdownMenuButton" },
-              },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "dropdown-item item-click-menu",
-                    attrs: { to: "/campaign/create" },
-                  },
-                  [_vm._v("\n          ➕ New Notification\n        ")]
-                ),
-              ],
-              1
-            ),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "dropdown" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn button-login dropdown-toggle",
-                attrs: {
-                  type: "button",
-                  id: "dropdownMenuButton",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "false",
-                },
-              },
               [_vm._v("\n        🙍 " + _vm._s(_vm.userNameText) + "\n      ")]
             ),
             _vm._v(" "),
@@ -58446,7 +58444,7 @@ var render = function () {
                     staticClass: "dropdown-item item-click-menu",
                     attrs: { to: "/profile" },
                   },
-                  [_vm._v("\n          Profile\n        ")]
+                  [_vm._v("\n          💬 Profile\n        ")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -58461,11 +58459,13 @@ var render = function () {
                     },
                   },
                   [
-                    _vm._v("\n          Invitation "),
+                    _vm._v("\n          ✉️ Invitation\n          "),
                     _vm.getCountNotification > 0
                       ? _c(
                           "span",
-                          { staticClass: "badge badge-pill badge-primary" },
+                          {
+                            staticClass: "ml-2 badge badge-pill badge-primary",
+                          },
                           [_vm._v(_vm._s(_vm.getCountNotification))]
                         )
                       : _vm._e(),
@@ -58478,7 +58478,7 @@ var render = function () {
                     staticClass: "dropdown-item item-click-menu",
                     attrs: { to: "/chat" },
                   },
-                  [_vm._v("\n          Chat Message\n        ")]
+                  [_vm._v("\n          💬 Chat Message\n        ")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -58487,7 +58487,7 @@ var render = function () {
                     staticClass: "dropdown-item item-click-menu",
                     on: { click: _vm.logout },
                   },
-                  [_vm._v("\n          Logout\n        ")]
+                  [_vm._v("\n          🔴 Logout\n        ")]
                 ),
               ],
               1

@@ -50,34 +50,23 @@
         <button
           class="btn button-login dropdown-toggle"
           type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          ✉️ Notif
-        </button>
-        <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
-          <router-link to="/campaign/create" class="dropdown-item item-click-menu">
-            ➕ New Notification
-          </router-link>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button
-          class="btn button-login dropdown-toggle"
-          type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           🙍 {{userNameText}}
         </button>
         <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
           <h6 class="dropdown-header">{{ userEmailText }}</h6>
           <div class="dropdown-divider"></div>
           <router-link to="/profile" class="dropdown-item item-click-menu">
-            Profile
+            💬 Profile
           </router-link>
           <router-link to="/profile/invitation" class="dropdown-item item-click-menu" @click.native="markNotifAsRead">
-            Invitation <span class="badge badge-pill badge-primary" v-if="getCountNotification > 0">{{getCountNotification}}</span>
+            ✉️ Invitation
+            <span class="ml-2 badge badge-pill badge-primary" v-if="getCountNotification > 0">{{getCountNotification}}</span>
           </router-link>
           <router-link to="/chat" class="dropdown-item item-click-menu">
-            Chat Message
+            💬 Chat Message
           </router-link>
           <a @click="logout" class="dropdown-item item-click-menu">
-            Logout
+            🔴 Logout
           </a>
         </div>
       </div>
@@ -102,15 +91,13 @@ export default {
   data: () => {
     return {
       loginMock: true,
-      notifications: []
+      notifications: [],
+      notifInterval: 0,
+      notifIndex: 0,
     }
   },
   created() {
-    this.$store
-      .dispatch('getNotifications')
-      .then(() => {
-        this.notifications = this.$store.state.notifications
-      })
+    this.fetchNotification()
   },
   computed: {
     ...mapGetters({
@@ -136,7 +123,47 @@ export default {
       return this.notifications.count
     }
   },
+  watch: {
+    isLoggedIn: function(newValue, oldValue) {
+      if(newValue) {
+        this.notifIndex = 0
+        this.fetchNotification()
+      }
+    }
+  },
   methods: {
+    notifyUser() {
+      if(this.notifications.count > 0) {
+        const listNotif = this.notifications.notifications
+        this.$toasted.info(listNotif[this.notifIndex].title, {
+          position: "top-right",
+          duration: 7000,
+          action: {
+            text: "View",
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0)
+              this.markNotifAsRead()
+              this.$router.push('/profile/invitation')
+            }
+          }
+        })
+      }
+    },
+    fetchNotification() {
+      this.$store.dispatch('getNotifications')
+        .then(() => {
+          this.notifications = this.$store.state.notifications
+          if(this.notifications.count > 0) {
+            this.notifInterval = setInterval(function () {
+              this.notifyUser(this.notifIndex)
+              this.notifIndex++
+              if(this.notifIndex === this.notifications.count) {
+                clearInterval(this.notifInterval)
+              }
+            }.bind(this), 1500)
+          }
+        })
+    },
     logout () {
       this.$swal({
         title: 'Are you sure?',
