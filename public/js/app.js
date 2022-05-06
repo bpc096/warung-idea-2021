@@ -2021,6 +2021,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       notifications: []
     };
   },
+  created: function created() {
+    var _this = this;
+
+    this.$store.dispatch('getNotifications').then(function () {
+      _this.notifications = _this.$store.state.notifications;
+    });
+  },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)({
     isLoggedIn: 'isLoggedIn',
     user: 'user'
@@ -2046,7 +2053,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: {
     logout: function logout() {
-      var _this = this;
+      var _this2 = this;
 
       this.$swal({
         title: 'Are you sure?',
@@ -2058,21 +2065,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmButtonText: 'Yes'
       }).then(function (result) {
         if (result.isConfirmed) {
-          _this.$store.dispatch('logout').then(function () {
-            _this.$swal({
+          _this2.$store.dispatch('logout').then(function () {
+            _this2.$swal({
               title: 'Logout Success',
               icon: 'success',
               timer: 3000,
               timerProgressBar: true
             });
 
-            _this.$router.push('/');
+            _this2.$router.push('/');
           });
         }
       });
     },
     markNotifAsRead: function markNotifAsRead() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -2081,11 +2088,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('notifications/mark_notif_as_read');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('notifications/markNotifAsRead');
 
               case 3:
-                _this2.$store.dispatch('getNotifications').then(function () {
-                  _this2.notifications = _this2.$store.state.notifications;
+                _this3.$store.dispatch('getNotifications').then(function () {
+                  _this3.notifications = _this3.$store.state.notifications;
                 });
 
                 _context.next = 9;
@@ -2104,13 +2111,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee, null, [[0, 6]]);
       }))();
     }
-  },
-  created: function created() {
-    var _this3 = this;
-
-    this.$store.dispatch('getNotifications').then(function () {
-      _this3.notifications = _this3.$store.state.notifications;
-    });
   }
 });
 

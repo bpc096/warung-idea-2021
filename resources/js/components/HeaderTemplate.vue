@@ -105,6 +105,13 @@ export default {
       notifications: []
     }
   },
+  created() {
+    this.$store
+      .dispatch('getNotifications')
+      .then(() => {
+        this.notifications = this.$store.state.notifications
+      })
+  },
   computed: {
     ...mapGetters({
       isLoggedIn: 'isLoggedIn',
@@ -157,7 +164,7 @@ export default {
     },
     async markNotifAsRead() {
       try {
-        await axios.get('notifications/mark_notif_as_read')
+        await axios.get('notifications/markNotifAsRead')
         this.$store.dispatch('getNotifications')
           .then(() => {
             this.notifications = this.$store.state.notifications
@@ -166,13 +173,6 @@ export default {
         console.error(e)
       }
     }
-  },
-  created() {
-    this.$store.dispatch('getNotifications')
-      .then(() => {
-        this.notifications = this.$store.state.notifications
-      })
-
   }
 }
 </script>
