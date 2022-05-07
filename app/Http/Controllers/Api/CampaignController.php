@@ -107,7 +107,7 @@ class CampaignController extends Controller
             CampaignDetail::create([
                 'campaign_id' => $campaign->id,
                 'users_id'    => $collaborator,
-                'status'      => 'pending'
+                'status'      => 'Pending'
             ]);
 
             // ** Create notification for each collaborators

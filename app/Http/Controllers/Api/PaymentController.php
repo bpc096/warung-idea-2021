@@ -66,22 +66,7 @@ class PaymentController extends Controller
 
             $no_invoice = 'TRX-'.Str::upper($random);
 
-            // if ($reward_id) {
-            //     # get data reward
-            //     $reward = Reward::where('id', $request->rewardId)->first();
-            //     $amount = $request->amount;
-            //     $campaign = Campaign::find($reward->campaign_id)->where('slug', $request->campaignSlug)->first();
-
-            //     $donation = Payment::create([
-            //         'invoice'       => $no_invoice,
-            //         'campaign_id'   => $campaign->id,
-            //         'donatur_id'    => auth()->guard('api')->user()->id,
-            //         'amount'        => $amount,
-            //         'pray'          => $request->pray,
-            //         'status'        => 'pending',
-            //     ]);
-            // } else {
-                # get data campaign
+            # get data campaign
             $campaign = Campaign::where('id', $request->campaignId)->first();
 
             $donation = Payment::create([
@@ -91,19 +76,7 @@ class PaymentController extends Controller
                 'amount'        => $request->amount,
                 'status'        => 'pending',
             ]);
-            // }
             
-            // // get data campaign
-            // $campaign = Campaign::where('slug', $request->campaignSlug)->first();
-
-            // $donation = Payment::create([
-            //     'invoice'       => $no_invoice,
-            //     'campaign_id'   => $campaign->id,
-            //     'users_id'      => auth()->guard('api')->user()->id,
-            //     'amount'        => $request->amount,
-            //     'status'        => 'pending',
-            // ]);
-
             // Buat transaksi ke midtrans kemudian save snap tokennya.
             $payload = [
                 'transaction_details' => [
@@ -122,7 +95,6 @@ class PaymentController extends Controller
             $donation->save();
 
             $this->response['snap_token'] = $snapToken;
-
 
         });
 
@@ -162,41 +134,34 @@ class PaymentController extends Controller
 
             // For credit card transaction, we need to check whether transaction is challenge by FDS or not
             if ($type == 'credit_card') {
-
-              if($fraud == 'challenge') {
-                
-                /**
-                *   update invoice to pending
-                */
-                $data_donation->update([
-                    'status' => 'pending'
-                ]);
-
-              } else {
-                
-                /**
-                *   update invoice to success
-                */
-                $data_donation->update([
-                    'status' => 'success'
-                ]);
-
-              }
-
+                if($fraud == 'challenge') {
+                    
+                    /**
+                    *   update invoice to pending
+                    */
+                    $data_donation->update([
+                        'status' => 'pending'
+                    ]);
+                } else {
+                    
+                    /**
+                    *   update invoice to success
+                    */
+                    $data_donation->update([
+                        'status' => 'success'
+                    ]);
+                }
             }
-
-        } elseif ($transaction == 'settlement') {
-
+        } 
+        elseif ($transaction == 'settlement') {
             /**
             *   update invoice to success
             */
             $data_donation->update([
                 'status' => 'success'
             ]);
-
-
-        } elseif($transaction == 'pending'){
-
+        } 
+        elseif($transaction == 'pending'){
             
             /**
             *   update invoice to pending
@@ -204,10 +169,8 @@ class PaymentController extends Controller
             $data_donation->update([
                 'status' => 'pending'
             ]);
-
-
-        } elseif ($transaction == 'deny') {
-
+        } 
+        elseif ($transaction == 'deny') {
             
             /**
             *   update invoice to failed
@@ -215,10 +178,8 @@ class PaymentController extends Controller
             $data_donation->update([
                 'status' => 'failed'
             ]);
-
-
-        } elseif ($transaction == 'expire') {
-
+        } 
+        elseif ($transaction == 'expire') {
             
             /**
             *   update invoice to expired
@@ -226,18 +187,14 @@ class PaymentController extends Controller
             $data_donation->update([
                 'status' => 'expired'
             ]);
-
-
-        } elseif ($transaction == 'cancel') {
-
+        } 
+        elseif ($transaction == 'cancel') {
             /**
             *   update invoice to failed
             */
             $data_donation->update([
                 'status' => 'failed'
             ]);
-
         }
-
     }
 }
