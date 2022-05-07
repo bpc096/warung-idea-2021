@@ -44,6 +44,7 @@ Route::prefix('campaign')->group(function() {
     Route::post('/', [CampaignController::class, 'store'])->middleware('auth:api');
     Route::post('/{campaign}', [CampaignController::class, 'update'])->middleware('auth:api');
     Route::delete('/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
+    Route::get('/collaboration/{id_user}', [CampaignController::class, 'get_list_collaboration'])->middleware('auth:api');
 
     /**
      * Api Updates

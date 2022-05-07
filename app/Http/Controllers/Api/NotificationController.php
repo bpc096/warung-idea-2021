@@ -25,7 +25,7 @@ class NotificationController extends Controller
         return response()->json([
             "notifications" => $results,
             "count" => count($results)
-        ]);
+        ], 200);
     }
 
     public function mark_notif_as_read(Request $req) {
@@ -37,10 +37,10 @@ class NotificationController extends Controller
         if($update) {
             return response()->json([
                 "success" => true
-            ]);
+            ], 200);
         }
         return response()->json([
             "success" => false
-        ]);
+        ], 500);
     }
 }
