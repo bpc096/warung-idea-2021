@@ -26,6 +26,9 @@ class CreateCampaignsTable extends Migration
             $table->string('image');
             $table->text('description');
             $table->text('project_plan');
+            $table->char('is_approved', 1)->default('0'); // 0 = Pending, 1 = Approve, 2 = Reject
+            $table->char('is_delete_approved', 1); // 0 = Pending, 1 = Approve, 2 = Reject
+            $table->softDeletes();
             $table->json('collaborators')->default(json_encode([]));
             $table->timestamps();
         });

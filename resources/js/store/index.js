@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import {
   ADDING_NUMBER,
-  SET_NOTIFICATIONS,
   SUBTRACT_NUMBER
 } from './mutation-types'
 
@@ -34,7 +33,7 @@ const actions__ = {
     try {
       const req = await axios.get('notifications')
       const res = req.data
-      commit(SET_NOTIFICATIONS, res)
+      commit('setNotification', res)
     } catch(e) {
       console.error(e)
     }
@@ -48,13 +47,13 @@ const mutations__ = {
   [SUBTRACT_NUMBER] (state, data) {
     state.number = state.number - data
   },
-  [SET_NOTIFICATIONS] (state, data) {
+  setNotification(state, data) {
     state.notifications = data
   }
 }
 
 const getters__ = {
-
+  
 }
 
 Vue.use(Vuex)
