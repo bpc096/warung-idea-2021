@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="tabs">
-      <div v-for="(tab,index) in tabs" :class="{ 'is-active': tab.isActive }" :key="index">
+      <div v-for="(tab,index) in tabs" :class="['tab-wrap', {'is-active': tab.isActive }]" :key="index">
           <a :href="tab.href" @click="selectTab(tab)">{{ tab.name }}</a>
+          <div :class="{'border-active': tab.isActive}"></div>
       </div>
     </div>
     <div class="tabs-details">
@@ -42,14 +43,31 @@ export default {
   align-items: center;
   height: 3rem;
 
+  .tab-wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   a {
     text-decoration: none;
     color: black;
     margin: 0 5rem;
+    transition: 0.5s;
+
 
     &:hover {
       color: white;
+      border-bottom: 1px solid black;
+      width: 60%;
     }
+  }
+
+  .border-active {
+    border-bottom: 2px solid black;
+    width: 60%;
   }
 }
 </style>

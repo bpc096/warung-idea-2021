@@ -46,6 +46,9 @@ import UpdateTab from '../views/tabViews/UpdateTab.vue'
 import ChatPage from '../views/chatViews/ChatPage.vue'
 import ChatPageAdvance from '../views/chatViews/ChatPageAdvance.vue'
 
+// Dashboard Page
+import DashboardPage from '../views/dashboardViews/DashboardPage.vue'
+
 // store
 import store from '../store'
 
@@ -209,6 +212,15 @@ const routes = [
     path: '/chat/advance',
     name: 'ChatPageAdvance',
     component: ChatPageAdvance,
+  },
+  {
+    path: '/admin/dashboard',
+    name: 'DashboardPage',
+    component: DashboardPage,
+    meta: {
+      // Change this to false when finsihed
+      authAdmin: false,
+    }
   }
 ]
 
@@ -219,12 +231,25 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.authAdmin)){
+    const isLoggedIn = store.getters.isLoggedIn
+    const user = store.getters.user
+
+    if(isLoggedIn && user && user.role === 'admin') {
+      next()
+      return
+    }
+    Vue.toasted.error("Silahkan login sebagai admin terlebih dahulu!", {position: 'top-center', duration: 3000})
+    next('/login')
+  }
+
+
   if(to.matched.some(record => record.meta.auth)) {
     if(store.getters.isLoggedIn && store.getters.user) {
       next()
       return
     }
-    Vue.toasted.error("Silahkan login terlebih dahulu!", {position: 'top-center', duration: 2000})
+    Vue.toasted.error("Silahkan login terlebih dahulu!", {position: 'top-center', duration: 3000})
     next('/login')
   }
 
