@@ -7,7 +7,7 @@
           alt="bright-lamp"
         >
         <div class="text-image">
-          WarungIde.com
+          WarungIdea.com
         </div>
       </a>
     </div>

@@ -15,7 +15,7 @@
     <div class="info-app">
       <div class="logo-image">
         <img src="\images\icon\light-bulb.png" alt="bright-lamp">
-        <div class="text-image">WarungIde.com</div>
+        <div class="text-image">WarungIdea.com</div>
       </div>
       <div class="love-text">
         <a href="https://github.com/mfaisalghozi/warung-ide-2021" target="blank">
