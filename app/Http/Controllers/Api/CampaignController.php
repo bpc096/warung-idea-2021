@@ -22,9 +22,15 @@ class CampaignController extends Controller
     public function index()
     {
         //get data campaigns
-        $campaigns = Campaign::with('user')->with('sumPayment')->when(request()->q, function($campaigns) {
+        $campaigns = Campaign::with('user')
+        ->where("is_approved", '1') // ** Show campaign only approved campaign
+        ->where("deleted_at", null) // ** And Not Deleted
+        ->with('sumPayment')
+        ->when(request()->q, function($campaigns) {
             $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
-        })->latest()->paginate(100);
+        })
+        ->latest()
+        ->paginate(100);
 
         //return with response JSON
         return response()->json([
@@ -103,21 +109,23 @@ class CampaignController extends Controller
             'image'              => $image->hashName()
         ]);
 
-        foreach ($request->collaborators as $collaborator) {
-            CampaignDetail::create([
-                'campaign_id' => $campaign->id,
-                'users_id'    => $collaborator,
-                'status'      => 'pending'
-            ]);
-
-            // ** Create notification for each collaborators
-            $notif = new Notifications;
-            $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
-            $notif->from    = auth()->guard('api')->user()->id;
-            $notif->to      = $collaborator;
-            $notif->content = "You have been invited to join in ".$request->title." campaign.";
-            $notif->is_read = '0';
-            $notif->save();
+        if(!empty($request->collaborators[0])) {
+            foreach ($request->collaborators as $collaborator) {
+                CampaignDetail::create([
+                    'campaign_id' => $campaign->id,
+                    'users_id'    => $collaborator,
+                    'status'      => 'pending'
+                ]);
+    
+                // ** Create notification for each collaborators
+                $notif = new Notifications;
+                $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
+                $notif->from    = auth()->guard('api')->user()->id;
+                $notif->to      = $collaborator;
+                $notif->content = "You have been invited to join in ".$request->title." campaign.";
+                $notif->is_read = '0';
+                $notif->save();
+            }
         }
 
         //return JSON
@@ -262,18 +270,103 @@ class CampaignController extends Controller
      */
     public function destroy($id)
     {
-        $campaign = Campaign::findOrFail($id);
-        Storage::disk('local')->delete('public/campaigns/'.basename($campaign->image));
-        $campaign->delete();
+        // ** Approval Delete
+        $campaign = Campaign::where('id', $id)->update([
+            "is_delete_approved" => '0' // ** Set to pending
+        ]);
+        // Storage::disk('local')->delete('public/campaigns/'.basename($campaign->image));
+        // $campaign->delete();
 
         if($campaign){
             return response()->json([
-                'status' => 'success'
+                'status' => 'success',
+                'message' => 'Your delete request has been sent to admin. Please wait for admin confirmation.'
             ], 200);
         }else{
             return response()->json([
-                'status' => 'error'
+                'status' => 'error',
+                'message' => 'Failed to request delete.'
             ], 400);
         }
+    }
+
+    // ** Approve Campaign
+    public function approve_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_approved" => '1'
+        ]);
+        
+        if($update) {
+            return response()->json([
+                "success" => true,
+                "message" => "Campaign has been approved"
+            ]);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to approve"
+        ]);
+    }
+
+    // ** Reject Campaign
+    public function reject_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_approved" => '2'
+        ]);
+        
+        if($update) {
+            return response()->json([
+                "success" => true,
+                "message" => "Campaign has been rejected"
+            ]);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to reject"
+        ]);
+    }
+
+    // ** Approve Delete Campaign
+    public function approve_delete_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_delete_approved" => '1'
+        ]);
+        
+        if($update) {
+            // If has been approved, then do delete
+            $campaign = Campaign::findOrFail($id);
+            $campaign->delete();
+
+            return response()->json([
+                "success" => true,
+                "message" => "Campaign has been approved to deleted"
+            ]);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to approve delete campaign"
+        ]);
+    }
+
+    // ** Reject Delete Campaign
+    public function reject_delete_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_delete_approved" => '2'
+        ]);
+        
+        if($update) {
+            return response()->json([
+                "success" => true,
+                "message" => "Delete Campaign has been rejected"
+            ]);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to reject delete campaign"
+        ]);
     }
 }

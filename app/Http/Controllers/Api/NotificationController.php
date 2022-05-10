@@ -30,7 +30,7 @@ class NotificationController extends Controller
         return response()->json([
             "notifications" => $results,
             "count" => count($results)
-        ]);
+        ], 200);
     }
 
     /**
@@ -38,9 +38,8 @@ class NotificationController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-    public function markNotifAsRead(Request $req) {
+    public function mark_notif_as_read(Request $req) {
         $res = false;
-
         $idUser = auth('api')->user()->id;
         $update = Notif::where("to", $idUser)
         ->update([
