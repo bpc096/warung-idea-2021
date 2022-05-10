@@ -13,8 +13,8 @@
               <th>Amount</th>
             </tr>
             <tr v-for="(data, idx) in listData" :key="idx">
-              <td>{{ idx }}</td>
-              <td>{{ data.username }}</td>
+              <td>{{ idx += 1 }}</td>
+              <td>{{ data.name }}</td>
               <td>{{ data.amount }}</td>
             </tr>
           </table>
@@ -31,10 +31,6 @@
 export default {
   name: 'PaymentTab',
   props: {
-    campaignId: {
-      type: Number,
-      default: 1,
-    },
     userId: {
       type: Number,
       default: 1
@@ -50,7 +46,6 @@ export default {
     }
   },
   mounted() {
-    // this.generateMockData()
     this.fetchingPaymentListData()
   },
   methods: {
@@ -65,18 +60,15 @@ export default {
       }
       this.listData = mockData
     },
-    fetchingPaymentListData() {
-      const campaignId = this.campaignId
-      this.$store
-        .dispatch('getPaymentByCampaignId', campaignId)
-        .then(res => {
-          if(res.success && res.data && res.data.length > 0) {
-            this.listData = res.data
-          }
-        })
-        .catch(err => {
-          console.error(err)
-        })
+    async fetchingPaymentListData() {
+      const campaignId = this.$route.params.projectId
+      try {
+        const req = await axios.get(`payment/get_payment_by_campaign/${campaignId}`)
+        const res = req.data
+        this.listData = res.data.data
+      } catch(e) {
+        console.error("Failed to get payment", e)
+      }
     }
   }
 }

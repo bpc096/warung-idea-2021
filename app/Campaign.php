@@ -32,6 +32,14 @@ class Campaign extends Model
         return $this->hasMany(Faq::class);
     }
 
+    public function details() {
+        return $this->hasMany(CampaignDetail::class, 'campaign_id');
+    }
+
+    public function payments() {
+        return $this->hasMany(Payment::class, 'campaign_id');
+    }
+
     protected $casts = [
         'collaborators' => 'array'
     ];

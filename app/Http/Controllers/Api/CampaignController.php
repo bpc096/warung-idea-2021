@@ -300,13 +300,13 @@ class CampaignController extends Controller
             return response()->json([
                 "success" => true,
                 "message" => "Campaign has been approved"
-            ]);
+            ], 200);
         }
 
         return response()->json([
             "success" => false,
             "message" => "Failed to approve"
-        ]);
+        ], 500);
     }
 
     // ** Reject Campaign
@@ -319,13 +319,13 @@ class CampaignController extends Controller
             return response()->json([
                 "success" => true,
                 "message" => "Campaign has been rejected"
-            ]);
+            ], 200);
         }
 
         return response()->json([
             "success" => false,
             "message" => "Failed to reject"
-        ]);
+        ], 500);
     }
 
     // ** Approve Delete Campaign
@@ -342,13 +342,13 @@ class CampaignController extends Controller
             return response()->json([
                 "success" => true,
                 "message" => "Campaign has been approved to deleted"
-            ]);
+            ], 200);
         }
 
         return response()->json([
             "success" => false,
             "message" => "Failed to approve delete campaign"
-        ]);
+        ], 500);
     }
 
     // ** Reject Delete Campaign
@@ -361,12 +361,41 @@ class CampaignController extends Controller
             return response()->json([
                 "success" => true,
                 "message" => "Delete Campaign has been rejected"
-            ]);
+            ], 200);
         }
 
         return response()->json([
             "success" => false,
             "message" => "Failed to reject delete campaign"
-        ]);
+        ], 500);
+    }
+
+    // ** Get List Collaboration
+    public function get_list_collaboration($id_user) {
+        $campaign = Campaign::select('campaigns.*', 
+            'campaign_details.users_id',
+            'campaign_details.status', 
+            'payments.amount',
+            'payments.snap_token',
+            'payments.status as payment_status',
+        )
+        ->leftJoin('campaign_details', 'campaign_details.campaign_id', '=', 'campaigns.id')
+        ->leftJoin('payments', 'payments.campaign_id', '=', 'campaigns.id')
+        ->where("campaign_details.users_id", $id_user)
+        ->get();
+        
+        return response()->json(["collaborations" => $campaign], 200);
+    }
+
+    // ** Get All Campaigns(For Admin)
+    public function GetAllCampaigns() {
+        $get = Campaign::select('campaigns.*', 'categories.category_name', 'users.name as created_by')
+        ->leftJoin('categories', 'categories.id',  '=', 'campaigns.category_id')
+        ->leftJoin('users', 'users.id',  '=', 'campaigns.users_id')
+        ->where("campaigns.deleted_at", null)
+        ->paginate(10);
+        return response()->json([
+            "all_campaigns" => $get
+        ], 200);
     }
 }
