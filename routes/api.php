@@ -77,6 +77,9 @@ Route::prefix('campaign')->group(function() {
     // ** Approve & reject delete campaign
     Route::put('approve_delete_campaign/{id}', [CampaignController::class, 'approve_delete_campaign'])->middleware('auth:api');
     Route::put('reject_delete_campaign/{id}', [CampaignController::class, 'reject_delete_campaign'])->middleware('auth:api');
+
+    // ** For admin needs
+    Route::get('/get_all_campaigns', [CampaignController::class, 'GetAllCampaigns'])->middleware('auth:api');
 });
 
 /**
@@ -108,6 +111,7 @@ Route::get('/articles', [ArticleController::class, 'index']);
 Route::prefix('payment')->group(function() {
     Route::get('/', [PaymentController::class, 'index'])->middleware('auth:api');
     Route::post('/', [PaymentController::class, 'store'])->middleware('auth:api');
+    Route::get('/get_payment_by_campaign/{id_campaign}', [PaymentController::class, 'GetPaymentByCampaign'])->middleware('auth:api');
     Route::post('/notification', [PaymentController::class, 'notificationHandler']);
 });
 

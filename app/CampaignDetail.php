@@ -12,7 +12,7 @@ class CampaignDetail extends Model
     protected $fillable = ['campaign_id', 'users_id', 'status'];
 
     public function campaigns(){
-        return $this->hasMany(Campaign::class,'id', 'campaign_id');
+        return $this->belongsTo(Campaign::class);
     }
 
     public function users(){

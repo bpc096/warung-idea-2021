@@ -92,7 +92,7 @@
           <creatorTab />
         </tab>
         <tab name="Payment">
-          <paymentTab />
+          <paymentTab/>
         </tab>
         <tab name="Forum">
           <forumTab
@@ -146,6 +146,7 @@ export default {
       payment: [],
       updateTabData: [],
       faqTabData: [],
+      campaignID: ''
     }
   },
   async created () {
