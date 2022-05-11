@@ -67,7 +67,7 @@ export default {
                   title: 'Create Campaign Request',
                 },
                 {
-                  href: {path:  baseUrl + 'requestlist/deletecampign'},
+                  href: {path:  baseUrl + 'requestlist/deletecampaign'},
                   title: 'Delete Campaign Request',
                 },
                 {

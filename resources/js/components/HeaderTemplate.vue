@@ -58,6 +58,9 @@
           <router-link to="/profile" class="dropdown-item item-click-menu">
             🧑‍🚀 Profile
           </router-link>
+          <router-link to="/admin/dashboard/adminlist" class="dropdown-item item-click-menu">
+            🧑‍🚀 Admin Dashboard
+          </router-link>
           <router-link to="/profile/invitation" class="dropdown-item item-click-menu" @click.native="markNotifAsRead">
             ✉️ Invitation
           </router-link>

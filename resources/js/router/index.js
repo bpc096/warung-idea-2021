@@ -53,6 +53,9 @@ import UserListPage from '../views/dashboardViews/UserListPage.vue'
 import CampaignListPage from '../views/dashboardViews/CampaignListPage.vue'
 import CreateNewAdmin from '../views/dashboardViews/CreateAdminPage.vue'
 import RequestListPage from '../views/dashboardViews/RequestListPage.vue'
+import RequestCreatePage from '../views/dashboardViews/RequestCreatePage.vue'
+import RequestDeletePage from '../views/dashboardViews/RequestDeletePage.vue'
+import RequestFinishedPage from '../views/dashboardViews/RequestFinishedPage.vue'
 
 // store
 import store from '../store'
@@ -244,8 +247,20 @@ const routes = [
         component: CreateNewAdmin,
       },
       {
-        path: 'requestlist/:requestname',
+        path: 'requestlist/becomecreator',
         component: RequestListPage,
+      },
+      {
+        path: 'requestlist/createcampaign',
+        component: RequestCreatePage
+      },
+      {
+        path: 'requestlist/deletecampaign',
+        component: RequestDeletePage
+      },
+      {
+        path: 'requestlist/finishedcampaign',
+        component: RequestFinishedPage
       }
     ]
   }

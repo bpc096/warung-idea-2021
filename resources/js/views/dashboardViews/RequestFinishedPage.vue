@@ -1,7 +1,7 @@
 <template>
   <div class="campaign-list-page">
     <div class="title-tab">
-      All Campaign List
+      Request Approval - Finished Campaign
     </div>
     <div class="payment-card">
       <div class="content-contributor">
@@ -12,10 +12,8 @@
             <th>Project Owner</th>
             <th>Target Donation</th>
             <th>Finished Date</th>
-            <th>Create Approval Status</th>
-            <th>Delete Approval Status</th>
-            <th>Finished Approval Status</th>
-            <th>Action</th>
+            <th>Approval Status</th>
+            <th>Action Finished Approval</th>
           </tr>
           <tr v-for="(data, idx) in listData" :key="idx">
             <td>{{ data.id }}</td>
@@ -23,12 +21,22 @@
             <td>{{ data.created_by }}</td>
             <td>Rp {{ formatMoney(data.target_donation) }}</td>
             <td>{{ data.max_date }}</td>
-            <td>{{ checkStatusCampaign(data.is_approved) }}</td>
-            <td>{{ checkStatusCampaign(data.is_delete_approved) }}</td>
             <td>{{ checkStatusCampaign(data.is_finish_approved) }}</td>
             <td>
               <button @click="clickCampaign('view', data.id)" >
                 View Campaign
+              </button>
+              <button
+                @click="clickCampaign('accept', data.id)"
+                :disabled="isBtnDisabled(data.is_finish_approved)"
+              >
+                Accept Campaign
+              </button>
+              <button
+                @click="clickCampaign('reject', data.id)"
+                :disabled="isBtnDisabled(data.is_finish_approved)"
+              >
+                Reject Campaign
               </button>
             </td>
           </tr>
@@ -50,7 +58,7 @@
 import Axios from 'axios'
 
 export default {
-  name: 'CampaignListPage',
+  name: 'RequestFinishedPage',
   data: () => {
     return {
       listData: [],
@@ -88,6 +96,7 @@ export default {
       if(!status || status == null) txt = 'Initial'
 
       const isApproved = parseInt(status)
+
       if(isApproved === 0) txt = 'Pending'
       else if(isApproved === 1) txt = 'Approved'
       else if(isApproved === 2) txt = 'Rejected'
@@ -105,9 +114,20 @@ export default {
       .trimLeft()
       return formatter
     },
+    isBtnDisabled(status) {
+      let stat=false
+      if(!status || status == null) stat = true
+      const isApproved = parseInt(status)
+      if(isApproved === 1 || isApproved === 2) stat = true
+      return stat
+    },
     clickCampaign(type, campaignId) {
       if(type === 'view') {
         this.$router.push('/projectdetail/'+campaignId)
+      } else if (type === 'accept') {
+
+      } else if (type === 'reject') {
+
       }
     }
   }
