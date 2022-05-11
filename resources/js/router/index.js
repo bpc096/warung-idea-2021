@@ -48,6 +48,11 @@ import ChatPageAdvance from '../views/chatViews/ChatPageAdvance.vue'
 
 // Dashboard Page
 import DashboardPage from '../views/dashboardViews/DashboardPage.vue'
+import AdminListPage from '../views/dashboardViews/AdminListPage.vue'
+import UserListPage from '../views/dashboardViews/UserListPage.vue'
+import CampaignListPage from '../views/dashboardViews/CampaignListPage.vue'
+import CreateNewAdmin from '../views/dashboardViews/CreateAdminPage.vue'
+import RequestListPage from '../views/dashboardViews/RequestListPage.vue'
 
 // store
 import store from '../store'
@@ -220,7 +225,29 @@ const routes = [
     meta: {
       // Change this to false when finsihed
       authAdmin: false,
-    }
+    },
+    children: [
+      {
+        path: 'adminlist',
+        component: AdminListPage,
+      },
+      {
+        path: 'userlist',
+        component: UserListPage,
+      },
+      {
+        path: 'campaignlist',
+        component: CampaignListPage,
+      },
+      {
+        path: 'createadmin',
+        component: CreateNewAdmin,
+      },
+      {
+        path: 'requestlist/:requestname',
+        component: RequestListPage,
+      }
+    ]
   }
 ]
 

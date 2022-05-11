@@ -74,7 +74,7 @@
           class="btn button-notif dropdown-toggle"
           type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="ml-2 badge badge-pill badge-primary" v-if="getCountNotification > 0">{{getCountNotification}}</span>
-            🔔
+            <i class="fa-solid fa-bell"></i>
         </button>
         <div
           :class="{'hide-scrollbar': getCountNotification <= 0}"
@@ -98,7 +98,7 @@
           </div>
           <div v-else class="empty-update">
             <div>
-              Upss... There's no notification!
+              There's no notification!
             </div>
           </div>
         </div>

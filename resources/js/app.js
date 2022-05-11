@@ -13,11 +13,14 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 import Toasted from 'vue-toasted'
-import VueSweetalert2 from 'vue-sweetalert2';
+import VueSidebarMenu from 'vue-sidebar-menu'
+import VueSweetalert2 from 'vue-sweetalert2'
 
 import 'bootstrap'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+
 
 import { setHeaderToken } from './utils/auth'
 
@@ -34,6 +37,7 @@ if(devApp) {
 Axios.defaults.baseURL = setBaseUrl
 Vue.config.productionTip = false
 
+Vue.use(VueSidebarMenu)
 Vue.use(VueSweetalert2);
 Vue.use(Axios)
 Vue.use(Toasted)
