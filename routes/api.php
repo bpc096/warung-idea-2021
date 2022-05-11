@@ -24,8 +24,12 @@ Route::post('/login', [LoginController::class, 'login']);
 /**
  * Api User
  */
-Route::get('/user', [UserController::class, 'index']);
-
+Route::prefix('user')->group(function() {
+    Route::get('/', [UserController::class, 'index']);
+    Route::post('/create_user', [UserController::class, 'CreateUser'])->middleware('auth:api');
+    Route::post('/update_user', [UserController::class, 'UpdateUser'])->middleware('auth:api');
+    Route::delete('/delete_user/{id}', [UserController::class, 'DeleteUser'])->middleware('auth:api');
+});
 
 /**
  * APi Category
