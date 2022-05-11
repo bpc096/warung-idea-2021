@@ -1,6 +1,11 @@
 <template>
   <div class="wrap-dashboard-page">
-    HELLO THERE!
+    <div class="side-bar-menu">
+      Admin Menu
+    </div>
+    <div class="board-main-menu">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -12,7 +17,6 @@ export default {
 
 <style lang="less" scoped>
 .wrap-dashboard-page{
-  color: pink;
   min-height: 90vh;
 }
 </style>

@@ -158,9 +158,9 @@ export default {
               .dispatch('deleteCampaign', this.campaignId)
               .then(() => {
                 this.$swal({
-                  title: 'Deleted!',
+                  title: 'Your delete request has been sent to admin !',
                   icon: 'success',
-                  html: 'Your Campaign has been deleted.<br>Page will refresh in <b></b> second.',
+                  html: 'Please wait for admin confirmation,<br>Page will refresh in <b></b> second.',
                   timer: 5000,
                   timerProgressBar: true,
                   didOpen: () => {
