@@ -120,6 +120,11 @@ Route::prefix('payment')->group(function() {
 });
 
 
+/**
+ * API Notification
+ */
+Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:api');
+Route::get('/notifications/mark_notif_as_read', [NotificationController::class, 'mark_notif_as_read'])->middleware('auth:api');
 
 /**
  * Api Private Chat
@@ -134,12 +139,3 @@ Route::prefix('payment')->group(function() {
 //     Route::get('conversation/{user_two}', [ConversationController::class, 'show'])->name('conversation.show');
 //     Route::post('conversation/{conversation}/message', [ConversationController::class, 'store'])->name('conversation.store');
 // });
-
-/**
- * API Notification
- */
-Route::prefix('notifications')->group(function(){
-    Route::get('/', [NotificationController::class, 'index'])->middleware('auth:api');
-    Route::get('/mark_notif_as_read', [NotificationController::class, 'mark_notif_as_read'])->middleware('auth:api');
-});
-

@@ -44,6 +44,18 @@ import UpdateTab from '../views/tabViews/UpdateTab.vue'
 
 // Private Message
 import ChatPage from '../views/chatViews/ChatPage.vue'
+import ChatPageAdvance from '../views/chatViews/ChatPageAdvance.vue'
+
+// Dashboard Page
+import DashboardPage from '../views/dashboardViews/DashboardPage.vue'
+import AdminListPage from '../views/dashboardViews/AdminListPage.vue'
+import UserListPage from '../views/dashboardViews/UserListPage.vue'
+import CampaignListPage from '../views/dashboardViews/CampaignListPage.vue'
+import CreateNewAdmin from '../views/dashboardViews/CreateAdminPage.vue'
+import RequestListPage from '../views/dashboardViews/RequestListPage.vue'
+import RequestCreatePage from '../views/dashboardViews/RequestCreatePage.vue'
+import RequestDeletePage from '../views/dashboardViews/RequestDeletePage.vue'
+import RequestFinishedPage from '../views/dashboardViews/RequestFinishedPage.vue'
 
 // store
 import store from '../store'
@@ -203,6 +215,54 @@ const routes = [
     path: '/chat',
     name: 'ChatPage',
     component: ChatPage,
+  },
+  {
+    path: '/chat/advance',
+    name: 'ChatPageAdvance',
+    component: ChatPageAdvance,
+  },
+  {
+    path: '/admin/dashboard',
+    name: 'DashboardPage',
+    component: DashboardPage,
+    meta: {
+      // Change this to false when finsihed
+      authAdmin: false,
+    },
+    children: [
+      {
+        path: 'adminlist',
+        component: AdminListPage,
+      },
+      {
+        path: 'userlist',
+        component: UserListPage,
+      },
+      {
+        path: 'campaignlist',
+        component: CampaignListPage,
+      },
+      {
+        path: 'createadmin',
+        component: CreateNewAdmin,
+      },
+      {
+        path: 'requestlist/becomecreator',
+        component: RequestListPage,
+      },
+      {
+        path: 'requestlist/createcampaign',
+        component: RequestCreatePage
+      },
+      {
+        path: 'requestlist/deletecampaign',
+        component: RequestDeletePage
+      },
+      {
+        path: 'requestlist/finishedcampaign',
+        component: RequestFinishedPage
+      }
+    ]
   }
 ]
 
@@ -213,12 +273,25 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.authAdmin)){
+    const isLoggedIn = store.getters.isLoggedIn
+    const user = store.getters.user
+
+    if(isLoggedIn && user && user.role === 'admin') {
+      next()
+      return
+    }
+    Vue.toasted.error("Silahkan login sebagai admin terlebih dahulu!", {position: 'top-center', duration: 3000})
+    next('/login')
+  }
+
+
   if(to.matched.some(record => record.meta.auth)) {
     if(store.getters.isLoggedIn && store.getters.user) {
       next()
       return
     }
-    Vue.toasted.error("Silahkan login terlebih dahulu!", {position: 'top-center', duration: 2000})
+    Vue.toasted.error("Silahkan login terlebih dahulu!", {position: 'top-center', duration: 3000})
     next('/login')
   }
 

@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+body .wrap-toast-notif {
+  max-width: 23rem;
+}
 
 @charset "UTF-8";
 
