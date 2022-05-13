@@ -29,6 +29,16 @@
             {{ payNowLabel }}
           </button>
         </div>
+        <!-- <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
+          Action
+          <button
+            v-if="paymentStatus !== 'success-status'"
+            class="btn-payment"
+            @click="payment"
+          >
+            {{ payNowLabel }}
+          </button>
+        </div> -->
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           <b>Campaign Config :</b>
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
@@ -62,6 +72,13 @@
             Add New Reward
           </a>
         </div>
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+          <b>
+            Status :<span v-if="campaignInfo.is_approved == '0'" class="badge badge-pill badge-warning">Pending</span>
+            <span v-if="campaignInfo.is_approved == '1'" class="badge badge-pill badge-success">Approved</span>
+            <span v-if="campaignInfo.is_approved == '2'" class="badge badge-pill badge-danger">Rejected</span>
+          </b>
+        </div>
       </div>
     </div>
 </template>
@@ -82,7 +99,7 @@ export default {
       type: Object,
       default: () => {}
     }
-},
+  },
   data: () => {
     return {
       continueDelete: false,

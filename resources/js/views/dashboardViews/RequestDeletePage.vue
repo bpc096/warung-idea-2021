@@ -56,6 +56,7 @@
 
 <script>
 import Axios from 'axios'
+import Swal from "sweetalert2"
 
 export default {
   name: 'RequestDeletePage',
@@ -124,9 +125,77 @@ export default {
       if(type === 'view') {
         this.$router.push('/projectdetail/'+campaignId)
       } else if (type === 'accept') {
-        // TODO: hit approve_delete_campaign/{id}
+        Swal.fire({
+          title: "Konfirmasi",
+          text: "Apakah anda ingin menyetujui penghapusan campaign ini?",
+          icon: "question",
+          showCancelButton: true
+        })
+          .then(
+            (conf) => {
+              if(conf.isConfirmed) {
+                Axios.put(`campaign/approve_delete_campaign/${campaignId}`)
+                  .then(
+                    (res) => {
+                      if(res.data.success) {
+                        Swal.fire({
+                          title: "Success",
+                          text: res.data.message,
+                          icon: 'success'
+                        })
+                        this.fetchAllCampaignList()
+                        return
+                      }
+                      Swal.fire({
+                        title: "Failed",
+                        text: res.data.message,
+                        icon: 'error'
+                      })
+                    }
+                  ).catch(
+                    (err) => {
+                      console.error(err)
+                    }
+                  )
+              }
+            }
+          )
       } else if (type === 'reject') {
-        // TODO: hit reject_delete_campaign/{id}
+        Swal.fire({
+          title: "Konfirmasi",
+          text: "Apakah anda ingin menolak penghapusan campaign ini?",
+          icon: "question",
+          showCancelButton: true
+        })
+          .then(
+            (conf) => {
+              if(conf.isConfirmed) {
+                Axios.put(`campaign/reject_delete_campaign/${campaignId}`)
+                  .then(
+                    (res) => {
+                      if(res.data.success) {
+                        Swal.fire({
+                          title: "Success",
+                          text: res.data.message,
+                          icon: 'success'
+                        })
+                        this.fetchAllCampaignList()
+                        return
+                      }
+                      Swal.fire({
+                        title: "Failed",
+                        text: res.data.message,
+                        icon: 'error'
+                      })
+                    }
+                  ).catch(
+                    (err) => {
+                      console.error(err)
+                    }
+                  )
+              }
+            }
+          )
       }
     }
   }
@@ -150,7 +219,7 @@ export default {
 
   .payment-card {
     border: 1px solid black;
-    width: 90%rem;
+    width: 90% rem;
     min-height: 20rem;
     text-align: left;
     padding: 10px;

@@ -90,7 +90,7 @@ Route::prefix('campaign')->group(function() {
  * Api Campaign Detail (Invitation)
  */
 Route::prefix('profile')->group(function() {
-    Route::get('/invitation/{users_id}', [InvitationController::class, 'index']);
+    Route::get('/invitation/{users_id}', [InvitationController::class, 'index'])->middleware('auth:api');
     // Route::get('/invitation/{users_id}/accept/{campaign_id}', [InvitationController::class, 'accept']);
     // Route::get('/invitation/{users_id}/reject/{campaign_id}', [InvitationController::class, 'reject']);
     Route::post('/invitation/accept', [InvitationController::class, 'accept']);

@@ -8,6 +8,7 @@
         v-for="(collab, idx) in listCollaboration"
         :campaignInfo="collab"
         :isInHistoryOwnedPage="false"
+        :donationInfo="collab.donation"
         :key="idx"
       />
     </div>

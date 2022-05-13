@@ -36,7 +36,7 @@ import EditRewards from '../views/RewardViews/EditRewards.vue'
 import UserProfile from '../views/userViews/UserProfile.vue'
 import ChangePassword from '../views/userViews/ChangePassword.vue'
 import EditProfile from '../views/userViews/EditProfile.vue'
-import InvitationPage from '../views/userViews/invitationPage.vue'
+import InvitationPage from '../views/userViews/InvitationPage.vue'
 
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'

@@ -372,7 +372,7 @@ class CampaignController extends Controller
 
     // ** Get List Collaboration
     public function get_list_collaboration($id_user) {
-        $campaign = Campaign::select('campaigns.*', 
+        $campaigns = Campaign::select('campaigns.*', 
             'campaign_details.users_id',
             'campaign_details.status', 
             'payments.amount',
@@ -383,8 +383,40 @@ class CampaignController extends Controller
         ->leftJoin('payments', 'payments.campaign_id', '=', 'campaigns.id')
         ->where("campaign_details.users_id", $id_user)
         ->get();
+
+        // ** Extract Data
+        $result = [];
+        foreach($campaigns as $campaign) {
+            $data = [];
+            $data["id"] = $campaign->id;
+            $data["users_id"] = $campaign->users_id;
+            $data["category_id"] = $campaign->category_id;
+            $data["title"] = $campaign->title;
+            $data["slug"] = $campaign->slug;
+            $data["short_description"] = $campaign->short_description;
+            $data["target_donation"] = $campaign->target_donation;
+            $data["max_date"] = $campaign->max_date;
+            $data["image"] = $campaign->image;
+            $data["description"] = $campaign->description;
+            $data["project_plan"] = $campaign->project_plan;
+            $data["created_at"] = $campaign->created_at;
+            $data["updated_at"] = $campaign->updated_at;
+            $data["is_approved"] = $campaign->is_approved;
+            $data["deleted_at"] = $campaign->deleted_at;
+            $data["is_delete_approved"] = $campaign->is_delete_approved;
+            $data["status"] = $campaign->status;
+            $data["donation"] = [
+                "amount" => $campaign->amount,
+                "snap_token" => $campaign->snap_token,
+                "payment_status" => $campaign->payment_status
+            ];
+            $result[] = $data;
+        }
         
-        return response()->json(["collaborations" => $campaign], 200);
+        return response()->json([
+            "success" => true,
+            "collaborations" => $result
+        ], 200);
     }
 
     // ** Get All Campaigns(For Admin)

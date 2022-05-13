@@ -131,7 +131,7 @@ export default {
 
   .payment-card {
     border: 1px solid black;
-    width: 90%rem;
+    width: 90% rem;
     min-height: 20rem;
     text-align: left;
     padding: 10px;
