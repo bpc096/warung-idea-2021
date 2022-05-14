@@ -3,12 +3,12 @@
     <div class="title-page">
       List Of Collaboration Campaign
     </div>
-    <div v-if="listDonation.length > 0">
+    <div v-if="listCollaboration.length > 0">
       <CampaignCard
-        v-for="(donation, idx) in listDonation"
+        v-for="(collab, idx) in listCollaboration"
+        :campaignInfo="collab"
         :isInHistoryOwnedPage="false"
-        :donationInfo="donation"
-        :campaignInfo="donation.campaign"
+        :donationInfo="collab.donation"
         :key="idx"
       />
     </div>
@@ -20,6 +20,8 @@
 
 <script>
 import CampaignCard from '../../components/campaignComponent/CampaignCard'
+import axios from "axios"
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'HistoryDonationCampaign',
@@ -29,20 +31,16 @@ export default {
   data: () => {
     return {
       progress: '59',
-      listDonation: [],
+      listCollaboration: [],
     }
   },
-  async created() {
-    await this.$store
-      .dispatch('getDonation')
-      .then(res => {
-        this.listDonation = res
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  created() {
+    this.getCollaborations()
   },
   computed: {
+    ...mapGetters({
+      user: 'user',
+    }),
     backBtnLabel() {
       return '⬅️ Back To History Page'
     },
@@ -65,6 +63,18 @@ export default {
       return true
     }
   },
+  methods: {
+    async getCollaborations() {
+      try {
+        const req = await axios.get(`campaign/collaboration/${this.user.id}`)
+        const res = req.data
+        this.listCollaboration = res.collaborations
+        console.log("WW", res)
+      } catch(e) {
+        console.error(e)
+      }
+    }
+  }
 }
 </script>
 

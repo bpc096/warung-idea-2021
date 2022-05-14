@@ -45,12 +45,14 @@
           <button
             class="btn-support"
             @click="btnSupportHandle"
+            :disabled="isProjectAvailable"
           >
             🚀 Support Now
           </button>
           <button
             class="btn-remind"
             @click="btnRemindMeHandle"
+            :disabled="isProjectAvailable"
           >
             ⭐ Remind Me Later
           </button>
@@ -90,7 +92,7 @@
           <creatorTab />
         </tab>
         <tab name="Payment">
-          <paymentTab />
+          <paymentTab/>
         </tab>
         <tab name="Forum">
           <forumTab
@@ -144,6 +146,7 @@ export default {
       payment: [],
       updateTabData: [],
       faqTabData: [],
+      campaignID: ''
     }
   },
   async created () {
@@ -155,6 +158,10 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+    isProjectAvailable() {
+      const maxDate = this.checkMaxDate()
+      return maxDate.datePass
+    },
     displayCreatorName () {
       const name = this.projectDetail?.user?.name? this.projectDetail.user.name : 'Anonymous'
       return name
@@ -189,7 +196,7 @@ export default {
       return (this.projectDetail && this.projectDetail.image) ?  this.projectDetail.image : this.projectDetail.dummyUrlImage
     },
     daysBetween () {
-      const maxDate = this.projectDetail?.max_date? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30'
+      const maxDate = this.checkMaxDate()
       let dayBetween = ''
 
       if(maxDate.datePass) {
@@ -270,14 +277,15 @@ export default {
       .trimLeft()
       return formatter
     },
-    checkMaxDate(date){
-      // let tempDate = '2055-05-05'
+    checkMaxDate(){
+      const projectDate = this.projectDetail && this.projectDetail.max_date ? this.projectDetail.max_date : "2018-05-30"
       let checkMaxDate = ''
       let datePassed = false
-      if(new Date(date).getTime() > new Date().getTime()) {
-        checkMaxDate = date
+
+      if(new Date(projectDate).getTime() > new Date().getTime()) {
+        checkMaxDate = projectDate
       } else {
-        checkMaxDate = date
+        checkMaxDate = projectDate
         datePassed = true
       }
       return {tempDate: checkMaxDate, datePass: datePassed}

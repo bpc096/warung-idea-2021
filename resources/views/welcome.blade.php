@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
         <script src="{{ mix('js/app.js') }}" type="text/javascript" defer></script>
+        <script src="https://kit.fontawesome.com/e9802ec2c7.js" crossorigin="anonymous"></script>
     </head>
     <body style="background-color: white; margin: 0; padding: 0;">
         <div id="app"></div>

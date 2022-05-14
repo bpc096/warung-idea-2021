@@ -17,8 +17,11 @@ class InvitationController extends Controller
      */
     public function index($users_id)
     {
-        $campaign_detail = CampaignDetail::with('campaigns')->with('users')
-            ->where('users_id', $users_id)->get();
+        $campaign_detail = CampaignDetail::select('campaign_details.*', 'campaigns.users_id', 'campaigns.title', 'users.name as creator')
+        ->leftJoin('campaigns', 'campaigns.id', "=", 'campaign_details.campaign_id')
+        ->leftJoin('users', 'users.id', "=", 'campaigns.users_id')
+        ->where("campaign_details.users_id", $users_id)
+        ->get();
 
         // $owner_name = Campaign::with('user')->where('users_id', $users_id)->get();
 

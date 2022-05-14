@@ -53,7 +53,7 @@ const mutations__ = {
 }
 
 const getters__ = {
-  
+
 }
 
 Vue.use(Vuex)

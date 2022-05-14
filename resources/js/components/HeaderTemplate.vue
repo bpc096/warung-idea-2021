@@ -7,7 +7,7 @@
           alt="bright-lamp"
         >
         <div class="text-image">
-          WarungIde.com
+          WarungIdea.com
         </div>
       </a>
     </div>
@@ -50,23 +50,60 @@
         <button
           class="btn button-login dropdown-toggle"
           type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          🙍 Profile
+          🙍 {{userNameText}}
         </button>
         <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
           <h6 class="dropdown-header">{{ userEmailText }}</h6>
           <div class="dropdown-divider"></div>
           <router-link to="/profile" class="dropdown-item item-click-menu">
-            Profile
+            🧑‍🚀 Profile
+          </router-link>
+          <router-link to="/admin/dashboard/adminlist" class="dropdown-item item-click-menu">
+            🧑‍🚀 Admin Dashboard
           </router-link>
           <router-link to="/profile/invitation" class="dropdown-item item-click-menu" @click.native="markNotifAsRead">
-            Invitation <span class="badge badge-pill badge-primary" v-if="getCountNotification > 0">{{getCountNotification}}</span>
+            ✉️ Invitation
           </router-link>
           <router-link to="/chat" class="dropdown-item item-click-menu">
-            Chat Message
+            💬 Chat Message
           </router-link>
           <a @click="logout" class="dropdown-item item-click-menu">
-            Logout
+            🔴 Logout
           </a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button
+          class="btn button-notif dropdown-toggle"
+          type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="ml-2 badge badge-pill badge-primary" v-if="getCountNotification > 0">{{getCountNotification}}</span>
+            <i class="fa-solid fa-bell"></i>
+        </button>
+        <div
+          :class="{'hide-scrollbar': getCountNotification <= 0}"
+          class="dropdown-notif dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
+          <div
+            v-if="getCountNotification > 0"
+            class="list-group">
+            <a
+              @click="goToInvitationDetail"
+              v-for="(notif, idx) in notifications.notifications" :key="idx"
+              href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">
+                  <b>{{ notif.title }}</b>
+                </h5>
+              </div>
+              <p class="mb-1">
+                {{ notif.content }}
+              </p>
+            </a>
+          </div>
+          <div v-else class="empty-update">
+            <div>
+              There's no notification!
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -90,8 +127,13 @@ export default {
   data: () => {
     return {
       loginMock: true,
-      notifications: []
+      notifications: [],
+      notifInterval: 0,
+      notifIndex: 0,
     }
+  },
+  created() {
+    this.fetchNotification()
   },
   computed: {
     ...mapGetters({
@@ -107,14 +149,64 @@ export default {
     isUserLoggedIn() {
       return this.loginMock
     },
+    userNameText() {
+      return this.user.name || 'Default Name'
+    },
     userEmailText() {
       return this.user.email || 'Default Email'
     },
     getCountNotification() {
       return this.notifications.count
+    },
+  },
+  watch: {
+    isLoggedIn: function(newValue, oldValue) {
+      if(newValue) {
+        this.notifIndex = 0
+        this.fetchNotification()
+      }
     }
   },
   methods: {
+    goToInvitationDetail () {
+      this.markNotifAsRead()
+      this.$router.push({
+        name: 'InvitationPage'
+      })
+    },
+    notifyUser() {
+      if(this.notifications.count > 0) {
+        const listNotif = this.notifications.notifications
+        this.$toasted.info(listNotif[this.notifIndex].content, {
+          position: "top-right",
+          duration: 5000,
+          containerClass: 'wrap-toast-notif',
+          action: {
+            text: "View",
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0)
+              this.markNotifAsRead()
+              this.$router.push('/profile/invitation')
+            }
+          }
+        })
+      }
+    },
+    fetchNotification() {
+      this.$store.dispatch('getNotifications')
+        .then(() => {
+          this.notifications = this.$store.state.notifications
+          if(this.notifications.count > 0) {
+            this.notifInterval = setInterval(function () {
+              this.notifyUser(this.notifIndex)
+              this.notifIndex++
+              if(this.notifIndex === this.notifications.count) {
+                clearInterval(this.notifInterval)
+              }
+            }.bind(this), 1500)
+          }
+        })
+    },
     logout () {
       this.$swal({
         title: 'Are you sure?',
@@ -151,13 +243,6 @@ export default {
         console.error(e)
       }
     }
-  },
-  created() {
-    this.$store.dispatch('getNotifications')
-      .then(() => {
-        this.notifications = this.$store.state.notifications
-      })
-    
   }
 }
 </script>
@@ -221,6 +306,26 @@ export default {
     width: 20%;
     margin-right: 2rem;
 
+    .hide-scrollbar {
+      overflow: hidden !important;
+    }
+
+    .dropdown-notif {
+      min-width: 25rem;
+      max-height: 26rem;
+      overflow-y: scroll;
+
+      .empty-update {
+        min-height: 5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        overflow-y: hidden;
+      }
+    }
+
     .item-click-menu{
       &:hover {
         color: white;
@@ -253,6 +358,24 @@ export default {
         color: white;
       }
     }
+
+    .button-notif {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      color: black;
+      background-color: white;
+      margin-left: 1rem;
+      min-width: 4rem;
+      height: 2rem;
+      border-radius: 20px;
+      &:hover {
+        background-color: #55D8C1;
+        color: white;
+      }
+    }
+
     .button-register {
       display: flex;
       align-items: center;

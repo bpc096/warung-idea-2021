@@ -24,8 +24,12 @@ Route::post('/login', [LoginController::class, 'login']);
 /**
  * Api User
  */
-Route::get('/user', [UserController::class, 'index']);
-
+Route::prefix('user')->group(function() {
+    Route::get('/', [UserController::class, 'index']);
+    Route::post('/create_user', [UserController::class, 'CreateUser'])->middleware('auth:api');
+    Route::post('/update_user', [UserController::class, 'UpdateUser'])->middleware('auth:api');
+    Route::delete('/delete_user/{id}', [UserController::class, 'DeleteUser'])->middleware('auth:api');
+});
 
 /**
  * APi Category
@@ -77,13 +81,16 @@ Route::prefix('campaign')->group(function() {
     // ** Approve & reject delete campaign
     Route::put('approve_delete_campaign/{id}', [CampaignController::class, 'approve_delete_campaign'])->middleware('auth:api');
     Route::put('reject_delete_campaign/{id}', [CampaignController::class, 'reject_delete_campaign'])->middleware('auth:api');
+
+    // ** For admin needs
+    Route::get('/get_all_campaigns', [CampaignController::class, 'GetAllCampaigns'])->middleware('auth:api');
 });
 
 /**
  * Api Campaign Detail (Invitation)
  */
 Route::prefix('profile')->group(function() {
-    Route::get('/invitation/{users_id}', [InvitationController::class, 'index']);
+    Route::get('/invitation/{users_id}', [InvitationController::class, 'index'])->middleware('auth:api');
     // Route::get('/invitation/{users_id}/accept/{campaign_id}', [InvitationController::class, 'accept']);
     // Route::get('/invitation/{users_id}/reject/{campaign_id}', [InvitationController::class, 'reject']);
     Route::post('/invitation/accept', [InvitationController::class, 'accept']);
@@ -108,10 +115,16 @@ Route::get('/articles', [ArticleController::class, 'index']);
 Route::prefix('payment')->group(function() {
     Route::get('/', [PaymentController::class, 'index'])->middleware('auth:api');
     Route::post('/', [PaymentController::class, 'store'])->middleware('auth:api');
+    Route::get('/get_payment_by_campaign/{id_campaign}', [PaymentController::class, 'GetPaymentByCampaign'])->middleware('auth:api');
     Route::post('/notification', [PaymentController::class, 'notificationHandler']);
 });
 
 
+/**
+ * API Notification
+ */
+Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:api');
+Route::get('/notifications/mark_notif_as_read', [NotificationController::class, 'mark_notif_as_read'])->middleware('auth:api');
 
 /**
  * Api Private Chat
@@ -126,12 +139,3 @@ Route::prefix('payment')->group(function() {
 //     Route::get('conversation/{user_two}', [ConversationController::class, 'show'])->name('conversation.show');
 //     Route::post('conversation/{conversation}/message', [ConversationController::class, 'store'])->name('conversation.store');
 // });
-
-/**
- * API Notification
- */
-Route::prefix('notifications')->group(function(){
-    Route::get('/', [NotificationController::class, 'index'])->middleware('auth:api');
-    Route::get('/mark_notif_as_read', [NotificationController::class, 'mark_notif_as_read'])->middleware('auth:api');
-});
-
