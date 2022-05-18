@@ -45,6 +45,7 @@ import UpdateTab from '../views/tabViews/UpdateTab.vue'
 // Private Message
 import ChatPage from '../views/chatViews/ChatPage.vue'
 import ChatPageAdvance from '../views/chatViews/ChatPageAdvance.vue'
+import ChatContainer from '../views/chatViews/ChatContainer.vue'
 
 // Dashboard Page
 import DashboardPage from '../views/dashboardViews/DashboardPage.vue'
@@ -215,6 +216,13 @@ const routes = [
     path: '/chat',
     name: 'ChatPage',
     component: ChatPage,
+    children: [
+      {
+        path: 'user/:userId',
+        name: 'ChatContainer',
+        component: ChatContainer,
+      }
+    ]
   },
   {
     path: '/chat/advance',
