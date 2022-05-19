@@ -15,7 +15,7 @@
           </tr>
           <tr v-for="(data,idx) in invitationList" :key="idx">
             <td>Campaign ID {{data.campaign_id || 'Default Id'}}</td>
-            <td>{{ data.users[0].name || 'Default name' }}</td>
+            <td>{{ data.creator || 'Default name' }}</td>
             <td>{{  textTitleCampaign(data) }}</td>
             <td>{{ data.status || 'Default Status' }}</td>
             <td>
@@ -34,7 +34,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'InvitationPage',
   data: () => {
     return {
       progress: '59',

@@ -29,6 +29,16 @@
             {{ payNowLabel }}
           </button>
         </div>
+        <!-- <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
+          Action
+          <button
+            v-if="paymentStatus !== 'success-status'"
+            class="btn-payment"
+            @click="payment"
+          >
+            {{ payNowLabel }}
+          </button>
+        </div> -->
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           <b>Campaign Config :</b>
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
@@ -44,29 +54,37 @@
             Delete Campaign
           </button>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>Updates Config :</b>
           <a :href="`/updates/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Updates
           </a>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>FAQ Config :</b>
           <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New FAQ
           </a>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>Reward Config :</b>
           <a :href="`/rewards/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Reward
           </a>
+        </div>
+        <div class="campaign-wrap-button">
+          <b>
+            Status :<span v-if="campaignInfo.is_approved == '0'" class="badge badge-pill badge-warning">Pending</span>
+            <span v-if="campaignInfo.is_approved == '1'" class="badge badge-pill badge-success">Approved</span>
+            <span v-if="campaignInfo.is_approved == '2'" class="badge badge-pill badge-danger">Rejected</span>
+          </b>
         </div>
       </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'CampaignCard',
   props: {
@@ -82,7 +100,7 @@ export default {
       type: Object,
       default: () => {}
     }
-},
+  },
   data: () => {
     return {
       continueDelete: false,
@@ -93,6 +111,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
     payNowLabel() {
       return '💸 Pay Now !'
     },

@@ -24,8 +24,12 @@ Route::post('/login', [LoginController::class, 'login']);
 /**
  * Api User
  */
-Route::get('/user', [UserController::class, 'index']);
-
+Route::prefix('user')->group(function() {
+    Route::get('/', [UserController::class, 'index']);
+    Route::post('/create_user', [UserController::class, 'CreateUser'])->middleware('auth:api');
+    Route::post('/update_user', [UserController::class, 'UpdateUser'])->middleware('auth:api');
+    Route::delete('/delete_user/{id}', [UserController::class, 'DeleteUser'])->middleware('auth:api');
+});
 
 /**
  * APi Category
@@ -86,7 +90,7 @@ Route::prefix('campaign')->group(function() {
  * Api Campaign Detail (Invitation)
  */
 Route::prefix('profile')->group(function() {
-    Route::get('/invitation/{users_id}', [InvitationController::class, 'index']);
+    Route::get('/invitation/{users_id}', [InvitationController::class, 'index'])->middleware('auth:api');
     // Route::get('/invitation/{users_id}/accept/{campaign_id}', [InvitationController::class, 'accept']);
     // Route::get('/invitation/{users_id}/reject/{campaign_id}', [InvitationController::class, 'reject']);
     Route::post('/invitation/accept', [InvitationController::class, 'accept']);
