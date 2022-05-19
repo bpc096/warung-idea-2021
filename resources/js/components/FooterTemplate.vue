@@ -14,8 +14,8 @@
     </div>
     <div class="info-app">
       <div class="logo-image">
-        <img src="images/icon/light-bulb.png" alt="bright-lamp">
-        <div class="text-image">WarungIde.com</div>
+        <img src="\images\icon\light-bulb.png" alt="bright-lamp">
+        <div class="text-image">WarungIdea.com</div>
       </div>
       <div class="love-text">
         <a href="https://github.com/mfaisalghozi/warung-ide-2021" target="blank">
@@ -76,9 +76,9 @@ export default {
       width: 136px;
       height: 48px;
 
-      &:hover{
-        background-color: #D8F2FF;
-        color: #F57F73;
+      &:hover {
+        background-color: #55D8C1;
+        color: white;
       }
     }
   }

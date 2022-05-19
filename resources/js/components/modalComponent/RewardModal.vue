@@ -2,6 +2,14 @@
   <div class="modal-mask">
     <div class="modal-wrapper">
       <div class="modal-container">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <b>Package Reward List</b>
+          </h5>
+          <button @click="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class="modal-scroll">
           <div class="modal-non-reward">
             <div class="text-label">Donasi Sukarela</div>
@@ -50,15 +58,7 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <slot name="footer">
-            <button
-              class="modal-default-button"
-              @click="closeModal">
-              X
-            </button>
-          </slot>
-        </div>
+
       </div>
     </div>
   </div>
@@ -185,36 +185,51 @@ export default {
 
 <style lang="less" scoped>
 .modal-mask {
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // position: fixed;
+  // z-index: 2;
+  // top: 0;
+  // left: 0;
+  // width: 100%;
+  // height: 100%;
+  // background-color: rgba(0, 0, 0, 0.5);
+  // display: table;
+  // transition: opacity 0.3s ease;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
+
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    background: #FFF;
+    z-index: 999;
+    transform: none;
 
   .modal-wrapper {
     display: flex;
     flex-direction: column;
 
     .modal-container {
-      margin: 0px auto;
-      padding: 20px 30px;
-      background-color: #fff;
-      border-radius: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-      transition: all 0.3s ease;
-      font-family: Helvetica, Arial, sans-serif;
-
       .modal-scroll {
         width: 700px;
         height: 700px;
         overflow: auto;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
       }
 
       div > a {
@@ -231,7 +246,7 @@ export default {
         flex-direction: row;
         padding: 10px;
         border-radius: 10px;
-        margin: 30px 0;
+        margin: 30px 1rem;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         justify-content: center;
         align-items: center;
@@ -285,11 +300,14 @@ export default {
         flex-direction: column;
         padding: 10px;
         border-radius: 10px;
-        margin: 30px 0;
+        margin: 2rem 1rem;
+        transition: 1s;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
+
         &:hover {
-          box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+          margin: 3rem 1rem;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
         }
 
         .reward-price {

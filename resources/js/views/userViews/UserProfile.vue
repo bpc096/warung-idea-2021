@@ -40,20 +40,6 @@
           Change Password
         </a>
       </div>
-      <div class="button-wrap">
-        <a
-          class="button-invitation"
-          @click="redirectInvitation"
-        >
-          Invitation
-        </a>
-        <a
-          class="button-private-chat"
-          @click="redirectPrivateChat"
-        >
-          Private Chat
-        </a>
-      </div>
     </div>
   </div>
 </template>

@@ -19,14 +19,20 @@
 
 <script>
   import Multiselect from 'vue-multiselect'
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'MutliSelectComponent',
+    props: {
+      defaultValue: Array
+    },
     components: {
       Multiselect
     },
     data: () => {
       return {
-        value:  [],
+        rawUserList: [],
+        value: [] ,
         options:  [
           { name: 'Vuang agung', userId: 1 },
           { name: 'Joni Yes', userId: 2 },
@@ -34,11 +40,30 @@
         ],
       }
     },
-    created() {
-      // Fetching API Collaborator Available
-      console.log('created')
+    async created() {
+      console.log('Created Componetn MultiSelect')
+      await this.$store
+        .dispatch('getCollaboratorAvailableList')
+        .then(res => {
+          if (res.data.length > 0) {
+            this.rawUserList = res.data
+            this.mappingUserList()
+
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    computed: {
+      ...mapGetters({
+        user: 'user'
+      }),
     },
     methods: {
+      mappingUserList() {
+        this.options = this.rawUserList.filter(x=>x.user.id!==this.user.id).map(x=>({name:x.user.name, userId:x.user.id}))
+      },
       addTag (newTag) {
         console.log('addTag')
         const tag = {
@@ -56,6 +81,11 @@
       removeNewUser (user) {
         const { userId } = user
         this.$emit('removeNewUser', userId)
+      }
+    },
+    watch: {
+      'defaultValue'(newValue) {
+        this.value = newValue
       }
     }
   }

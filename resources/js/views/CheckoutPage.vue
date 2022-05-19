@@ -138,15 +138,13 @@ export default {
     },
     async checkout() {
       const donation = {
-        amount: this.donationAmount,
+        amount: this.totalPriceAmount,
         campaignId: this.infoCampaignId,
       }
 
       await this.$store
         .dispatch('storeDonation', donation)
         .then((res) => {
-          console.log(res)
-
           this.$router.push({
             name: 'HistoryDonationCampaign'
           })

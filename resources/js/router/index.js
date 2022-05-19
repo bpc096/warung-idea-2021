@@ -17,6 +17,8 @@ import CreateCampaign from '../views/campaignViews/CreateCampaign.vue'
 import EditCampaign from '../views/campaignViews/EditCampaign.vue'
 import HistoryCampaign from '../views/campaignViews/HistoryCampaign.vue'
 import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampaign.vue'
+import CampaignCollaboration from '../views/campaignViews/CampaignCollaboration.vue'
+
 
 // Views Updates
 import CreateUpdates from '../views/updatesViews/CreateUpdates.vue'
@@ -34,7 +36,7 @@ import EditRewards from '../views/RewardViews/EditRewards.vue'
 import UserProfile from '../views/userViews/UserProfile.vue'
 import ChangePassword from '../views/userViews/ChangePassword.vue'
 import EditProfile from '../views/userViews/EditProfile.vue'
-import InvitationPage from '../views/userViews/invitationPage.vue'
+import InvitationPage from '../views/userViews/InvitationPage.vue'
 
 // Views Tab
 import CampaignTab from '../views/tabViews/CampaignTab.vue'
@@ -42,6 +44,19 @@ import UpdateTab from '../views/tabViews/UpdateTab.vue'
 
 // Private Message
 import ChatPage from '../views/chatViews/ChatPage.vue'
+import ChatPageAdvance from '../views/chatViews/ChatPageAdvance.vue'
+import ChatContainer from '../views/chatViews/ChatContainer.vue'
+
+// Dashboard Page
+import DashboardPage from '../views/dashboardViews/DashboardPage.vue'
+import AdminListPage from '../views/dashboardViews/AdminListPage.vue'
+import UserListPage from '../views/dashboardViews/UserListPage.vue'
+import CampaignListPage from '../views/dashboardViews/CampaignListPage.vue'
+import CreateNewAdmin from '../views/dashboardViews/CreateAdminPage.vue'
+import RequestListPage from '../views/dashboardViews/RequestListPage.vue'
+import RequestCreatePage from '../views/dashboardViews/RequestCreatePage.vue'
+import RequestDeletePage from '../views/dashboardViews/RequestDeletePage.vue'
+import RequestFinishedPage from '../views/dashboardViews/RequestFinishedPage.vue'
 
 // store
 import store from '../store'
@@ -153,6 +168,11 @@ const routes = [
     component: HistoryCampaign,
   },
   {
+    path: '/campaign/collaboration',
+    name: 'CampaignCollaboration',
+    component: CampaignCollaboration,
+  },
+  {
     path: '/campaign/history/donation',
     name: 'HistoryDonationCampaign',
     component: HistoryDonationCampaign,
@@ -196,6 +216,61 @@ const routes = [
     path: '/chat',
     name: 'ChatPage',
     component: ChatPage,
+    children: [
+      {
+        path: 'user/:userId',
+        name: 'ChatContainer',
+        component: ChatContainer,
+      }
+    ]
+  },
+  {
+    path: '/chat/advance',
+    name: 'ChatPageAdvance',
+    component: ChatPageAdvance,
+  },
+  {
+    path: '/admin/dashboard',
+    name: 'DashboardPage',
+    component: DashboardPage,
+    meta: {
+      // Change this to false when finsihed
+      authAdmin: false,
+    },
+    children: [
+      {
+        path: 'adminlist',
+        component: AdminListPage,
+      },
+      {
+        path: 'userlist',
+        component: UserListPage,
+      },
+      {
+        path: 'campaignlist',
+        component: CampaignListPage,
+      },
+      {
+        path: 'createadmin',
+        component: CreateNewAdmin,
+      },
+      {
+        path: 'requestlist/becomecreator',
+        component: RequestListPage,
+      },
+      {
+        path: 'requestlist/createcampaign',
+        component: RequestCreatePage
+      },
+      {
+        path: 'requestlist/deletecampaign',
+        component: RequestDeletePage
+      },
+      {
+        path: 'requestlist/finishedcampaign',
+        component: RequestFinishedPage
+      }
+    ]
   }
 ]
 
@@ -206,11 +281,25 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.authAdmin)){
+    const isLoggedIn = store.getters.isLoggedIn
+    const user = store.getters.user
+
+    if(isLoggedIn && user && user.role === 'admin') {
+      next()
+      return
+    }
+    Vue.toasted.error("Silahkan login sebagai admin terlebih dahulu!", {position: 'top-center', duration: 3000})
+    next('/login')
+  }
+
+
   if(to.matched.some(record => record.meta.auth)) {
     if(store.getters.isLoggedIn && store.getters.user) {
       next()
       return
     }
+    Vue.toasted.error("Silahkan login terlebih dahulu!", {position: 'top-center', duration: 3000})
     next('/login')
   }
 

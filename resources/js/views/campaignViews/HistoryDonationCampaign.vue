@@ -3,14 +3,6 @@
     <div class="title-page">
       History Donation List
     </div>
-    <div class="button-upper-campaign">
-      <router-link to="/campaign/history" class="button-create">
-        {{ backBtnLabel }}
-      </router-link>
-      <router-link to="/home" class="button-history-donation">
-        {{ backBtnHomeLabel }}
-      </router-link>
-    </div>
     <div v-if="listDonation.length > 0">
       <CampaignCard
         v-for="(donation, idx) in listDonation"
@@ -20,7 +12,7 @@
         :key="idx"
       />
     </div>
-    <div v-else>
+    <div v-else class="empty-state">
       You dont have any donation list !
     </div>
   </div>
@@ -84,6 +76,10 @@ export default {
   align-items: center;
   margin-bottom: 10rem;
 
+  .empty-state {
+    margin-top: 10rem;
+    font-size: 25px;
+  }
 
   .title-page {
     font-size: 30px;
@@ -133,9 +129,15 @@ export default {
     width: 45rem;
     min-height: 10rem;
     margin: 2rem 0;
+    border-radius: 10px;
 
     .campaign-image {
       width: 30%;
+      img {
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
     }
 
     .campaign-content {

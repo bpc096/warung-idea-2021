@@ -240,4 +240,16 @@ class PaymentController extends Controller
         }
 
     }
+
+    // ** Get Payment By Campaign
+    public function GetPaymentByCampaign($id_campaign) {
+        $get = Payment::select('payments.*', 'campaigns.title', 'users.name')
+        ->leftJoin('campaigns', 'campaigns.id', '=', 'payments.campaign_id')
+        ->leftJoin('users', 'users.id', '=', 'payments.users_id')
+        ->where('payments.campaign_id', $id_campaign)
+        ->paginate(10);
+        return response()->json([
+            "data" => $get
+        ], 200);
+    }
 }

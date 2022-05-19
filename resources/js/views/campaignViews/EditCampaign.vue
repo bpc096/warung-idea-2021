@@ -114,6 +114,8 @@
               <MultiselectIde
                 @addNewUser="addNewUser"
                 @removeNewUser="removeNewUser"
+                :defaultValue="selectedCollaborator"
+                ref="multiselect"
               />
             </div>
           </div>
@@ -153,7 +155,7 @@ export default {
       projectDetail: {},
       shortDesc: '',
       projectPlan: '',
-      collaboratorId: [],
+      selectedCollaborator: []
     }
   },
   async created () {
@@ -172,6 +174,7 @@ export default {
           this.maxDate = this.projectDetail.max_date
           this.shortDesc = this.projectDetail.short_description
           this.projectPlan = this.projectDetail.project_plan
+          this.selectedCollaborator = res.collaborators[0].users.map((val) => ({ name: val.name, userId: val.id }))
         }
       })
       .catch(err => {
@@ -203,7 +206,7 @@ export default {
   methods: {
     editCampaign() {
       const campaignId = this.$route.params.projectId || 1
-      const listCollaborator = this.collaboratorId
+      const listCollaborator = this.$refs.multiselect.$data.value
 
       let data = new FormData()
       data.append('image', this.image)
@@ -216,7 +219,7 @@ export default {
       data.append('project_plan', this.projectPlan)
       if(listCollaborator.length > 0) {
         for(let x=0;x<listCollaborator.length;x++){
-          data.append('collaborators[]', listCollaborator[x])
+          data.append('collaborators[]', listCollaborator[x].userId)
         }
       } else {
         data.append('collaborators[]', [])

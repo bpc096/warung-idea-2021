@@ -4,12 +4,11 @@
       <img src="images/aboutus.jpg" alt="about-us-image">
     </div>
     <div class="text-wrapper">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Libero ut sequi ad veniam tempora dolorem quisquam labore quo inventore optio odit,
-      qui sint aliquam, aut quod sit? Alias, dolore vel?
-
+      Terima kasih telah berkunjung & menggunakan <i>WarungIdea</i>. <i>WarungIdea</i> adalah media platform situs penggalangan dana berbasis IDE, Wujudkan IDE kamu dengan membuat kampanye,
+      promosikan dan kumpulkan dana untuk kampanyemu, dan wujudkan kampanye tersebut bersama kami. Situs website ini dikembangkan oleh M Faisal Ghozi, Bill Petrus
+      & Jeffrey Marcellino. <br> <b>Terima Kasih Sudah Berkunjung & Mari Wujudkan IDE-mu sekarang juga!</b>
       <div class="text-version">
-        <p>WarungIdea @2022 - App Version 2.0.0</p>
+        <p>App Version 2.0.0 - WarungIdea @2022</p>
       </div>
     </div>
   </div>
@@ -28,7 +27,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  padding-top: 5rem;
+  background-color: white;
 
   .image-wrapper {
     img {

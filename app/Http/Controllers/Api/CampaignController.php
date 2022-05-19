@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Campaign;
 use App\Payment;
 use App\CampaignDetail;
+use App\Notifications;
 
 class CampaignController extends Controller
 {
@@ -21,9 +22,15 @@ class CampaignController extends Controller
     public function index()
     {
         //get data campaigns
-        $campaigns = Campaign::with('user')->with('sumPayment')->when(request()->q, function($campaigns) {
+        $campaigns = Campaign::with('user')
+        ->where("is_approved", '1') // ** Show campaign only approved campaign
+        ->where("deleted_at", null) // ** And Not Deleted
+        ->with('sumPayment')
+        ->when(request()->q, function($campaigns) {
             $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
-        })->latest()->paginate(100);
+        })
+        ->latest()
+        ->paginate(100);
 
         //return with response JSON
         return response()->json([
@@ -102,12 +109,23 @@ class CampaignController extends Controller
             'image'              => $image->hashName()
         ]);
 
-        foreach ($request->collaborators as $collaborator) {
-            CampaignDetail::create([
-                'campaign_id' => $campaign->id,
-                'users_id'    => $collaborator,
-                'status'      => 'pending'
-            ]);
+        if(!empty($request->collaborators[0])) {
+            foreach ($request->collaborators as $collaborator) {
+                CampaignDetail::create([
+                    'campaign_id' => $campaign->id,
+                    'users_id'    => $collaborator,
+                    'status'      => 'pending'
+                ]);
+    
+                // ** Create notification for each collaborators
+                $notif = new Notifications;
+                $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
+                $notif->from    = auth()->guard('api')->user()->id;
+                $notif->to      = $collaborator;
+                $notif->content = "You have been invited to join in ".$request->title." campaign.";
+                $notif->is_read = '0';
+                $notif->save();
+            }
         }
 
         //return JSON
@@ -129,7 +147,7 @@ class CampaignController extends Controller
         //get detail data campaign
         $campaign = Campaign::with('user')->with('sumPayment')->where('id', $id)->first();
 
-        $collaborators = CampaignDetail::with('users')->get();
+        $collaborators = CampaignDetail::with('users')->where("campaign_id", $id)->get();
 
         //get data donation by campaign
         $payments = Payment::with('user')->where('campaign_id', $campaign->id)->where('status', 'success')->latest()->get();
@@ -252,18 +270,164 @@ class CampaignController extends Controller
      */
     public function destroy($id)
     {
-        $campaign = Campaign::findOrFail($id);
-        Storage::disk('local')->delete('public/campaigns/'.basename($campaign->image));
-        $campaign->delete();
+        // ** Approval Delete
+        $campaign = Campaign::where('id', $id)->update([
+            "is_delete_approved" => '0' // ** Set to pending
+        ]);
+        // Storage::disk('local')->delete('public/campaigns/'.basename($campaign->image));
+        // $campaign->delete();
 
         if($campaign){
             return response()->json([
-                'status' => 'success'
+                'status' => 'success',
+                'message' => 'Your delete request has been sent to admin. Please wait for admin confirmation.'
             ], 200);
         }else{
             return response()->json([
-                'status' => 'error'
+                'status' => 'error',
+                'message' => 'Failed to request delete.'
             ], 400);
         }
+    }
+
+    // ** Approve Campaign
+    public function approve_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_approved" => '1'
+        ]);
+        
+        if($update) {
+            return response()->json([
+                "success" => true,
+                "message" => "Campaign has been approved"
+            ], 200);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to approve"
+        ], 500);
+    }
+
+    // ** Reject Campaign
+    public function reject_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_approved" => '2'
+        ]);
+        
+        if($update) {
+            return response()->json([
+                "success" => true,
+                "message" => "Campaign has been rejected"
+            ], 200);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to reject"
+        ], 500);
+    }
+
+    // ** Approve Delete Campaign
+    public function approve_delete_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_delete_approved" => '1'
+        ]);
+        
+        if($update) {
+            // If has been approved, then do delete
+            $campaign = Campaign::findOrFail($id);
+            $campaign->delete();
+
+            return response()->json([
+                "success" => true,
+                "message" => "Campaign has been approved to deleted"
+            ], 200);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to approve delete campaign"
+        ], 500);
+    }
+
+    // ** Reject Delete Campaign
+    public function reject_delete_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_delete_approved" => '2'
+        ]);
+        
+        if($update) {
+            return response()->json([
+                "success" => true,
+                "message" => "Delete Campaign has been rejected"
+            ], 200);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to reject delete campaign"
+        ], 500);
+    }
+
+    // ** Get List Collaboration
+    public function get_list_collaboration($id_user) {
+        $campaigns = Campaign::select('campaigns.*', 
+            'campaign_details.users_id',
+            'campaign_details.status', 
+            'payments.amount',
+            'payments.snap_token',
+            'payments.status as payment_status',
+        )
+        ->leftJoin('campaign_details', 'campaign_details.campaign_id', '=', 'campaigns.id')
+        ->leftJoin('payments', 'payments.campaign_id', '=', 'campaigns.id')
+        ->where("campaign_details.users_id", $id_user)
+        ->get();
+
+        // ** Extract Data
+        $result = [];
+        foreach($campaigns as $campaign) {
+            $data = [];
+            $data["id"] = $campaign->id;
+            $data["users_id"] = $campaign->users_id;
+            $data["category_id"] = $campaign->category_id;
+            $data["title"] = $campaign->title;
+            $data["slug"] = $campaign->slug;
+            $data["short_description"] = $campaign->short_description;
+            $data["target_donation"] = $campaign->target_donation;
+            $data["max_date"] = $campaign->max_date;
+            $data["image"] = $campaign->image;
+            $data["description"] = $campaign->description;
+            $data["project_plan"] = $campaign->project_plan;
+            $data["created_at"] = $campaign->created_at;
+            $data["updated_at"] = $campaign->updated_at;
+            $data["is_approved"] = $campaign->is_approved;
+            $data["deleted_at"] = $campaign->deleted_at;
+            $data["is_delete_approved"] = $campaign->is_delete_approved;
+            $data["status"] = $campaign->status;
+            $data["donation"] = [
+                "amount" => $campaign->amount,
+                "snap_token" => $campaign->snap_token,
+                "payment_status" => $campaign->payment_status
+            ];
+            $result[] = $data;
+        }
+        
+        return response()->json([
+            "success" => true,
+            "collaborations" => $result
+        ], 200);
+    }
+
+    // ** Get All Campaigns(For Admin)
+    public function GetAllCampaigns() {
+        $get = Campaign::select('campaigns.*', 'categories.category_name', 'users.name as created_by')
+        ->leftJoin('categories', 'categories.id',  '=', 'campaigns.category_id')
+        ->leftJoin('users', 'users.id',  '=', 'campaigns.users_id')
+        ->where("campaigns.deleted_at", null)
+        ->paginate(10);
+        return response()->json([
+            "all_campaigns" => $get
+        ], 200);
     }
 }

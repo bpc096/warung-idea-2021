@@ -1,10 +1,11 @@
 <template>
   <div class="list-chat-page">
     <div class="user-wrap">
-      <div
+      <a
         v-for="(user,idx) in userList"
         :key="idx"
         class="user-card"
+        @click="changeChatContainer(user.id)"
       >
         <div class="user-image">
           <img :src="user.sourceImg" alt="user-image-profile">
@@ -12,7 +13,7 @@
         <div class="user-name">
           <b>{{user.name}}</b>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </template>
@@ -24,14 +25,30 @@ export default {
     return {
       userList: [
         {
+          id: 1,
           sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
           name: 'M Faisal Ghozi',
         },
         {
+          id: 2,
           sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
           name: 'Bill Petrus'
         }
       ]
+    }
+  },
+  computed: {
+    getCurrentPath () {
+      return this.$route.path
+    }
+  },
+  methods: {
+    changeChatContainer (targetId = 1) {
+      const getCurrentTargetId = this.getCurrentPath.split('/').filter(x => Number.isInteger(parseInt(x)))
+      if(parseInt(getCurrentTargetId[0]) === targetId || getCurrentTargetId.length <= 0) return
+      this.$router.replace({
+        path: '/chat/user/' + targetId
+      })
     }
   }
 }

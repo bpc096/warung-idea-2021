@@ -54,8 +54,8 @@ export default {
       return this.isCampaign ? this.projectData.description : this.articleData.description
     },
     projectTargetDonation() {
-     if(!this.projectData || !this.projectData.target_donation) return '0'
-     else return this.projectData.target_donation
+      if(!this.projectData || !this.projectData.target_donation) return '0'
+      else return this.projectData.target_donation
     },
     totalPayment() {
       if(!this.projectData || !this.projectData.sum_payment || this.projectData.sum_payment.length <=0 || !this.projectData.sum_payment[0].total) return '0'
@@ -77,6 +77,11 @@ export default {
   border: 1px solid rgb(32, 31, 31);
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition: 0.5s;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
 
 
   .article-image {
@@ -90,6 +95,7 @@ export default {
       width: 100%;
       border-top-left-radius: 30px;
       border-top-right-radius: 30px;
+      object-fit: cover;
     }
   }
 

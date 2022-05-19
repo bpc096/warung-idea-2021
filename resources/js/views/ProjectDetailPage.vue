@@ -1,12 +1,19 @@
 <template>
   <div class="project-detail-page">
-    <RewardModal
-      v-if="showRewardModal"
-      :userId="user.id"
-      :ownerId="projectDetail.users_id"
-      :campaignId="projectDetail.id"
-      @close="closeModal"
-    />
+    <transition name="fade" appear>
+      <div class="modal-overlay"
+        v-if="showRewardModal"
+        @click="showRewardModal = false"></div>
+    </transition>
+    <transition name="pop" appear>
+      <RewardModal
+        v-if="showRewardModal"
+        :userId="user.id"
+        :ownerId="projectDetail.users_id"
+        :campaignId="projectDetail.id"
+        @close="closeModal"
+      />
+    </transition>
     <div class="wrap-title">
       <div class="main-title">{{ projectTitle }}</div>
       <div class="main-desc">{{ projectQuickDesc }}</div>
@@ -38,14 +45,16 @@
           <button
             class="btn-support"
             @click="btnSupportHandle"
+            :disabled="isProjectAvailable"
           >
-            Support Now
+            🚀 Support Now
           </button>
           <button
             class="btn-remind"
             @click="btnRemindMeHandle"
+            :disabled="isProjectAvailable"
           >
-            Remind Me Later
+            ⭐ Remind Me Later
           </button>
         </div>
       </div>
@@ -83,7 +92,7 @@
           <creatorTab />
         </tab>
         <tab name="Payment">
-          <paymentTab />
+          <paymentTab/>
         </tab>
         <tab name="Forum">
           <forumTab
@@ -137,6 +146,7 @@ export default {
       payment: [],
       updateTabData: [],
       faqTabData: [],
+      campaignID: ''
     }
   },
   async created () {
@@ -148,6 +158,10 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+    isProjectAvailable() {
+      const maxDate = this.checkMaxDate()
+      return maxDate.datePass
+    },
     displayCreatorName () {
       const name = this.projectDetail?.user?.name? this.projectDetail.user.name : 'Anonymous'
       return name
@@ -182,7 +196,7 @@ export default {
       return (this.projectDetail && this.projectDetail.image) ?  this.projectDetail.image : this.projectDetail.dummyUrlImage
     },
     daysBetween () {
-      const maxDate = this.projectDetail?.max_date? this.checkMaxDate(this.projectDetail.max_date) : '2045-06-30'
+      const maxDate = this.checkMaxDate()
       let dayBetween = ''
 
       if(maxDate.datePass) {
@@ -263,14 +277,15 @@ export default {
       .trimLeft()
       return formatter
     },
-    checkMaxDate(date){
-      // let tempDate = '2055-05-05'
+    checkMaxDate(){
+      const projectDate = this.projectDetail && this.projectDetail.max_date ? this.projectDetail.max_date : "2018-05-30"
       let checkMaxDate = ''
       let datePassed = false
-      if(new Date(date).getTime() > new Date().getTime()) {
-        checkMaxDate = date
+
+      if(new Date(projectDate).getTime() > new Date().getTime()) {
+        checkMaxDate = projectDate
       } else {
-        checkMaxDate = date
+        checkMaxDate = projectDate
         datePassed = true
       }
       return {tempDate: checkMaxDate, datePass: datePassed}
@@ -295,6 +310,43 @@ export default {
 
 <style lang="less" scoped>
 .project-detail-page {
+  .modal-overlay {
+    content: '';
+    position: absolute;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 998;
+    background: black;
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity .4s linear;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  .pop-enter-active,
+  .pop-leave-active {
+    transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
+  }
+
+  .pop-enter,
+  .pop-leave-to {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50%);
+  }
+
+
+
   .wrap-title {
     margin-bottom: 2rem;
     .main-title {
@@ -307,6 +359,7 @@ export default {
     display: flex;
     flex-direction: row;
     width: 100%;
+
     .project-detail-section{
       width: 100%;
       height: 50vh;
@@ -362,7 +415,8 @@ export default {
           padding: 10px;
           margin-right: 1rem;
           &:hover{
-            background-color: green;
+            background-color: #B4E197;
+            border: 1px solid white;
             color: white;
           }
         }
@@ -374,7 +428,8 @@ export default {
           padding: 10px;
 
           &:hover{
-            background-color: blueviolet;
+            background-color: #A85CF9;
+            border: 1px solid white;
             color: white;
           }
         }
@@ -394,6 +449,7 @@ export default {
         img {
           width: 100%;
           height: 100%;
+          object-fit: cover;
         }
       }
     }

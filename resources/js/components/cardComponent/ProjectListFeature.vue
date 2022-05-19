@@ -79,6 +79,11 @@ export default {
     border: 1px solid black;
     display: flex;
     flex-direction: row;
+    transition: 0.4s;
+
+    &:hover {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
 
     .list-image {
       border-top-left-radius: 30px;
@@ -91,6 +96,7 @@ export default {
         height: 100%;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;
+        object-fit: cover;
       }
     }
 

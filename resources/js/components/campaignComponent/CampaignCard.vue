@@ -1,9 +1,5 @@
 <template>
   <div class="campaign-card">
-      <DeleteModal
-        :showModal="showDeleteModal"
-        @closeModal="closeDeleteModal"
-      />
       <div class="campaign-image">
         <img :src="imageUrl" alt="campaign-image-project">
       </div>
@@ -30,9 +26,19 @@
             class="btn-payment"
             @click="payment"
           >
-           {{ payNowLabel }}
+            {{ payNowLabel }}
           </button>
         </div>
+        <!-- <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
+          Action
+          <button
+            v-if="paymentStatus !== 'success-status'"
+            class="btn-payment"
+            @click="payment"
+          >
+            {{ payNowLabel }}
+          </button>
+        </div> -->
         <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
           <b>Campaign Config :</b>
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
@@ -42,42 +48,45 @@
             Edit Campaign
           </a>
           <button
-            @click="openDeleteModal"
+            @click="deleteCampaign"
             class="btn-delete-campaign"
           >
             Delete Campaign
           </button>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>Updates Config :</b>
           <a :href="`/updates/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Updates
           </a>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>FAQ Config :</b>
           <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New FAQ
           </a>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>Reward Config :</b>
           <a :href="`/rewards/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Reward
           </a>
+        </div>
+        <div class="campaign-wrap-button">
+          <b>
+            Status :<span v-if="campaignInfo.is_approved == '0'" class="badge badge-pill badge-warning">Pending</span>
+            <span v-if="campaignInfo.is_approved == '1'" class="badge badge-pill badge-success">Approved</span>
+            <span v-if="campaignInfo.is_approved == '2'" class="badge badge-pill badge-danger">Rejected</span>
+          </b>
         </div>
       </div>
     </div>
 </template>
 
 <script>
-import DeleteModal from '../modalComponent/DeleteModal.vue'
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'CampaignCard',
-  components: {
-    DeleteModal,
-  },
   props: {
     isInHistoryOwnedPage: {
       type: Boolean,
@@ -91,10 +100,9 @@ export default {
       type: Object,
       default: () => {}
     }
-},
+  },
   data: () => {
     return {
-      showDeleteModal: false,
       continueDelete: false,
       progress: '59',
       paymentTextStatus: 'PENDING',
@@ -103,6 +111,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
     payNowLabel() {
       return '💸 Pay Now !'
     },
@@ -141,15 +152,6 @@ export default {
     }
   },
   methods: {
-    closeDeleteModal(isContinue) {
-      this.showDeleteModal = false
-      if(isContinue) {
-        this.deleteCampaign()
-      }
-    },
-    openDeleteModal(){
-      this.showDeleteModal = true
-    },
     formatMoney(money) {
       const moneyTemp = money ? parseInt(money) : 10000
       const formatter = new Intl.NumberFormat('en-ID', {
@@ -158,21 +160,59 @@ export default {
       }).format(moneyTemp)
       .replace(/[IDR]/gi, '')
       .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
       .trimLeft()
       return formatter
     },
     deleteCampaign () {
-      console.log('Request Delete Approval')
-      // TODO : Uncomment Code
-      /*
-      this.$store.dispatch('deleteCampaign', this.campaignId)
-        .then(res => {
-          this.$router.go(0)
+      let timerInterval;
+      this.$swal({
+          title: 'Are you sure ?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$store
+              .dispatch('deleteCampaign', this.campaignId)
+              .then(() => {
+                this.$swal({
+                  title: 'Your delete request has been sent to admin !',
+                  icon: 'success',
+                  html: 'Please wait for admin confirmation,<br>Page will refresh in <b></b> second.',
+                  timer: 5000,
+                  timerProgressBar: true,
+                  didOpen: () => {
+                    this.$swal.showLoading()
+                    timerInterval = setInterval(() => {
+                      this.$swal
+                        .getHtmlContainer()
+                        .querySelector('b')
+                        .textContent = (this.$swal.getTimerLeft()/1000).toFixed(0)
+                    }, 100)
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval)
+                  }
+                }).then((result) => {
+                  if(result.dismiss === this.$swal.DismissReason.timer) {
+                    this.$router.go()
+                  }
+                })
+              })
+              .catch((err) => {
+                console.error(err)
+                this.$swal({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!',
+                })
+              })
+          }
         })
-        .catch(err => {
-          console.error(err)
-        })
-      */
     },
     payment() {
       if(!this.donationInfo || !this.donationInfo.snap_token) return
@@ -206,6 +246,7 @@ export default {
     width: 55rem;
     min-height: 10rem;
     margin: 2rem 0;
+    border-radius: 10px;
 
     .campaign-image {
       width: 30%;
@@ -213,6 +254,9 @@ export default {
       img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
       }
     }
 
@@ -268,7 +312,7 @@ export default {
       .campaign-donation-amount {
         display: flex;
         flex-direction: row;
-        margin-bottom: 10px;
+        margin: 10px 0 20px 25px;
         align-items: center;
 
         .donation-text {
@@ -284,9 +328,8 @@ export default {
       .campaign-payment-status {
         display: flex;
         flex-direction: row;
-        margin-bottom: 10px;
         align-items: center;
-        margin-right: 1.5rem;
+        margin: 10px 0 20px 25px;
 
         .text-status {
           font-weight: 500;
@@ -319,6 +362,7 @@ export default {
           padding: 5px;
           background-color: salmon;
           margin-left: 1rem;
+          min-width: 10rem;
         }
       }
 

@@ -3,17 +3,6 @@
     <div class="title-page">
       Owned Campaign List
     </div>
-    <div class="button-upper-campaign">
-      <router-link to="/campaign/create" class="button-create">
-        {{ addNewCampaignLabel }}
-      </router-link>
-      <router-link to="/campaign/history/donation" class="button-history-donation">
-        History Donation Page
-      </router-link>
-      <router-link to="/campaign/history/donation" class="button-history-donation">
-        Campaign Collaboration
-      </router-link>
-    </div>
     <div v-if="listCreatedCampaign.length > 0">
       <CampaignCard
         v-for="(campaign, idx) in listCreatedCampaign"
@@ -21,7 +10,7 @@
         :campaignInfo="campaign"
       />
     </div>
-    <div v-else>
+    <div v-else class="empty-state">
       You dont have created campaign !
     </div>
   </div>
@@ -58,23 +47,8 @@ export default {
       user: 'user',
     }),
     addNewCampaignLabel() {
-      return '➕ Add New Campaign'
+      return '➕ Create New Campaign'
     },
-    progressPercentage() {
-      if(parseInt(this.progress) <= 0) {
-        return '1'
-      }
-      else if (parseInt(this.progress) >= 100) {
-        return '100'
-      }
-      else {
-        return this.progress
-      }
-    },
-    checkEligibleToEdit() {
-      // TODO : Check Eligiblelity to edit campaign
-      return true
-    }
   }
 }
 </script>
@@ -86,6 +60,11 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: 10rem;
+
+  .empty-state {
+    margin-top: 10rem;
+    font-size: 25px;
+  }
 
   .title-page {
     font-size: 30px;
@@ -108,7 +87,7 @@ export default {
       padding: 10px;
 
       &:hover {
-        background-color: black;
+        background-color: #A1E3D8;
         color: white;
       }
     }
@@ -122,7 +101,7 @@ export default {
       margin-left: 10px;
 
       &:hover {
-        background-color: black;
+        background-color: #A1E3D8;
         color: white;
       }
     }
