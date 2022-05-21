@@ -54,25 +54,25 @@
             Delete Campaign
           </button>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>Updates Config :</b>
           <a :href="`/updates/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Updates
           </a>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>FAQ Config :</b>
           <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New FAQ
           </a>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
           <b>Reward Config :</b>
           <a :href="`/rewards/create/${campaignId}`" class="btn-edit-campaign mr">
             Add New Reward
           </a>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button">
           <b>
             Status :<span v-if="campaignInfo.is_approved == '0'" class="badge badge-pill badge-warning">Pending</span>
             <span v-if="campaignInfo.is_approved == '1'" class="badge badge-pill badge-success">Approved</span>
@@ -84,6 +84,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'CampaignCard',
   props: {
@@ -110,6 +111,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
     payNowLabel() {
       return '💸 Pay Now !'
     },

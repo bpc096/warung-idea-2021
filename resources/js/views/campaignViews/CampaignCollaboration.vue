@@ -69,7 +69,6 @@ export default {
         const req = await axios.get(`campaign/collaboration/${this.user.id}`)
         const res = req.data
         this.listCollaboration = res.collaborations
-        console.log("WW", res)
       } catch(e) {
         console.error(e)
       }

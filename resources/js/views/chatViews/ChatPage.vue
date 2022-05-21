@@ -5,25 +5,11 @@
     </div>
     <div class="content-page">
       <div class="side-list-user">
-      <ListChatPage />
+        <ListChatPage />
       </div>
       <div class="main-chat">
         <div class="container">
-          <div class="card">
-            <div id="top-scroll-chat" class="card-body">
-              <ChatMessages
-                :messages="messages"
-              >
-              </ChatMessages>
-            </div>
-            <div class="card-footer">
-              <ChatForm
-                @sentmessage="addMessage"
-                :user="user"
-              >
-              </ChatForm>
-            </div>
-          </div>
+          <router-view></router-view>
         </div>
       </div>
     </div>
@@ -32,55 +18,12 @@
 
 <script>
 import ListChatPage from './ListChatPage.vue'
-import ChatForm from './ChatForm.vue'
-import ChatMessages from './ChatMessages.vue'
-
-import { mapGetters } from 'vuex'
-import axios from 'axios'
-
 
 export default {
   name: 'ChatPage',
   components: {
     ListChatPage,
-    ChatMessages,
-    ChatForm,
   },
-  data: () => {
-    return {
-      messages: [],
-    }
-  },
-  computed: {
-    ...mapGetters({
-      user: 'user'
-    }),
-  },
-  created () {
-    this.fetchMessages();
-
-    // window.Echo.private('chat')
-    // .listen('MessageSent', (e) => {
-    //   this.messages.push({
-    //     message: e.message.message,
-    //     user: e.user
-    //   });
-    // });
-  },
-  methods: {
-    fetchMessages() {
-      // axios.get('/messages').then(response => {
-      //   this.messages = response.data;
-      // });
-    },
-    async addMessage(message) {
-      this.messages.push(message)
-
-      // axios.post('/messages', message).then(response => {
-      //   console.log(response.data);
-      // });
-    }
-  }
 }
 </script>
 
