@@ -79,6 +79,9 @@ export default {
         const req = await Axios.get(apiUrl)
         const res = req.data.all_campaigns
         this.allCampaignInfo = res
+
+        console.log(res.data)
+
         this.listData = res.data
       } catch (e) {
         console.error('Failed to get all campaign list', e)
