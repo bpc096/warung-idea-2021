@@ -58,7 +58,9 @@
           <router-link to="/profile" class="dropdown-item item-click-menu">
             🧑‍🚀 Profile
           </router-link>
-          <router-link to="/admin/dashboard/userlist" class="dropdown-item item-click-menu">
+          <router-link
+            v-if="isUserAdmin"
+            to="/admin/dashboard/userlist" class="dropdown-item item-click-menu">
             🧑‍🚀 Admin Dashboard
           </router-link>
           <router-link to="/profile/invitation" class="dropdown-item item-click-menu" @click.native="markNotifAsRead">
@@ -140,6 +142,9 @@ export default {
       isLoggedIn: 'isLoggedIn',
       user: 'user'
     }),
+    isUserAdmin () {
+      return this.user.role == '1' || this.user.role == '2'
+    },
     currentRouteName () {
       return this.$route.name
     },

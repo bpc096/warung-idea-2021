@@ -1,8 +1,12 @@
 <template>
   <div class="container-vue">
-    <HeaderTemplate />
+    <HeaderTemplate
+      v-if="!isInAdminPage"
+    />
     <router-view></router-view>
-    <FooterTemplate />
+    <FooterTemplate
+      v-if="!isInAdminPage"
+    />
   </div>
 </template>
 
@@ -15,6 +19,12 @@ export default {
   components: {
     HeaderTemplate,
     FooterTemplate
+  },
+  computed: {
+    isInAdminPage() {
+      const found = this.$route.fullPath.indexOf('admin')
+      return found > 0
+    }
   }
 }
 </script>

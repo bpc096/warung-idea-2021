@@ -35,6 +35,7 @@ export default {
   data: () => {
     return {
       messages: [],
+      chatMsgData: [],
     }
   },
   computed: {
@@ -47,7 +48,9 @@ export default {
   },
   watch: {
     '$route' (to, from) {
+      this.saveChatUser(this.userId, this.messages)
       console.log('NEW CREATED ' + this.userId)
+      this.messages = []
     }
   },
   created () {
@@ -62,6 +65,23 @@ export default {
     // });
   },
   methods: {
+    saveChatUser(userId, chat) {
+      if(chat.length <= 0) return
+
+      const chatData = {
+        userId: userId,
+        messages: chat
+      }
+
+      const indexChat = this.chatMsgData.findIndex(x => x.userId === chatData.userId)
+      if(indexChat >= 0) {
+        chat.forEach((x) => {
+          this.chatMsgData[indexChat].messages.push(x)
+        })
+      } else if (indexChat === -1) {
+        this.chatMsgData.push(chatData)
+      }
+    },
     fetchMessages() {
       // axios.get('/messages').then(response => {
       //   this.messages = response.data;

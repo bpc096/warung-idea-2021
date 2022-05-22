@@ -89,7 +89,7 @@ export default {
 
 <style lang="less" scoped>
 .wrap-dashboard-page{
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
 
