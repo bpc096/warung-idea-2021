@@ -50,7 +50,10 @@ export default {
     '$route' (to, from) {
       this.saveChatUser(this.userId, this.messages)
       console.log('NEW CREATED ' + this.userId)
-      this.messages = []
+
+      //Check chatMsgData if exist then fetch
+        this.messages = []
+      // if not exist make it empty
     }
   },
   created () {
