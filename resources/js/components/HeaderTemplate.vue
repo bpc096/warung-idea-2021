@@ -272,6 +272,7 @@ export default {
       margin-left: 2rem;
       text-decoration: none;
       color: black;
+      align-items: center;
     }
     .text-image {
       margin-left: .7rem;
@@ -279,8 +280,9 @@ export default {
       font-family: 'Zen Antique Soft', serif;
     }
     img {
-      height: 34px;
+      height: 32px;
       width: 28px;
+      object-fit: cover;
     }
   }
 

@@ -28,10 +28,18 @@
           class="campaign-payment-button"
         >
           <button
+            class="btn-chat"
+            @click="goToChatPage"
+          >
+            <i class="fa-solid fa-comment mr-1"></i>
+            Chat Creator
+          </button>
+          <button
             v-if="paymentStatus !== 'success-status'"
             class="btn-payment"
             @click="payment"
           >
+            <i class="fa-solid fa-money-bill mr-1"></i>
             {{ payNowLabel }}
           </button>
         </div>
@@ -76,7 +84,7 @@
           </a>
         </div>
         <div
-          v-if="campaignInfo.is_approved == '1' && (isInHistoryOwnedPage || isInCollaborationListPage)"
+          v-if="campaignInfo.is_approved == '1' && isInHistoryOwnedPage"
           class="campaign-wrap-button"
         >
           <b>Finishing Config :</b>
@@ -136,7 +144,7 @@ export default {
       user: 'user'
     }),
     payNowLabel() {
-      return '💸 Pay Now !'
+      return 'Pay Now !'
     },
     projectDesc() {
       return this.campaignInfo?.description? this.campaignInfo.description : 'Lorem ipsum dolor sitamet consectetur adipisicing elit. Ratione, quaerat.'
@@ -173,6 +181,9 @@ export default {
     }
   },
   methods: {
+    goToChatPage () {
+      console.log('go to chat page')
+    },
     createApprovalClassName(isApproved) {
       let txtClass = ''
       switch(isApproved) {
@@ -432,6 +443,16 @@ export default {
         justify-content: flex-end;
         align-items: center;
         margin: 10px 0 20px 25px;
+
+        .btn-chat {
+          text-decoration: none;
+          color: black;
+          border: 1px solid pink;
+          border-radius: 10px;
+          padding: 5px;
+          background-color: #9BA3EB;
+          min-width: 10rem;
+        }
 
         .btn-payment {
           text-decoration: none;

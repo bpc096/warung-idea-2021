@@ -71,7 +71,7 @@ export default {
     }
 
     a:hover {
-      background-color: pink;
+      background-color: #B8F1B0;
     }
 
     .user-card {
