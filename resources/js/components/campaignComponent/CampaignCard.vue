@@ -75,7 +75,10 @@
             Add New Reward
           </a>
         </div>
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div
+          v-if="campaignInfo.is_approved == '1' && (isInHistoryOwnedPage || isInCollaborationListPage)"
+          class="campaign-wrap-button"
+        >
           <b>Finishing Config :</b>
           <button
             @click="finishedCampaign"
@@ -504,7 +507,8 @@ export default {
           }
 
           &.status-danger {
-            background-color: red;
+            background-color: #FF5D5D;
+            color: white;
           }
         }
 

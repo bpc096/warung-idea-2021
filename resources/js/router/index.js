@@ -285,7 +285,14 @@ router.beforeEach((to, from, next) => {
     const isLoggedIn = store.getters.isLoggedIn
     const user = store.getters.user
 
-    if(isLoggedIn && user && user.role === 'admin') {
+    /*
+    User Role Explanation
+    1 = Superadmin
+    2 = Admin
+    3 = Creator
+    **/
+
+    if(isLoggedIn && user && (user.role === '1' || user.role === '2')) {
       next()
       return
     }
