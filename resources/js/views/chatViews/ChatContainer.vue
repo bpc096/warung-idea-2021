@@ -48,12 +48,16 @@ export default {
   },
   watch: {
     '$route' (to, from) {
+      // Saving Previus User Data Messages
       this.saveChatUser(this.userId, this.messages)
-      console.log('NEW CREATED ' + this.userId)
+      console.log('Chat Changing Old User is ' + from.params.userId)
+      console.log('Chat Changing New User is ' + to.params.userId)
 
-      //Check chatMsgData if exist then fetch
+
+      //Fetching New User Data Messages
+        //Check chatMsgData if exist then fetch
         this.messages = []
-      // if not exist make it empty
+        // if not exist make it empty
     }
   },
   created () {

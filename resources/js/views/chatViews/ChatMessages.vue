@@ -22,6 +22,9 @@ export default {
   updated () {
     let element = document.getElementById('chatlogs');
     element.scrollTop = element.scrollHeight;
+  },
+  mounted() {
+    console.log('Chat Message Mounted')
   }
 };
 </script>

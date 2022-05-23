@@ -53,7 +53,7 @@
             {{ payNowLabel }}
           </button>
         </div> -->
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage && !isCampaignRejected">
           <b>Campaign Config :</b>
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
             View Campaign
@@ -73,13 +73,13 @@
           class="campaign-wrap-button"
         >
           <b>Tab Config :</b>
-          <a :href="`/updates/create/${campaignId}`" class="btn-view-campaign mr">
+          <a :href="`/updates/create/${campaignId}`" class="btn-view-campaign mr btn-tab-config">
             Add New Updates
           </a>
-          <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign">
+          <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign btn-tab-config">
             Add New FAQ
           </a>
-          <a :href="`/rewards/create/${campaignId}`" class="btn-delete-campaign">
+          <a :href="`/rewards/create/${campaignId}`" class="btn-delete-campaign btn-tab-config">
             Add New Reward
           </a>
         </div>
@@ -102,6 +102,15 @@
           <b>Create-Approval Status :</b>
           <div :class="createApprovalClassName(campaignInfo.is_approved)">
             {{ createApprovalStatus(campaignInfo.is_approved) }}
+          </div>
+        </div>
+        <div
+          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          class="campaign-wrap-button"
+        >
+          <b>Delete-Approval Status :</b>
+          <div :class="createApprovalClassName(campaignInfo.is_delete_approved)">
+            {{ createApprovalStatus(campaignInfo.is_delete_approved) }}
           </div>
         </div>
       </div>
@@ -143,6 +152,13 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+    isCampaignRejected() {
+      const res = this.campaignInfo
+        && this.campaignInfo.is_approved
+        && (this.campaignInfo.is_approved === '2' || this.campaignInfo.is_approved === '0')
+
+      return res
+    },
     payNowLabel() {
       return 'Pay Now !'
     },
@@ -196,6 +212,9 @@ export default {
         case '2' :
           txtClass = 'badge-status-custom status-danger'
           break;
+        default:
+          txtClass = 'badge-status-custom status-init'
+          break;
       }
       return txtClass
     },
@@ -210,6 +229,9 @@ export default {
           break;
         case '2' :
           txtStatus = 'Rejected'
+          break;
+        default:
+          txtStatus = 'Initialize'
           break;
       }
       return txtStatus
@@ -245,7 +267,7 @@ export default {
                   title: 'Your delete request has been sent to admin !',
                   icon: 'success',
                   html: 'Please wait for admin confirmation,<br>Page will refresh in <b></b> second.',
-                  timer: 5000,
+                  timer: 3000,
                   timerProgressBar: true,
                   didOpen: () => {
                     this.$swal.showLoading()
@@ -531,6 +553,10 @@ export default {
             background-color: #FF5D5D;
             color: white;
           }
+
+          &.status-init {
+            background-color: #8CC0DE;
+          }
         }
 
         .btn-view-campaign {
@@ -544,6 +570,9 @@ export default {
           &.mr {
             margin-left: 1rem;
           }
+          &.btn-tab-config {
+            background-color: #00FFAB;
+          }
         }
 
         .btn-edit-campaign {
@@ -555,6 +584,9 @@ export default {
           background-color: #4FBDBA;
           margin: 0 10px;
           min-width: 150px;
+          &.btn-tab-config {
+            background-color: #00FFAB;
+          }
         }
 
         .btn-delete-campaign {
@@ -566,7 +598,24 @@ export default {
           background-color: #FF5959;
           margin-right: 10px;
           min-width: 150px;
+          &.btn-tab-config {
+            background-color: #00FFAB;
+          }
         }
+
+        .btn-tab-config {
+          text-decoration: none;
+          color: black;
+          border: 1px solid pink;
+          border-radius: 10px;
+          padding: 5px;
+          background-color: pink;
+          min-width: 150px;
+          &.mr {
+            margin-left: 1rem;
+          }
+        }
+
       }
     }
   }
