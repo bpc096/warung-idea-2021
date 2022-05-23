@@ -126,7 +126,7 @@ export default {
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-    width: 45rem;
+    width: 55rem;
     min-height: 10rem;
     margin: 2rem 0;
     border-radius: 10px;

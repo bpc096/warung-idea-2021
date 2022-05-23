@@ -10,22 +10,36 @@
         <!-- <div class="campaign-desc">
           {{ projectDesc.slice(0,75) }} ...
         </div> -->
-        <div v-if="!isInHistoryOwnedPage" class="campaign-donation-amount">
-          Donation Amount
+        <div v-if="!isInHistoryOwnedPage && !isInCollaborationListPage" class="campaign-donation-amount">
+          <b>Donation amount : </b>
           <div class="donation-text">
             Rp {{ formatMoney(infoDonationAmount) }}
           </div>
         </div>
-        <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
-          Payment status
+        <div v-if="!isInHistoryOwnedPage && !isInCollaborationListPage" class="campaign-payment-status">
+          <b>Payment status :</b>
+
           <div :class="['text-status', paymentStatus]">
             {{ paymentTextStatus }}
           </div>
+        </div>
+        <div
+          v-if="!isInHistoryOwnedPage && !isInCollaborationListPage"
+          class="campaign-payment-button"
+        >
+          <button
+            class="btn-chat"
+            @click="goToChatPage"
+          >
+            <i class="fa-solid fa-comment mr-1"></i>
+            Chat Creator
+          </button>
           <button
             v-if="paymentStatus !== 'success-status'"
             class="btn-payment"
             @click="payment"
           >
+            <i class="fa-solid fa-money-bill mr-1"></i>
             {{ payNowLabel }}
           </button>
         </div>
@@ -39,7 +53,7 @@
             {{ payNowLabel }}
           </button>
         </div> -->
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage">
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage && !isCampaignRejected">
           <b>Campaign Config :</b>
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
             View Campaign
@@ -54,30 +68,50 @@
             Delete Campaign
           </button>
         </div>
-        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
-          <b>Updates Config :</b>
-          <a :href="`/updates/create/${campaignId}`" class="btn-edit-campaign mr">
+        <div
+          v-if="isCampaignApproved && (isInHistoryOwnedPage || isInCollaborationListPage)"
+          class="campaign-wrap-button"
+        >
+          <b>Tab Config :</b>
+          <a :href="`/updates/create/${campaignId}`" class="btn-view-campaign mr btn-tab-config">
             Add New Updates
           </a>
-        </div>
-        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
-          <b>FAQ Config :</b>
-          <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign mr">
+          <a :href="`/faqs/create/${campaignId}`" class="btn-edit-campaign btn-tab-config">
             Add New FAQ
           </a>
-        </div>
-        <div class="campaign-wrap-button" v-if="campaignInfo.is_approved == '1' && user.role == '3'">
-          <b>Reward Config :</b>
-          <a :href="`/rewards/create/${campaignId}`" class="btn-edit-campaign mr">
+          <a :href="`/rewards/create/${campaignId}`" class="btn-delete-campaign btn-tab-config">
             Add New Reward
           </a>
         </div>
-        <div class="campaign-wrap-button">
-          <b>
-            Status :<span v-if="campaignInfo.is_approved == '0'" class="badge badge-pill badge-warning">Pending</span>
-            <span v-if="campaignInfo.is_approved == '1'" class="badge badge-pill badge-success">Approved</span>
-            <span v-if="campaignInfo.is_approved == '2'" class="badge badge-pill badge-danger">Rejected</span>
-          </b>
+        <div
+          v-if="isCampaignApproved && isInHistoryOwnedPage"
+          class="campaign-wrap-button"
+        >
+          <b>Finishing Config :</b>
+          <button
+            @click="finishedCampaign"
+            class="btn-delete-campaign"
+          >
+            Finish Campaign
+          </button>
+        </div>
+        <div
+          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          class="campaign-wrap-button"
+        >
+          <b>Create-Approval Status :</b>
+          <div :class="createApprovalClassName(campaignInfo.is_approved)">
+            {{ createApprovalStatus(campaignInfo.is_approved) }}
+          </div>
+        </div>
+        <div
+          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          class="campaign-wrap-button"
+        >
+          <b>Delete-Approval Status :</b>
+          <div :class="createApprovalClassName(campaignInfo.is_delete_approved)">
+            {{ createApprovalStatus(campaignInfo.is_delete_approved) }}
+          </div>
         </div>
       </div>
     </div>
@@ -88,6 +122,10 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'CampaignCard',
   props: {
+    isInCollaborationListPage: {
+      type: Boolean,
+      default: false,
+    },
     isInHistoryOwnedPage: {
       type: Boolean,
       default: true,
@@ -114,8 +152,21 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+    isCampaignApproved() {
+      const res = this.campaignInfo
+        && this.campaignInfo.isApproved
+        && this.campaignInfo.isApproved === '1'
+      return res
+    },
+    isCampaignRejected() {
+      const res = this.campaignInfo
+        && this.campaignInfo.is_approved
+        && (this.campaignInfo.is_approved === '2' || this.campaignInfo.is_approved === '0')
+
+      return res
+    },
     payNowLabel() {
-      return '💸 Pay Now !'
+      return 'Pay Now !'
     },
     projectDesc() {
       return this.campaignInfo?.description? this.campaignInfo.description : 'Lorem ipsum dolor sitamet consectetur adipisicing elit. Ratione, quaerat.'
@@ -152,6 +203,45 @@ export default {
     }
   },
   methods: {
+    goToChatPage () {
+      console.log('go to chat page')
+    },
+    createApprovalClassName(isApproved) {
+      let txtClass = ''
+      switch(isApproved) {
+        case '0' :
+          txtClass = 'badge-status-custom status-warning'
+          break;
+        case '1' :
+          txtClass = 'badge-status-custom status-success'
+          break;
+        case '2' :
+          txtClass = 'badge-status-custom status-danger'
+          break;
+        default:
+          txtClass = 'badge-status-custom status-init'
+          break;
+      }
+      return txtClass
+    },
+    createApprovalStatus(isApproved) {
+      let txtStatus = ''
+      switch(isApproved) {
+        case '0' :
+          txtStatus = 'Pending'
+          break;
+        case '1' :
+          txtStatus = 'Approved'
+          break;
+        case '2' :
+          txtStatus = 'Rejected'
+          break;
+        default:
+          txtStatus = 'Initialize'
+          break;
+      }
+      return txtStatus
+    },
     formatMoney(money) {
       const moneyTemp = money ? parseInt(money) : 10000
       const formatter = new Intl.NumberFormat('en-ID', {
@@ -164,16 +254,66 @@ export default {
       .trimLeft()
       return formatter
     },
-    deleteCampaign () {
+    finishedCampaign () {
       let timerInterval;
       this.$swal({
-          title: 'Are you sure ?',
+          title: 'Request Finished Campaign ?',
           text: "You won't be able to revert this!",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+          confirmButtonText: 'Yes, request for finish!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$store
+              .dispatch('deleteCampaign', this.campaignId)
+              .then(() => {
+                this.$swal({
+                  title: 'Your delete request has been sent to admin !',
+                  icon: 'success',
+                  html: 'Please wait for admin confirmation,<br>Page will refresh in <b></b> second.',
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: () => {
+                    this.$swal.showLoading()
+                    timerInterval = setInterval(() => {
+                      this.$swal
+                        .getHtmlContainer()
+                        .querySelector('b')
+                        .textContent = (this.$swal.getTimerLeft()/1000).toFixed(0)
+                    }, 100)
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval)
+                  }
+                }).then((result) => {
+                  if(result.dismiss === this.$swal.DismissReason.timer) {
+                    this.$router.go()
+                  }
+                })
+              })
+              .catch((err) => {
+                console.error(err)
+                this.$swal({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Something went wrong!',
+                })
+              })
+          }
+        })
+    },
+    deleteCampaign () {
+      let timerInterval;
+      this.$swal({
+          title: 'Request Delete Campaign ?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, request for delete!'
         }).then((result) => {
           if (result.isConfirmed) {
             this.$store
@@ -325,6 +465,35 @@ export default {
         }
       }
 
+      .campaign-payment-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 10px 0 20px 25px;
+
+        .btn-chat {
+          text-decoration: none;
+          color: black;
+          border: 1px solid pink;
+          border-radius: 10px;
+          padding: 5px;
+          background-color: #9BA3EB;
+          min-width: 10rem;
+        }
+
+        .btn-payment {
+          text-decoration: none;
+          color: black;
+          border: 1px solid pink;
+          border-radius: 10px;
+          padding: 5px;
+          background-color: salmon;
+          margin: 0 2rem;
+          min-width: 10rem;
+        }
+      }
+
       .campaign-payment-status {
         display: flex;
         flex-direction: row;
@@ -353,17 +522,6 @@ export default {
             background-color: red;
           }
         }
-
-        .btn-payment {
-          text-decoration: none;
-          color: black;
-          border: 1px solid pink;
-          border-radius: 10px;
-          padding: 5px;
-          background-color: salmon;
-          margin-left: 1rem;
-          min-width: 10rem;
-        }
       }
 
 
@@ -373,6 +531,39 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin: 10px 0 20px 25px;
+
+        b {
+          width: 30%;
+          text-align: left;
+        }
+
+        .badge-status-custom {
+          text-decoration: none;
+          color: black;
+          border: 1px solid black;
+          border-radius: 10px;
+          padding: 5px;
+          min-width: 150px;
+          margin-right: 10px;
+          font-weight: bold;
+
+          &.status-warning {
+            background-color: yellow;
+          }
+
+          &.status-success {
+            background-color: lime;
+          }
+
+          &.status-danger {
+            background-color: #FF5D5D;
+            color: white;
+          }
+
+          &.status-init {
+            background-color: #8CC0DE;
+          }
+        }
 
         .btn-view-campaign {
           text-decoration: none;
@@ -385,6 +576,9 @@ export default {
           &.mr {
             margin-left: 1rem;
           }
+          &.btn-tab-config {
+            background-color: #00FFAB;
+          }
         }
 
         .btn-edit-campaign {
@@ -396,6 +590,9 @@ export default {
           background-color: #4FBDBA;
           margin: 0 10px;
           min-width: 150px;
+          &.btn-tab-config {
+            background-color: #00FFAB;
+          }
         }
 
         .btn-delete-campaign {
@@ -407,7 +604,24 @@ export default {
           background-color: #FF5959;
           margin-right: 10px;
           min-width: 150px;
+          &.btn-tab-config {
+            background-color: #00FFAB;
+          }
         }
+
+        .btn-tab-config {
+          text-decoration: none;
+          color: black;
+          border: 1px solid pink;
+          border-radius: 10px;
+          padding: 5px;
+          background-color: pink;
+          min-width: 150px;
+          &.mr {
+            margin-left: 1rem;
+          }
+        }
+
       }
     }
   }

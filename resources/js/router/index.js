@@ -45,6 +45,7 @@ import UpdateTab from '../views/tabViews/UpdateTab.vue'
 // Private Message
 import ChatPage from '../views/chatViews/ChatPage.vue'
 import ChatPageAdvance from '../views/chatViews/ChatPageAdvance.vue'
+import ChatContainer from '../views/chatViews/ChatContainer.vue'
 
 // Dashboard Page
 import DashboardPage from '../views/dashboardViews/DashboardPage.vue'
@@ -215,6 +216,13 @@ const routes = [
     path: '/chat',
     name: 'ChatPage',
     component: ChatPage,
+    children: [
+      {
+        path: 'user/:userId',
+        name: 'ChatContainer',
+        component: ChatContainer,
+      }
+    ]
   },
   {
     path: '/chat/advance',
@@ -277,7 +285,14 @@ router.beforeEach((to, from, next) => {
     const isLoggedIn = store.getters.isLoggedIn
     const user = store.getters.user
 
-    if(isLoggedIn && user && user.role === 'admin') {
+    /*
+    User Role Explanation
+    1 = Superadmin
+    2 = Admin
+    3 = Creator
+    **/
+
+    if(isLoggedIn && user && (user.role === '1' || user.role === '2')) {
       next()
       return
     }
