@@ -69,7 +69,7 @@
           </button>
         </div>
         <div
-          v-if="campaignInfo.is_approved == '1' && (isInHistoryOwnedPage || isInCollaborationListPage)"
+          v-if="isCampaignApproved && (isInHistoryOwnedPage || isInCollaborationListPage)"
           class="campaign-wrap-button"
         >
           <b>Tab Config :</b>
@@ -84,7 +84,7 @@
           </a>
         </div>
         <div
-          v-if="campaignInfo.is_approved == '1' && isInHistoryOwnedPage"
+          v-if="isCampaignApproved && isInHistoryOwnedPage"
           class="campaign-wrap-button"
         >
           <b>Finishing Config :</b>
@@ -152,6 +152,12 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+    isCampaignApproved() {
+      const res = this.campaignInfo
+        && this.campaignInfo.isApproved
+        && this.campaignInfo.isApproved === '1'
+      return res
+    },
     isCampaignRejected() {
       const res = this.campaignInfo
         && this.campaignInfo.is_approved
