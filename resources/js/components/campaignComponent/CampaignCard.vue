@@ -53,7 +53,7 @@
             {{ payNowLabel }}
           </button>
         </div> -->
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage && !isCampaignRejected">
+        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage && isCampaignApproved">
           <b>Campaign Config :</b>
           <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
             View Campaign
@@ -154,8 +154,8 @@ export default {
     }),
     isCampaignApproved() {
       const res = this.campaignInfo
-        && this.campaignInfo.isApproved
-        && this.campaignInfo.isApproved === '1'
+        && this.campaignInfo.is_approved
+        && this.campaignInfo.is_approved === '1'
       return res
     },
     isCampaignRejected() {
