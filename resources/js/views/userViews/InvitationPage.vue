@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     textTitleCampaign(data) {
-      const title = data.campaigns && data.campaigns.length > 0 ? data.campaigns[0].title : 'Default Title'
+      const title = data.title !== 'null' && data.title !== '' ? data.title : 'Default Title'
       return title
     },
     checkCampaignExist(campaign) {
