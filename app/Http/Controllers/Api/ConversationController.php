@@ -6,37 +6,67 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Conversation;
 use App\Events\MessageCreated;
+use App\Message;
+use Illuminate\Support\Facades\Validator;
 
 class ConversationController extends Controller
 {
-    public function show($user_two)
-    {
-        $user_one = auth()->user()->id;
-
-        $conversation = Conversation::where(function ($query) use ($user_one, $user_two){
-            $query->where(['user_one' => $user_one, 'user_two' => $user_two]);
-        })->orWhere(function ($query) use ($user_one, $user_two){
-            $query->where(['user_one' => $user_two, 'user_two' => $user_one]);
-        })->with('messages')->first();
-
+    // ** Get Inbox
+    public function index($user_id) {
+        $conversationList = Conversation::select('conversations.*', 'users.name as sender')
+        ->join('users', 'users.id', '=', 'conversations.sender')
+        ->where('conversations.receiver', $user_id)
+        ->get();
+        
         return response()->json([
-            'data' => $conversation
+            "success" => true,
+            "conversation_list" => $conversationList
+        ], 200);
+    }
+
+    // ** Get Conversation
+    public function messages(Request $req) {
+        $idConversation = $req->id_conversation;
+        $idUser         = $req->id_user;
+        
+        $getConversation = Message::select('messages.*', 'users.name')
+        ->join('users', 'users.id', '=', 'messages.user_id')
+        ->where([
+            'messages.conversation_id' => $idConversation,
+            'messages.user_id' => $idUser
+        ])
+        ->orderBy('messages.created_at', 'desc')
+        ->get();
+        return response()->json([
+            'success' => true,
+            'messages' => $getConversation
         ]);
     }
 
-    public function store(Request $request, Conversation $conversation)
-    {
-        $message = $conversation->messages()->create([
-            'conversation_id' => $conversation->id,
-            'body' => $request->body,
-            'user_id' => auth()->user()->id,
+    public function post_message(Request $req) {
+        $validator = Validator::make($req->all(), [
+            'id_conv' => 'required',
+            'id_user' => 'required',
+            'content' => 'required'
         ]);
 
-        MessageCreated::dispatch($message);
-        
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $msg = new Message;
+        $msg->conversation_id = $req->id_conv;
+        $msg->user_id         = $req->id_user;
+        $msg->body            = $req->content;
+
+        if($msg->save()) {
+            return response()->json([
+                'success' => true
+            ], 201);
+        }
+
         return response()->json([
-            'data' => $message,
-            'status' => 'Success'
-        ]);
+            'success' => false
+        ], 500);
     }
 }
