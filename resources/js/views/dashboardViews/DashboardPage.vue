@@ -28,19 +28,6 @@ export default {
               header: true,
               title: 'Admin Dashboard',
               hiddenOnCollapse: false,
-            }, {
-              title: 'Admin Management',
-              icon: 'fa-solid fa-user-gear',
-              child: [
-                {
-                  href: {path: baseUrl + 'adminlist'},
-                  title: 'List of Admin',
-                },
-                {
-                  href: {path: baseUrl + 'createadmin'},
-                  title: 'Create New Admin',
-                },
-              ]
             },{
               icon: 'fa fa-user',
               title: 'User Management',

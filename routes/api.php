@@ -26,6 +26,7 @@ Route::post('/login', [LoginController::class, 'login']);
  */
 Route::prefix('user')->group(function() {
     Route::get('/', [UserController::class, 'index']);
+    Route::get('/get_user', [UserController::class, 'GetUser']);
     Route::post('/create_user', [UserController::class, 'CreateUser'])->middleware('auth:api');
     Route::post('/update_user', [UserController::class, 'UpdateUser'])->middleware('auth:api');
     Route::delete('/delete_user/{id}', [UserController::class, 'DeleteUser'])->middleware('auth:api');
