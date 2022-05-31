@@ -26,6 +26,7 @@ Route::post('/login', [LoginController::class, 'login']);
  */
 Route::prefix('user')->group(function() {
     Route::get('/', [UserController::class, 'index']);
+    Route::get('/get_user', [UserController::class, 'GetUser']);
     Route::post('/create_user', [UserController::class, 'CreateUser'])->middleware('auth:api');
     Route::post('/update_user', [UserController::class, 'UpdateUser'])->middleware('auth:api');
     Route::delete('/delete_user/{id}', [UserController::class, 'DeleteUser'])->middleware('auth:api');
@@ -129,13 +130,8 @@ Route::get('/notifications/mark_notif_as_read', [NotificationController::class, 
 /**
  * Api Private Chat
  */
-// Route::group(['middleware' => 'auth:api'], function(){
-//     // Route::post('/logout', [LoginController::class, 'logout']);
-//     Route::get('me', MeController::class);
-
-//     Route::get('user', [UserController::class, 'index']);
-//     Route::get('user/{id}', [UserController::class, 'show']);
-
-//     Route::get('conversation/{user_two}', [ConversationController::class, 'show'])->name('conversation.show');
-//     Route::post('conversation/{conversation}/message', [ConversationController::class, 'store'])->name('conversation.store');
-// });
+Route::prefix('chats')->group(function() {
+    Route::get('/{user_id}', [ConversationController::class, 'index'])->middleware('auth:api');
+    Route::post('/messages', [ConversationController::class, 'messages'])->middleware('auth:api');
+    Route::post('/post_message', [ConversationController::class, 'post_message'])->middleware('auth:api');
+});

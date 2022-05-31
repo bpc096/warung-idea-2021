@@ -35,6 +35,7 @@ export default {
   data: () => {
     return {
       messages: [],
+      chatMsgData: [],
     }
   },
   computed: {
@@ -47,7 +48,16 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      console.log('NEW CREATED ' + this.userId)
+      // Saving Previus User Data Messages
+      this.saveChatUser(this.userId, this.messages)
+      console.log('Chat Changing Old User is ' + from.params.userId)
+      console.log('Chat Changing New User is ' + to.params.userId)
+
+
+      //Fetching New User Data Messages
+        //Check chatMsgData if exist then fetch
+        this.messages = []
+        // if not exist make it empty
     }
   },
   created () {
@@ -62,6 +72,23 @@ export default {
     // });
   },
   methods: {
+    saveChatUser(userId, chat) {
+      if(chat.length <= 0) return
+
+      const chatData = {
+        userId: userId,
+        messages: chat
+      }
+
+      const indexChat = this.chatMsgData.findIndex(x => x.userId === chatData.userId)
+      if(indexChat >= 0) {
+        chat.forEach((x) => {
+          this.chatMsgData[indexChat].messages.push(x)
+        })
+      } else if (indexChat === -1) {
+        this.chatMsgData.push(chatData)
+      }
+    },
     fetchMessages() {
       // axios.get('/messages').then(response => {
       //   this.messages = response.data;

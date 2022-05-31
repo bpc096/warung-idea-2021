@@ -32,6 +32,14 @@ class UserController extends Controller
 
     }
 
+    public function GetUser() {
+        $getData = User::where('role', '!=', null)->paginate(10);
+        return response()->json([
+            'success' => true,
+            'users'   => $getData
+        ], 200);
+    }
+
     public function show($id)
     {
         $current_user = User::find($id);

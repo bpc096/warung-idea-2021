@@ -65,6 +65,15 @@ export default {
     align-items: center;
     height: 100%;
 
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    a:hover {
+      background-color: #B8F1B0;
+    }
+
     .user-card {
       display: flex;
       flex-direction: row;

@@ -49,7 +49,6 @@ import ChatContainer from '../views/chatViews/ChatContainer.vue'
 
 // Dashboard Page
 import DashboardPage from '../views/dashboardViews/DashboardPage.vue'
-import AdminListPage from '../views/dashboardViews/AdminListPage.vue'
 import UserListPage from '../views/dashboardViews/UserListPage.vue'
 import CampaignListPage from '../views/dashboardViews/CampaignListPage.vue'
 import CreateNewAdmin from '../views/dashboardViews/CreateAdminPage.vue'
@@ -57,6 +56,7 @@ import RequestListPage from '../views/dashboardViews/RequestListPage.vue'
 import RequestCreatePage from '../views/dashboardViews/RequestCreatePage.vue'
 import RequestDeletePage from '../views/dashboardViews/RequestDeletePage.vue'
 import RequestFinishedPage from '../views/dashboardViews/RequestFinishedPage.vue'
+import AddUserPage from "../views/dashboardViews/AddUser.vue"
 
 // store
 import store from '../store'
@@ -239,12 +239,14 @@ const routes = [
     },
     children: [
       {
-        path: 'adminlist',
-        component: AdminListPage,
-      },
-      {
         path: 'userlist',
         component: UserListPage,
+        children: [
+          {
+            path: 'add_user',
+            component: AddUserPage
+          }
+        ]
       },
       {
         path: 'campaignlist',
@@ -285,7 +287,14 @@ router.beforeEach((to, from, next) => {
     const isLoggedIn = store.getters.isLoggedIn
     const user = store.getters.user
 
-    if(isLoggedIn && user && user.role === 'admin') {
+    /*
+    User Role Explanation
+    1 = Superadmin
+    2 = Admin
+    3 = Creator
+    **/
+
+    if(isLoggedIn && user && (user.role === '1' || user.role === '2')) {
       next()
       return
     }
