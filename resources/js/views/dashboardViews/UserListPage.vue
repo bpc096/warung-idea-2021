@@ -4,7 +4,7 @@
       All User List
     </div>
     <div class="container-fluid">
-      <router-link to="userlist/add_user" class="btn btn-primary btn-sm mb-2">Create</router-link>
+      <router-link to="add_user" class="btn btn-primary btn-sm mb-2">Create</router-link>
       <div class="table-responsive">
         <table class="table table-stripped table-bordered">
           <thead>
@@ -22,7 +22,7 @@
               <td>{{getType(user.role)}}</td>
               <td>
                 <router-link class="btn btn-warning btn-sm" to="/">Edit</router-link>
-                <button type="button" class="btn btn-danger btn-sm" v-if="user.role != '1'">Hapus</button>
+                <button type="button" class="btn btn-danger btn-sm" v-if="user.role != '1'" @click="remove(user.id)">Hapus</button>
               </td>
             </tr>
           </tbody>
@@ -34,6 +34,7 @@
 
 <script>
 import axios from "axios"
+import Swal from "sweetalert2"
 
 export default {
   name: 'UserListPage',
@@ -46,7 +47,7 @@ export default {
     async getUserList() {
       const req = await axios.get('user/get_user')
       const res = req.data
-      this.list = res.users.data
+      this.list = res.users
     },
     getType(type) {
       switch(type) {
@@ -61,6 +62,28 @@ export default {
           break
         default:
           return '-'
+      }
+    },
+    async remove(id) {
+      const confirm = await Swal.fire({
+        title: 'Confirmation',
+        text: 'Delete Data?',
+        icon: 'warning',
+        showCancelButton:  true
+      })
+      if(confirm.isConfirmed) {
+        try {
+          const req = await axios.delete(`user/delete_user/${id}`)
+          const res = req.data
+          if(res.success) {
+            const message = await Swal.fire('Success', res.message, 'success')
+            if(message.isConfirmed) {
+              this.getUserList()
+            }
+          }
+        } catch(e) {
+          console.error(e)
+        }
       }
     }
   },
