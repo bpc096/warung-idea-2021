@@ -1,24 +1,30 @@
 <template>
   <div class="list-chat-page">
-    <div class="user-wrap">
+    <div v-if="userList.length > 0" class="user-wrap">
       <a
-        v-for="(user,idx) in userList"
+        v-for="(u,idx) in userList"
         :key="idx"
         class="user-card"
-        @click="changeChatContainer(user.id)"
+        @click="changeChatContainer(u.id, u.userId)"
       >
         <div class="user-image">
-          <img :src="user.sourceImg" alt="user-image-profile">
+          <img :src="u.sourceImg" alt="user-image-profile">
         </div>
         <div class="user-name">
-          <b>{{user.name}}</b>
+          <b>{{u.name}}</b>
         </div>
       </a>
+    </div>
+    <div v-else class="user-empty-wrap">
+      <h3>Empty List</h3>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import axios from "axios"
+
 export default {
   name: 'ListChatPage',
   data: () => {
@@ -26,29 +32,48 @@ export default {
       userList: [
         {
           id: 1,
+          userId: 1,
           sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
           name: 'M Faisal Ghozi',
         },
         {
           id: 2,
+          userId: 2,
           sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
           name: 'Bill Petrus'
         }
-      ]
+      ],
+      mockUserList: [],
     }
   },
+  created() {
+    this.fetchChatList()
+  },
   computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
     getCurrentPath () {
       return this.$route.path
     }
   },
   methods: {
-    changeChatContainer (targetId = 1) {
+    changeChatContainer (conversationId = 0,targetId = 1) {
       const getCurrentTargetId = this.getCurrentPath.split('/').filter(x => Number.isInteger(parseInt(x)))
       if(parseInt(getCurrentTargetId[0]) === targetId || getCurrentTargetId.length <= 0) return
       this.$router.replace({
-        path: '/chat/user/' + targetId
+        path: '/chat/'+ conversationId +'/user/' + targetId
       })
+    },
+    fetchChatList() {
+      const apiUrl = 'chats/' + this.user.id
+      axios.get(apiUrl)
+        .then((res) => {
+          this.mockUserList = res.conversation_list
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }
 }
@@ -58,6 +83,15 @@ export default {
 .list-chat-page {
   min-height: 90vh;
   width: 100%;
+
+  .user-empty-wrap {
+    border-top: 1px solid black;
+    display: flex;
+    min-height: 90vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
   .user-wrap {
     display: flex;

@@ -1,19 +1,24 @@
 <template>
   <div class="container-chat">
-    <div class="card">
+    <div class="card h-100">
       testing - {{ userId }}
-      <div id="top-scroll-chat" class="card-body">
-        <ChatMessages
-          :messages="messages"
-        >
-        </ChatMessages>
+      <div v-if="userId !== 0">
+        <div id="top-scroll-chat" class="card-body">
+          <ChatMessages
+            :messages="messages"
+          >
+          </ChatMessages>
+        </div>
+        <div class="card-footer">
+          <ChatForm
+            @sentmessage="addMessage"
+            :user="user"
+          >
+          </ChatForm>
+        </div>
       </div>
-      <div class="card-footer">
-        <ChatForm
-          @sentmessage="addMessage"
-          :user="user"
-        >
-        </ChatForm>
+      <div v-else class="empty-state">
+        <h2>Chat Is Empty!</h2>
       </div>
     </div>
   </div>
@@ -43,7 +48,12 @@ export default {
       user: 'user'
     }),
     userId() {
-      return this.$route.params.userId
+      const userId = parseInt(this.$route.params.userId || '0')
+      return userId
+    },
+    chatId () {
+      const chatId = parseInt(this.$route.params.chatId || '0')
+      return chatId
     }
   },
   watch: {
@@ -55,6 +65,7 @@ export default {
 
 
       //Fetching New User Data Messages
+      this.fetchMessages()
         //Check chatMsgData if exist then fetch
         this.messages = []
         // if not exist make it empty
@@ -62,14 +73,6 @@ export default {
   },
   created () {
     this.fetchMessages();
-
-    // window.Echo.private('chat')
-    // .listen('MessageSent', (e) => {
-    //   this.messages.push({
-    //     message: e.message.message,
-    //     user: e.user
-    //   });
-    // });
   },
   methods: {
     saveChatUser(userId, chat) {
@@ -90,25 +93,51 @@ export default {
       }
     },
     fetchMessages() {
-      // axios.get('/messages').then(response => {
-      //   this.messages = response.data;
-      // });
+      if(this.chatId === 0 || this.user.id === 0) return
+
+      const apiUrl = 'chats/messages?id_conversation=' + this.chatId +
+                      '&id_user=' + this.user.id
+      axios.post(apiUrl)
+        .then(response => {
+          this.messages = response.data;
+        })
+        .catch(err => {
+          this.messages = []
+          console.error(err)
+        })
     },
     async addMessage(message) {
-      this.messages.push(message)
+      if(this.chatId === 0 || this.user.id === 0) return
 
-      // axios.post('/messages', message).then(response => {
-      //   console.log(response.data);
-      // });
+      this.messages.push(message)
+      const apiUrl= 'chats/post_message?id_conv=' + this.chatId +
+                    '&id_user=' + this.user.id +
+                    '&content=' + message
+      axios.post(apiUrl)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .container-chat {
   padding: 0;
   margin: 0;
   max-width: 100%;
+  height: 100%;
+
+  .empty-state {
+    height: 87vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>
