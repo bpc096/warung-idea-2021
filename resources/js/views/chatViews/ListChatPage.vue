@@ -69,7 +69,9 @@ export default {
       const apiUrl = 'chats/' + this.user.id
       axios.get(apiUrl)
         .then((res) => {
-          this.mockUserList = res.conversation_list
+          if(res.success) {
+            this.mockUserList = res.conversation_list
+          }
         })
         .catch((err) => {
           console.error(err)
