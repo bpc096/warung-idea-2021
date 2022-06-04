@@ -33,7 +33,7 @@ class UserController extends Controller
     }
 
     public function GetUser() {
-        $getData = User::where('role', '!=', null)->paginate(10);
+        $getData = User::where('role', '!=', null)->get();
         return response()->json([
             'success' => true,
             'users'   => $getData

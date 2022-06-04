@@ -241,12 +241,10 @@ const routes = [
       {
         path: 'userlist',
         component: UserListPage,
-        children: [
-          {
-            path: 'add_user',
-            component: AddUserPage
-          }
-        ]
+      },
+      {
+        path: 'add_user',
+        component: AddUserPage
       },
       {
         path: 'campaignlist',
