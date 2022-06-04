@@ -109,8 +109,7 @@ class UserController extends Controller
         $validator = Validator::make($req->all(), [
             'name'      => 'required',
             'email'     => 'required|email|unique:users',
-            'role'      => [
-                'required',
+            'role'      => ['required',
                 function($attribute, $value, $fail) use($getOldData) {
                     // **  Superadmin tidak dapat mengubah rolenya sendiri
                     if(auth()->guard('api')->user()->role == '1') {
