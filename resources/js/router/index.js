@@ -57,6 +57,7 @@ import RequestCreatePage from '../views/dashboardViews/RequestCreatePage.vue'
 import RequestDeletePage from '../views/dashboardViews/RequestDeletePage.vue'
 import RequestFinishedPage from '../views/dashboardViews/RequestFinishedPage.vue'
 import AddUserPage from "../views/dashboardViews/AddUser.vue"
+import EditUserPage from "../views/dashboardViews/EditUser.vue"
 
 // store
 import store from '../store'
@@ -245,6 +246,10 @@ const routes = [
       {
         path: 'add_user',
         component: AddUserPage
+      },
+      {
+        path: 'edit_user/:id',
+        component: EditUserPage
       },
       {
         path: 'campaignlist',
