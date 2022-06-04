@@ -132,6 +132,7 @@ Route::get('/notifications/mark_notif_as_read', [NotificationController::class, 
  */
 Route::prefix('chats')->group(function() {
     Route::get('/{user_id}', [ConversationController::class, 'index'])->middleware('auth:api');
+    Route::post('/post_inbox', [ConversationController::class, 'post_inbox'])->middleware('auth:api');
     Route::post('/messages', [ConversationController::class, 'messages'])->middleware('auth:api');
     Route::post('/post_message', [ConversationController::class, 'post_message'])->middleware('auth:api');
 });

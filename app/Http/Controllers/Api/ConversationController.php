@@ -24,6 +24,38 @@ class ConversationController extends Controller
         ], 200);
     }
 
+    // ** Post Inbox
+    public function post_inbox(Request $req) {
+        // ** Params :
+        /* 
+            --> sender
+            Value = id_user    
+
+            --> receiver
+            Value = id_user
+        */
+
+        $validator = Validator::make($req->all(), [
+            'sender'   => 'required',
+            'receiver' => 'required'
+        ]);
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $conversation = new Conversation;
+        $conversation->sender   = $req->sender;
+        $conversation->receiver = $req->receiver;
+        $save = $conversation->save();
+
+        if($save) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Inbox has been created'
+            ], 201);
+        }
+    }
+
     // ** Get Conversation
     public function messages(Request $req) {
         $idConversation = $req->id_conversation;
