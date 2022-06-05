@@ -26,7 +26,8 @@ Route::post('/login', [LoginController::class, 'login']);
  */
 Route::prefix('user')->group(function() {
     Route::get('/', [UserController::class, 'index']);
-    Route::get('/get_user', [UserController::class, 'GetUser']);
+    Route::get('/get_user', [UserController::class, 'GetUser'])->middleware('auth:api');
+    Route::get('/edit/{id}', [UserController::class, 'Edit'])->middleware('auth:api');
     Route::post('/create_user', [UserController::class, 'CreateUser'])->middleware('auth:api');
     Route::post('/update_user', [UserController::class, 'UpdateUser'])->middleware('auth:api');
     Route::delete('/delete_user/{id}', [UserController::class, 'DeleteUser'])->middleware('auth:api');
@@ -132,6 +133,7 @@ Route::get('/notifications/mark_notif_as_read', [NotificationController::class, 
  */
 Route::prefix('chats')->group(function() {
     Route::get('/{user_id}', [ConversationController::class, 'index'])->middleware('auth:api');
+    Route::post('/post_inbox', [ConversationController::class, 'post_inbox'])->middleware('auth:api');
     Route::post('/messages', [ConversationController::class, 'messages'])->middleware('auth:api');
     Route::post('/post_message', [ConversationController::class, 'post_message'])->middleware('auth:api');
 });
