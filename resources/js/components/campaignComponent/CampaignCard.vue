@@ -53,15 +53,22 @@
             {{ payNowLabel }}
           </button>
         </div> -->
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage && isCampaignApproved">
+        <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved">
           <b>Campaign Config :</b>
-          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
+          <a
+            :href="`/projectdetail/${campaignId}`"
+            class="btn-view-campaign mr"
+            :class="isInCollaborationListPage ? 'ml' : ''" >
             View Campaign
           </a>
-          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
-            Edit Campaign
+          <a
+            v-if="isInHistoryOwnedPage"
+            :href="`/campaign/edit/${campaignId}`"
+            class="btn-edit-campaign">
+              Edit Campaign
           </a>
           <button
+            v-if="isInHistoryOwnedPage"
             @click="deleteCampaign"
             class="btn-delete-campaign"
           >
@@ -575,6 +582,9 @@ export default {
           min-width: 150px;
           &.mr {
             margin-left: 1rem;
+          }
+          &.ml {
+            margin-right: 10px;
           }
           &.btn-tab-config {
             background-color: #00FFAB;

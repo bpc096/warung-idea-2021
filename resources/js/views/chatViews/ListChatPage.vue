@@ -21,6 +21,7 @@
   </div>
 </template>
 
+
 <script>
 import { mapGetters } from 'vuex'
 import axios from "axios"
@@ -29,7 +30,8 @@ export default {
   name: 'ListChatPage',
   data: () => {
     return {
-      userList: [
+      userList: [],
+      mockUserList: [
         {
           id: 1,
           userId: 1,
@@ -43,7 +45,6 @@ export default {
           name: 'Bill Petrus'
         }
       ],
-      mockUserList: [],
     }
   },
   created() {
@@ -70,7 +71,7 @@ export default {
       axios.get(apiUrl)
         .then((res) => {
           if(res.success) {
-            this.mockUserList = res.conversation_list
+            this.userList = res.conversation_list
           }
         })
         .catch((err) => {
@@ -87,7 +88,7 @@ export default {
   width: 100%;
 
   .user-empty-wrap {
-    border-top: 1px solid black;
+    border-top: .5px solid black;
     display: flex;
     min-height: 90vh;
     flex-direction: row;
