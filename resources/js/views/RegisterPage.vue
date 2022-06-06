@@ -16,19 +16,19 @@
           <form @submit.prevent="register">
             <div class="form-group">
               <label for="name">Name</label>
-              <input v-model="name" type="text" class="form-control" placeholder="Name..">
+              <input v-model="form.name" type="text" class="form-control" placeholder="Name..">
             </div>
             <div class="form-group">
               <label for="email">Email address</label>
-              <input v-model="email" type="email" class="form-control" placeholder="Email..">
+              <input v-model="form.email" type="email" class="form-control" placeholder="Email..">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input v-model="password" type="password" class="form-control" placeholder="Password..">
+              <input v-model="form.password" type="password" class="form-control" placeholder="Password..">
             </div>
             <div class="form-group">
               <label for="pass-confirmation">Password Confirmation</label>
-              <input v-model="passwordConfirmation" type="password" class="form-control" placeholder="Password Confirmation...">
+              <input v-model="form.passwordConfirmation" type="password" class="form-control" placeholder="Password Confirmation...">
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
           </form>
@@ -39,24 +39,39 @@
 </template>
 
 <script>
+
+const defaultForm = {
+  name: '',
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+}
+
 export default {
   name: 'RegisterPage',
   data() {
     return {
-      name: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
+      form: { ...defaultForm },
       errors: null,
+    }
+  },
+  watch: {
+    form: {
+      handler(newForm, oldForm) {
+        if(this.errors) {
+          this.errors = null
+        }
+      },
+      deep: true,
     }
   },
   methods: {
     register () {
       let data = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        password_confirmation: this.passwordConfirmation,
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password,
+        password_confirmation: this.form.passwordConfirmation,
       }
       this.$store
         .dispatch("register", data)
