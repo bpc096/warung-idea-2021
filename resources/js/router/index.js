@@ -219,7 +219,7 @@ const routes = [
     component: ChatPage,
     children: [
       {
-        path: 'user/:userId',
+        path: ':chatId/user/:userId',
         name: 'ChatContainer',
         component: ChatContainer,
       }
