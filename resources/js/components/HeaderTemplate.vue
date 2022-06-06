@@ -36,13 +36,13 @@
             ➕ Create New Campaign
           </router-link>
           <router-link to="/campaign/history" class="dropdown-item item-click-menu">
-            🏬 Campaign History
+            🏬 Owned Campaign
           </router-link>
           <router-link to="/campaign/history/donation" class="dropdown-item item-click-menu">
-            🏢 History Donation Page
+            🏢 Donated Campaign
           </router-link>
           <router-link to="/campaign/collaboration" class="dropdown-item item-click-menu">
-            🏨 Campaign Collaboration
+            🏨 Collaborated Campaign
           </router-link>
         </div>
       </div>

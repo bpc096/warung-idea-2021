@@ -12,7 +12,7 @@
           {{ data.description }}
         </div>
         <div
-          v-if="checkUserOwner"
+          v-if="checkUserOwner || isUserCollaborator"
           class="btn-content">
           <a :href="`/faqs/edit/${campaignId}/${data.id}`" class="btn btn-edit">
             Edit
@@ -48,6 +48,10 @@ export default {
     faqListData: {
       type: Array,
       default: [],
+    },
+    isUserCollaborator: {
+      type: Boolean,
+      default: false,
     }
   },
   data: () => {

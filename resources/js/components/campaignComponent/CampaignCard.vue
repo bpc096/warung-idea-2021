@@ -29,7 +29,7 @@
         >
           <button
             class="btn-chat"
-            @click="goToChatPage"
+            @click="goToChatPage(campaignInfo.users_id)"
           >
             <i class="fa-solid fa-comment mr-1"></i>
             Chat Creator
@@ -210,8 +210,13 @@ export default {
     }
   },
   methods: {
-    goToChatPage () {
-      console.log('go to chat page')
+    goToChatPage (receiverId) {
+      console.log('go to chat page with receiver ' + receiverId)
+      // Initialize Chat Inbox
+        this.$store
+          .dispatch('initChatInbox', )
+      // Redirect to Chat Page with selected creator
+
     },
     createApprovalClassName(isApproved) {
       let txtClass = ''

@@ -9,6 +9,7 @@
       <RewardModal
         v-if="showRewardModal"
         :userId="user.id"
+        :isUserCollaborator="checkCollaboratorId"
         :ownerId="projectDetail.users_id"
         :campaignId="projectDetail.id"
         @close="closeModal"
@@ -75,6 +76,7 @@
         <tab name="Updates">
           <updateTab
             :userId="user.id"
+            :isUserCollaborator="checkCollaboratorId"
             :ownerId="projectDetail.users_id"
             :campaignId="projectDetail.id"
             :updateListData="updateTabData"
@@ -83,6 +85,7 @@
         <tab name="FAQ">
           <faqTab
             :userId="user.id"
+            :isUserCollaborator="checkCollaboratorId"
             :ownerId="projectDetail.users_id"
             :campaignId="projectDetail.id"
             :faqListData="faqTabData"
@@ -158,6 +161,12 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+    checkCollaboratorId() {
+      if(!this.projectDetail || !this.projectDetail.collaborators || this.projectDetail.collaborators.length === 0) return false
+
+      const isUserCollaborator = this.projectDetail.collaborators.findIndex(x => parseInt(x) === this.user.id)
+      return isUserCollaborator >= 0
+    },
     isProjectAvailable() {
       const maxDate = this.checkMaxDate()
       return maxDate.datePass
