@@ -67,7 +67,7 @@
             ✉️ Invitation
           </router-link>
           <router-link to="/chat/0/user/0" class="dropdown-item item-click-menu">
-            💬 Chat Message
+            💬 Message
           </router-link>
           <a @click="logout" class="dropdown-item item-click-menu">
             🔴 Logout
