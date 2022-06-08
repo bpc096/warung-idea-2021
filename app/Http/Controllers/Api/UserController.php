@@ -33,7 +33,7 @@ class UserController extends Controller
     }
 
     public function GetUser() {
-        $getData = User::where('role', '!=', null)->get();
+        $getData = User::where('role', '!=', null)->paginate(10);
         return response()->json([
             'success' => true,
             'users'   => $getData
@@ -46,6 +46,14 @@ class UserController extends Controller
         return response()->json([
             'data' => $current_user
         ]);
+    }
+
+    public function Edit($id) {
+        $getData = User::findOrFail($id);
+        return response()->json([
+            'success' => true,
+            'user'    => $getData 
+        ], 200);
     }
 
     // ** Create User For Super Admin
@@ -108,6 +116,7 @@ class UserController extends Controller
 
         $validator = Validator::make($req->all(), [
             'name'      => 'required',
+<<<<<<< HEAD
             'email'     => 'required|email|unique:users',
             'role'      => ['required',
                 function($attribute, $value, $fail) use($getOldData) {
@@ -117,6 +126,10 @@ class UserController extends Controller
                     }
                 }
             ]
+=======
+            'email'     => 'required',
+            'role'      => 'required'
+>>>>>>> 7705e10623724be46b4aec9d478601b0d80a6d7f
         ]);
 
         if($validator->fails()) {
