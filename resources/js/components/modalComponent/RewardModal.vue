@@ -46,7 +46,7 @@
               </div>
             </router-link>
             <div
-              v-if="checkUserOwner"
+              v-if="checkUserOwner || isUserCollaborator"
               class="button-wrap"
             >
               <a :href="`/rewards/edit/${campaignId}/${d.id}`" class="btn btn-edit">
@@ -79,6 +79,10 @@ export default {
     ownerId: {
       type: Number,
       default: 1
+    },
+    isUserCollaborator: {
+      type: Boolean,
+      default: false,
     }
   },
   data: () => {

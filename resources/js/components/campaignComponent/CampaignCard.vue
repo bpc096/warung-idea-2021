@@ -29,7 +29,7 @@
         >
           <button
             class="btn-chat"
-            @click="goToChatPage"
+            @click="goToChatPage(campaignInfo.users_id)"
           >
             <i class="fa-solid fa-comment mr-1"></i>
             Chat Creator
@@ -53,15 +53,22 @@
             {{ payNowLabel }}
           </button>
         </div> -->
-        <div class="campaign-wrap-button" v-if="isInHistoryOwnedPage && isCampaignApproved">
+        <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved">
           <b>Campaign Config :</b>
-          <a :href="`/projectdetail/${campaignId}`" class="btn-view-campaign mr">
+          <a
+            :href="`/projectdetail/${campaignId}`"
+            class="btn-view-campaign mr"
+            :class="isInCollaborationListPage ? 'ml' : ''" >
             View Campaign
           </a>
-          <a :href="`/campaign/edit/${campaignId}`" class="btn-edit-campaign">
-            Edit Campaign
+          <a
+            v-if="isInHistoryOwnedPage"
+            :href="`/campaign/edit/${campaignId}`"
+            class="btn-edit-campaign">
+              Edit Campaign
           </a>
           <button
+            v-if="isInHistoryOwnedPage"
             @click="deleteCampaign"
             class="btn-delete-campaign"
           >
@@ -203,8 +210,13 @@ export default {
     }
   },
   methods: {
-    goToChatPage () {
-      console.log('go to chat page')
+    goToChatPage (receiverId) {
+      console.log('go to chat page with receiver ' + receiverId)
+      // Initialize Chat Inbox
+        this.$store
+          .dispatch('initChatInbox', )
+      // Redirect to Chat Page with selected creator
+
     },
     createApprovalClassName(isApproved) {
       let txtClass = ''
@@ -575,6 +587,9 @@ export default {
           min-width: 150px;
           &.mr {
             margin-left: 1rem;
+          }
+          &.ml {
+            margin-right: 10px;
           }
           &.btn-tab-config {
             background-color: #00FFAB;
