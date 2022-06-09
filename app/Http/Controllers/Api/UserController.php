@@ -32,12 +32,28 @@ class UserController extends Controller
 
     }
 
+    public function GetUser() {
+        $getData = User::where('role', '!=', null)->paginate(10);
+        return response()->json([
+            'success' => true,
+            'users'   => $getData
+        ], 200);
+    }
+
     public function show($id)
     {
         $current_user = User::find($id);
         return response()->json([
             'data' => $current_user
         ]);
+    }
+
+    public function Edit($id) {
+        $getData = User::findOrFail($id);
+        return response()->json([
+            'success' => true,
+            'user'    => $getData 
+        ], 200);
     }
 
     // ** Create User For Super Admin
@@ -100,16 +116,8 @@ class UserController extends Controller
 
         $validator = Validator::make($req->all(), [
             'name'      => 'required',
-            'email'     => 'required|email|unique:users',
-            'role'      => [
-                'required',
-                function($attribute, $value, $fail) use($getOldData) {
-                    // **  Superadmin tidak dapat mengubah rolenya sendiri
-                    if(auth()->guard('api')->user()->role == '1') {
-                        $fail("Tidak dapat mengubah role");
-                    }
-                }
-            ]
+            'email'     => 'required',
+            'role'      => 'required'
         ]);
 
         if($validator->fails()) {

@@ -17,6 +17,7 @@
       <router-link class="btn-main" to="/aboutus">About Us</router-link>
     </div>
     <div v-else class="category-wrap">
+      <router-link to="/home">Home</router-link>
       <router-link to="/category/arts">Arts</router-link>
       <router-link to="/category/technology">Technology</router-link>
       <router-link to="/category/games">Games</router-link>
@@ -36,13 +37,13 @@
             ➕ Create New Campaign
           </router-link>
           <router-link to="/campaign/history" class="dropdown-item item-click-menu">
-            🏬 Campaign History
+            🏬 Owned Campaign
           </router-link>
           <router-link to="/campaign/history/donation" class="dropdown-item item-click-menu">
-            🏢 History Donation Page
+            🏢 Donated Campaign
           </router-link>
           <router-link to="/campaign/collaboration" class="dropdown-item item-click-menu">
-            🏨 Campaign Collaboration
+            🏨 Collaborated Campaign
           </router-link>
         </div>
       </div>
@@ -58,14 +59,16 @@
           <router-link to="/profile" class="dropdown-item item-click-menu">
             🧑‍🚀 Profile
           </router-link>
-          <router-link to="/admin/dashboard/userlist" class="dropdown-item item-click-menu">
+          <router-link
+            v-if="isUserAdmin"
+            to="/admin/dashboard/userlist" class="dropdown-item item-click-menu">
             🧑‍🚀 Admin Dashboard
           </router-link>
           <router-link to="/profile/invitation" class="dropdown-item item-click-menu" @click.native="markNotifAsRead">
             ✉️ Invitation
           </router-link>
-          <router-link to="/chat/user/1" class="dropdown-item item-click-menu">
-            💬 Chat Message
+          <router-link to="/chat/0/user/0" class="dropdown-item item-click-menu">
+            💬 Message
           </router-link>
           <a @click="logout" class="dropdown-item item-click-menu">
             🔴 Logout
@@ -140,6 +143,9 @@ export default {
       isLoggedIn: 'isLoggedIn',
       user: 'user'
     }),
+    isUserAdmin () {
+      return this.user.role == '1' || this.user.role == '2'
+    },
     currentRouteName () {
       return this.$route.name
     },
@@ -267,6 +273,7 @@ export default {
       margin-left: 2rem;
       text-decoration: none;
       color: black;
+      align-items: center;
     }
     .text-image {
       margin-left: .7rem;
@@ -274,13 +281,14 @@ export default {
       font-family: 'Zen Antique Soft', serif;
     }
     img {
-      height: 34px;
+      height: 32px;
       width: 28px;
+      object-fit: cover;
     }
   }
 
   .category-wrap {
-    width: 30%;
+    width: 35%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

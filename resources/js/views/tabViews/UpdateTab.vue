@@ -12,7 +12,7 @@
           {{ data.description }}
         </div>
         <div
-          v-if="checkUserOwner"
+          v-if="checkUserOwner || isUserCollaborator"
           class="button-wrap"
         >
           <a :href="`/updates/edit/${campaignId}/${data.id}`" class="btn btn-edit">
@@ -46,6 +46,10 @@ export default {
     updateListData: {
       type: Array,
       default: [],
+    },
+    isUserCollaborator: {
+      type: Boolean,
+      default: false,
     }
   },
   data: () => {
@@ -78,7 +82,7 @@ export default {
     checkUserOwner() {
       // return parseInt(this.ownerId) === userId
       return parseInt(this.ownerId) === this.userId
-    }
+    },
   },
   methods: {
     deleteUpdates(updateId) {
