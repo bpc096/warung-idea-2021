@@ -4,7 +4,7 @@
       <div class="modal-container">
         <div class="modal-header">
           <h5 class="modal-title">
-            <b>Package Reward List</b>
+            <b>Pilih Jumlah Donasimu</b>
           </h5>
           <button @click="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -133,7 +133,7 @@ export default {
       for(let x=1;x<=5;x++){
         const tempObj = {
           id: x,
-          title: 'Price Name Number ' + x,
+          title: 'Paket Sumbangan Donasi ' + x,
           amount: x + '00000',
           rewardPrice: 'Rp' + x + '00.000',
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum sunt, temporibus unde aut veniam repellendus. Quo voluptatum ad praesentium.'
@@ -189,20 +189,6 @@ export default {
 
 <style lang="less" scoped>
 .modal-mask {
-  // position: fixed;
-  // z-index: 2;
-  // top: 0;
-  // left: 0;
-  // width: 100%;
-  // height: 100%;
-  // background-color: rgba(0, 0, 0, 0.5);
-  // display: table;
-  // transition: opacity 0.3s ease;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-
-
     position: absolute;
     position: fixed;
     top: 0;
@@ -257,6 +243,8 @@ export default {
 
         .text-label {
           margin: 0 10px;
+          font-weight: bold;
+          letter-spacing: 1px;
         }
 
         .input-amount {
