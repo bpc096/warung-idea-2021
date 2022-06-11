@@ -179,6 +179,11 @@ export default {
       })
       .catch(err => {
         console.log(err)
+        this.$swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
       })
   },
   computed: {
@@ -234,7 +239,11 @@ export default {
           })
         })
         .catch(err => {
-          console.log(err)
+          this.$swal({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+          })
         })
     },
     uploadImage(e) {

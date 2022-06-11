@@ -23,7 +23,8 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="empty-state">
+      <i class="fa-solid fa-circle-exclamation fa-10x"></i>
       <h2>Ups... There's no FAQ for this project right now!</h2>
     </div>
   </div>
@@ -91,6 +92,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+  }
 
   h2 {
     margin-top: 5rem;

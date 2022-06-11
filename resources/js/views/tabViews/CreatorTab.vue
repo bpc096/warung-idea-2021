@@ -21,8 +21,9 @@ rewar<template>
         </div>
       </div>
     </div>
-    <div v-else>
-      <h2>Ups... There's no Collaborator list for this project right now !</h2>
+    <div class="empty-state" v-else>
+      <i class="fa-solid fa-circle-exclamation fa-10x"></i>
+      <h2>Upss ... There's no updates for this project!</h2>
     </div>
   </div>
 </template>
@@ -75,6 +76,15 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+  }
 
   h2 {
     margin-top: 5rem;
