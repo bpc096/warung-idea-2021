@@ -23,7 +23,7 @@
     </div>
     <div class="empty-state" v-else>
       <i class="fa-solid fa-circle-exclamation fa-10x"></i>
-      <h2>Upss ... There's no updates for this project!</h2>
+      <h2>Upss ... There's no payment for this project!</h2>
     </div>
   </div>
 </template>

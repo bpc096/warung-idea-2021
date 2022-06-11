@@ -1,6 +1,6 @@
-rewar<template>
+<template>
   <div class="wrap-creator-tab">
-    <div v-if="listData.length > 0">
+    <div v-if="creatorListData.length > 0">
       <div class="title-creator">
         Collaborator List
       </div>
@@ -8,14 +8,16 @@ rewar<template>
         <div class="content-creator">
           <table>
             <tr>
+              <th>No</th>
               <th>Username</th>
               <th>Email</th>
-              <th>Country</th>
+              <th>User ID</th>
             </tr>
-            <tr v-for="(data, idx) in listData" :key="idx">
-              <td>{{ idx }}</td>
-              <td>{{ data.username }}</td>
-              <td>{{ data.country }}</td>
+            <tr v-for="(data, idx) in creatorListData" :key="idx">
+              <td>{{ idx+1 }}</td>
+              <td>{{ getUserName(data) }}</td>
+              <td>{{ getUserEmail(data) }}</td>
+              <td>{{ data.users_id }}</td>
             </tr>
           </table>
         </div>
@@ -23,7 +25,7 @@ rewar<template>
     </div>
     <div class="empty-state" v-else>
       <i class="fa-solid fa-circle-exclamation fa-10x"></i>
-      <h2>Upss ... There's no updates for this project!</h2>
+      <h2>Upss ... There's no collaborator for this project!</h2>
     </div>
   </div>
 </template>
@@ -31,6 +33,12 @@ rewar<template>
 <script>
 export default {
   name: 'CreatorTab',
+  props: {
+    creatorListData: {
+      type: Array,
+      default: [],
+    }
+  },
   data: () => {
     return {
       listData: []
@@ -41,6 +49,20 @@ export default {
     this.fetchingCollaboratorListData()
   },
   methods: {
+    getUserName(data) {
+      let username = 'Default Username'
+      if(data && data.users && data.users.length > 0) {
+        username = data.users[0].name
+      }
+      return username
+    },
+    getUserEmail(data) {
+      let email = 'Default Email'
+      if(data && data.users && data.users.length > 0) {
+        email = data.users[0].email
+      }
+      return email
+    },
     generateMockData () {
       let tempData = []
       for(let x=1;x<=10;x++){
