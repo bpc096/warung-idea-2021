@@ -52,6 +52,9 @@ Route::prefix('campaign')->group(function() {
     Route::delete('/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
     Route::get('/collaboration/{id_user}', [CampaignController::class, 'get_list_collaboration'])->middleware('auth:api');
 
+    // ** End-point to get list of collaborator of campaign
+    Route::get('/collaborator/{id_campaign}', [CampaignController::class, 'GetCollaborator'])->middleware('auth:api');
+
     /**
      * Api Updates
      */

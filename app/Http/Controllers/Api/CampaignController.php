@@ -89,7 +89,10 @@ class CampaignController extends Controller
 
         //upload image
         $image = $request->file('image');
-        $image->storeAs('public/campaigns', $image->hashName());
+        if(!empty($image)) {
+            $image->storeAs('public/campaigns', $image->hashName());
+        } 
+        
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -428,6 +431,17 @@ class CampaignController extends Controller
         ->paginate(10);
         return response()->json([
             "all_campaigns" => $get
+        ], 200);
+    }
+
+    public function GetCollaborator($id_campaign) {
+        $get = CampaignDetail::select('campaign_details.*', 'users.name')
+        ->join('users', 'users.id', '=', 'campaign_details.users_id')
+        ->where('campaign_details.campaign_id', $id_campaign)
+        ->paginate(10);
+        return response()->json([
+            'success' => true,
+            'collaborators' => $get
         ], 200);
     }
 }
