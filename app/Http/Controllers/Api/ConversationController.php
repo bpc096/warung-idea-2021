@@ -43,6 +43,14 @@ class ConversationController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
+        // ** Check if sender and receiver are same
+        if($req->sender == $req->receiver) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sender and receiver must not be same'
+            ], 400);
+        }
+
         // ** Check if inbox already exist
         $checkInbox = Conversation::where('sender', $req->sender)
         ->where('receiver', $req->receiver)
@@ -66,7 +74,7 @@ class ConversationController extends Controller
         return response()->json([
             'success' => false,
             'message' => 'Conversation already exist'
-        ], 200);
+        ], 400);
     }
 
     // ** Get Conversation
