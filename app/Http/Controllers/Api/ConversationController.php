@@ -43,29 +43,48 @@ class ConversationController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $conversation = new Conversation;
-        $conversation->sender   = $req->sender;
-        $conversation->receiver = $req->receiver;
-        $save = $conversation->save();
-
-        if($save) {
+        // ** Check if sender and receiver are same
+        if($req->sender == $req->receiver) {
             return response()->json([
-                'success' => true,
-                'message' => 'Inbox has been created'
-            ], 201);
+                'success' => false,
+                'message' => 'Sender and receiver must not be same'
+            ], 400);
         }
+
+        // ** Check if inbox already exist
+        $checkInbox = Conversation::where('sender', $req->sender)
+        ->where('receiver', $req->receiver)
+        ->first();
+
+        // ** If user has never created the conversation
+        if(empty($checkInbox)) {
+            $conversation = new Conversation;
+            $conversation->sender   = $req->sender;
+            $conversation->receiver = $req->receiver;
+            $save = $conversation->save();
+
+            if($save) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Inbox has been created'
+                ], 201);
+            }
+        }
+        
+        return response()->json([
+            'success' => false,
+            'message' => 'Conversation already exist'
+        ], 400);
     }
 
     // ** Get Conversation
     public function messages(Request $req) {
         $idConversation = $req->id_conversation;
-        $idUser         = $req->id_user;
         
         $getConversation = Message::select('messages.*', 'users.name')
         ->join('users', 'users.id', '=', 'messages.user_id')
         ->where([
             'messages.conversation_id' => $idConversation,
-            'messages.user_id' => $idUser
         ])
         ->orderBy('messages.created_at', 'desc')
         ->get();
