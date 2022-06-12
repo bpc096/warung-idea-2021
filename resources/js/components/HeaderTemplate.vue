@@ -17,6 +17,7 @@
       <router-link class="btn-main" to="/aboutus">About Us</router-link>
     </div>
     <div v-else class="category-wrap">
+      <router-link to="/home">Home</router-link>
       <router-link to="/category/arts">Arts</router-link>
       <router-link to="/category/technology">Technology</router-link>
       <router-link to="/category/games">Games</router-link>
@@ -287,7 +288,7 @@ export default {
   }
 
   .category-wrap {
-    width: 30%;
+    width: 35%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
