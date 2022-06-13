@@ -92,7 +92,9 @@
           />
         </tab>
         <tab name="Collaborator">
-          <creatorTab />
+          <creatorTab
+            :creatorListData="creatorTabData"
+          />
         </tab>
         <tab name="Payment">
           <paymentTab/>
@@ -149,6 +151,7 @@ export default {
       payment: [],
       updateTabData: [],
       faqTabData: [],
+      creatorTabData: [],
       campaignID: ''
     }
   },
@@ -269,10 +272,18 @@ export default {
           this.payment = res.payments || []
           this.projectDetail = res.data
           this.sumPayment = res.data.sum_payment
+
+          if(res.collaborators && res.collaborators.length > 0) {
+            this.creatorTabData = this.filterCollaboratorData(res.collaborators)
+          }
         })
         .catch(err => {
           console.log(err)
         })
+    },
+    filterCollaboratorData (listData) {
+      const filteredData = listData.filter(x => x.status === 'accept')
+      return filteredData
     },
     formatMoney(money) {
       const moneyTemp = money ? parseInt(money) : 10000

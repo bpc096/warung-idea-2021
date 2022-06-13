@@ -62,7 +62,7 @@
           <router-link
             v-if="isUserAdmin"
             to="/admin/dashboard/userlist" class="dropdown-item item-click-menu">
-            🧑‍🚀 Admin Dashboard
+            🚀 Admin Dashboard
           </router-link>
           <router-link to="/profile/invitation" class="dropdown-item item-click-menu" @click.native="markNotifAsRead">
             ✉️ Invitation

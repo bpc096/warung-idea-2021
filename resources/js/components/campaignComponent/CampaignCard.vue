@@ -125,6 +125,7 @@
 </template>
 
 <script>
+import Axios from 'axios'
 import { mapGetters } from 'vuex'
 export default {
   name: 'CampaignCard',
@@ -210,12 +211,25 @@ export default {
     }
   },
   methods: {
-    goToChatPage (receiverId) {
+    async goToChatPage (receiverId) {
       console.log('go to chat page with receiver ' + receiverId)
+      const senderId = this.user.id || 1
       // Initialize Chat Inbox
-        this.$store
-          .dispatch('initChatInbox', )
-      // Redirect to Chat Page with selected creator
+      try {
+        let apiUrl = `chats/post_inbox?sender=${senderId}&receiver=${receiverId}`
+        const req = await Axios.post(apiUrl)
+        console.log(req.data)
+        if(req.data.success) {
+          console.log('gotochat')
+          this.$router.push('/chat/0/user/0')
+        }
+      } catch (error) {
+        this.$swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+      }
 
     },
     createApprovalClassName(isApproved) {
