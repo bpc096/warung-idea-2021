@@ -16,6 +16,7 @@ class ConversationController extends Controller
         $conversationList = Conversation::select('conversations.*', 'users.name as sender')
         ->join('users', 'users.id', '=', 'conversations.sender')
         ->where('conversations.receiver', $user_id)
+        ->orWhere('conversations.sender', $user_id)
         ->get();
         
         return response()->json([
