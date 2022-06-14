@@ -21,12 +21,16 @@
               <td>{{user.email}}</td>
               <td>{{getType(user.role)}}</td>
               <td>
-                <router-link class="btn btn-warning btn-sm" to="/">Edit</router-link>
+                <router-link class="btn btn-warning btn-sm" :to="`edit_user/${user.id}`">Edit</router-link>
                 <button type="button" class="btn btn-danger btn-sm" v-if="user.role != '1'" @click="remove(user.id)">Hapus</button>
               </td>
             </tr>
           </tbody>
         </table>
+        <div align="center">
+          <button type="button" class="btn btn-success" @click="prevData">Prev</button>
+          <button type="button" class="btn btn-success" @click="nextData">Next</button>
+        </div>
       </div>
     </div>
   </div>
@@ -40,14 +44,18 @@ export default {
   name: 'UserListPage',
   data() {
     return {
-      list: []
+      list: [],
+      nextPageUrl: '',
+      prevPageUrl: ''
     }
   },
   methods: {
-    async getUserList() {
-      const req = await axios.get('user/get_user')
+    async getUserList(url = 'user/get_user?page=1') {
+      const req = await axios.get(url)
       const res = req.data
-      this.list = res.users
+      this.list = res.users.data
+      this.nextPageUrl = res.users.next_page_url
+      this.prevPageUrl = res.users.prev_page_url
     },
     getType(type) {
       switch(type) {
@@ -85,6 +93,15 @@ export default {
           console.error(e)
         }
       }
+    },
+    prevData() {
+      if(this.prevPageUrl === null || this.prevPageUrl === '') {
+        this.prevPageUrl = 'user/get_user?page=1'
+      }
+      this.getUserList(this.prevPageUrl)
+    },
+    nextData() {
+      this.getUserList(this.nextPageUrl)
     }
   },
   created() {

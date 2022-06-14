@@ -26,7 +26,8 @@ Route::post('/login', [LoginController::class, 'login']);
  */
 Route::prefix('user')->group(function() {
     Route::get('/', [UserController::class, 'index']);
-    Route::get('/get_user', [UserController::class, 'GetUser']);
+    Route::get('/get_user', [UserController::class, 'GetUser'])->middleware('auth:api');
+    Route::get('/edit/{id}', [UserController::class, 'Edit'])->middleware('auth:api');
     Route::post('/create_user', [UserController::class, 'CreateUser'])->middleware('auth:api');
     Route::post('/update_user', [UserController::class, 'UpdateUser'])->middleware('auth:api');
     Route::delete('/delete_user/{id}', [UserController::class, 'DeleteUser'])->middleware('auth:api');
@@ -50,6 +51,9 @@ Route::prefix('campaign')->group(function() {
     Route::post('/{campaign}', [CampaignController::class, 'update'])->middleware('auth:api');
     Route::delete('/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
     Route::get('/collaboration/{id_user}', [CampaignController::class, 'get_list_collaboration'])->middleware('auth:api');
+
+    // ** End-point to get list of collaborator of campaign
+    Route::get('/collaborator/{id_campaign}', [CampaignController::class, 'GetCollaborator'])->middleware('auth:api');
 
     /**
      * Api Updates

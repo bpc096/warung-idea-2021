@@ -17,6 +17,7 @@
       <router-link class="btn-main" to="/aboutus">About Us</router-link>
     </div>
     <div v-else class="category-wrap">
+      <router-link to="/home">Home</router-link>
       <router-link to="/category/arts">Arts</router-link>
       <router-link to="/category/technology">Technology</router-link>
       <router-link to="/category/games">Games</router-link>
@@ -36,13 +37,13 @@
             ➕ Create New Campaign
           </router-link>
           <router-link to="/campaign/history" class="dropdown-item item-click-menu">
-            🏬 Campaign History
+            🏬 Owned Campaign
           </router-link>
           <router-link to="/campaign/history/donation" class="dropdown-item item-click-menu">
-            🏢 History Donation Page
+            🏢 Donated Campaign
           </router-link>
           <router-link to="/campaign/collaboration" class="dropdown-item item-click-menu">
-            🏨 Campaign Collaboration
+            🏨 Collaborated Campaign
           </router-link>
         </div>
       </div>
@@ -67,7 +68,7 @@
             ✉️ Invitation
           </router-link>
           <router-link to="/chat/0/user/0" class="dropdown-item item-click-menu">
-            💬 Chat Message
+            💬 Message
           </router-link>
           <a @click="logout" class="dropdown-item item-click-menu">
             🔴 Logout
@@ -287,7 +288,7 @@ export default {
   }
 
   .category-wrap {
-    width: 30%;
+    width: 35%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
