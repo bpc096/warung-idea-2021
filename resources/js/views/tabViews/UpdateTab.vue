@@ -25,6 +25,7 @@
       </div>
     </div>
     <div class="empty-update" v-else>
+      <i class="fa-solid fa-circle-exclamation fa-10x"></i>
       <h2>Upss ... There's no updates for this project!</h2>
     </div>
   </div>
@@ -107,6 +108,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .empty-update {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+  }
 
   h2 {
     margin-top: 5rem;

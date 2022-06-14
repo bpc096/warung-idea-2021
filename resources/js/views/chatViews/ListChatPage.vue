@@ -5,13 +5,13 @@
         v-for="(u,idx) in userList"
         :key="idx"
         class="user-card"
-        @click="changeChatContainer(u.id, u.userId)"
+        @click="changeChatContainer(u.id, u.receiver)"
       >
         <div class="user-image">
-          <img :src="u.sourceImg" alt="user-image-profile">
+          <img :src="sourceImg" alt="user-image-profile">
         </div>
         <div class="user-name">
-          <b>{{u.name}}</b>
+          <b>{{u.sender}}</b>
         </div>
       </a>
     </div>
@@ -30,6 +30,7 @@ export default {
   name: 'ListChatPage',
   data: () => {
     return {
+      sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
       userList: [],
       mockUserList: [
         {
@@ -46,6 +47,9 @@ export default {
         }
       ],
     }
+  },
+  mounted() {
+    this.fetchChatList()
   },
   created() {
     this.fetchChatList()
@@ -70,8 +74,10 @@ export default {
       const apiUrl = 'chats/' + this.user.id
       axios.get(apiUrl)
         .then((res) => {
-          if(res.success) {
-            this.userList = res.conversation_list
+          console.log(res.data)
+          const response = res.data
+          if(response.success) {
+            this.userList = response.conversation_list
           }
         })
         .catch((err) => {
@@ -100,11 +106,14 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+    direction: rtl;
 
     a {
       text-decoration: none;
       color: black;
+      direction: ltr;
     }
 
     a:hover {
@@ -119,6 +128,8 @@ export default {
       border: 1px solid grey;
       align-items: center;
       margin: 10px 0;
+      direction: ltr;
+
 
       &:first-child {
         margin-top: 0;

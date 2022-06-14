@@ -37,7 +37,7 @@ export default {
 
 <style lang="less" scoped>
 .wrap-campaign-tab{
-  min-height: 70vh;
+  min-height: 90vh;
   text-align: left;
   padding: 0 20rem;
 
@@ -46,6 +46,7 @@ export default {
     .background-title {
       font-size: 30px;
       font-weight: bold;
+      margin: 2rem 0;
     }
   }
 
@@ -54,6 +55,7 @@ export default {
     .design-plan-title {
       font-size: 30px;
       font-weight: bold;
+      margin: 2rem 0;
     }
   }
 
