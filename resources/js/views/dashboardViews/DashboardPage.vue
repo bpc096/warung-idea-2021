@@ -62,14 +62,60 @@ export default {
                   title: 'Finished Campaign Request',
                 },
               ]
+            }, {
+              icon: 'fa-solid fa-gear',
+              title: 'Admin Setting',
+              child: [
+                {
+                  title: 'Home'
+                },
+                {
+                  title: 'Logout'
+                }
+              ]
             }
           ]
     }
   },
   methods: {
     onItemClick(event, item, node) {
-      console.log(item.title)
-    }
+      switch(item.title){
+        case 'Logout':
+          this.logout()
+          break;
+        case 'Home':
+          this.goToHome()
+          break;
+      }
+    },
+    goToHome () {
+      this.$router.push('/home')
+    },
+    logout () {
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You are going to logout",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$store
+            .dispatch('logout')
+            .then(() => {
+              this.$swal({
+                title: 'Logout Success',
+                icon: 'success',
+                timer: 3000,
+                timerProgressBar: true,
+              })
+              this.$router.push('/')
+            })
+        }
+      })
+    },
   }
 }
 </script>
