@@ -174,7 +174,9 @@ export default {
           this.maxDate = this.projectDetail.max_date
           this.shortDesc = this.projectDetail.short_description
           this.projectPlan = this.projectDetail.project_plan
-          this.selectedCollaborator = res.collaborators[0].users.map((val) => ({ name: val.name, userId: val.id }))
+          if (res.collaborators && res.collaborators.length > 0) {
+            this.selectedCollaborator = res.collaborators[0].users.map((val) => ({ name: val.name, userId: val.id }))
+          }
         }
       })
       .catch(err => {
@@ -182,7 +184,7 @@ export default {
         this.$swal({
           icon: 'error',
           title: 'Oops...',
-          text: 'Something went wrong!',
+          text: err,
         })
       })
   },
@@ -209,6 +211,14 @@ export default {
     }
   },
   methods: {
+    addNewUser (userId) {
+      this.selectedCollaborator.push(userId)
+    },
+    removeNewUser (userId) {
+      console.log('removeUser')
+      const index = this.selectedCollaborator.indexOf(userId)
+      if(index>-1) this.selectedCollaborator.splice(index,1)
+    },
     editCampaign() {
       const campaignId = this.$route.params.projectId || 1
       const listCollaborator = this.$refs.multiselect.$data.value
@@ -242,7 +252,7 @@ export default {
           this.$swal({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!',
+            text: err,
           })
         })
     },
