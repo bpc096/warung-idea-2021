@@ -97,7 +97,9 @@
           <b>Finishing Config :</b>
           <button
             @click="finishedCampaign"
-            class="btn-delete-campaign"
+            type="button"
+            class="btn btn-delete-campaign"
+            :disabled="isDisabledFinishBtn"
           >
             Finish Campaign
           </button>
@@ -149,6 +151,8 @@ export default {
   },
   data: () => {
     return {
+      faqTabData: [],
+      updateTabData: [],
       continueDelete: false,
       progress: '59',
       paymentTextStatus: 'PENDING',
@@ -156,10 +160,17 @@ export default {
       dummyImgUrl: 'https://images.unsplash.com/photo-1643223723262-7ce785730cf6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
     }
   },
+  async mounted () {
+    await this.fetchingUpdateTabData()
+    await this.fetchingFaqTabData()
+  },
   computed: {
     ...mapGetters({
       user: 'user'
     }),
+    isDisabledFinishBtn() {
+      return true
+    },
     isCampaignApproved() {
       const res = this.campaignInfo
         && this.campaignInfo.is_approved
@@ -211,6 +222,32 @@ export default {
     }
   },
   methods: {
+    async fetchingFaqTabData () {
+      const campaignId = this.$route.params.projectId
+      await this.$store
+        .dispatch('getFaqByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.faqTabData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    async fetchingUpdateTabData () {
+      const campaignId = this.$route.params.projectId
+      await this.$store
+        .dispatch('getUpdatesByCampaignId', campaignId)
+        .then(res => {
+          if(res.success && res.data && res.data.length > 0) {
+            this.updateTabData = res.data
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
     async goToChatPage (receiverId) {
       console.log('go to chat page with receiver ' + receiverId)
       const senderId = this.user.id || 1
@@ -293,7 +330,7 @@ export default {
         }).then((result) => {
           if (result.isConfirmed) {
             this.$store
-              .dispatch('deleteCampaign', this.campaignId)
+              .dispatch('finishCampaign', this.campaignId)
               .then(() => {
                 this.$swal({
                   title: 'Your delete request has been sent to admin !',
