@@ -91,8 +91,8 @@ class CampaignController extends Controller
         $image = $request->file('image');
         if(!empty($image)) {
             $image->storeAs('public/campaigns', $image->hashName());
-        } 
-        
+        }
+
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -119,7 +119,7 @@ class CampaignController extends Controller
                     'users_id'    => $collaborator,
                     'status'      => 'pending'
                 ]);
-    
+
                 // ** Create notification for each collaborators
                 $notif = new Notifications;
                 $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
@@ -221,7 +221,7 @@ class CampaignController extends Controller
                     'status'      => 'pending'
                 ]);
             }
-        } 
+        }
         else {
             //hapus image lama
             Storage::disk('local')->delete('public/campaigns/'.basename($campaign->image));
@@ -298,7 +298,7 @@ class CampaignController extends Controller
         $update = Campaign::where('id', $id)->update([
             "is_approved" => '1'
         ]);
-        
+
         if($update) {
             return response()->json([
                 "success" => true,
@@ -317,7 +317,7 @@ class CampaignController extends Controller
         $update = Campaign::where('id', $id)->update([
             "is_approved" => '2'
         ]);
-        
+
         if($update) {
             return response()->json([
                 "success" => true,
@@ -336,7 +336,7 @@ class CampaignController extends Controller
         $update = Campaign::where('id', $id)->update([
             "is_delete_approved" => '1'
         ]);
-        
+
         if($update) {
             // If has been approved, then do delete
             $campaign = Campaign::findOrFail($id);
@@ -359,7 +359,7 @@ class CampaignController extends Controller
         $update = Campaign::where('id', $id)->update([
             "is_delete_approved" => '2'
         ]);
-        
+
         if($update) {
             return response()->json([
                 "success" => true,
@@ -375,9 +375,9 @@ class CampaignController extends Controller
 
     // ** Get List Collaboration
     public function get_list_collaboration($id_user) {
-        $campaigns = Campaign::select('campaigns.*', 
+        $campaigns = Campaign::select('campaigns.*',
             'campaign_details.users_id',
-            'campaign_details.status', 
+            'campaign_details.status',
             'payments.amount',
             'payments.snap_token',
             'payments.status as payment_status',
@@ -415,7 +415,7 @@ class CampaignController extends Controller
             ];
             $result[] = $data;
         }
-        
+
         return response()->json([
             "success" => true,
             "collaborations" => $result

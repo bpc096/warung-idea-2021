@@ -53,7 +53,7 @@ const actions = {
           resolve(res)
         })
         .catch(err => {
-          reject(err)
+          reject(err.response)
         })
     })
   },
@@ -65,7 +65,7 @@ const actions = {
           resolve(res)
         })
         .catch(err => {
-          reject(err)
+          reject(err.response)
         })
     })
   },

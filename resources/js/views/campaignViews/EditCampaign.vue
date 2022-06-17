@@ -4,6 +4,14 @@
       EDIT CAMPAIGN
     </div>
     <div class="user-profile-card">
+      <div
+        class="alert alert-danger"
+        role="alert"
+        v-for="(error, index) in errors"
+        :key="index"
+      >
+        {{ error }}
+      </div>
       <form @submit.prevent="editCampaign">
         <div class="user-profile-content">
           <div class="user-image">
@@ -155,7 +163,8 @@ export default {
       projectDetail: {},
       shortDesc: '',
       projectPlan: '',
-      selectedCollaborator: []
+      selectedCollaborator: [],
+      errors: [],
     }
   },
   async created () {
@@ -211,6 +220,15 @@ export default {
     }
   },
   methods: {
+    mappingErrorMessage (objectData, keyValue) {
+      let resultErrorMsg = []
+      keyValue.forEach((x) => {
+        objectData[x].map(data => {
+          resultErrorMsg.push(data)
+        })
+      })
+      return resultErrorMsg
+    },
     addNewUser (userId) {
       this.selectedCollaborator.push(userId)
     },
@@ -249,10 +267,12 @@ export default {
           })
         })
         .catch(err => {
+          console.error(err)
+          const textError = err.data && err.data.message ? err.data.message : "Theres Something Wrong With Your Input!"
           this.$swal({
             icon: 'error',
             title: 'Oops...',
-            text: err,
+            text: textError,
           })
         })
     },
