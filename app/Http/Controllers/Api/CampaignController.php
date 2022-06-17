@@ -11,9 +11,6 @@ use App\Campaign;
 use App\Payment;
 use App\CampaignDetail;
 use App\Notifications;
-use App\Faq;
-use App\Update;
-
 
 class CampaignController extends Controller
 {
@@ -47,14 +44,11 @@ class CampaignController extends Controller
     public function index_user($users_id)
     {
         //get detail data campaign
-        $campaign = Campaign::with('user')->with('sumPayment')->where('users_id', $users_id)->get();
-
-        $getCampaignId = $campaign[0]->id;
-        $updates = Update::whereCampaignId($getCampaignId)->get();
-        $faqs = Faq::whereCampaignId($getCampaignId)->get();
-
-        $updatesLength = count($updates);
-        $faqsLength = count($faqs);
+        $campaign = Campaign::with('user')
+        ->with('sumPayment')
+        ->withCount('updates')
+        ->withCount('faqs')
+        ->where('users_id', $users_id)->get();
 
         if($campaign) {
 
@@ -62,9 +56,7 @@ class CampaignController extends Controller
             return response()->json([
                 'success'   => true,
                 'message'   => 'List Data Campaign By User Id',
-                'data'      => $campaign,
-                'updateLength' => $updatesLength,
-                'faqsLength' => $faqsLength,
+                'data'      => $campaign
             ], 200);
         }
         else{

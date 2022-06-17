@@ -99,7 +99,7 @@
             @click="finishedCampaign"
             type="button"
             class="btn btn-delete-campaign"
-            :disabled="isDisabledFinishBtn"
+            :disabled="!isDisabledFinishBtn"
           >
             Finish Campaign
           </button>
@@ -160,16 +160,24 @@ export default {
       dummyImgUrl: 'https://images.unsplash.com/photo-1643223723262-7ce785730cf6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80',
     }
   },
-  async mounted () {
-    await this.fetchingUpdateTabData()
-    await this.fetchingFaqTabData()
-  },
   computed: {
     ...mapGetters({
       user: 'user'
     }),
+    checkFaqsCount() {
+      return this.campaignInfo && this.campaignInfo.faqs_count && this.campaignInfo.faqs_count >= 0
+    },
+    checkUpdatesCount() {
+      return this.campaignInfo && this.campaignInfo.updates_count && this.campaignInfo.updates_count >= 0
+    },
     isDisabledFinishBtn() {
-      return true
+      let res = false
+      if(this.checkFaqsCount && this.checkUpdatesCount) {
+        const faqsCount = this.campaignInfo.faqs_count
+        const updatesCount = this.campaignInfo.updates_count
+        res = faqsCount >= 5 && updatesCount >= 5
+      }
+      return res
     },
     isCampaignApproved() {
       const res = this.campaignInfo
@@ -222,32 +230,6 @@ export default {
     }
   },
   methods: {
-    async fetchingFaqTabData () {
-      const campaignId = this.$route.params.projectId
-      await this.$store
-        .dispatch('getFaqByCampaignId', campaignId)
-        .then(res => {
-          if(res.success && res.data && res.data.length > 0) {
-            this.faqTabData = res.data
-          }
-        })
-        .catch(err => {
-          console.error(err)
-        })
-    },
-    async fetchingUpdateTabData () {
-      const campaignId = this.$route.params.projectId
-      await this.$store
-        .dispatch('getUpdatesByCampaignId', campaignId)
-        .then(res => {
-          if(res.success && res.data && res.data.length > 0) {
-            this.updateTabData = res.data
-          }
-        })
-        .catch(err => {
-          console.error(err)
-        })
-    },
     async goToChatPage (receiverId) {
       console.log('go to chat page with receiver ' + receiverId)
       const senderId = this.user.id || 1
