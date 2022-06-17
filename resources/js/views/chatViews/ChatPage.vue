@@ -3,6 +3,9 @@
     <div class="title">
       <h1>Chat Message</h1>
     </div>
+    <div class="d-flex justify-content-end mr-lg-5 mb-lg-2">
+      <button type="button" class="btn btn-success" @click="reloadChat">Reload Chat</button>
+    </div>
     <div class="content-page">
       <div class="side-list-user">
         <ListChatPage />
@@ -24,6 +27,11 @@ export default {
   components: {
     ListChatPage,
   },
+  methods: {
+    reloadChat () {
+      this.$router.go()
+    }
+  }
 }
 </script>
 
