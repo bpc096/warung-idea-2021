@@ -40,7 +40,7 @@
           {{ daysBetween }}
         </div>
         <div class="day-left-info">
-          Dibuat Oleh <b>{{ displayCreatorName }}</b>
+          Dibuat oleh <b>{{ displayCreatorName }}</b>
         </div>
         <div class="button-wrapper">
           <button
