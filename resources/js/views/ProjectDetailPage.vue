@@ -40,7 +40,7 @@
           {{ daysBetween }}
         </div>
         <div class="day-left-info">
-          Created by <b>{{ displayCreatorName }}</b>
+          Dibuat Oleh <b>{{ displayCreatorName }}</b>
         </div>
         <div class="button-wrapper">
           <button
@@ -414,6 +414,9 @@ export default {
         margin-bottom: 30px;
         align-items: center;
         img {
+          margin-right: 1.7rem;
+        }
+        i {
           margin-right: 1.7rem;
         }
       }

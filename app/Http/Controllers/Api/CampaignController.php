@@ -26,6 +26,7 @@ class CampaignController extends Controller
         ->where("is_approved", '1') // ** Show campaign only approved campaign
         ->where("deleted_at", null) // ** And Not Deleted
         ->with('sumPayment')
+        ->with('likeCounter')
         ->when(request()->q, function($campaigns) {
             $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
         })
@@ -152,7 +153,10 @@ class CampaignController extends Controller
     public function show($id)
     {
         //get detail data campaign
-        $campaign = Campaign::with('user')->with('sumPayment')->where('id', $id)->first();
+        $campaign = Campaign::with('user')
+        ->with('sumPayment')
+        ->with('likeCounter')
+        ->where('id', $id)->first();
 
         $collaborators = CampaignDetail::with('users')->where("campaign_id", $id)->get();
 
@@ -447,5 +451,27 @@ class CampaignController extends Controller
             'success' => true,
             'collaborators' => $get
         ], 200);
+    }
+
+    // ** Like Campaign
+    public function likeCampaign($id) {
+      $campaign = Campaign::find($id);
+      $campaign->like();
+      $campaign->save();
+      return response()->json([
+        'success' => true,
+        'message' => 'Campaign Like Succesfully!'
+      ], 200);
+    }
+
+    // ** Unlike Campaign
+    public function unlikeCampaign($id) {
+      $campaign = Campaign::find($id);
+      $campaign->unlike();
+      $campaign->save();
+      return response()->json([
+        'success' => true,
+        'message' => 'Campaign Unlike Succesfully!'
+      ], 200);
     }
 }
