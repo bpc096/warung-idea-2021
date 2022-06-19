@@ -97,9 +97,7 @@
           <b>Finishing Config :</b>
           <button
             @click="finishedCampaign"
-            type="button"
-            class="btn btn-delete-campaign"
-            :disabled="!isDisabledFinishBtn"
+            class="btn-delete-campaign"
           >
             Finish Campaign
           </button>
@@ -151,8 +149,6 @@ export default {
   },
   data: () => {
     return {
-      faqTabData: [],
-      updateTabData: [],
       continueDelete: false,
       progress: '59',
       paymentTextStatus: 'PENDING',
@@ -164,21 +160,6 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
-    checkFaqsCount() {
-      return this.campaignInfo && this.campaignInfo.faqs_count && this.campaignInfo.faqs_count >= 0
-    },
-    checkUpdatesCount() {
-      return this.campaignInfo && this.campaignInfo.updates_count && this.campaignInfo.updates_count >= 0
-    },
-    isDisabledFinishBtn() {
-      let res = false
-      if(this.checkFaqsCount && this.checkUpdatesCount) {
-        const faqsCount = this.campaignInfo.faqs_count
-        const updatesCount = this.campaignInfo.updates_count
-        res = faqsCount >= 5 && updatesCount >= 5
-      }
-      return res
-    },
     isCampaignApproved() {
       const res = this.campaignInfo
         && this.campaignInfo.is_approved
@@ -312,7 +293,7 @@ export default {
         }).then((result) => {
           if (result.isConfirmed) {
             this.$store
-              .dispatch('finishCampaign', this.campaignId)
+              .dispatch('deleteCampaign', this.campaignId)
               .then(() => {
                 this.$swal({
                   title: 'Your delete request has been sent to admin !',
