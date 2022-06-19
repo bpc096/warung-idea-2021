@@ -21,6 +21,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 // Broadcast::routes(['middleware' => ['auth:api']]);
 Route::post('/login', [LoginController::class, 'login']);
 
+Route::get('auth/{provider}/callback', [LoginController::class, IndexGoogleLogin])->where('provider', '.*');
+Route::post('sociallogin/{provider}', [LoginController::class, 'SocialSignup']);
 /**
  * Api User
  */
@@ -89,6 +91,10 @@ Route::prefix('campaign')->group(function() {
 
     // ** For admin needs
     Route::get('/get_all_campaigns', [CampaignController::class, 'GetAllCampaigns'])->middleware('auth:api');
+
+    // ** Like and Unlike Campaign
+    Route::post('/post_like_campaign/{id}', [CampaignController::class, 'likeCampaign'])->middleware('auth:api');
+    Route::post('/post_unlike_campaign/{id}', [CampaignController::class, 'unlikeCampaign'])->middleware('auth:api');
 });
 
 /**
