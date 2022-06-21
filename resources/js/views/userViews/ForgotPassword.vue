@@ -48,7 +48,7 @@ export default {
     return {
       passwordConfirmation: '',
       newPassword: '',
-      setToken : '',
+      token : '',
     }
   },
   created() {
@@ -61,15 +61,16 @@ export default {
     imageUrl () {
       return this.previewImage ? this.previewImage : this.user.avatar
       // return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
-    }
+    },
   },
   mounted () {
     this.setToken()
   },
   methods: {
     setToken() {
-      const getToken = this.$route.query.token || ''
-      this.setToken = getToken
+      console.log('Set Token')
+      const getToken = this.$route.params.token || 'none'
+      this.token = getToken
     },
     submitPassword() {
       if(!this.newPassword || !this.passwordConfirmation) return
