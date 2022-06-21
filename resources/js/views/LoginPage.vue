@@ -31,8 +31,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
-          <!-- <hr class="solid">
-          <button @click="AuthProvider('google')">auth Google</button> -->
+          <hr class="solid">
+          <!-- <button @click="AuthProvider('google')">auth Google</button> -->
+          <button @click="btnForgotPassword">Forgot Password</button>
         </div>
       </div>
     </div>
@@ -54,6 +55,36 @@ export default {
     }
   },
   methods: {
+    btnForgotPassword() {
+      this.$swal({
+        title: 'Forgot Your Password ?',
+        input: 'email',
+        inputLabel: 'Input your email address',
+        inputPlaceholder: 'your email address'
+      }).then((result) => {
+        console.log(result)
+        if(result.isConfirmed) {
+          let data = new FormData()
+          data.append('email', result.value)
+
+          this.$store.dispatch('requestResetPassword',data)
+          .then((res) => {
+            this.$swal({
+              title: 'Reset Request Success',
+              text: 'Please Check Your Email To Confirm It!',
+              icon: 'success',
+            })
+          })
+          .catch((err) => {
+            this.$swal({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            })
+          })
+        }
+      })
+    },
     userLogin() {
       this.$store.dispatch('login', this.form)
       .then(res => {

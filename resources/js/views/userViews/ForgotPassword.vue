@@ -3,9 +3,6 @@
     <div class="user-profile-card">
       <form @submit.prevent="submitPassword">
         <div class="user-profile-content">
-          <div class="user-image">
-            <img :src="imageUrl" alt="icon-user-image" class="image">
-          </div>
           <div class="user-avatar">
             <div class="text-label">New Password</div>
             <div class="text-value">
@@ -34,10 +31,10 @@
             type="submit"
             class="button-edit-profile"
             >
-            Submit Changes
+            Reset Password
           </button>
         </div>
-       </form>
+      </form>
     </div>
   </div>
 </template>
@@ -51,7 +48,11 @@ export default {
     return {
       passwordConfirmation: '',
       newPassword: '',
+      setToken : '',
     }
+  },
+  created() {
+    this.setToken()
   },
   computed: {
     ...mapGetters({
@@ -62,20 +63,33 @@ export default {
       // return 'https://images.unsplash.com/photo-1436128003323-97dab5d267a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'
     }
   },
+  mounted () {
+    this.setToken()
+  },
   methods: {
+    setToken() {
+      const getToken = this.$route.query.token || ''
+      this.setToken = getToken
+    },
     submitPassword() {
       if(!this.newPassword || !this.passwordConfirmation) return
 
-      let data = {
-        password: this.newPassword,
-        password_confirmation: this.passwordConfirmation
-      }
+      let data = new FormData()
+      data.append('password', this.newPassword)
+      data.append('password_confirmation', this.passwordConfirmation)
+      data.append('token', this.token)
 
       this.$store
-        .dispatch('updatePassword', data)
+        .dispatch('submiitPassForgot', data)
         .then(res => {
-          this.$router.push({
-            name: 'UserProfile'
+          this.$swal({
+            title: 'Reset Request Success',
+            text: 'Please Check Your Email To Confirm It!',
+            icon: 'success',
+          }).then((res) => {
+            this.$router.push({
+              name: 'LoginPage'
+            })
           })
         })
         .catch(err => {
