@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Broadcast;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -20,6 +19,12 @@ Route::post('/register', [RegisterController::class, 'register']);
  */
 // Broadcast::routes(['middleware' => ['auth:api']]);
 Route::post('/login', [LoginController::class, 'login']);
+
+/**
+ * Api Forgot and Reset Password
+ */
+Route::post('/forgot', [ForgotResetController::class, 'forgot']);
+Route::post('/reset', [ForgotResetController::class, 'reset']);
 
 /**
  * Api User
