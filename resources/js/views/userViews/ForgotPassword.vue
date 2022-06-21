@@ -77,7 +77,7 @@ export default {
 
       let data = new FormData()
       data.append('password', this.newPassword)
-      data.append('password_confirmation', this.passwordConfirmation)
+      data.append('password_confirm', this.passwordConfirmation)
       data.append('token', this.token)
 
       this.$store
