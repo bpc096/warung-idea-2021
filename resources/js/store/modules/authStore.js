@@ -79,8 +79,8 @@ const actions = {
         console.log(res)
       })
       .catch(err => {
-        reject(err)
-        console.log(err)
+        reject(err.response.data)
+        console.log(err.response)
       })
     })
   },
@@ -92,8 +92,8 @@ const actions = {
         console.log(res)
       })
       .catch(err => {
-        reject(err)
-        console.log(err)
+        reject(err.response.data)
+        console.log(err.response)
       })
     })
   },

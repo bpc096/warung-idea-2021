@@ -80,7 +80,7 @@ export default {
       data.append('token', this.token)
 
       this.$store
-        .dispatch('submiitPassForgot', data)
+        .dispatch('submitPassForgot', data)
         .then(res => {
           this.$swal({
             title: 'Reset Request Success',
@@ -93,7 +93,12 @@ export default {
           })
         })
         .catch(err => {
-          console.error(err)
+          const errorMessage = err && err.message ? err.message : 'Something went wrong!'
+          this.$swal({
+              icon: 'error',
+              title: 'Oops...',
+              text: errorMessage,
+            })
         })
     }
   }

@@ -76,10 +76,11 @@ export default {
             })
           })
           .catch((err) => {
+            const errorMessage = err && err.message ? err.message : 'Something went wrong!'
             this.$swal({
               icon: 'error',
               title: 'Oops...',
-              text: 'Something went wrong!',
+              text: errorMessage,
             })
           })
         }
