@@ -23,10 +23,13 @@ class InvitationController extends Controller
         ->where("campaign_details.users_id", $users_id)
         ->get();
 
+        // $owner_name = Campaign::with('user')->where('users_id', $users_id)->get();
+
         return response()->json([
-            'success' => true,
-            'message' => 'List Campaign Detail by campaign id and users id',
-            'data'    => $campaign_detail
+            'success'       => true,
+            'message'       => 'List Invitation by campaign id and users id',
+            'data'          => $campaign_detail,
+            // 'Owner Name'    => $owner_name
         ], 200);
     }
 
@@ -81,7 +84,7 @@ class InvitationController extends Controller
                     ->where('users_id', $request->users_id)->first();
 
         $accept->update([
-            'status' => 'accept'
+            'status' => 'Accept'
         ]);
 
         $acc = Campaign::where('id', $request->campaign_id)->first();
@@ -110,7 +113,7 @@ class InvitationController extends Controller
             'success' => true,
             'message' => 'Invitation Accepted!',
             'data'    => $accept
-        ], 200);
+        ], 201);
     }
 
     public function reject(Request $request)
@@ -119,58 +122,13 @@ class InvitationController extends Controller
                     ->where('users_id', $request->users_id)->first();
 
         $reject->update([
-            'status' => 'reject'
+            'status' => 'Reject'
         ]);
 
         return response()->json([
             'success' => true,
             'message' => 'Invitation Rejected!',
             'data'    => $reject
-        ], 200);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        ], 201);
     }
 }

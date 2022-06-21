@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Broadcast;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -23,6 +22,12 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('auth/{provider}/callback', [LoginController::class, IndexGoogleLogin])->where('provider', '.*');
 Route::post('sociallogin/{provider}', [LoginController::class, 'SocialSignup']);
+/**
+ * Api Forgot and Reset Password
+ */
+Route::post('/forgot', [ForgotResetController::class, 'forgot']);
+Route::post('/reset', [ForgotResetController::class, 'reset']);
+
 /**
  * Api User
  */
