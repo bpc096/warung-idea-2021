@@ -68,16 +68,16 @@ class LoginController extends Controller
         }
     }
 
-    public function SocialSignup($provider)
-    {
-      // Socialite will pick response data automatic
-      $user = Socialite::driver($provider)->stateless()->user();
-      return response()->json($user);
-    }
-    public function IndexGoogleLogin() {
-      // return response()->json([
-      //   success => true
-      // ],200);
-      return view('welcome');
-    }
+    // public function SocialSignup($provider)
+    // {
+    //   // Socialite will pick response data automatic
+    //   $user = Socialite::driver($provider)->stateless()->user();
+    //   return response()->json($user);
+    // }
+    // public function IndexGoogleLogin() {
+    //   // return response()->json([
+    //   //   success => true
+    //   // ],200);
+    //   return view('welcome');
+    // }
 }
