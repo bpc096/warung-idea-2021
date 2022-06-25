@@ -166,50 +166,15 @@ export default {
   }
 
   .content-category {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     height: 100%;
     width: 100%;
   }
 
-  @media (max-width: 1431px) {
-    .content-category {
-      display: grid;
-      grid-template-columns: auto auto auto auto;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 1190px) {
-    .content-category {
-      display: grid;
-      grid-template-columns: auto auto auto;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 931px) {
-    .content-category {
-      display: grid;
-      grid-template-columns: auto auto;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 669px) {
-    .content-category {
-      display: grid;
-      grid-template-columns: auto;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
   .project-card-wrap {
-    width: 100%;
+    width: 20%;
     position: static;
     margin: 5rem 0;
     a {

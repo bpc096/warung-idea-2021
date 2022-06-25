@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // TODO: Uncomment in deployment mode (Cpanel Server)
+        // Uncomment in deployment mode (Cpanel Server)
         // $this->app->bind('path.public', function() {
         //   return '/home/warungid/public_html/';
         // });

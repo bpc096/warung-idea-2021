@@ -20,8 +20,11 @@ Route::post('/register', [RegisterController::class, 'register']);
 // Broadcast::routes(['middleware' => ['auth:api']]);
 Route::post('/login', [LoginController::class, 'login']);
 
+<<<<<<< HEAD
 // Route::get('auth/{provider}/callback', [LoginController::class, IndexGoogleLogin])->where('provider', '.*');
 Route::post('sociallogin/{provider}', [LoginController::class, 'SocialSignup']);
+=======
+>>>>>>> user/riski
 /**
  * Api Forgot and Reset Password
  */
@@ -96,10 +99,6 @@ Route::prefix('campaign')->group(function() {
 
     // ** For admin needs
     Route::get('/get_all_campaigns', [CampaignController::class, 'GetAllCampaigns'])->middleware('auth:api');
-
-    // ** Like and Unlike Campaign
-    Route::post('/post_like_campaign/{id}', [CampaignController::class, 'likeCampaign'])->middleware('auth:api');
-    Route::post('/post_unlike_campaign/{id}', [CampaignController::class, 'unlikeCampaign'])->middleware('auth:api');
 });
 
 /**
@@ -146,8 +145,8 @@ Route::get('/notifications/mark_notif_as_read', [NotificationController::class, 
  * Api Private Chat
  */
 Route::prefix('chats')->group(function() {
-    Route::get('/{user_id}', [ConversationController::class, 'index'])->middleware('auth:api');
+    Route::get('/{id_user}', [ConversationController::class, 'index'])->middleware('auth:api');
     Route::post('/post_inbox', [ConversationController::class, 'post_inbox'])->middleware('auth:api');
-    Route::post('/messages', [ConversationController::class, 'messages'])->middleware('auth:api');
+    Route::get('/messages/{id_conversation}', [ConversationController::class, 'messages'])->middleware('auth:api');
     Route::post('/post_message', [ConversationController::class, 'post_message'])->middleware('auth:api');
 });

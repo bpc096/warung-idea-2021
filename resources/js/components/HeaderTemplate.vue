@@ -302,7 +302,7 @@ export default {
       text-decoration: none;
       color: black;
       &:hover {
-        color: #55D8C1;
+        color: #83BD75;
       }
     }
   }

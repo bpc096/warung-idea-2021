@@ -30,13 +30,6 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    // Login as google services
-    'google' => [
-      'client_id'     => env('GOOGLE_CLIENT_ID'),
-      'client_secret' => env('GOOGLE_APP_SECRET'),
-      'redirect'      => env('GOOGLE_REDIRECT'),
-    ],
-
     //midtrans
     'midtrans' => [
         // Midtrans server key
@@ -46,7 +39,7 @@ return [
         // Isi false jika masih tahap development dan true jika sudah di production, default false (development)
         'isProduction'  => env('MIDTRANS_IS_PRODUCTION', false),
         'isSanitized'   => env('MIDTRANS_IS_SANITIZED', true),
-        'is3ds'         => env('MIDTRANS_IS_3DS', true),
+        'is3ds'         => env('MIDTRANS_IS_3DS', true),                
     ]
 
 ];

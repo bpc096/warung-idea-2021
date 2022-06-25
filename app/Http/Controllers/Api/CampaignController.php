@@ -26,7 +26,6 @@ class CampaignController extends Controller
         ->where("is_approved", '1') // ** Show campaign only approved campaign
         ->where("deleted_at", null) // ** And Not Deleted
         ->with('sumPayment')
-        ->with('likeCounter')
         ->when(request()->q, function($campaigns) {
             $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
         })
@@ -45,11 +44,7 @@ class CampaignController extends Controller
     public function index_user($users_id)
     {
         //get detail data campaign
-        $campaign = Campaign::with('user')
-        ->with('sumPayment')
-        ->withCount('updates')
-        ->withCount('faqs')
-        ->where('users_id', $users_id)->get();
+        $campaign = Campaign::with('user')->with('sumPayment')->where('users_id', $users_id)->get();
 
         if($campaign) {
 
@@ -96,8 +91,8 @@ class CampaignController extends Controller
         $image = $request->file('image');
         if(!empty($image)) {
             $image->storeAs('public/campaigns', $image->hashName());
-        }
-
+        } 
+        
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
@@ -124,7 +119,7 @@ class CampaignController extends Controller
                     'users_id'    => $collaborator,
                     'status'      => 'pending'
                 ]);
-
+    
                 // ** Create notification for each collaborators
                 $notif = new Notifications;
                 $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
@@ -153,10 +148,7 @@ class CampaignController extends Controller
     public function show($id)
     {
         //get detail data campaign
-        $campaign = Campaign::with('user')
-        ->with('sumPayment')
-        ->with('likeCounter')
-        ->where('id', $id)->first();
+        $campaign = Campaign::with('user')->with('sumPayment')->where('id', $id)->first();
 
         $collaborators = CampaignDetail::with('users')->where("campaign_id", $id)->get();
 
@@ -229,7 +221,7 @@ class CampaignController extends Controller
                     'status'      => 'pending'
                 ]);
             }
-        }
+        } 
         else {
             //hapus image lama
             Storage::disk('local')->delete('public/campaigns/'.basename($campaign->image));
@@ -306,7 +298,7 @@ class CampaignController extends Controller
         $update = Campaign::where('id', $id)->update([
             "is_approved" => '1'
         ]);
-
+        
         if($update) {
             return response()->json([
                 "success" => true,
@@ -325,7 +317,7 @@ class CampaignController extends Controller
         $update = Campaign::where('id', $id)->update([
             "is_approved" => '2'
         ]);
-
+        
         if($update) {
             return response()->json([
                 "success" => true,
@@ -344,7 +336,7 @@ class CampaignController extends Controller
         $update = Campaign::where('id', $id)->update([
             "is_delete_approved" => '1'
         ]);
-
+        
         if($update) {
             // If has been approved, then do delete
             $campaign = Campaign::findOrFail($id);
@@ -367,7 +359,7 @@ class CampaignController extends Controller
         $update = Campaign::where('id', $id)->update([
             "is_delete_approved" => '2'
         ]);
-
+        
         if($update) {
             return response()->json([
                 "success" => true,
@@ -383,9 +375,9 @@ class CampaignController extends Controller
 
     // ** Get List Collaboration
     public function get_list_collaboration($id_user) {
-        $campaigns = Campaign::select('campaigns.*',
+        $campaigns = Campaign::select('campaigns.*', 
             'campaign_details.users_id',
-            'campaign_details.status',
+            'campaign_details.status', 
             'payments.amount',
             'payments.snap_token',
             'payments.status as payment_status',
@@ -423,7 +415,7 @@ class CampaignController extends Controller
             ];
             $result[] = $data;
         }
-
+        
         return response()->json([
             "success" => true,
             "collaborations" => $result
@@ -451,27 +443,5 @@ class CampaignController extends Controller
             'success' => true,
             'collaborators' => $get
         ], 200);
-    }
-
-    // ** Like Campaign
-    public function likeCampaign($id) {
-      $campaign = Campaign::find($id);
-      $campaign->like();
-      $campaign->save();
-      return response()->json([
-        'success' => true,
-        'message' => 'Campaign Like Succesfully!'
-      ], 200);
-    }
-
-    // ** Unlike Campaign
-    public function unlikeCampaign($id) {
-      $campaign = Campaign::find($id);
-      $campaign->unlike();
-      $campaign->save();
-      return response()->json([
-        'success' => true,
-        'message' => 'Campaign Unlike Succesfully!'
-      ], 200);
     }
 }

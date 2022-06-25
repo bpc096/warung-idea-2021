@@ -4,14 +4,6 @@
       EDIT CAMPAIGN
     </div>
     <div class="user-profile-card">
-      <div
-        class="alert alert-danger"
-        role="alert"
-        v-for="(error, index) in errors"
-        :key="index"
-      >
-        {{ error }}
-      </div>
       <form @submit.prevent="editCampaign">
         <div class="user-profile-content">
           <div class="user-image">
@@ -163,8 +155,7 @@ export default {
       projectDetail: {},
       shortDesc: '',
       projectPlan: '',
-      selectedCollaborator: [],
-      errors: [],
+      selectedCollaborator: []
     }
   },
   async created () {
@@ -183,9 +174,7 @@ export default {
           this.maxDate = this.projectDetail.max_date
           this.shortDesc = this.projectDetail.short_description
           this.projectPlan = this.projectDetail.project_plan
-          if (res.collaborators && res.collaborators.length > 0) {
-            this.selectedCollaborator = res.collaborators[0].users.map((val) => ({ name: val.name, userId: val.id }))
-          }
+          this.selectedCollaborator = res.collaborators[0].users.map((val) => ({ name: val.name, userId: val.id }))
         }
       })
       .catch(err => {
@@ -193,7 +182,7 @@ export default {
         this.$swal({
           icon: 'error',
           title: 'Oops...',
-          text: err,
+          text: 'Something went wrong!',
         })
       })
   },
@@ -220,23 +209,6 @@ export default {
     }
   },
   methods: {
-    mappingErrorMessage (objectData, keyValue) {
-      let resultErrorMsg = []
-      keyValue.forEach((x) => {
-        objectData[x].map(data => {
-          resultErrorMsg.push(data)
-        })
-      })
-      return resultErrorMsg
-    },
-    addNewUser (userId) {
-      this.selectedCollaborator.push(userId)
-    },
-    removeNewUser (userId) {
-      console.log('removeUser')
-      const index = this.selectedCollaborator.indexOf(userId)
-      if(index>-1) this.selectedCollaborator.splice(index,1)
-    },
     editCampaign() {
       const campaignId = this.$route.params.projectId || 1
       const listCollaborator = this.$refs.multiselect.$data.value
@@ -267,12 +239,10 @@ export default {
           })
         })
         .catch(err => {
-          console.error(err)
-          const textError = err.data && err.data.message ? err.data.message : "Theres Something Wrong With Your Input!"
           this.$swal({
             icon: 'error',
             title: 'Oops...',
-            text: textError,
+            text: 'Something went wrong!',
           })
         })
     },

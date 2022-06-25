@@ -18,7 +18,7 @@
                 v-model="form.email"
                 type="email"
                 class="form-control"
-                :placeholder="emailPlaceholder">
+                placeholder="Email.." >
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -26,14 +26,17 @@
                 v-model="form.password"
                 type="password"
                 class="form-control"
-                :placeholder="passwordPlaceholder"
+                placeholder="Password..."
               >
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
+<<<<<<< HEAD
           <hr class="solid">
           <!-- <button @click="AuthProvider('google')">auth Google</button> -->
           <button @click="btnForgotPassword">Forgot Password</button>
+=======
+>>>>>>> user/riski
         </div>
       </div>
     </div>
@@ -45,8 +48,6 @@ export default {
   name: 'LoginPage',
   data() {
     return {
-      emailPlaceholder: '\ue4e8 Enter Your Email Address',
-      passwordPlaceholder: '\uf023 Enter Your Password',
       form: {
         email: '',
         password: '',
@@ -94,26 +95,7 @@ export default {
       }).catch(err => {
         this.errors = err.response.data.message
       })
-    },
-    AuthProvider(provider) {
-      var self = this
-      this.$auth.authenticate(provider)
-        .then(response =>{
-          console.log(response)
-          self.SocialLogin(provider,response)
-        }).catch(err => {
-          console.log({err:err})
-        })
-    },
-    SocialLogin(provider,response){
-      this.$http
-      .post('/sociallogin/'+provider,response)
-      .then(response => {
-        console.log(response.data)
-      }).catch(err => {
-          console.log({err:err})
-      })
-    },
+    }
   }
 }
 </script>
@@ -126,17 +108,8 @@ export default {
   align-items: center;
   flex-direction: column;
 
-  hr.solid {
-    border-top: 3px solid #bbb;
-    margin: 2rem 0;
-  }
-
   .login-card {
     max-width: 30%;
-  }
-
-  input{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'FontAwesome';
   }
 }
 </style>
