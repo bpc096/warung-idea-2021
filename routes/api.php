@@ -20,11 +20,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 // Broadcast::routes(['middleware' => ['auth:api']]);
 Route::post('/login', [LoginController::class, 'login']);
 
-<<<<<<< HEAD
 // Route::get('auth/{provider}/callback', [LoginController::class, IndexGoogleLogin])->where('provider', '.*');
 Route::post('sociallogin/{provider}', [LoginController::class, 'SocialSignup']);
-=======
->>>>>>> user/riski
 /**
  * Api Forgot and Reset Password
  */
