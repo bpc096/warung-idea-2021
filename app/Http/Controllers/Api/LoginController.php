@@ -65,7 +65,6 @@ class LoginController extends Controller
             ]);
         }
     }
-<<<<<<< HEAD
 
     // public function SocialSignup($provider)
     // {
@@ -79,6 +78,4 @@ class LoginController extends Controller
     //   // ],200);
     //   return view('welcome');
     // }
-=======
->>>>>>> user/riski
 }
