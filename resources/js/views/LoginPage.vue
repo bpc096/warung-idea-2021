@@ -31,12 +31,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
-<<<<<<< HEAD
           <hr class="solid">
           <!-- <button @click="AuthProvider('google')">auth Google</button> -->
           <button @click="btnForgotPassword">Forgot Password</button>
-=======
->>>>>>> user/riski
         </div>
       </div>
     </div>
