@@ -381,6 +381,48 @@ class CampaignController extends Controller
         ], 500);
     }
 
+    // ** Approve Finish Campaign
+    public function approve_finish_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_finish_approved" => '1'
+        ]);
+
+        if($update) {
+            // If has been approved, then do delete
+            $campaign = Campaign::findOrFail($id);
+            $campaign->delete();
+
+            return response()->json([
+                "success" => true,
+                "message" => "Campaign has been approved to finished"
+            ], 200);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to approve finish campaign"
+        ], 500);
+    }
+
+    // ** Reject Finish Campaign
+    public function reject_finish_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_finish_approved" => '2'
+        ]);
+
+        if($update) {
+            return response()->json([
+                "success" => true,
+                "message" => "Finish Campaign has been rejected"
+            ], 200);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to reject finish campaign"
+        ], 500);
+    }
+
     // ** Get List Collaboration
     public function get_list_collaboration($id_user) {
         $campaigns = Campaign::select('campaigns.*',
@@ -415,6 +457,7 @@ class CampaignController extends Controller
             $data["is_approved"] = $campaign->is_approved;
             $data["deleted_at"] = $campaign->deleted_at;
             $data["is_delete_approved"] = $campaign->is_delete_approved;
+            $data["is_finish_approved"] = $campaign->is_finish_approved;
             $data["status"] = $campaign->status;
             $data["donation"] = [
                 "amount" => $campaign->amount,
