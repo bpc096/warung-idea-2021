@@ -63,8 +63,6 @@ export default {
     '$route' (to, from) {
       // Saving Previus User Data Messages
       // this.saveChatUser(this.userId, this.messages)
-
-
       //Fetching New User Data Messages
       this.fetchMessages()
         //Check chatMsgData if exist then fetch
