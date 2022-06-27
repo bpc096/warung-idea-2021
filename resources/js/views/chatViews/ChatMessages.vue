@@ -1,22 +1,39 @@
 <template>
   <div id="chatlogs" class="chat-messages-wrap">
-    <div class="left clearfix icon" v-for="message in messages" :key="message.id">
-      ●
-      <div class="clearfix wrap-head">
-        <div class="header">
-          <strong>
-            {{ message.user.name }}
-          </strong>
+    <div v-for="message in messages" :key="message.id">
+      <div v-if="message.user_id !== user.id" class="left clearfix icon">
+        ●
+        <div class="clearfix wrap-head">
+          <div class="header">
+            <strong>
+              {{ message.name}}
+            </strong>
+          </div>
+          <p>
+            {{ message.body }}
+          </p>
         </div>
-        <p>
-          {{ message.message }}
-        </p>
+      </div>
+      <div v-else class="right clearfix icon">
+        <div class="clearfix wrap-head">
+          <div class="header">
+            <strong>
+              {{ message.name}}
+            </strong>
+          </div>
+          <p>
+            {{ message.body }}
+          </p>
+        </div>
+        ●
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: ["messages"],
   updated () {
@@ -25,6 +42,11 @@ export default {
   },
   mounted() {
     console.log('Chat Message Mounted')
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user'
+    }),
   }
 };
 </script>
@@ -40,16 +62,20 @@ export default {
   }
 
   .wrap-head {
-    margin-left: 1rem;
-    width: 65%;
+    margin: 0 1rem;
+    width: 95%;
   }
 
   .left {
     text-align: left;
   }
 
+  .right {
+    text-align: right;
+  }
+
   p {
-    width: 90%;
+    // width: 90%;
   }
 }
 </style>

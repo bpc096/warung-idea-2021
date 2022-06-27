@@ -35,8 +35,9 @@ export default {
       if(this.newMessage === '' || !this.newMessage) return
 
       this.$emit("sentmessage", {
-        user: this.user,
-        message: this.newMessage,
+        user_id: this.user.id,
+        name: this.user.name,
+        body: this.newMessage,
       });
 
       this.newMessage = "";

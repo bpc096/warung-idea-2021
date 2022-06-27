@@ -29,7 +29,7 @@
         >
           <button
             class="btn-chat"
-            @click="goToChatPage(campaignInfo.users_id)"
+            @click="goToChatPage(campaignInfo.users_id, campaignInfo.id)"
           >
             <i class="fa-solid fa-comment mr-1"></i>
             Chat Creator
@@ -230,12 +230,13 @@ export default {
     }
   },
   methods: {
-    async goToChatPage (receiverId) {
+    async goToChatPage (receiverId, paramCampaignId) {
       console.log('go to chat page with receiver ' + receiverId)
       const senderId = this.user.id || 1
+      const campaignId = paramCampaignId ? paramCampaignId : 1
       // Initialize Chat Inbox
       try {
-        let apiUrl = `chats/post_inbox?sender=${senderId}&receiver=${receiverId}`
+        let apiUrl = `chats/post_inbox?id_campaign=${campaignId}&sender=${senderId}&receiver=${receiverId}`
         const req = await Axios.post(apiUrl)
         console.log(req.data)
         if(req.data.success) {

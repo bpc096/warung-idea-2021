@@ -108,6 +108,9 @@ export default {
   align-items: center;
   .register-card {
     max-width: 30%;
+    input {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'FontAwesome';
+    }
   }
 }
 </style>
