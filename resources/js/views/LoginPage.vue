@@ -33,7 +33,7 @@
           </form>
           <hr class="solid">
           <!-- <button @click="AuthProvider('google')">auth Google</button> -->
-          <button @click="btnForgotPassword">Forgot Password</button>
+          <button @click="btnForgotPassword" class="btn btn-primary">Forgot Password</button>
         </div>
       </div>
     </div>
