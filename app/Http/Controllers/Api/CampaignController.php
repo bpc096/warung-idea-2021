@@ -460,7 +460,7 @@ class CampaignController extends Controller
       $campaign->save();
       return response()->json([
         'success' => true,
-        'message' => 'Campaign Like Succesfully!'
+        'message' => 'Campaign Like Successfully!'
       ], 200);
     }
 
@@ -471,7 +471,7 @@ class CampaignController extends Controller
       $campaign->save();
       return response()->json([
         'success' => true,
-        'message' => 'Campaign Unlike Succesfully!'
+        'message' => 'Campaign Unlike Successfully!'
       ], 200);
     }
 }
