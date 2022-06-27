@@ -11,7 +11,12 @@
       />
     </div>
     <div v-else class="empty-state">
-      You dont have created campaign !
+      <div class="image-info">
+        <img src="\images\empty_icon.svg " alt="image-empty-icon">
+      </div>
+      <h2>
+        You dont have created campaign !
+      </h2>
     </div>
   </div>
 </template>
@@ -62,14 +67,24 @@ export default {
   margin-bottom: 10rem;
 
   .empty-state {
-    margin-top: 10rem;
+    margin-top: 5rem;
     font-size: 25px;
+    .image-info {
+      img {
+        border-radius: 20px;
+        width: 25rem;
+        height: 25rem;
+      }
+    }
+    h2 {
+      margin-top: 5rem;
+    }
   }
 
   .title-page {
     font-size: 30px;
     font-weight: bold;
-    margin: 2rem 0;
+    margin: 5rem 0 2rem 0;
   }
 
   .button-upper-campaign {

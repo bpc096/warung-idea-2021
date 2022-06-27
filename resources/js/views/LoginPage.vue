@@ -31,9 +31,17 @@
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
-          <hr class="solid">
+          <div class="divider-wrap">
+            <div class="divider-line">
+              <hr class="solid">
+            </div>
+            <h5>OR</h5>
+            <div class="divider-line">
+              <hr class="solid">
+            </div>
+          </div>
           <!-- <button @click="AuthProvider('google')">auth Google</button> -->
-          <button @click="btnForgotPassword">Forgot Password</button>
+          <button @click="btnForgotPassword" class="btn btn-primary">Forgot Password</button>
         </div>
       </div>
     </div>
@@ -137,6 +145,23 @@ export default {
 
   input{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'FontAwesome';
+  }
+
+  .divider-wrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;;
+
+    .divider-line {
+      width: 40%;
+    }
+
+    h5 {
+      text-align: center;
+      margin: 0 15px;
+    }
   }
 }
 </style>

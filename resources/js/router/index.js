@@ -228,7 +228,7 @@ const routes = [
     component: ChatPage,
     children: [
       {
-        path: ':chatId/user/:userId',
+        path: ':chatId/user/:userId/code/:chatCode',
         name: 'ChatContainer',
         component: ChatContainer,
       }

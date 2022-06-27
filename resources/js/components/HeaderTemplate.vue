@@ -67,7 +67,7 @@
           <router-link to="/profile/invitation" class="dropdown-item item-click-menu" @click.native="markNotifAsRead">
             ✉️ Invitation
           </router-link>
-          <router-link to="/chat/0/user/0" class="dropdown-item item-click-menu">
+          <router-link to="/chat/0/user/0/code/0" class="dropdown-item item-click-menu">
             💬 Message
           </router-link>
           <a @click="logout" class="dropdown-item item-click-menu">
