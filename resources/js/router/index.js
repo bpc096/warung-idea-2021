@@ -285,7 +285,13 @@ const routes = [
         component: RequestFinishedPage
       }
     ]
-  }
+  },
+  {
+    path: '/auth/:provider/callback',
+    component: {
+      template: '<div class="auth-component"></div>'
+    }
+  },
 ]
 
 const router = new Router({

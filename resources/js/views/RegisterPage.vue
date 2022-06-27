@@ -76,6 +76,8 @@ export default {
       this.$store
         .dispatch("register", data)
         .then(res => {
+          let toast = this.$toasted.success('Register Success, Please Login First! ✅', {position: 'top-center'})
+          toast.goAway(1500)
           this.$router.push({
             name: 'LoginPage'
           })

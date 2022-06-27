@@ -15,6 +15,8 @@ import store from './store'
 import Toasted from 'vue-toasted'
 import VueSidebarMenu from 'vue-sidebar-menu'
 import VueSweetalert2 from 'vue-sweetalert2'
+import VueAxios from 'vue-axios'
+import VueSocialauth from 'vue-social-auth'
 
 import 'bootstrap'
 import 'sweetalert2/dist/sweetalert2.min.css'
@@ -40,6 +42,15 @@ Vue.config.productionTip = false
 Vue.use(VueSidebarMenu)
 Vue.use(VueSweetalert2);
 Vue.use(Axios)
+Vue.use(VueAxios, Axios)
+Vue.use(VueSocialauth, {
+  providers: {
+    google: {
+      clientId: '316020619475-laepue21s0i3mcgm2sejjl6ge5cmehl2.apps.googleusercontent.com',
+      redirectUri: 'http://127.0.0.1:8000/auth/google/callback' // Your client app URL
+    }
+  }
+})
 Vue.use(Toasted)
 
 const token = localStorage.getItem('token')
