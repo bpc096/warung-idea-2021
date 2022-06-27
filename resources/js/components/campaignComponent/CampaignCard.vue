@@ -241,7 +241,7 @@ export default {
         console.log(req.data)
         if(req.data.success) {
           console.log('gotochat')
-          this.$router.push('/chat/0/user/0')
+          this.$router.push('/chat/0/user/0/code/0')
         }
       } catch (error) {
         this.$swal({

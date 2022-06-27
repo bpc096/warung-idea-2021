@@ -1,7 +1,6 @@
 <template>
   <div class="container-chat">
     <div class="card h-100">
-      testing - {{ userId }}
       <div v-if="userId !== 0">
         <div id="top-scroll-chat" class="card-body">
           <ChatMessages
