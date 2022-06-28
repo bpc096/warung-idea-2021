@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Conversation;
-use App\Events\MessageCreated;
 use App\Message;
-use App\Contact;
-use App\CampaignChat;
 use Illuminate\Support\Facades\Validator;
 
 class ConversationController extends Controller

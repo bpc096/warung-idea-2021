@@ -388,7 +388,7 @@ class CampaignController extends Controller
         ]);
 
         if($update) {
-            // If has been approved, then do delete
+            // If has been approved, then do archive softDeletes
             $campaign = Campaign::findOrFail($id);
             $campaign->delete();
 
