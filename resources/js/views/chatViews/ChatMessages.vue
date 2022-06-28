@@ -53,7 +53,7 @@ export default {
 
 <style lang="less" scoped>
 .chat-messages-wrap {
-  height: 70vh;
+  height: 78vh;
   overflow-y: scroll;
 
   .icon {
