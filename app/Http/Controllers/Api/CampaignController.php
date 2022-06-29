@@ -45,7 +45,8 @@ class CampaignController extends Controller
     public function index_user($users_id)
     {
         //get detail data campaign
-        $campaign = Campaign::with('user')
+        $campaign = Campaign::withTrashed()
+        ->with('user')
         ->with('sumPayment')
         ->withCount('updates')
         ->withCount('faqs')
@@ -409,8 +410,8 @@ class CampaignController extends Controller
 
         if($update) {
             // If has been approved, then do archive softDeletes
-            // $campaign = Campaign::findOrFail($id);
-            // $campaign->delete();
+            $campaign = Campaign::findOrFail($id);
+            $campaign->delete();
 
             return response()->json([
                 "success" => true,
@@ -445,7 +446,8 @@ class CampaignController extends Controller
 
     // ** Get List Collaboration
     public function get_list_collaboration($id_user) {
-        $campaigns = Campaign::select('campaigns.*',
+        $campaigns = Campaign::withTrashed()
+        ->select('campaigns.*',
             'campaign_details.users_id',
             'campaign_details.status',
             'payments.amount',
@@ -495,11 +497,12 @@ class CampaignController extends Controller
 
     // ** Get All Campaigns(For Admin)
     public function GetAllCampaigns() {
-        $get = Campaign::select('campaigns.*', 'categories.category_name', 'users.name as created_by')
+        $get = Campaign::withTrashed()
+        ->select('campaigns.*', 'categories.category_name', 'users.name as created_by')
         ->leftJoin('categories', 'categories.id',  '=', 'campaigns.category_id')
         ->leftJoin('users', 'users.id',  '=', 'campaigns.users_id')
-        ->where("campaigns.deleted_at", null)
         ->paginate(10);
+
         return response()->json([
             "all_campaigns" => $get
         ], 200);
