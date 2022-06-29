@@ -58,6 +58,7 @@ Route::prefix('campaign')->group(function() {
     Route::post('/', [CampaignController::class, 'store'])->middleware('auth:api');
     Route::post('/{campaign}', [CampaignController::class, 'update'])->middleware('auth:api');
     Route::delete('/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
+    Route::put('/{campaign}', [CampaignController::class, 'finish'])->middleware('auth:api');
     Route::get('/collaboration/{id_user}', [CampaignController::class, 'get_list_collaboration'])->middleware('auth:api');
 
     // ** End-point to get list of collaborator of campaign

@@ -301,6 +301,26 @@ class CampaignController extends Controller
         }
     }
 
+    public function finish($id)
+    {
+        // ** Approval Finish
+        $campaign = Campaign::where('id', $id)->update([
+            "is_finish_approved" => '0' // ** Set to pending
+        ]);
+
+        if($campaign){
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Your finish request has been sent to admin. Please wait for admin confirmation.'
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to request finish.'
+            ], 400);
+        }
+    }
+
     // ** Approve Campaign
     public function approve_campaign($id) {
         $update = Campaign::where('id', $id)->update([
@@ -389,8 +409,8 @@ class CampaignController extends Controller
 
         if($update) {
             // If has been approved, then do archive softDeletes
-            $campaign = Campaign::findOrFail($id);
-            $campaign->delete();
+            // $campaign = Campaign::findOrFail($id);
+            // $campaign->delete();
 
             return response()->json([
                 "success" => true,
