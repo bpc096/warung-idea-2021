@@ -33,7 +33,9 @@
     </div>
     <div class="content-left">
       <div class="content-contribution">
-        <div class="title-summary">Contribution Summary</div>
+        <div class="title-summary">
+          <h2>Contribution Summary</h2>
+        </div>
         <div class="subtotal-text">
           <div class="subtotal-title">
             Subtotal
@@ -55,7 +57,7 @@
             Shipping
           </div>
           <div class="shipping-price">
-            Rp0
+            Rp 0
           </div>
         </div>
         <div class="total-text">
@@ -70,6 +72,7 @@
       <div class="btn-checkout">
         <button
           @click="checkout"
+          class="btn btn-primary"
         >
           PROCEED TO CHECKOUT
         </button>
@@ -216,21 +219,31 @@ export default {
 
     .content-contribution {
       width: 50%;
+
+      .title-summary {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 5rem;
+      }
+
       .subtotal-text,
       .service-fee-text {
         display: flex;
         justify-content: space-between;
+        font-weight: bold;
       }
       .shipping-text,
       .service-fee-text {
         display: flex;
         justify-content: space-between;
+        font-weight: bold;
       }
       .total-text{
         display: flex;
         justify-content: space-between;
         margin-top: 5rem;
         margin-bottom: 1rem;
+        font-weight: bold;
       }
     }
 

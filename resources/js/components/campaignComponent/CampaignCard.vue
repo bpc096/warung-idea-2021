@@ -43,16 +43,6 @@
             {{ payNowLabel }}
           </button>
         </div>
-        <!-- <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
-          Action
-          <button
-            v-if="paymentStatus !== 'success-status'"
-            class="btn-payment"
-            @click="payment"
-          >
-            {{ payNowLabel }}
-          </button>
-        </div> -->
         <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved">
           <b>Campaign Config :</b>
           <a
@@ -121,6 +111,18 @@
           <div :class="createApprovalClassName(campaignInfo.is_delete_approved)">
             {{ createApprovalStatus(campaignInfo.is_delete_approved) }}
           </div>
+        </div>
+        <div
+          v-if="isInCollaborationListPage"
+          class="campaign-wrap-button-creator"
+        >
+          <button
+            class="btn-chat"
+            @click="goToChatPage(campaignInfo.users_id, campaignInfo.id)"
+          >
+            <i class="fa-solid fa-comment mr-1"></i>
+            Chat Creator
+          </button>
         </div>
       </div>
     </div>
@@ -234,11 +236,9 @@ export default {
       console.log('go to chat page with receiver ' + receiverId)
       const senderId = this.user.id || 1
       const campaignId = paramCampaignId ? paramCampaignId : 1
-      // Initialize Chat Inbox
       try {
         let apiUrl = `chats/post_inbox?id_campaign=${campaignId}&sender=${senderId}&receiver=${receiverId}`
         const req = await Axios.post(apiUrl)
-        console.log(req.data)
         if(req.data.success) {
           console.log('gotochat')
           this.$router.push('/chat/0/user/0/code/0')
@@ -577,6 +577,25 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin: 10px 0 20px 25px;
+
+        &-creator {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          margin: 10px 0 20px 25px;
+
+          .btn-chat {
+            text-decoration: none;
+            color: black;
+            border: 1px solid #FFA500;
+            border-radius: 10px;
+            padding: 5px;
+            background-color: #FFA500;
+            min-width: 150px;
+            margin-right: 10px;
+          }
+        }
 
         b {
           width: 30%;
