@@ -174,7 +174,7 @@ export default {
           this.maxDate = this.projectDetail.max_date
           this.shortDesc = this.projectDetail.short_description
           this.projectPlan = this.projectDetail.project_plan
-          this.selectedCollaborator = res.collaborators[0].users.map((val) => ({ name: val.name, userId: val.id }))
+          this.selectedCollaborator = res.collaborators.map((val) => ({ name: val.users[0].name, userId: val.users[0].id }))
         }
       })
       .catch(err => {
@@ -212,7 +212,7 @@ export default {
     editCampaign() {
       const campaignId = this.$route.params.projectId || 1
       const listCollaborator = this.$refs.multiselect.$data.value
-
+      let collaborators = []
       let data = new FormData()
       data.append('image', this.image)
       data.append('title', this.title)
@@ -222,13 +222,10 @@ export default {
       data.append('description', this.description)
       data.append('short_description', this.shortDesc)
       data.append('project_plan', this.projectPlan)
-      if(listCollaborator.length > 0) {
-        for(let x=0;x<listCollaborator.length;x++){
-          data.append('collaborators[]', listCollaborator[x].userId)
-        }
-      } else {
-        data.append('collaborators[]', [])
+      for(let x=0;x<listCollaborator.length;x++) {
+        collaborators.push(listCollaborator[x].userId)
       }
+      data.append('collaborators', JSON.stringify(collaborators))
 
       let param = {campaignId, data}
       this.$store
