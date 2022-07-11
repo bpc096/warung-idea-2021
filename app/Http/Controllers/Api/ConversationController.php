@@ -87,9 +87,10 @@ class ConversationController extends Controller
         }
 
         return response()->json([
-            'success' => true,
-            'message' => 'Conversation already exist'
-        ], 201);
+            'success' => false,
+            'message' => 'Conversation already exist',
+            'code'    => $checkInbox->code
+        ], 400);
     }
 
     // ** Get Conversation
