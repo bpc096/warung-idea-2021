@@ -15,14 +15,14 @@
           Total Funded {{ this.paymentPercentage }}%
         </div>
         <div class="icon-label">
-          <div class="icon-love">
-            <a href="#addToLove">
-              <img src="images/icon/love.png" alt="love-icon">
+          <div class="icon-love" @click.stop="clickLoveBtn">
+            <a href="#loveIconClick">
+              <i class="fa-regular fa-heart"></i>
             </a>
           </div>
-          <div class="icon-bookmark">
-            <a href="#addToBookmark">
-              <img src="images/icon/bookmark.svg" alt="bookmark-icon">
+          <div class="icon-bookmark"  @click.stop="clickBookmarkBtn">
+            <a href="#bookmarkIconClick">
+              <i class="fa-regular fa-bookmark"></i>
             </a>
           </div>
         </div>
@@ -76,8 +76,8 @@ export default {
       }
     },
     projectTargetDonation() {
-     if(!this.projectData || !this.projectData.target_donation) return '0'
-     else return this.projectData.target_donation
+      if(!this.projectData || !this.projectData.target_donation) return '0'
+      else return this.projectData.target_donation
     },
     totalPayment() {
       if(!this.projectData || !this.projectData.sum_payment || this.projectData.sum_payment.length <=0 || !this.projectData.sum_payment[0].total) return '0'
@@ -88,6 +88,16 @@ export default {
       const mathPercentage = Math.floor((parseInt(this.totalPayment)/parseInt(this.projectTargetDonation)) * 100)
       return mathPercentage
     },
+  },
+  methods: {
+    clickLoveBtn() {
+      let toast = this.$toasted.success("Loved The Project ⭐")
+      toast.goAway(2000)
+    },
+    clickBookmarkBtn() {
+      let toast = this.$toasted.info('Bookmarked The Project 📑')
+      toast.goAway(2000)
+    }
   }
 }
 </script>
@@ -155,11 +165,11 @@ export default {
           margin: 0 10px;
           a {
             text-decoration: none;
+            color: black;
+            font-size: 20px;
           }
-
-          img {
-            height: 24px;
-            width: 24px;
+          a:hover {
+            color: red;
           }
         }
       }

@@ -19,7 +19,7 @@ class ConversationController extends Controller
         ->join('users', 'users.id', '=', 'conversations.sender')
         ->where('conversations.receiver', $id_user)
         ->get();
-        
+
         return response()->json([
             "success" => true,
             "conversation_list" => $conversationList
@@ -29,13 +29,11 @@ class ConversationController extends Controller
     // ** Post Inbox
     public function post_inbox(Request $req) {
         // ** Params :
-        /* 
+        /*
             --> sender
-            Value = id_user    
-
+            Value = id_user
             --> receiver
             Value = id_user
-
             --> id_campaign
             value = from id campaign
         */
@@ -69,14 +67,14 @@ class ConversationController extends Controller
             $code = "cnv_".date('ymdhis')."_".rand(10000, 99999);
             $data = [
                 [
-                    'sender'      => $req->sender, 
-                    'receiver'    => $req->receiver, 
+                    'sender'      => $req->sender,
+                    'receiver'    => $req->receiver,
                     'id_campaign' => $req->id_campaign,
                     'code'        => $code
                 ],
                 [
-                    'sender'      => $req->receiver, 
-                    'receiver'    => $req->sender, 
+                    'sender'      => $req->receiver,
+                    'receiver'    => $req->sender,
                     'id_campaign' => $req->id_campaign,
                     'code'        => $code
                 ]
@@ -90,7 +88,7 @@ class ConversationController extends Controller
                 ], 201);
             }
         }
-        
+
         return response()->json([
             'success' => false,
             'message' => 'Conversation already exist',

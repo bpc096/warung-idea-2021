@@ -8,9 +8,13 @@ import AboutUsPage from '../views/AboutUsPage.vue'
 import DiscoveryPage from '../views/DiscoveryPage.vue'
 import CategoryPage from '../views/CategoryPage.vue'
 import ProjectDetailPage from '../views/ProjectDetailPage.vue'
+import CheckoutPage from '../views/CheckoutPage.vue'
+
+
+// Views Auth User
 import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
-import CheckoutPage from '../views/CheckoutPage.vue'
+import ForgotPassword from '../views/userViews/ForgotPassword.vue'
 
 // Views Campaign
 import CreateCampaign from '../views/campaignViews/CreateCampaign.vue'
@@ -69,6 +73,11 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LandingPage,
+  },
+  {
+    path: '/auth/reset/:token',
+    name: 'ForgotPasswordPage',
+    component: ForgotPassword
   },
   {
     path: '/register',
@@ -219,7 +228,7 @@ const routes = [
     component: ChatPage,
     children: [
       {
-        path: ':chatId/user/:userId',
+        path: ':chatId/user/:userId/code/:chatCode',
         name: 'ChatContainer',
         component: ChatContainer,
       }
@@ -235,8 +244,8 @@ const routes = [
     name: 'DashboardPage',
     component: DashboardPage,
     meta: {
-      // Change this to false when finsihed
-      authAdmin: false,
+      // TODO: Change this to false when finsihed
+      authAdmin: true,
     },
     children: [
       {
@@ -276,7 +285,13 @@ const routes = [
         component: RequestFinishedPage
       }
     ]
-  }
+  },
+  {
+    path: '/auth/:provider/callback',
+    component: {
+      template: '<div class="auth-component"></div>'
+    }
+  },
 ]
 
 const router = new Router({

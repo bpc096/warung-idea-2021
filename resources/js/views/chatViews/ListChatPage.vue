@@ -5,7 +5,8 @@
         v-for="(u,idx) in userList"
         :key="idx"
         class="user-card"
-        @click="changeChatContainer(u.id, u.receiver)"
+        :class="{'card-active': u.isActive}"
+        @click="changeChatContainer(u.id, u.receiver, u.code)"
       >
         <div class="user-image">
           <img :src="sourceImg" alt="user-image-profile">
@@ -60,24 +61,60 @@ export default {
     }),
     getCurrentPath () {
       return this.$route.path
+    },
+    userId() {
+      const userId = parseInt(this.$route.params.userId || '0')
+      return userId
+    },
+    chatId () {
+      const chatId = parseInt(this.$route.params.chatId || '0')
+      return chatId
+    },
+    chatCode () {
+      const chatCode = this.$route.params && this.$route.params.chatCode ? this.$route.params.chatCode : 0
+      return chatCode
     }
   },
   methods: {
-    changeChatContainer (conversationId = 0,targetId = 1) {
-      const getCurrentTargetId = this.getCurrentPath.split('/').filter(x => Number.isInteger(parseInt(x)))
-      if(parseInt(getCurrentTargetId[0]) === targetId || getCurrentTargetId.length <= 0) return
+    changeChatContainer (conversationId = 0,targetId = 1, targetChatCode = 0) {
+      const splitCurrentPath  = this.getCurrentPath.split('/')
+      const getParamChatCode = targetChatCode
+
+      const getCurrentTargetId = splitCurrentPath.filter(x => Number.isInteger(parseInt(x)))
+      const isCurrentChatCodeSame = splitCurrentPath.findIndex(x => x === getParamChatCode)
+
+      if( parseInt(getCurrentTargetId[0]) === targetId ||
+          getCurrentTargetId.length <= 0 ||
+          isCurrentChatCodeSame !== -1 ) return
+
+      this.mappingChooseActiveUser(conversationId)
       this.$router.replace({
-        path: '/chat/'+ conversationId +'/user/' + targetId
+        path: '/chat/'+ conversationId +'/user/' + targetId + '/code/' + getParamChatCode
       })
+    },
+    mappingChooseActiveUser (convoId = 0) {
+      const isUserActive = this.userList.map( user => {
+        const newUser = {
+          ...user,
+          isActive: user.id === convoId
+        }
+        return newUser
+      })
+
+      this.userList = isUserActive
     },
     fetchChatList() {
       const apiUrl = 'chats/' + this.user.id
       axios.get(apiUrl)
         .then((res) => {
-          console.log(res.data)
           const response = res.data
           if(response.success) {
-            this.userList = response.conversation_list
+            const tempConvoList = response.conversation_list
+            this.userList = tempConvoList.map( (user,idx) => ({...user, isActive: false}))
+
+            if(this.chatCode !== 0) {
+              this.mappingChooseActiveUser(this.chatId)
+            }
           }
         })
         .catch((err) => {
@@ -118,6 +155,10 @@ export default {
 
     a:hover {
       background-color: #B8F1B0;
+    }
+
+    .card-active {
+      background-color: #25c5df;
     }
 
     .user-card {

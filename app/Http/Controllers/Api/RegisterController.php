@@ -42,7 +42,7 @@ class RegisterController extends Controller
             'success' => true,
             'message' => 'Register Successful!',
             'data'    => $user,
-            'token'   => $user->createToken('authToken')->accessToken  
+            'token'   => $user->createToken('authToken')->accessToken
         ], 201);
     }
 }

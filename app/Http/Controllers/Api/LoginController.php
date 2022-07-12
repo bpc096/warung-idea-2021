@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+// use Laravel\Socialite\Facades\Socialite;
 use App\User;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -65,4 +67,17 @@ class LoginController extends Controller
             ]);
         }
     }
+
+    // public function SocialSignup($provider)
+    // {
+    //   // Socialite will pick response data automatic
+    //   $user = Socialite::driver($provider)->stateless()->user();
+    //   return response()->json($user);
+    // }
+    // public function IndexGoogleLogin() {
+    //   // return response()->json([
+    //   //   success => true
+    //   // ],200);
+    //   return view('welcome');
+    // }
 }

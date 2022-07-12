@@ -15,14 +15,14 @@
           <i>Created by <b>{{ creatorName }}</b></i>
         </div>
         <div class="icon-info">
-          <div class="icon-love">
-            <a @click="clickLoveBtn">
-              <img src="images/icon/love.png" alt="love-icon">
+          <div class="icon-love" @click.stop="clickLoveBtn">
+            <a href="#loveIconClick">
+              <i class="fa-regular fa-heart"></i>
             </a>
           </div>
-          <div class="icon-bookmark">
-            <a @click="clickBookmarkBtn">
-              <img src="images/icon/bookmark.svg" alt="bookmark-icon">
+          <div class="icon-bookmark" @click.stop="clickBookmarkBtn">
+            <a href="#bookmarkIconClick">
+              <i class="fa-regular fa-bookmark"></i>
             </a>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default {
 <style lang="less" scoped>
 .project-main-card {
   height: 22rem;
-  width: 40rem;
+  max-width: 40rem;
   display: flex;
   flex-direction: row;
   margin: 0 20px;
@@ -144,7 +144,7 @@ export default {
     }
 
     .card-description {
-      width: 20rem;
+      max-width: 20rem;
     }
 
     .card-additional {
@@ -167,10 +167,11 @@ export default {
           margin: 0 6px;
           a {
             text-decoration: none;
+            color: black;
+            font-size: 20px;
           }
-          img {
-            height: 24px;
-            width: 24px;
+          a:hover {
+            color: red;
           }
         }
       }

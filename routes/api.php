@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Broadcast;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -20,6 +19,14 @@ Route::post('/register', [RegisterController::class, 'register']);
  */
 // Broadcast::routes(['middleware' => ['auth:api']]);
 Route::post('/login', [LoginController::class, 'login']);
+
+// Route::get('auth/{provider}/callback', [LoginController::class, IndexGoogleLogin])->where('provider', '.*');
+Route::post('sociallogin/{provider}', [LoginController::class, 'SocialSignup']);
+/**
+ * Api Forgot and Reset Password
+ */
+Route::post('/forgot', [ForgotResetController::class, 'forgot']);
+Route::post('/reset', [ForgotResetController::class, 'reset']);
 
 /**
  * Api User
@@ -89,6 +96,10 @@ Route::prefix('campaign')->group(function() {
 
     // ** For admin needs
     Route::get('/get_all_campaigns', [CampaignController::class, 'GetAllCampaigns'])->middleware('auth:api');
+
+    // ** Like and Unlike Campaign
+    Route::post('/post_like_campaign/{id}', [CampaignController::class, 'likeCampaign'])->middleware('auth:api');
+    Route::post('/post_unlike_campaign/{id}', [CampaignController::class, 'unlikeCampaign'])->middleware('auth:api');
 });
 
 /**

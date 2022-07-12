@@ -8,7 +8,7 @@
       promosikan dan kumpulkan dana untuk kampanyemu, dan wujudkan kampanye tersebut bersama kami. Situs website ini dikembangkan oleh M Faisal Ghozi, Bill Petrus
       & Jeffrey Marcellino. <br> <b>Terima Kasih Sudah Berkunjung & Mari Wujudkan IDE-mu sekarang juga!</b>
       <div class="text-version">
-        <p>App Version 3.0.0 - WarungIdea @2022</p>
+        <p>App Version {{ appVersion }} <br> Copyright WarungIdea @2022</p>
       </div>
     </div>
   </div>
@@ -17,6 +17,11 @@
 <script>
 export default {
   name: 'AboutUsPage',
+  data() {
+    return {
+      appVersion: '4.1.0'
+    }
+  }
 }
 </script>
 
