@@ -165,10 +165,22 @@ export default {
       projectPlan: '',
       selectedCollaborator: [],
       errors: [],
+      collaboratorList: []
     }
   },
   async created () {
     const campaignId = this.$route.params.projectId || 1
+    await this.$store
+      .dispatch('getCollaboratorAvailableList')
+      .then(res => {
+        if (res.data.length > 0) {
+          this.collaboratorList = res.data
+        }
+      })
+      .catch(err => {
+        console.error("Failed to get user list", err)
+      })
+
     await this.$store
       .dispatch('getCampaignById', campaignId)
       .then((res) => {
@@ -228,11 +240,18 @@ export default {
       return resultErrorMsg
     },
     addNewUser (userId) {
-      this.selectedCollaborator.push(userId)
+      const name = this.collaboratorList.filter(v => v.users_id == userId)[0].user.name
+
+      this.selectedCollaborator.push({
+        userId,
+        name
+      })
     },
     removeNewUser (userId) {
-      console.log('removeUser')
-      const index = this.selectedCollaborator.indexOf(userId)
+      console.log(userId)
+      console.log("selected", this.selectedCollaborator)
+      const index = this.selectedCollaborator.findIndex(v => v.userId == userId)
+      console.log('index', index)
       if(index>-1) this.selectedCollaborator.splice(index,1)
     },
     editCampaign() {
