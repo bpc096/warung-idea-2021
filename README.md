@@ -1,78 +1,78 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# warung-ide-2021
+This repo contain project for skripsi called WarungIde website. the folder divide into 2 part as backend & frontend.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Installation Guide
+- `git clone` this repo
+- `npm install` on frontend folder and backend folder
+- `running your mySQL Server first`
+- `npm run dev` to run on localhost
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Project Progress
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- ### Web Progress :
+  - [x] Init project - 10/10/2021
+  - [x] Setup Webpack - 10/10/2021
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- ### Frontend progress :
+  - ### Main Feature
+    - [x] Setup Vue state - 20/10/2021
+    - [x] Developing Landing Page - 27/10/2021
+    - [x] Developing About Us Page - 27/10/2021
+    - [x] Developing Homepage - 29/10/2021
+    - [x] Developing Category Page
+    - [x] Developing Detail Project Page
+    - [x] Developing Detail Project Section Updates
+    - [x] Developing Detail Project Section FAQ
+    - [x] Developing Detail Project Section Comments
+    - [x] Developing Pop Up Packages Overlay Modal
+  - ### User Feature
+    - [x] Login Page
+    - [x] Register Page
+    - [x] User Profile Page
+  - ### Creator Feature
+    - [x] Create Project Page
+    - [x] Read, Update & delete project page
+- ### Backend progress :
+  - [x] Setup routing for API response  
+  - [x] Initate Database
+  - [x] Implement Database
 
-## Learning Laravel
+---
+## Stack used
+- MongoDB/MySQL (ORM)
+- Node JS (Programming Language)
+- Express (Backend Framework)
+- Vue JS (Frontend Framework)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## App Architecture
+Web Scheme
+<img align="center" src="https://www.bezkoder.com/wp-content/uploads/2019/12/vue-node-express-mysql-architecture.png">
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Frontend Scheme
+<img align="center" src="https://www.bezkoder.com/wp-content/uploads/2019/12/vue-node-express-mysql-example-vue-client-overview.png">
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Project Assets
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+### Image :
+- X
 
-## Contributing
+### Fonts :
+- X
+### Icon :
+- <a target="_blank" href="https://icons8.com/icon/LcMH8YqF0Ej1/like">Like</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+- <a target="_blank" href="https://icons8.com/icon/86721/love">Love</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Project Reference
+This project using several reference :
+- [FreeCodeCamp article](https://www.freecodecamp.org/news/build-a-full-stack-mevn-app/) 
+- [Medium Article](https://rezazr.medium.com/tutorial-webpack-vue-js-6f23378683b5)
+- [Bezkoder Article](https://www.bezkoder.com/vue-js-node-js-express-mysql-crud-example/)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+As base line code, further changes and improvement will be implement by **our team**
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

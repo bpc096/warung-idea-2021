@@ -59,7 +59,6 @@ export default {
   async created() {
     const campaignId = this.$route.params.projectId || 1
     const updatesId = this.$route.params.updatesId || 1
-  // TODO: Fetching getUpdatesByCampagnidAndUpdateId
   },
   computed: {
     ...mapGetters({

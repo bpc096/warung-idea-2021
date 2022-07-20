@@ -43,17 +43,7 @@
             {{ payNowLabel }}
           </button>
         </div>
-        <!-- <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
-          Action
-          <button
-            v-if="paymentStatus !== 'success-status'"
-            class="btn-payment"
-            @click="payment"
-          >
-            {{ payNowLabel }}
-          </button>
-        </div> -->
-        <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved">
+        <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved && !isCampaignFinished && !iscampaignDeleted">
           <b>Campaign Config :</b>
           <a
             :href="`/projectdetail/${campaignId}`"
@@ -76,7 +66,7 @@
           </button>
         </div>
         <div
-          v-if="isCampaignApproved && (isInHistoryOwnedPage || isInCollaborationListPage)"
+          v-if="!iscampaignDeleted && !isCampaignFinished && isCampaignApproved && (isInHistoryOwnedPage || isInCollaborationListPage)"
           class="campaign-wrap-button"
         >
           <b>Tab Config :</b>
@@ -91,7 +81,7 @@
           </a>
         </div>
         <div
-          v-if="isCampaignApproved && isInHistoryOwnedPage"
+          v-if="!iscampaignDeleted && !isCampaignFinished && isCampaignApproved && isInHistoryOwnedPage"
           class="campaign-wrap-button"
         >
           <b>Finishing Config :</b>
@@ -105,7 +95,7 @@
           </button>
         </div>
         <div
-          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_approved !== null"
           class="campaign-wrap-button"
         >
           <b>Create-Approval Status :</b>
@@ -114,13 +104,34 @@
           </div>
         </div>
         <div
-          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_delete_approved !== null"
           class="campaign-wrap-button"
         >
           <b>Delete-Approval Status :</b>
           <div :class="createApprovalClassName(campaignInfo.is_delete_approved)">
             {{ createApprovalStatus(campaignInfo.is_delete_approved) }}
           </div>
+        </div>
+        <div
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_finish_approved !== null"
+          class="campaign-wrap-button"
+        >
+          <b>Finish-Approval Status :</b>
+          <div :class="createApprovalClassName(campaignInfo.is_finish_approved)">
+            {{ createApprovalStatus(campaignInfo.is_finish_approved) }}
+          </div>
+        </div>
+        <div
+          v-if="isInCollaborationListPage"
+          class="campaign-wrap-button-creator"
+        >
+          <button
+            class="btn-chat"
+            @click="goToChatPage(campaignInfo.users_id, campaignInfo.id)"
+          >
+            <i class="fa-solid fa-comment mr-1"></i>
+            Chat Creator
+          </button>
         </div>
       </div>
     </div>
@@ -179,6 +190,18 @@ export default {
       }
       return res
     },
+    iscampaignDeleted() {
+      const res = this.campaignInfo
+        && this.campaignInfo.is_delete_approved
+        && this.campaignInfo.is_delete_approved === '1'
+      return res
+    },
+    isCampaignFinished() {
+      const res = this.campaignInfo
+        && this.campaignInfo.is_finish_approved
+        && this.campaignInfo.is_finish_approved === '1'
+      return res
+    },
     isCampaignApproved() {
       const res = this.campaignInfo
         && this.campaignInfo.is_approved
@@ -234,11 +257,9 @@ export default {
       console.log('go to chat page with receiver ' + receiverId)
       const senderId = this.user.id || 1
       const campaignId = paramCampaignId ? paramCampaignId : 1
-      // Initialize Chat Inbox
       try {
         let apiUrl = `chats/post_inbox?id_campaign=${campaignId}&sender=${senderId}&receiver=${receiverId}`
         const req = await Axios.post(apiUrl)
-        console.log(req.data)
         if(req.data.success) {
           console.log('gotochat')
           this.$router.push('/chat/0/user/0/code/0')
@@ -577,6 +598,25 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin: 10px 0 20px 25px;
+
+        &-creator {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          margin: 10px 0 20px 25px;
+
+          .btn-chat {
+            text-decoration: none;
+            color: black;
+            border: 1px solid #FFA500;
+            border-radius: 10px;
+            padding: 5px;
+            background-color: #FFA500;
+            min-width: 150px;
+            margin-right: 10px;
+          }
+        }
 
         b {
           width: 30%;

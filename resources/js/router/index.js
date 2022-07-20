@@ -244,8 +244,8 @@ const routes = [
     name: 'DashboardPage',
     component: DashboardPage,
     meta: {
-      // Change this to false when finsihed
-      authAdmin: false,
+      // TODO: Change this to false when finsihed
+      authAdmin: true,
     },
     children: [
       {

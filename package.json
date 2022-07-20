@@ -1,6 +1,6 @@
 {
   "name": "warungidea",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Frontend Code Base for WarungIdea Application",
   "private": true,
   "scripts": {
@@ -39,6 +39,7 @@
     "vue-axios": "^3.4.0",
     "vue-carousel": "^0.18.0",
     "vue-disqus": "^4.0.1",
+    "vue-loading-overlay": "3.0",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.5.3",
     "vue-sidebar-menu": "^4.8.1",

@@ -61,6 +61,18 @@ export default {
     }),
     getCurrentPath () {
       return this.$route.path
+    },
+    userId() {
+      const userId = parseInt(this.$route.params.userId || '0')
+      return userId
+    },
+    chatId () {
+      const chatId = parseInt(this.$route.params.chatId || '0')
+      return chatId
+    },
+    chatCode () {
+      const chatCode = this.$route.params && this.$route.params.chatCode ? this.$route.params.chatCode : 0
+      return chatCode
     }
   },
   methods: {
@@ -98,7 +110,11 @@ export default {
           const response = res.data
           if(response.success) {
             const tempConvoList = response.conversation_list
-            this.userList = tempConvoList.map( user => ({...user, isActive: false}))
+            this.userList = tempConvoList.map( (user,idx) => ({...user, isActive: false}))
+
+            if(this.chatCode !== 0) {
+              this.mappingChooseActiveUser(this.chatId)
+            }
           }
         })
         .catch((err) => {

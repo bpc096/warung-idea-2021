@@ -25,8 +25,8 @@ class CampaignController extends Controller
         $campaigns = Campaign::with('user')
         ->where("is_approved", '1') // ** Show campaign only approved campaign
         ->where("deleted_at", null) // ** And Not Deleted
-        ->with('sumPayment')
-        ->with('likeCounter')
+        // ->with('sumPayment')
+        // ->with('likeCounter')
         ->when(request()->q, function($campaigns) {
             $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
         })
@@ -154,8 +154,8 @@ class CampaignController extends Controller
     {
         //get detail data campaign
         $campaign = Campaign::with('user')
-        ->with('sumPayment')
-        ->with('likeCounter')
+        // ->with('sumPayment')
+        // ->with('likeCounter')
         ->where('id', $id)->first();
 
         $collaborators = CampaignDetail::with('users')->where("campaign_id", $id)->get();
@@ -241,6 +241,15 @@ class CampaignController extends Controller
                     $newCollaborator->users_id = $collab;
                     $newCollaborator->status = "pending";
                     $newCollaborator->save();
+                    
+                    // ** Create notification for each collaborators
+                    $notif = new Notifications;
+                    $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
+                    $notif->from    = auth()->guard('api')->user()->id;
+                    $notif->to      = $collab;
+                    $notif->content = "You have been invited to join in ".$request->title." campaign.";
+                    $notif->is_read = '0';
+                    $notif->save();
                 }                
             }
         }
