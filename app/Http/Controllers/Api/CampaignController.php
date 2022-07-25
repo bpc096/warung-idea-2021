@@ -25,8 +25,8 @@ class CampaignController extends Controller
         $campaigns = Campaign::with('user')
         ->where("is_approved", '1') // ** Show campaign only approved campaign
         ->where("deleted_at", null) // ** And Not Deleted
-        ->with('sumPayment')
-        ->with('likeCounter')
+        // ->with('sumPayment')
+        // ->with('likeCounter')
         ->when(request()->q, function($campaigns) {
             $campaigns = $campaigns->where('title', 'like', '%'. request()->q . '%');
         })
@@ -154,8 +154,8 @@ class CampaignController extends Controller
     {
         //get detail data campaign
         $campaign = Campaign::with('user')
-        ->with('sumPayment')
-        ->with('likeCounter')
+        // ->with('sumPayment')
+        // ->with('likeCounter')
         ->where('id', $id)->first();
 
         $collaborators = CampaignDetail::with('users')->where("campaign_id", $id)->get();
@@ -203,8 +203,7 @@ class CampaignController extends Controller
         ]);
 
          //check jika image kosong
-        if($request->file('image') == '') {
-
+        if(empty($request->file('image'))) {
             //update data tanpa image
             $campaign = Campaign::findOrFail($campaign->id);
             $campaign->update([
@@ -220,14 +219,38 @@ class CampaignController extends Controller
                 'users_id'           => auth()->guard('api')->user()->id,
             ]);
 
-            // $campaignDetail = CampaignDetail::findOrFail($campaignDetail->campaign_id);
+            // ** Jika collaborator dihapus
+            $getCurrentCollab = CampaignDetail::where("campaign_id", $campaign->id)->get();
+            foreach($getCurrentCollab as $data) {
+                if(!in_array($data->users_id, json_decode($request->collaborators))) {
+                    CampaignDetail::where("users_id", $data->users_id)->delete();
+                }
+            }
 
-            foreach ($request->collaborators as $collaborator) {
-                $campaignDetail->update([
-                    'campaign_id' => $campaign->id,
-                    'users_id'    => $collaborator,
-                    'status'      => 'pending'
-                ]);
+            // ** Update collaborator
+            foreach(json_decode($request->collaborators) as $collab) {
+                $checkCollaboratorExist = CampaignDetail::where("campaign_id", $campaign->id)
+                ->where("users_id", $collab)
+                ->first();
+                
+                
+                // **  Jika ada collaborator baru, insert new
+                if(empty($checkCollaboratorExist)) {
+                    $newCollaborator = new CampaignDetail;
+                    $newCollaborator->campaign_id = $campaign->id;
+                    $newCollaborator->users_id = $collab;
+                    $newCollaborator->status = "pending";
+                    $newCollaborator->save();
+                    
+                    // ** Create notification for each collaborators
+                    $notif = new Notifications;
+                    $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
+                    $notif->from    = auth()->guard('api')->user()->id;
+                    $notif->to      = $collab;
+                    $notif->content = "You have been invited to join in ".$request->title." campaign.";
+                    $notif->is_read = '0';
+                    $notif->save();
+                }                
             }
         }
         else {
@@ -254,14 +277,29 @@ class CampaignController extends Controller
                 'image'              => $image->hashName()
             ]);
 
-            $campaignDetail = CampaignDetail::findOrFail($campaignDetail->campaign_id);
+            // ** Jika collaborator dihapus
+            $getCurrentCollab = CampaignDetail::where("campaign_id", $campaign->id)->get();
+            foreach($getCurrentCollab as $data) {
+                if(!in_array($data->users_id, json_decode($request->collaborators))) {
+                    CampaignDetail::where("users_id", $data->users_id)->delete();
+                }
+            }
 
-            foreach ($request->collaborators as $collaborator) {
-                $campaignDetail->update([
-                    'campaign_id' => $campaign->id,
-                    'users_id'    => $collaborator,
-                    'status'      => 'pending'
-                ]);
+            // ** Update collaborator
+            foreach(json_decode($request->collaborators) as $collab) {
+                $checkCollaboratorExist = CampaignDetail::where("campaign_id", $campaign->id)
+                ->where("users_id", $collab)
+                ->first();
+                
+                
+                // **  Jika ada collaborator baru, insert new
+                if(empty($checkCollaboratorExist)) {
+                    $newCollaborator = new CampaignDetail;
+                    $newCollaborator->campaign_id = $campaign->id;
+                    $newCollaborator->users_id = $collab;
+                    $newCollaborator->status = "pending";
+                    $newCollaborator->save();
+                }                
             }
         }
 
