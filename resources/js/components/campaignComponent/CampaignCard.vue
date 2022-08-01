@@ -43,7 +43,7 @@
             {{ payNowLabel }}
           </button>
         </div>
-        <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved">
+        <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved && !isCampaignFinished && !iscampaignDeleted">
           <b>Campaign Config :</b>
           <a
             :href="`/projectdetail/${campaignId}`"
@@ -66,7 +66,7 @@
           </button>
         </div>
         <div
-          v-if="isCampaignApproved && (isInHistoryOwnedPage || isInCollaborationListPage)"
+          v-if="!iscampaignDeleted && !isCampaignFinished && isCampaignApproved && (isInHistoryOwnedPage || isInCollaborationListPage)"
           class="campaign-wrap-button"
         >
           <b>Tab Config :</b>
@@ -81,7 +81,7 @@
           </a>
         </div>
         <div
-          v-if="isCampaignApproved && isInHistoryOwnedPage"
+          v-if="!iscampaignDeleted && !isCampaignFinished && isCampaignApproved && isInHistoryOwnedPage"
           class="campaign-wrap-button"
         >
           <b>Finishing Config :</b>
@@ -95,7 +95,7 @@
           </button>
         </div>
         <div
-          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_approved !== null"
           class="campaign-wrap-button"
         >
           <b>Create-Approval Status :</b>
@@ -104,12 +104,21 @@
           </div>
         </div>
         <div
-          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_delete_approved !== null"
           class="campaign-wrap-button"
         >
           <b>Delete-Approval Status :</b>
           <div :class="createApprovalClassName(campaignInfo.is_delete_approved)">
             {{ createApprovalStatus(campaignInfo.is_delete_approved) }}
+          </div>
+        </div>
+        <div
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_finish_approved !== null"
+          class="campaign-wrap-button"
+        >
+          <b>Finish-Approval Status :</b>
+          <div :class="createApprovalClassName(campaignInfo.is_finish_approved)">
+            {{ createApprovalStatus(campaignInfo.is_finish_approved) }}
           </div>
         </div>
         <div
@@ -179,6 +188,18 @@ export default {
         const updatesCount = this.campaignInfo.updates_count
         res = faqsCount >= 5 && updatesCount >= 5
       }
+      return res
+    },
+    iscampaignDeleted() {
+      const res = this.campaignInfo
+        && this.campaignInfo.is_delete_approved
+        && this.campaignInfo.is_delete_approved === '1'
+      return res
+    },
+    isCampaignFinished() {
+      const res = this.campaignInfo
+        && this.campaignInfo.is_finish_approved
+        && this.campaignInfo.is_finish_approved === '1'
       return res
     },
     isCampaignApproved() {

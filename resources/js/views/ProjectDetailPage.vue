@@ -1,5 +1,12 @@
 <template>
   <div class="project-detail-page">
+    <loading
+        :active="isLoading"
+        :can-cancel="false"
+        :is-full-page="true"
+        :height="125"
+        :width="125"
+      />
     <transition name="fade" appear>
       <div class="modal-overlay"
         v-if="showRewardModal"
@@ -110,6 +117,10 @@
 </template>
 
 <script>
+// Loading Component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 // Tab Component
 import tab from  '../components/tabComponent/tabComponent.vue'
 import tabs from '../components/tabComponent/tabsComponent.vue'
@@ -138,7 +149,8 @@ export default {
     RewardModal,
     creatorTab,
     forumTab,
-    paymentTab
+    paymentTab,
+    Loading
   },
   data: () => {
     return {
@@ -152,13 +164,15 @@ export default {
       updateTabData: [],
       faqTabData: [],
       creatorTabData: [],
-      campaignID: ''
+      campaignID: '',
+      isLoading: true,
     }
   },
   async created () {
     await this.fetchingCampaignInfo()
     await this.fetchingUpdateTabData()
     await this.fetchingFaqTabData()
+    this.isLoading = false
   },
   computed: {
     ...mapGetters({
@@ -368,7 +382,7 @@ export default {
 
 
   .wrap-title {
-    margin-bottom: 2rem;
+    margin: 4rem 0;
     .main-title {
       font-size: 4rem;
     }
