@@ -110,7 +110,6 @@ export default {
       projectPopular: [],
       projectMostFunding: [],
       articleAndNews: [],
-      allProjectList: [],
       isLoading: true,
     }
   },
@@ -119,7 +118,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      articles: 'articles'
+      articles: 'articles',
+      allProjectList: 'listCampaigns'
     }),
     totalCampaignProject () {
       return this.allProjectList.length
@@ -135,7 +135,9 @@ export default {
       return randomNumb
     },
     async checkAvailableContent () {
-      await this.getAllProjectList()
+      if(this.allProjectList.length <= 0) {
+        await this.getAllProjectList()
+      }
       this.checkAvailableProjectFeatureSingle()
       this.checkAvailableProjectFeatureList()
       this.checkAvailableProjectPopular()

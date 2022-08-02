@@ -11,13 +11,13 @@
           {{ projectDesc.slice(0,75) }} ...
         </div> -->
         <div v-if="!isInHistoryOwnedPage && !isInCollaborationListPage" class="campaign-donation-amount">
-          <b>Donation amount : </b>
+          <b>Jumlah Donasi : </b>
           <div class="donation-text">
             Rp {{ formatMoney(infoDonationAmount) }}
           </div>
         </div>
         <div v-if="!isInHistoryOwnedPage && !isInCollaborationListPage" class="campaign-payment-status">
-          <b>Payment status :</b>
+          <b>Status Pembayaran :</b>
 
           <div :class="['text-status', paymentStatus]">
             {{ paymentTextStatus }}

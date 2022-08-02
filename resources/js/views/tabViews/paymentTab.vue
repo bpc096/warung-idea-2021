@@ -15,7 +15,7 @@
             <tr v-for="(data, idx) in listData" :key="idx">
               <td>{{ idx += 1 }}</td>
               <td>{{ data.name }}</td>
-              <td>{{ data.amount }}</td>
+              <td>Rp{{ formatMoney(data.amount) }}</td>
             </tr>
           </table>
         </div>
@@ -50,6 +50,18 @@ export default {
     this.fetchingPaymentListData()
   },
   methods: {
+    formatMoney(money) {
+      const moneyTemp = money ? parseInt(money) : 10000
+      const formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp)
+      .replace(/[IDR]/gi, '')
+      .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
+      .trimLeft()
+      return formatter
+    },
     generateMockData() {
       let mockData = []
       for(let x=1;x<=10;x++){

@@ -18,7 +18,7 @@
         v-if="showRewardModal"
         :userId="user.id"
         :isUserCollaborator="checkCollaboratorId"
-        :ownerId="projectDetail.users_id"
+        :ownerId="parseInt(projectDetail.users_id)"
         :campaignId="projectDetail.id"
         @close="closeModal"
       />

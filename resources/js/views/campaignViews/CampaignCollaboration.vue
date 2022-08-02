@@ -1,5 +1,13 @@
 <template>
   <div class="campaign-collaboration-wrap">
+    <loading
+      :active="isLoading"
+      :can-cancel="false"
+      :lock-scroll="true"
+      :is-full-page="true"
+      :height="125"
+      :width="125"
+    />
     <div class="title-page">
       List Of Collaboration Campaign
     </div>
@@ -13,7 +21,7 @@
         :key="idx"
       />
     </div>
-    <div v-else class="empty-state">
+    <div v-else-if="isListEmpty" class="empty-state">
       <div class="image-info">
         <img src="\images\empty_icon.svg " alt="image-empty-icon">
       </div>
@@ -25,6 +33,10 @@
 </template>
 
 <script>
+// Loading Component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 import CampaignCard from '../../components/campaignComponent/CampaignCard'
 import axios from "axios"
 import { mapGetters } from 'vuex'
@@ -33,11 +45,14 @@ export default {
   name: 'HistoryDonationCampaign',
   components: {
     CampaignCard,
+    Loading,
   },
   data: () => {
     return {
       progress: '59',
       listCollaboration: [],
+      isLoading: true,
+      isListEmpty: false,
     }
   },
   created() {
@@ -77,7 +92,11 @@ export default {
         this.listCollaboration = res.collaborations
       } catch(e) {
         console.error(e)
+        this.isListEmpty = true
       }
+
+      this.isListEmpty = this.listCollaboration.length <= 0
+      this.isLoading = false
     }
   }
 }

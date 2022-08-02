@@ -79,19 +79,20 @@ export default {
           in convallis justo varius a.`
       },
       categoryProjectList: [],
-      allProjectList: [],
       isLoading: true,
     }
   },
-  created () {
-    this.fetchAllProjectList()
+  async created () {
+    if(this.allProjectList.length <= 0) {
+      await this.fetchAllProjectList()
+    } else {
+      this.isLoading = false
+    }
   },
   computed: {
     ...mapGetters({
-      allProjects: 'getAllCampaign',
-    })
-  },
-  computed: {
+      allProjectList: 'listCampaigns',
+    }),
     queryCategoryId () {
       this.updateProjectBasedOnCategory()
       const title = this.$route.params.categoryId.toUpperCase() || 'DEFAULT CATEGORY TITLE'

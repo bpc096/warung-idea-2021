@@ -1,8 +1,6 @@
 import { removeHeaderToken, setHeaderToken } from '../../utils/auth'
 import { SET_USER, RESET_USER } from '../mutation-types'
 import axios from 'axios'
-import { data } from 'jquery'
-import { reject } from 'lodash'
 
 const state = {
   user: null,

@@ -1,7 +1,10 @@
 <template>
   <div id="chatlogs" class="chat-messages-wrap">
-    <div v-for="message in messages" :key="message.id">
-      <div v-if="isMessageFromSender(message.user_id)" class="left clearfix icon">
+    <div v-for="message in messages" :key="message.id" class="container-msg" :class="isMessageFromSender(message.user_id) ? 'darker' : ''">
+      <div
+        v-if="isMessageFromSender(message.user_id)"
+        class="left clearfix icon"
+      >
         ●
         <div class="clearfix wrap-head">
           <div class="header">
@@ -12,6 +15,7 @@
           <p>
             {{ message.body }}
           </p>
+          <span class="time-right">{{ dateMessageSent(message.created_at) }}</span>
         </div>
       </div>
       <div v-else class="right clearfix icon">
@@ -24,6 +28,7 @@
           <p>
             {{ message.body }}
           </p>
+          <span class="time-left">{{ dateMessageSent(message.created_at) }}</span>
         </div>
         ●
       </div>
@@ -51,6 +56,12 @@ export default {
   methods: {
     isMessageFromSender(senderId) {
       return parseInt(senderId) !== this.user.id
+    },
+    dateMessageSent(date) {
+      if (!date) return
+
+      const d = new Date(date)
+      return d.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })
     }
   }
 };
@@ -81,6 +92,35 @@ export default {
 
   p {
     // width: 90%;
+  }
+
+  .container-msg {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 10px 0 10px;
+
+    &::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  }
+
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+
+  .time-left {
+    float: left;
+    color: #999;
   }
 }
 </style>

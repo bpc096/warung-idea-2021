@@ -43,13 +43,9 @@
         </table>
       </div>
     </div>
-    <div class="button-pagination">
-      <div class="btn-prev">
-        <button @click="fetchPrevCampaignList" class="btn btn-success mr-3">Previous</button>
-      </div>
-      <div class="btn-next">
-        <button @click="fetchNextCampaignList" class="btn btn-success ml-3">Next</button>
-      </div>
+    <div align="center">
+      <button type="button" class="btn btn-success mr-3" @click="fetchPrevCampaignList">Previous List</button>
+      <button type="button" class="btn btn-success ml-3" @click="fetchNextCampaignList">Next List</button>
     </div>
   </div>
 </template>
