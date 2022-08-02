@@ -3,6 +3,7 @@
     <loading
       :active="isLoading"
       :can-cancel="false"
+      :lock-scroll="true"
       :is-full-page="true"
       :height="125"
       :width="125"
