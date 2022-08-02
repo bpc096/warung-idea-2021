@@ -1,5 +1,12 @@
 <template>
   <div class="category-wrapper">
+    <loading
+      :active="isLoading"
+      :can-cancel="false"
+      :is-full-page="true"
+      :height="125"
+      :width="125"
+    />
     <div class="title-category">
       <div class="darker">
         <img
@@ -24,14 +31,21 @@
 </template>
 
 <script>
+// Loading Component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
+// Component
 import ProjectCard from '../components/cardComponent/ArticleCard.vue'
 
+// Modules
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'CategoryPage',
   components: {
     ProjectCard,
+    Loading,
   },
   data : () => {
     return {
@@ -65,6 +79,7 @@ export default {
       },
       categoryProjectList: [],
       allProjectList: [],
+      isLoading: true,
     }
   },
   created () {
@@ -100,6 +115,7 @@ export default {
   },
   methods: {
     async fetchAllProjectList () {
+      this.isLoading = true
       await this.$store
         .dispatch('getAllCampaign')
         .then(res => {
@@ -108,6 +124,7 @@ export default {
         .catch(err => {
           console.error(err)
         })
+      this.isLoading = false
     },
     updateProjectBasedOnCategory() {
       if (!this.allProjectList) return

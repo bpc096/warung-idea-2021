@@ -84,7 +84,7 @@
           <updateTab
             :userId="user.id"
             :isUserCollaborator="checkCollaboratorId"
-            :ownerId="projectDetail.users_id"
+            :ownerId="parseInt(projectDetail.users_id)"
             :campaignId="projectDetail.id"
             :updateListData="updateTabData"
           />
@@ -93,7 +93,7 @@
           <faqTab
             :userId="user.id"
             :isUserCollaborator="checkCollaboratorId"
-            :ownerId="projectDetail.users_id"
+            :ownerId="parseInt(projectDetail.users_id)"
             :campaignId="projectDetail.id"
             :faqListData="faqTabData"
           />

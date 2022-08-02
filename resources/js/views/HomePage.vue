@@ -1,5 +1,12 @@
 <template>
   <div class="home-wrapper">
+    <loading
+      :active="isLoading"
+      :can-cancel="false"
+      :is-full-page="true"
+      :height="125"
+      :width="125"
+    />
     <div class="section">
       <div class="feature-section">
         <div class="project-feature-list">
@@ -68,6 +75,10 @@
 </template>
 
 <script>
+// Loading Component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 // Component
 import ProjectCardFeature from '../components/cardComponent/ProjectCardFeature.vue'
 import ProjectListFeature from '../components/cardComponent/ProjectListFeature.vue'
@@ -87,6 +98,7 @@ export default {
     ArticleCard,
     Carousel,
     Slide,
+    Loading,
   },
   data: () => {
     return {
@@ -98,6 +110,7 @@ export default {
       projectMostFunding: [],
       articleAndNews: [],
       allProjectList: [],
+      isLoading: true,
     }
   },
   created () {
@@ -127,6 +140,7 @@ export default {
       this.checkAvailableProjectPopular()
       this.checkAvailableProjectMostFunding()
       this.checkAvailableArticleAndNews()
+      this.isLoading = false
     },
     async getAllProjectList() {
       await this.$store
