@@ -5,13 +5,14 @@
         v-for="(u,idx) in userList"
         :key="idx"
         class="user-card"
-        @click="changeChatContainer(u.id, u.userId)"
+        :class="{'card-active': u.isActive}"
+        @click="changeChatContainer(u.id, u.receiver, u.code)"
       >
         <div class="user-image">
-          <img :src="u.sourceImg" alt="user-image-profile">
+          <img :src="sourceImg" alt="user-image-profile">
         </div>
         <div class="user-name">
-          <b>{{u.name}}</b>
+          <b>{{u.sender}}</b>
         </div>
       </a>
     </div>
@@ -30,6 +31,7 @@ export default {
   name: 'ListChatPage',
   data: () => {
     return {
+      sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
       userList: [],
       mockUserList: [
         {
@@ -47,6 +49,9 @@ export default {
       ],
     }
   },
+  mounted() {
+    this.fetchChatList()
+  },
   created() {
     this.fetchChatList()
   },
@@ -56,22 +61,60 @@ export default {
     }),
     getCurrentPath () {
       return this.$route.path
+    },
+    userId() {
+      const userId = parseInt(this.$route.params.userId || '0')
+      return userId
+    },
+    chatId () {
+      const chatId = parseInt(this.$route.params.chatId || '0')
+      return chatId
+    },
+    chatCode () {
+      const chatCode = this.$route.params && this.$route.params.chatCode ? this.$route.params.chatCode : 0
+      return chatCode
     }
   },
   methods: {
-    changeChatContainer (conversationId = 0,targetId = 1) {
-      const getCurrentTargetId = this.getCurrentPath.split('/').filter(x => Number.isInteger(parseInt(x)))
-      if(parseInt(getCurrentTargetId[0]) === targetId || getCurrentTargetId.length <= 0) return
+    changeChatContainer (conversationId = 0,targetId = 1, targetChatCode = 0) {
+      const splitCurrentPath  = this.getCurrentPath.split('/')
+      const getParamChatCode = targetChatCode
+
+      const getCurrentTargetId = splitCurrentPath.filter(x => Number.isInteger(parseInt(x)))
+      const isCurrentChatCodeSame = splitCurrentPath.findIndex(x => x === getParamChatCode)
+
+      if( parseInt(getCurrentTargetId[0]) === targetId ||
+          getCurrentTargetId.length <= 0 ||
+          isCurrentChatCodeSame !== -1 ) return
+
+      this.mappingChooseActiveUser(conversationId)
       this.$router.replace({
-        path: '/chat/'+ conversationId +'/user/' + targetId
+        path: '/chat/'+ conversationId +'/user/' + targetId + '/code/' + getParamChatCode
       })
+    },
+    mappingChooseActiveUser (convoId = 0) {
+      const isUserActive = this.userList.map( user => {
+        const newUser = {
+          ...user,
+          isActive: user.id === convoId
+        }
+        return newUser
+      })
+
+      this.userList = isUserActive
     },
     fetchChatList() {
       const apiUrl = 'chats/' + this.user.id
       axios.get(apiUrl)
         .then((res) => {
-          if(res.success) {
-            this.userList = res.conversation_list
+          const response = res.data
+          if(response.success) {
+            const tempConvoList = response.conversation_list
+            this.userList = tempConvoList.map( (user,idx) => ({...user, isActive: false}))
+
+            if(this.chatCode !== 0) {
+              this.mappingChooseActiveUser(this.chatId)
+            }
           }
         })
         .catch((err) => {
@@ -100,15 +143,22 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+    direction: rtl;
 
     a {
       text-decoration: none;
       color: black;
+      direction: ltr;
     }
 
     a:hover {
       background-color: #B8F1B0;
+    }
+
+    .card-active {
+      background-color: #25c5df;
     }
 
     .user-card {
@@ -119,6 +169,8 @@ export default {
       border: 1px solid grey;
       align-items: center;
       margin: 10px 0;
+      direction: ltr;
+
 
       &:first-child {
         margin-top: 0;

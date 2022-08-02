@@ -1,7 +1,6 @@
 <template>
   <div class="container-chat">
     <div class="card h-100">
-      testing - {{ userId }}
       <div v-if="userId !== 0">
         <div id="top-scroll-chat" class="card-body">
           <ChatMessages
@@ -54,16 +53,16 @@ export default {
     chatId () {
       const chatId = parseInt(this.$route.params.chatId || '0')
       return chatId
+    },
+    chatCode () {
+      const chatCode = this.$route.params.chatCode ? this.$route.params.chatCode : '123123'
+      return chatCode
     }
   },
   watch: {
     '$route' (to, from) {
       // Saving Previus User Data Messages
-      this.saveChatUser(this.userId, this.messages)
-      console.log('Chat Changing Old User is ' + from.params.userId)
-      console.log('Chat Changing New User is ' + to.params.userId)
-
-
+      // this.saveChatUser(this.userId, this.messages)
       //Fetching New User Data Messages
       this.fetchMessages()
         //Check chatMsgData if exist then fetch
@@ -93,26 +92,33 @@ export default {
       }
     },
     fetchMessages() {
-      if(this.chatId === 0 || this.user.id === 0) return
+      if(!this.chatCode) return
 
-      const apiUrl = 'chats/messages?id_conversation=' + this.chatId +
-                      '&id_user=' + this.user.id
-      axios.post(apiUrl)
+      const apiUrl = `chats/messages/${this.chatCode}`
+      axios.get(apiUrl)
         .then(response => {
-          this.messages = response.data;
+          if(response.data && response.data.messages) {
+            this.messages = this.sortingMessage(response.data.messages)
+          }
         })
         .catch(err => {
           this.messages = []
           console.error(err)
         })
     },
+    sortingMessage(array) {
+      const tempResult = array.sort(function(a,b){
+        return new Date(a.created_at) - new Date(b.created_at);
+      });
+      return tempResult
+    },
     async addMessage(message) {
-      if(this.chatId === 0 || this.user.id === 0) return
+      if(this.chatId === 0 || this.user.id === 0 || !this.chatCode) return
 
       this.messages.push(message)
-      const apiUrl= 'chats/post_message?id_conv=' + this.chatId +
-                    '&id_user=' + this.user.id +
-                    '&content=' + message
+      const apiUrl= 'chats/post_message?id_conv=' + this.chatCode +
+                    '&id_user=' + message.user_id +
+                    '&content=' + message.body
       axios.post(apiUrl)
         .then(response => {
           console.log(response.data);

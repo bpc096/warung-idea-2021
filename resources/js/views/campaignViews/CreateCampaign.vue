@@ -4,6 +4,14 @@
       CREATE CAMPAIGN
     </div>
     <div class="user-profile-card">
+      <div
+        class="alert alert-danger"
+        role="alert"
+        v-for="(error, index) in errors"
+        :key="index"
+      >
+        {{ error }}
+      </div>
       <form @submit.prevent="submitCampaign">
         <div class="user-profile-content">
           <div class="user-image">
@@ -146,10 +154,11 @@ export default {
   },
   data: () => {
     return {
+      errors: [],
       image: null,
       title: '',
       categoryId: '',
-      targetDonation: '1',
+      targetDonation: '',
       maxDate: null,
       description: '',
       shortDescription: '',
@@ -160,6 +169,7 @@ export default {
     }
   },
   computed: {
+
     ...mapGetters({
       user: 'user'
     }),
@@ -183,6 +193,15 @@ export default {
     }
   },
   methods: {
+    mappingErrorMessage (objectData, keyValue) {
+      let resultErrorMsg = []
+      keyValue.forEach((x) => {
+        objectData[x].map(data => {
+          resultErrorMsg.push(data)
+        })
+      })
+      return resultErrorMsg
+    },
     isNumber (evt) {
       evt = (evt) ? evt : window.event;
       var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -196,7 +215,6 @@ export default {
       this.collaboratorId.push(userId)
     },
     removeNewUser (userId) {
-      console.log('removeUser')
       const index = this.collaboratorId.indexOf(userId)
       if(index>-1) this.collaboratorId.splice(index,1)
     },
@@ -221,14 +239,19 @@ export default {
         }
       }
 
-
       this.$store
         .dispatch('uploadCampaign', data)
         .then(() => {
           this.$router.push({name: 'HistoryCampaign'})
         })
         .catch(err => {
-          console.log(err)
+          this.errors = this.mappingErrorMessage(err.data, Object.keys(err.data))
+
+          this.$swal({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'There\'s Something  wrong with your input!',
+          })
         })
     },
     uploadImage(e) {

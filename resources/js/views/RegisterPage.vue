@@ -76,6 +76,8 @@ export default {
       this.$store
         .dispatch("register", data)
         .then(res => {
+          let toast = this.$toasted.success('Register Success, Please Login First! ✅', {position: 'top-center'})
+          toast.goAway(1500)
           this.$router.push({
             name: 'LoginPage'
           })
@@ -106,6 +108,9 @@ export default {
   align-items: center;
   .register-card {
     max-width: 30%;
+    input {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif,'FontAwesome';
+    }
   }
 }
 </style>

@@ -1,11 +1,10 @@
 import Axios from "axios"
-import { param } from "jquery"
 import { GET_CAMPAIGN, UPLOAD_CAMPAIGN } from "../mutation-types"
 
 const state = {
   articleList: [],
   campaignUpload: {},
-  // campaignList: [],
+  campaignList: [],
 }
 
 const actions = {
@@ -37,7 +36,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       Axios.get('campaign')
         .then(res => {
-          // commit(GET_CAMPAIGN, res.data.data)
+          commit(GET_CAMPAIGN, res.data.data)
           resolve(res)
         })
         .catch(err => {
@@ -53,7 +52,7 @@ const actions = {
           resolve(res)
         })
         .catch(err => {
-          reject(err)
+          reject(err.response)
         })
     })
   },
@@ -65,7 +64,7 @@ const actions = {
           resolve(res)
         })
         .catch(err => {
-          reject(err)
+          reject(err.response)
         })
     })
   },
@@ -86,7 +85,7 @@ const actions = {
 
 const mutations = {
   [GET_CAMPAIGN] (state, data) {
-    state.campaignList = data
+    state.campaignList = data.data
   },
   [UPLOAD_CAMPAIGN] (state, data) {
     state.campaignDetail = data
@@ -94,7 +93,7 @@ const mutations = {
 }
 
 const getters = {
-  getAllCampaign (state) {
+  listCampaigns (state) {
     return state.campaignList
   },
   getUploadedCampaign (state) {

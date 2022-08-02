@@ -7,17 +7,19 @@ use Illuminate\Http\Request;
 use App\Conversation;
 use App\Events\MessageCreated;
 use App\Message;
+use App\Contact;
+use App\CampaignChat;
 use Illuminate\Support\Facades\Validator;
 
 class ConversationController extends Controller
 {
     // ** Get Inbox
-    public function index($user_id) {
+    public function index($id_user) {
         $conversationList = Conversation::select('conversations.*', 'users.name as sender')
         ->join('users', 'users.id', '=', 'conversations.sender')
-        ->where('conversations.receiver', $user_id)
+        ->where('conversations.receiver', $id_user)
         ->get();
-        
+
         return response()->json([
             "success" => true,
             "conversation_list" => $conversationList
@@ -27,45 +29,79 @@ class ConversationController extends Controller
     // ** Post Inbox
     public function post_inbox(Request $req) {
         // ** Params :
-        /* 
+        /*
             --> sender
-            Value = id_user    
-
+            Value = id_user
             --> receiver
             Value = id_user
+            --> id_campaign
+            value = from id campaign
         */
 
         $validator = Validator::make($req->all(), [
             'sender'   => 'required',
-            'receiver' => 'required'
+            'receiver' => 'required',
+            'id_campaign' => 'required'
         ]);
         if($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
-        $conversation = new Conversation;
-        $conversation->sender   = $req->sender;
-        $conversation->receiver = $req->receiver;
-        $save = $conversation->save();
-
-        if($save) {
+        // ** Check if sender and receiver are same
+        if($req->sender == $req->receiver) {
             return response()->json([
-                'success' => true,
-                'message' => 'Inbox has been created'
-            ], 201);
+                'success' => false,
+                'message' => 'Sender and receiver must not be same'
+            ], 400);
         }
+
+        // ** Check if inbox already exist
+        $checkInbox = Conversation::where([
+            'sender' => $req->sender,
+            'receiver' => $req->receiver
+        ])
+        ->first();
+
+        // ** If user has never created the conversation
+        if(empty($checkInbox)) {
+            $code = "cnv_".date('ymdhis')."_".rand(10000, 99999);
+            $data = [
+                [
+                    'sender'      => $req->sender,
+                    'receiver'    => $req->receiver,
+                    'id_campaign' => $req->id_campaign,
+                    'code'        => $code
+                ],
+                [
+                    'sender'      => $req->receiver,
+                    'receiver'    => $req->sender,
+                    'id_campaign' => $req->id_campaign,
+                    'code'        => $code
+                ]
+            ];
+            $save = Conversation::insert($data);
+
+            if($save) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Inbox has been created'
+                ], 201);
+            }
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Conversation already exist',
+            'code'    => $checkInbox->code
+        ], 400);
     }
 
     // ** Get Conversation
-    public function messages(Request $req) {
-        $idConversation = $req->id_conversation;
-        $idUser         = $req->id_user;
-        
+    public function messages($id_conversation) {
         $getConversation = Message::select('messages.*', 'users.name')
         ->join('users', 'users.id', '=', 'messages.user_id')
         ->where([
-            'messages.conversation_id' => $idConversation,
-            'messages.user_id' => $idUser
+            'messages.id_conversation' => $id_conversation,
         ])
         ->orderBy('messages.created_at', 'desc')
         ->get();
@@ -87,7 +123,7 @@ class ConversationController extends Controller
         }
 
         $msg = new Message;
-        $msg->conversation_id = $req->id_conv;
+        $msg->id_conversation = $req->id_conv;
         $msg->user_id         = $req->id_user;
         $msg->body            = $req->content;
 

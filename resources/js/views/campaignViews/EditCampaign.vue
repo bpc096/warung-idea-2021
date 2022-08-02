@@ -4,6 +4,14 @@
       EDIT CAMPAIGN
     </div>
     <div class="user-profile-card">
+      <div
+        class="alert alert-danger"
+        role="alert"
+        v-for="(error, index) in errors"
+        :key="index"
+      >
+        {{ error }}
+      </div>
       <form @submit.prevent="editCampaign">
         <div class="user-profile-content">
           <div class="user-image">
@@ -155,11 +163,24 @@ export default {
       projectDetail: {},
       shortDesc: '',
       projectPlan: '',
-      selectedCollaborator: []
+      selectedCollaborator: [],
+      errors: [],
+      collaboratorList: []
     }
   },
   async created () {
     const campaignId = this.$route.params.projectId || 1
+    await this.$store
+      .dispatch('getCollaboratorAvailableList')
+      .then(res => {
+        if (res.data.length > 0) {
+          this.collaboratorList = res.data
+        }
+      })
+      .catch(err => {
+        console.error("Failed to get user list", err)
+      })
+
     await this.$store
       .dispatch('getCampaignById', campaignId)
       .then((res) => {
@@ -174,11 +195,16 @@ export default {
           this.maxDate = this.projectDetail.max_date
           this.shortDesc = this.projectDetail.short_description
           this.projectPlan = this.projectDetail.project_plan
-          this.selectedCollaborator = res.collaborators[0].users.map((val) => ({ name: val.name, userId: val.id }))
+          this.selectedCollaborator = res.collaborators.map((val) => ({ name: val.users[0].name, userId: val.users[0].id }))
         }
       })
       .catch(err => {
         console.log(err)
+        this.$swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: err,
+        })
       })
   },
   computed: {
@@ -204,10 +230,34 @@ export default {
     }
   },
   methods: {
+    mappingErrorMessage (objectData, keyValue) {
+      let resultErrorMsg = []
+      keyValue.forEach((x) => {
+        objectData[x].map(data => {
+          resultErrorMsg.push(data)
+        })
+      })
+      return resultErrorMsg
+    },
+    addNewUser (userId) {
+      const name = this.collaboratorList.filter(v => v.users_id == userId)[0].user.name
+
+      this.selectedCollaborator.push({
+        userId,
+        name
+      })
+    },
+    removeNewUser (userId) {
+      console.log(userId)
+      console.log("selected", this.selectedCollaborator)
+      const index = this.selectedCollaborator.findIndex(v => v.userId == userId)
+      console.log('index', index)
+      if(index>-1) this.selectedCollaborator.splice(index,1)
+    },
     editCampaign() {
       const campaignId = this.$route.params.projectId || 1
       const listCollaborator = this.$refs.multiselect.$data.value
-
+      let collaborators = []
       let data = new FormData()
       data.append('image', this.image)
       data.append('title', this.title)
@@ -217,13 +267,10 @@ export default {
       data.append('description', this.description)
       data.append('short_description', this.shortDesc)
       data.append('project_plan', this.projectPlan)
-      if(listCollaborator.length > 0) {
-        for(let x=0;x<listCollaborator.length;x++){
-          data.append('collaborators[]', listCollaborator[x].userId)
-        }
-      } else {
-        data.append('collaborators[]', [])
+      for(let x=0;x<listCollaborator.length;x++) {
+        collaborators.push(listCollaborator[x].userId)
       }
+      data.append('collaborators', JSON.stringify(collaborators))
 
       let param = {campaignId, data}
       this.$store
@@ -234,7 +281,13 @@ export default {
           })
         })
         .catch(err => {
-          console.log(err)
+          console.error(err)
+          const textError = err.data && err.data.message ? err.data.message : "Theres Something Wrong With Your Input!"
+          this.$swal({
+            icon: 'error',
+            title: 'Oops...',
+            text: textError,
+          })
         })
     },
     uploadImage(e) {

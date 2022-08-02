@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Broadcast;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -20,6 +19,14 @@ Route::post('/register', [RegisterController::class, 'register']);
  */
 // Broadcast::routes(['middleware' => ['auth:api']]);
 Route::post('/login', [LoginController::class, 'login']);
+
+// Route::get('auth/{provider}/callback', [LoginController::class, IndexGoogleLogin])->where('provider', '.*');
+Route::post('sociallogin/{provider}', [LoginController::class, 'SocialSignup']);
+/**
+ * Api Forgot and Reset Password
+ */
+Route::post('/forgot', [ForgotResetController::class, 'forgot']);
+Route::post('/reset', [ForgotResetController::class, 'reset']);
 
 /**
  * Api User
@@ -51,6 +58,9 @@ Route::prefix('campaign')->group(function() {
     Route::post('/{campaign}', [CampaignController::class, 'update'])->middleware('auth:api');
     Route::delete('/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
     Route::get('/collaboration/{id_user}', [CampaignController::class, 'get_list_collaboration'])->middleware('auth:api');
+
+    // ** End-point to get list of collaborator of campaign
+    Route::get('/collaborator/{id_campaign}', [CampaignController::class, 'GetCollaborator'])->middleware('auth:api');
 
     /**
      * Api Updates
@@ -86,6 +96,10 @@ Route::prefix('campaign')->group(function() {
 
     // ** For admin needs
     Route::get('/get_all_campaigns', [CampaignController::class, 'GetAllCampaigns'])->middleware('auth:api');
+
+    // ** Like and Unlike Campaign
+    Route::post('/post_like_campaign/{id}', [CampaignController::class, 'likeCampaign'])->middleware('auth:api');
+    Route::post('/post_unlike_campaign/{id}', [CampaignController::class, 'unlikeCampaign'])->middleware('auth:api');
 });
 
 /**
@@ -132,8 +146,8 @@ Route::get('/notifications/mark_notif_as_read', [NotificationController::class, 
  * Api Private Chat
  */
 Route::prefix('chats')->group(function() {
-    Route::get('/{user_id}', [ConversationController::class, 'index'])->middleware('auth:api');
+    Route::get('/{id_user}', [ConversationController::class, 'index'])->middleware('auth:api');
     Route::post('/post_inbox', [ConversationController::class, 'post_inbox'])->middleware('auth:api');
-    Route::post('/messages', [ConversationController::class, 'messages'])->middleware('auth:api');
+    Route::get('/messages/{id_conversation}', [ConversationController::class, 'messages'])->middleware('auth:api');
     Route::post('/post_message', [ConversationController::class, 'post_message'])->middleware('auth:api');
 });

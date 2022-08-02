@@ -1,5 +1,13 @@
 <template>
   <div class="category-wrapper">
+    <loading
+      :active="isLoading"
+      :can-cancel="false"
+      :lock-scroll="true"
+      :is-full-page="true"
+      :height="125"
+      :width="125"
+    />
     <div class="title-category">
       <div class="darker">
         <img
@@ -24,14 +32,21 @@
 </template>
 
 <script>
+// Loading Component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
+// Component
 import ProjectCard from '../components/cardComponent/ArticleCard.vue'
 
+// Modules
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'CategoryPage',
   components: {
     ProjectCard,
+    Loading,
   },
   data : () => {
     return {
@@ -64,18 +79,20 @@ export default {
           in convallis justo varius a.`
       },
       categoryProjectList: [],
-      allProjectList: [],
+      isLoading: true,
     }
   },
-  created () {
-    this.fetchAllProjectList()
+  async created () {
+    if(this.allProjectList.length <= 0) {
+      await this.fetchAllProjectList()
+    } else {
+      this.isLoading = false
+    }
   },
   computed: {
     ...mapGetters({
-      allProjects: 'getAllCampaign',
-    })
-  },
-  computed: {
+      allProjectList: 'listCampaigns',
+    }),
     queryCategoryId () {
       this.updateProjectBasedOnCategory()
       const title = this.$route.params.categoryId.toUpperCase() || 'DEFAULT CATEGORY TITLE'
@@ -100,6 +117,7 @@ export default {
   },
   methods: {
     async fetchAllProjectList () {
+      this.isLoading = true
       await this.$store
         .dispatch('getAllCampaign')
         .then(res => {
@@ -108,6 +126,7 @@ export default {
         .catch(err => {
           console.error(err)
         })
+      this.isLoading = false
     },
     updateProjectBasedOnCategory() {
       if (!this.allProjectList) return
@@ -166,15 +185,50 @@ export default {
   }
 
   .content-category {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
     height: 100%;
     width: 100%;
   }
 
+  @media (max-width: 1431px) {
+    .content-category {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1190px) {
+    .content-category {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 931px) {
+    .content-category {
+      display: grid;
+      grid-template-columns: auto auto;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 669px) {
+    .content-category {
+      display: grid;
+      grid-template-columns: auto;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
   .project-card-wrap {
-    width: 20%;
+    width: 100%;
     position: static;
     margin: 5rem 0;
     a {

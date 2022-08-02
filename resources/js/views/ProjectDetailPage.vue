@@ -1,5 +1,13 @@
 <template>
   <div class="project-detail-page">
+    <loading
+        :active="isLoading"
+        :can-cancel="false"
+        :lock-scroll="true"
+        :is-full-page="true"
+        :height="125"
+        :width="125"
+      />
     <transition name="fade" appear>
       <div class="modal-overlay"
         v-if="showRewardModal"
@@ -10,7 +18,7 @@
         v-if="showRewardModal"
         :userId="user.id"
         :isUserCollaborator="checkCollaboratorId"
-        :ownerId="projectDetail.users_id"
+        :ownerId="parseInt(projectDetail.users_id)"
         :campaignId="projectDetail.id"
         @close="closeModal"
       />
@@ -40,7 +48,7 @@
           {{ daysBetween }}
         </div>
         <div class="day-left-info">
-          Created by <b>{{ displayCreatorName }}</b>
+          Dibuat oleh <b>{{ displayCreatorName }}</b>
         </div>
         <div class="button-wrapper">
           <button
@@ -77,7 +85,7 @@
           <updateTab
             :userId="user.id"
             :isUserCollaborator="checkCollaboratorId"
-            :ownerId="projectDetail.users_id"
+            :ownerId="parseInt(projectDetail.users_id)"
             :campaignId="projectDetail.id"
             :updateListData="updateTabData"
           />
@@ -86,13 +94,15 @@
           <faqTab
             :userId="user.id"
             :isUserCollaborator="checkCollaboratorId"
-            :ownerId="projectDetail.users_id"
+            :ownerId="parseInt(projectDetail.users_id)"
             :campaignId="projectDetail.id"
             :faqListData="faqTabData"
           />
         </tab>
         <tab name="Collaborator">
-          <creatorTab />
+          <creatorTab
+            :creatorListData="creatorTabData"
+          />
         </tab>
         <tab name="Payment">
           <paymentTab/>
@@ -108,6 +118,10 @@
 </template>
 
 <script>
+// Loading Component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 // Tab Component
 import tab from  '../components/tabComponent/tabComponent.vue'
 import tabs from '../components/tabComponent/tabsComponent.vue'
@@ -136,7 +150,8 @@ export default {
     RewardModal,
     creatorTab,
     forumTab,
-    paymentTab
+    paymentTab,
+    Loading
   },
   data: () => {
     return {
@@ -149,13 +164,16 @@ export default {
       payment: [],
       updateTabData: [],
       faqTabData: [],
-      campaignID: ''
+      creatorTabData: [],
+      campaignID: '',
+      isLoading: true,
     }
   },
   async created () {
     await this.fetchingCampaignInfo()
     await this.fetchingUpdateTabData()
     await this.fetchingFaqTabData()
+    this.isLoading = false
   },
   computed: {
     ...mapGetters({
@@ -269,10 +287,18 @@ export default {
           this.payment = res.payments || []
           this.projectDetail = res.data
           this.sumPayment = res.data.sum_payment
+
+          if(res.collaborators && res.collaborators.length > 0) {
+            this.creatorTabData = this.filterCollaboratorData(res.collaborators)
+          }
         })
         .catch(err => {
           console.log(err)
         })
+    },
+    filterCollaboratorData (listData) {
+      const filteredData = listData.filter(x => x.status === 'accept')
+      return filteredData
     },
     formatMoney(money) {
       const moneyTemp = money ? parseInt(money) : 10000
@@ -357,7 +383,7 @@ export default {
 
 
   .wrap-title {
-    margin-bottom: 2rem;
+    margin: 4rem 0;
     .main-title {
       font-size: 4rem;
     }
@@ -403,6 +429,9 @@ export default {
         margin-bottom: 30px;
         align-items: center;
         img {
+          margin-right: 1.7rem;
+        }
+        i {
           margin-right: 1.7rem;
         }
       }

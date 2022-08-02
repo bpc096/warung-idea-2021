@@ -2,13 +2,14 @@
 
 namespace App;
 
+use Conner\Likeable\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Campaign extends Model
 {
-    use HasFactory;
+    use HasFactory, Likeable;
     use SoftDeletes;
     protected $fillable = ['users_id', 'category_id', 'title', 'slug', 'short_description', 'target_donation', 'max_date', 'description', 'project_plan', 'collaborators', 'image'];
 
@@ -62,7 +63,7 @@ class Campaign extends Model
     // public function mostFunding()
     // {
     //     return $this->hasMany(Payment::class)->selectRaw('payments.campaign_id,SUM(payments.amount) as total')->where('payments.status', 'success')->groupBy('payments.campaign_id')->orderBy('SUM(payments.amount) as total', 'desc');
-    // }    
+    // }
 
     public function percent_raised(){
         $raised = $this->hasMany(Payment::class)->selectRaw('payments.campaign_id,SUM(payments.amount) as total')->where('payments.status', 'success')->groupBy('payments.campaign_id');

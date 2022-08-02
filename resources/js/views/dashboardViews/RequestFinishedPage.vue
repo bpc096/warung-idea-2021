@@ -43,19 +43,17 @@
         </table>
       </div>
     </div>
-    <div class="button-pagination">
-      <div class="btn-prev">
-        <button @click="fetchPrevCampaignList">Previous</button>
-      </div>
-      <div class="btn-next">
-        <button @click="fetchNextCampaignList" >Next</button>
-      </div>
+    <div align="center">
+      <button type="button" class="btn btn-success mr-3" @click="fetchPrevCampaignList">Previous List</button>
+      <button type="button" class="btn btn-success ml-3" @click="fetchNextCampaignList">Next List</button>
     </div>
   </div>
 </template>
 
 <script>
 import Axios from 'axios'
+import Swal from "sweetalert2"
+
 
 export default {
   name: 'RequestFinishedPage',
@@ -125,10 +123,82 @@ export default {
       if(type === 'view') {
         this.$router.push('/projectdetail/'+campaignId)
       } else if (type === 'accept') {
-
+        this.acceptFinishRequest(campaignId)
       } else if (type === 'reject') {
-
+        this.rejectFinishRequest(campaignId)
       }
+    },
+    acceptFinishRequest(campaignId) {
+      Swal.fire({
+        title: "Konfirmasi",
+        text: "Apakah anda ingin menyetujui finish campaign ini?",
+        icon: "question",
+        showCancelButton: true
+      })
+      .then((conf) => {
+          if(conf.isConfirmed) {
+            Axios.put(`campaign/approve_finish_campaign/${campaignId}`)
+              .then(
+                (res) => {
+                  if(res.data.success) {
+                    Swal.fire({
+                      title: "Success",
+                      text: res.data.message,
+                      icon: 'success'
+                    })
+                    this.fetchAllCampaignList()
+                    return
+                  }
+                  Swal.fire({
+                    title: "Failed",
+                    text: res.data.message,
+                    icon: 'error'
+                  })
+                }
+              ).catch(
+                (err) => {
+                  console.error(err)
+                }
+              )
+          }
+        }
+      )
+    },
+    rejectFinishRequest(campaignId) {
+      Swal.fire({
+        title: "Konfirmasi",
+        text: "Apakah anda ingin menolak campaign ini?",
+        icon: "question",
+        showCancelButton: true
+      })
+      .then((conf) => {
+          if(conf.isConfirmed) {
+            Axios.put(`campaign/reject_finish_campaign/${campaignId}`)
+              .then(
+                (res) => {
+                  if(res.data.success) {
+                    Swal.fire({
+                      title: "Success",
+                      text: res.data.message,
+                      icon: 'success'
+                    })
+                    this.fetchAllCampaignList()
+                    return
+                  }
+                  Swal.fire({
+                    title: "Failed",
+                    text: res.data.message,
+                    icon: 'error'
+                  })
+                }
+              ).catch(
+                (err) => {
+                  console.error(err)
+                }
+              )
+          }
+        }
+      )
     }
   }
 }

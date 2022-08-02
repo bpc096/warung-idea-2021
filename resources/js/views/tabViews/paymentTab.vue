@@ -15,14 +15,15 @@
             <tr v-for="(data, idx) in listData" :key="idx">
               <td>{{ idx += 1 }}</td>
               <td>{{ data.name }}</td>
-              <td>{{ data.amount }}</td>
+              <td>Rp{{ formatMoney(data.amount) }}</td>
             </tr>
           </table>
         </div>
       </div>
     </div>
-    <div v-else>
-      <h2>Ups... There's no payment list for this project right now!</h2>
+    <div class="empty-state" v-else>
+      <i class="fa-solid fa-circle-exclamation fa-10x"></i>
+      <h2>Upss ... There's no payment for this project!</h2>
     </div>
   </div>
 </template>
@@ -49,6 +50,18 @@ export default {
     this.fetchingPaymentListData()
   },
   methods: {
+    formatMoney(money) {
+      const moneyTemp = money ? parseInt(money) : 10000
+      const formatter = new Intl.NumberFormat('en-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }).format(moneyTemp)
+      .replace(/[IDR]/gi, '')
+      .replace(/(\.+\d{2})/, '')
+      .replace(/,/g, '.')
+      .trimLeft()
+      return formatter
+    },
     generateMockData() {
       let mockData = []
       for(let x=1;x<=10;x++){
@@ -81,6 +94,15 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 90vh;
+  }
 
   h2 {
     margin-top: 5rem;

@@ -15,6 +15,8 @@ class CreateConversationsTable extends Migration
     {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_campaign');
+            $table->string('code', 50);
             $table->unsignedBigInteger('sender');
             $table->unsignedBigInteger('receiver');
             $table->timestamps();

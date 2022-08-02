@@ -62,12 +62,37 @@ const actions = {
       axios.post('profile/password', data)
         .then(res => {
           resolve(res)
-          console.log('res', res)
         })
         .catch(err => {
           reject(err)
           console.log('err', err)
         })
+    })
+  },
+  requestResetPassword ({commit}, data) {
+    return new Promise((resolve, reject) => {
+      axios.post('/forgot', data)
+      .then(res => {
+        resolve(res)
+        console.log(res)
+      })
+      .catch(err => {
+        reject(err.response.data)
+        console.log(err.response)
+      })
+    })
+  },
+  submitPassForgot({commit}, data) {
+    return new Promise((resolve, reject) => {
+      axios.post('/reset', data)
+      .then(res => {
+        resolve(res)
+        console.log(res)
+      })
+      .catch(err => {
+        reject(err.response.data)
+        console.log(err.response)
+      })
     })
   },
   async get_user({commit}){

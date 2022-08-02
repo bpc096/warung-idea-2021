@@ -11,13 +11,13 @@
           {{ projectDesc.slice(0,75) }} ...
         </div> -->
         <div v-if="!isInHistoryOwnedPage && !isInCollaborationListPage" class="campaign-donation-amount">
-          <b>Donation amount : </b>
+          <b>Jumlah Donasi : </b>
           <div class="donation-text">
             Rp {{ formatMoney(infoDonationAmount) }}
           </div>
         </div>
         <div v-if="!isInHistoryOwnedPage && !isInCollaborationListPage" class="campaign-payment-status">
-          <b>Payment status :</b>
+          <b>Status Pembayaran :</b>
 
           <div :class="['text-status', paymentStatus]">
             {{ paymentTextStatus }}
@@ -29,7 +29,7 @@
         >
           <button
             class="btn-chat"
-            @click="goToChatPage(campaignInfo.users_id)"
+            @click="goToChatPage(campaignInfo.users_id, campaignInfo.id)"
           >
             <i class="fa-solid fa-comment mr-1"></i>
             Chat Creator
@@ -43,17 +43,7 @@
             {{ payNowLabel }}
           </button>
         </div>
-        <!-- <div v-if="!isInHistoryOwnedPage" class="campaign-payment-status">
-          Action
-          <button
-            v-if="paymentStatus !== 'success-status'"
-            class="btn-payment"
-            @click="payment"
-          >
-            {{ payNowLabel }}
-          </button>
-        </div> -->
-        <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved">
+        <div class="campaign-wrap-button" v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && isCampaignApproved && !isCampaignFinished && !iscampaignDeleted">
           <b>Campaign Config :</b>
           <a
             :href="`/projectdetail/${campaignId}`"
@@ -76,7 +66,7 @@
           </button>
         </div>
         <div
-          v-if="isCampaignApproved && (isInHistoryOwnedPage || isInCollaborationListPage)"
+          v-if="!iscampaignDeleted && !isCampaignFinished && isCampaignApproved && (isInHistoryOwnedPage || isInCollaborationListPage)"
           class="campaign-wrap-button"
         >
           <b>Tab Config :</b>
@@ -91,19 +81,21 @@
           </a>
         </div>
         <div
-          v-if="isCampaignApproved && isInHistoryOwnedPage"
+          v-if="!iscampaignDeleted && !isCampaignFinished && isCampaignApproved && isInHistoryOwnedPage"
           class="campaign-wrap-button"
         >
           <b>Finishing Config :</b>
           <button
             @click="finishedCampaign"
-            class="btn-delete-campaign"
+            type="button"
+            class="btn btn-delete-campaign"
+            :disabled="!isDisabledFinishBtn"
           >
             Finish Campaign
           </button>
         </div>
         <div
-          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_approved !== null"
           class="campaign-wrap-button"
         >
           <b>Create-Approval Status :</b>
@@ -112,7 +104,7 @@
           </div>
         </div>
         <div
-          v-if="isInHistoryOwnedPage || isInCollaborationListPage"
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_delete_approved !== null"
           class="campaign-wrap-button"
         >
           <b>Delete-Approval Status :</b>
@@ -120,11 +112,33 @@
             {{ createApprovalStatus(campaignInfo.is_delete_approved) }}
           </div>
         </div>
+        <div
+          v-if="(isInHistoryOwnedPage || isInCollaborationListPage) && campaignInfo.is_finish_approved !== null"
+          class="campaign-wrap-button"
+        >
+          <b>Finish-Approval Status :</b>
+          <div :class="createApprovalClassName(campaignInfo.is_finish_approved)">
+            {{ createApprovalStatus(campaignInfo.is_finish_approved) }}
+          </div>
+        </div>
+        <div
+          v-if="isInCollaborationListPage"
+          class="campaign-wrap-button-creator"
+        >
+          <button
+            class="btn-chat"
+            @click="goToChatPage(campaignInfo.users_id, campaignInfo.id)"
+          >
+            <i class="fa-solid fa-comment mr-1"></i>
+            Chat Creator
+          </button>
+        </div>
       </div>
     </div>
 </template>
 
 <script>
+import Axios from 'axios'
 import { mapGetters } from 'vuex'
 export default {
   name: 'CampaignCard',
@@ -148,6 +162,8 @@ export default {
   },
   data: () => {
     return {
+      faqTabData: [],
+      updateTabData: [],
       continueDelete: false,
       progress: '59',
       paymentTextStatus: 'PENDING',
@@ -159,6 +175,33 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+    checkFaqsCount() {
+      return this.campaignInfo && this.campaignInfo.faqs_count && this.campaignInfo.faqs_count >= 0
+    },
+    checkUpdatesCount() {
+      return this.campaignInfo && this.campaignInfo.updates_count && this.campaignInfo.updates_count >= 0
+    },
+    isDisabledFinishBtn() {
+      let res = false
+      if(this.checkFaqsCount && this.checkUpdatesCount) {
+        const faqsCount = this.campaignInfo.faqs_count
+        const updatesCount = this.campaignInfo.updates_count
+        res = faqsCount >= 5 && updatesCount >= 5
+      }
+      return res
+    },
+    iscampaignDeleted() {
+      const res = this.campaignInfo
+        && this.campaignInfo.is_delete_approved
+        && this.campaignInfo.is_delete_approved === '1'
+      return res
+    },
+    isCampaignFinished() {
+      const res = this.campaignInfo
+        && this.campaignInfo.is_finish_approved
+        && this.campaignInfo.is_finish_approved === '1'
+      return res
+    },
     isCampaignApproved() {
       const res = this.campaignInfo
         && this.campaignInfo.is_approved
@@ -210,12 +253,24 @@ export default {
     }
   },
   methods: {
-    goToChatPage (receiverId) {
+    async goToChatPage (receiverId, paramCampaignId) {
       console.log('go to chat page with receiver ' + receiverId)
-      // Initialize Chat Inbox
-        this.$store
-          .dispatch('initChatInbox', )
-      // Redirect to Chat Page with selected creator
+      const senderId = this.user.id || 1
+      const campaignId = paramCampaignId ? paramCampaignId : 1
+      try {
+        let apiUrl = `chats/post_inbox?id_campaign=${campaignId}&sender=${senderId}&receiver=${receiverId}`
+        const req = await Axios.post(apiUrl)
+        if(req.data.success) {
+          console.log('gotochat')
+          this.$router.push('/chat/0/user/0/code/0')
+        }
+      } catch (error) {
+        this.$swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        })
+      }
 
     },
     createApprovalClassName(isApproved) {
@@ -279,7 +334,7 @@ export default {
         }).then((result) => {
           if (result.isConfirmed) {
             this.$store
-              .dispatch('deleteCampaign', this.campaignId)
+              .dispatch('finishCampaign', this.campaignId)
               .then(() => {
                 this.$swal({
                   title: 'Your delete request has been sent to admin !',
@@ -543,6 +598,25 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin: 10px 0 20px 25px;
+
+        &-creator {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          margin: 10px 0 20px 25px;
+
+          .btn-chat {
+            text-decoration: none;
+            color: black;
+            border: 1px solid #FFA500;
+            border-radius: 10px;
+            padding: 5px;
+            background-color: #FFA500;
+            min-width: 150px;
+            margin-right: 10px;
+          }
+        }
 
         b {
           width: 30%;
