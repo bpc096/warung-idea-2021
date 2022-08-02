@@ -1,7 +1,7 @@
 <template>
   <div class="header-wrapper">
     <div class="logo-wrap">
-      <a href="/">
+      <router-link to="/">
         <img
           src="\images\icon\light-bulb.png"
           alt="bright-lamp"
@@ -9,7 +9,7 @@
         <div class="text-image">
           WarungIdea.com
         </div>
-      </a>
+      </router-link>
     </div>
     <div v-if="isInLanding" class="category-wrap">
       <router-link class="btn-main" to="/home">Home</router-link>
