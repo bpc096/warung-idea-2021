@@ -286,7 +286,7 @@ export default {
         .then((res) => {
           this.payment = res.payments || []
           this.projectDetail = res.data
-          this.sumPayment = res.data.sum_payment
+          this.sumPayment = res.data.sum_payment || []
 
           if(res.collaborators && res.collaborators.length > 0) {
             this.creatorTabData = this.filterCollaboratorData(res.collaborators)

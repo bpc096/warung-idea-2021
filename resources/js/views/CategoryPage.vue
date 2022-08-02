@@ -20,12 +20,12 @@
     </div>
     <div class="content-category">
       <div v-for="(project, idx) in categoryProjectList" class="project-card-wrap" :key="idx">
-        <a :href="'/projectdetail/'+ project.id">
+        <router-link :to="'/projectdetail/'+ project.id">
           <ProjectCard
           :projectData="project"
           :isCampaign="true"
           />
-        </a>
+        </router-link>
       </div>
     </div>
   </div>

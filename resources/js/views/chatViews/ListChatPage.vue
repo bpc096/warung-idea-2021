@@ -1,5 +1,13 @@
 <template>
   <div class="list-chat-page">
+    <loading
+      :active="isLoading"
+      :can-cancel="false"
+      :lock-scroll="true"
+      :is-full-page="true"
+      :height="125"
+      :width="125"
+    />
     <div v-if="userList.length > 0" class="user-wrap">
       <a
         v-for="(u,idx) in userList"
@@ -24,13 +32,21 @@
 
 
 <script>
+// Loading Component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 import { mapGetters } from 'vuex'
 import axios from "axios"
 
 export default {
   name: 'ListChatPage',
+  components: {
+    Loading,
+  },
   data: () => {
     return {
+      isLoading: true,
       sourceImg: 'https://us.123rf.com/450wm/apoev/apoev1902/apoev190200141/125038134-person-gray-photo-placeholder-man-in-a-costume-on-gray-background.jpg?ver=6',
       userList: [],
       mockUserList: [
@@ -103,9 +119,9 @@ export default {
 
       this.userList = isUserActive
     },
-    fetchChatList() {
+    async fetchChatList() {
       const apiUrl = 'chats/' + this.user.id
-      axios.get(apiUrl)
+      await axios.get(apiUrl)
         .then((res) => {
           const response = res.data
           if(response.success) {
@@ -118,8 +134,10 @@ export default {
           }
         })
         .catch((err) => {
+          this.isLoading = false
           console.error(err)
         })
+      this.isLoading = false
     }
   }
 }
