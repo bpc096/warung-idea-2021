@@ -1,7 +1,7 @@
 <template>
   <div id="chatlogs" class="chat-messages-wrap">
     <div v-for="message in messages" :key="message.id">
-      <div v-if="message.user_id !== user.id" class="left clearfix icon">
+      <div v-if="isMessageFromSender(message.user_id)" class="left clearfix icon">
         ●
         <div class="clearfix wrap-head">
           <div class="header">
@@ -47,6 +47,11 @@ export default {
     ...mapGetters({
       user: 'user'
     }),
+  },
+  methods: {
+    isMessageFromSender(senderId) {
+      return parseInt(senderId) !== this.user.id
+    }
   }
 };
 </script>
