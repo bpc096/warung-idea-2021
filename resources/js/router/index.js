@@ -6,6 +6,7 @@ import LandingPage from '../views/LandingPage.vue'
 import HomePage from '../views/HomePage.vue'
 import AboutUsPage from '../views/AboutUsPage.vue'
 import DiscoveryPage from '../views/DiscoveryPage.vue'
+import HowtoPage from '../views/HowToPage.vue'
 import CategoryPage from '../views/CategoryPage.vue'
 import ProjectDetailPage from '../views/ProjectDetailPage.vue'
 import CheckoutPage from '../views/CheckoutPage.vue'
@@ -103,6 +104,11 @@ const routes = [
     path: '/discover',
     name: 'DiscoveryPage',
     component: DiscoveryPage,
+  },
+  {
+    path: '/howto',
+    name: 'HowToPage',
+    component: HowtoPage
   },
   {
     path: '/category/:categoryId',
