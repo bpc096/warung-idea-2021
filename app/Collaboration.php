@@ -25,8 +25,7 @@ class Collaboration extends Model
      * @var array
      */
     protected $fillable = ['campaign_id', 'owner_id', 'collaborators'];
-
-
+    
     /**
      * Query scope to return information about the current project or campaign
      * @param  [type] $query [description]

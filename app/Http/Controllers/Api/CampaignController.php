@@ -45,7 +45,8 @@ class CampaignController extends Controller
     public function index_user($users_id)
     {
         //get detail data campaign
-        $campaign = Campaign::with('user')
+        $campaign = Campaign::withTrashed()
+        ->with('user')
         ->with('sumPayment')
         ->withCount('updates')
         ->withCount('faqs')
@@ -339,6 +340,26 @@ class CampaignController extends Controller
         }
     }
 
+    public function finish($id)
+    {
+        // ** Approval Finish
+        $campaign = Campaign::where('id', $id)->update([
+            "is_finish_approved" => '0' // ** Set to pending
+        ]);
+
+        if($campaign){
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Your finish request has been sent to admin. Please wait for admin confirmation.'
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to request finish.'
+            ], 400);
+        }
+    }
+
     // ** Approve Campaign
     public function approve_campaign($id) {
         $update = Campaign::where('id', $id)->update([
@@ -419,9 +440,52 @@ class CampaignController extends Controller
         ], 500);
     }
 
+    // ** Approve Finish Campaign
+    public function approve_finish_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_finish_approved" => '1'
+        ]);
+
+        if($update) {
+            // If has been approved, then do archive softDeletes
+            $campaign = Campaign::findOrFail($id);
+            $campaign->delete();
+
+            return response()->json([
+                "success" => true,
+                "message" => "Campaign has been approved to finished"
+            ], 200);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to approve finish campaign"
+        ], 500);
+    }
+
+    // ** Reject Finish Campaign
+    public function reject_finish_campaign($id) {
+        $update = Campaign::where('id', $id)->update([
+            "is_finish_approved" => '2'
+        ]);
+
+        if($update) {
+            return response()->json([
+                "success" => true,
+                "message" => "Finish Campaign has been rejected"
+            ], 200);
+        }
+
+        return response()->json([
+            "success" => false,
+            "message" => "Failed to reject finish campaign"
+        ], 500);
+    }
+
     // ** Get List Collaboration
     public function get_list_collaboration($id_user) {
-        $campaigns = Campaign::select('campaigns.*',
+        $campaigns = Campaign::withTrashed()
+        ->select('campaigns.*',
             'campaign_details.users_id',
             'campaign_details.status',
             'payments.amount',
@@ -453,6 +517,7 @@ class CampaignController extends Controller
             $data["is_approved"] = $campaign->is_approved;
             $data["deleted_at"] = $campaign->deleted_at;
             $data["is_delete_approved"] = $campaign->is_delete_approved;
+            $data["is_finish_approved"] = $campaign->is_finish_approved;
             $data["status"] = $campaign->status;
             $data["donation"] = [
                 "amount" => $campaign->amount,
@@ -470,11 +535,12 @@ class CampaignController extends Controller
 
     // ** Get All Campaigns(For Admin)
     public function GetAllCampaigns() {
-        $get = Campaign::select('campaigns.*', 'categories.category_name', 'users.name as created_by')
+        $get = Campaign::withTrashed()
+        ->select('campaigns.*', 'categories.category_name', 'users.name as created_by')
         ->leftJoin('categories', 'categories.id',  '=', 'campaigns.category_id')
         ->leftJoin('users', 'users.id',  '=', 'campaigns.users_id')
-        ->where("campaigns.deleted_at", null)
         ->paginate(10);
+
         return response()->json([
             "all_campaigns" => $get
         ], 200);
@@ -498,7 +564,7 @@ class CampaignController extends Controller
       $campaign->save();
       return response()->json([
         'success' => true,
-        'message' => 'Campaign Like Succesfully!'
+        'message' => 'Campaign Like Successfully!'
       ], 200);
     }
 
@@ -509,7 +575,7 @@ class CampaignController extends Controller
       $campaign->save();
       return response()->json([
         'success' => true,
-        'message' => 'Campaign Unlike Succesfully!'
+        'message' => 'Campaign Unlike Successfully!'
       ], 200);
     }
 }

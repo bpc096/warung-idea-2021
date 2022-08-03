@@ -22,6 +22,7 @@ Route::post('/login', [LoginController::class, 'login']);
 
 // Route::get('auth/{provider}/callback', [LoginController::class, IndexGoogleLogin])->where('provider', '.*');
 Route::post('sociallogin/{provider}', [LoginController::class, 'SocialSignup']);
+
 /**
  * Api Forgot and Reset Password
  */
@@ -57,6 +58,7 @@ Route::prefix('campaign')->group(function() {
     Route::post('/', [CampaignController::class, 'store'])->middleware('auth:api');
     Route::post('/{campaign}', [CampaignController::class, 'update'])->middleware('auth:api');
     Route::delete('/{campaign}', [CampaignController::class, 'destroy'])->middleware('auth:api');
+    Route::put('/{campaign}', [CampaignController::class, 'finish'])->middleware('auth:api');
     Route::get('/collaboration/{id_user}', [CampaignController::class, 'get_list_collaboration'])->middleware('auth:api');
 
     // ** End-point to get list of collaborator of campaign
@@ -86,13 +88,17 @@ Route::prefix('campaign')->group(function() {
     Route::post('/{campaign}/rewards/reward/{reward_id}', [RewardController::class, 'update'])->middleware('auth:api');
     Route::delete('/delete_reward/{reward_id}', [RewardController::class, 'destroy'])->middleware('auth:api');
 
-    // ** Approve Reject Campaign
+    // ** Approve Reject Create Campaign
     Route::put('approve_campaign/{id}', [CampaignController::class, 'approve_campaign'])->middleware('auth:api');
     Route::put('reject_campaign/{id}', [CampaignController::class, 'reject_campaign'])->middleware('auth:api');
 
     // ** Approve & reject delete campaign
     Route::put('approve_delete_campaign/{id}', [CampaignController::class, 'approve_delete_campaign'])->middleware('auth:api');
     Route::put('reject_delete_campaign/{id}', [CampaignController::class, 'reject_delete_campaign'])->middleware('auth:api');
+
+    // ** Approve & reject finish campaign
+    Route::put('approve_finish_campaign/{id}', [CampaignController::class, 'approve_finish_campaign'])->middleware('auth:api');
+    Route::put('reject_finish_campaign/{id}', [CampaignController::class, 'reject_finish_campaign'])->middleware('auth:api');
 
     // ** For admin needs
     Route::get('/get_all_campaigns', [CampaignController::class, 'GetAllCampaigns'])->middleware('auth:api');
