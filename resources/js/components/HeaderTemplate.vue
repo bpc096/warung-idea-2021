@@ -151,7 +151,7 @@ export default {
       return this.$route.name
     },
     isInLanding () {
-      return this.$route.name === 'LandingPage' || this.$route.name === 'AboutUsPage' || this.$route.name === 'DiscoveryPage'
+      return this.$route.name === 'LandingPage' || this.$route.name === 'AboutUsPage' || this.$route.name === 'DiscoveryPage' || this.$route.name === 'HowToPage'
     },
     isUserLoggedIn() {
       return this.loginMock
