@@ -14,6 +14,7 @@
     <div v-if="isInLanding" class="category-wrap">
       <router-link class="btn-main" to="/home">Home</router-link>
       <router-link class="btn-main" to="/discover">Discover</router-link>
+      <router-link class="btn-main" to="/howto">How To</router-link>
       <router-link class="btn-main" to="/aboutus">About Us</router-link>
     </div>
     <div v-else class="category-wrap">
