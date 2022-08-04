@@ -36,10 +36,12 @@ export default {
                   href: {path: baseUrl + 'userlist'},
                   title: 'List of User',
                 },
+                /*
                 {
                   href: {path:  baseUrl + 'requestlist/becomecreator'},
                   title: 'Request Become Creator',
                 },
+                */
               ]
             }, {
               icon: 'fa-solid fa-lightbulb',

@@ -182,6 +182,8 @@ export default {
       return this.campaignInfo && this.campaignInfo.updates_count && this.campaignInfo.updates_count >= 0
     },
     isDisabledFinishBtn() {
+      return true
+
       let res = false
       if(this.checkFaqsCount && this.checkUpdatesCount) {
         const faqsCount = this.campaignInfo.faqs_count
