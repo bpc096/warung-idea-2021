@@ -35,7 +35,7 @@
             Chat Creator
           </button>
           <button
-            v-if="paymentStatus !== 'success-status'"
+            v-if="paymentStatus !== 'success-status' && paymentStatus !== 'failed-status'"
             class="btn-payment"
             @click="payment"
           >
@@ -182,8 +182,6 @@ export default {
       return this.campaignInfo && this.campaignInfo.updates_count && this.campaignInfo.updates_count >= 0
     },
     isDisabledFinishBtn() {
-      return true
-
       let res = false
       if(this.checkFaqsCount && this.checkUpdatesCount) {
         const faqsCount = this.campaignInfo.faqs_count
