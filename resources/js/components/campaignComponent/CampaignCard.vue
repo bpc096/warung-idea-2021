@@ -430,6 +430,7 @@ export default {
           this.paymentStat = 'success'
           let toast = this.$toasted.success('Payment Success ⌛ ✅')
           toast.goAway(1500)
+          this.$router.go(0)
         },
         onPending: () => {
           this.paymentStat = 'pending'
