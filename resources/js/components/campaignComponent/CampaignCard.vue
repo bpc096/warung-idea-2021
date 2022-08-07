@@ -548,6 +548,7 @@ export default {
           padding: 5px;
           background-color: #9BA3EB;
           min-width: 10rem;
+          margin: 0 2rem;
         }
 
         .btn-payment {
