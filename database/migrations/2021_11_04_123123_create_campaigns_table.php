@@ -30,7 +30,7 @@ class CreateCampaignsTable extends Migration
             $table->char('is_delete_approved', 1)->nullable(true); // 0 = Pending, 1 = Approve, 2 = Reject
             $table->char('is_finish_approved', 1)->nullable(true); // 0 = Pending, 1 = Approve, 2 = Reject
             $table->softDeletes();
-            $table->longText('collaborators')->default(json_encode([]));
+            $table->json('collaborators')->default(json_encode([]));
             $table->timestamps();
         });
     }
