@@ -297,7 +297,7 @@ export default {
         })
     },
     filterCollaboratorData (listData) {
-      const filteredData = listData.filter(x => x.status === 'accept')
+      const filteredData = listData.filter(x => x.status.toLowerCase() === 'accept')
       return filteredData
     },
     formatMoney(money) {

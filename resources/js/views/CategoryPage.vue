@@ -120,9 +120,6 @@ export default {
       this.isLoading = true
       await this.$store
         .dispatch('getAllCampaign')
-        .then(res => {
-          this.allProjectList = res.data.data.data
-        })
         .catch(err => {
           console.error(err)
         })
