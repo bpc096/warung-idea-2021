@@ -38,6 +38,7 @@ export default {
         user_id: this.user.id,
         name: this.user.name,
         body: this.newMessage,
+        created_at: new Date(),
       });
 
       this.newMessage = "";

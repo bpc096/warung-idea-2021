@@ -35,7 +35,7 @@
             Chat Creator
           </button>
           <button
-            v-if="paymentStatus !== 'success-status'"
+            v-if="paymentStatus !== 'success-status' && paymentStatus !== 'failed-status'"
             class="btn-payment"
             @click="payment"
           >
@@ -428,6 +428,7 @@ export default {
           this.paymentStat = 'success'
           let toast = this.$toasted.success('Payment Success ⌛ ✅')
           toast.goAway(1500)
+          this.$router.go(0)
         },
         onPending: () => {
           this.paymentStat = 'pending'
@@ -547,6 +548,7 @@ export default {
           padding: 5px;
           background-color: #9BA3EB;
           min-width: 10rem;
+          margin: 0 2rem;
         }
 
         .btn-payment {
