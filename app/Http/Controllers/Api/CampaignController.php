@@ -161,16 +161,6 @@ class CampaignController extends Controller
 
         $collaborators = CampaignDetail::with('users')->where("campaign_id", $id)->get();
 
-        $collaboratorData = [];
-        if(!count($campaign->$collaborators)) {
-          $listIdCollab = $campaign->$collaborators;
-          for($x=0;$x<count($listIdCollab);$x++) {
-            // Searching For Collaborator
-            $getDataUser = User::find($listIdCollab[$x]);
-            array_push($collaboratorData, $getDataUser);
-          }
-        }
-
         //get data donation by campaign
         $payments = Payment::with('user')->where('campaign_id', $campaign->id)->where('status', 'success')->latest()->get();
 
@@ -180,7 +170,6 @@ class CampaignController extends Controller
                 'success'       => true,
                 'message'       => 'Detail Data Campaign : '. $campaign->title,
                 'data'          => $campaign,
-                'collaborators' => $collaboratorData,
                 'payments'      => $payments
             ], 200);
         }
