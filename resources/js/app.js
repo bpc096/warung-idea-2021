@@ -26,7 +26,7 @@ import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
 import { setHeaderToken } from './utils/auth'
 
-const devApp = false //TODO : change this to false before deploy
+const devApp = true //TODO : change this to false before deploy
 const isDeployHeroku = false // TODO : change this to false when deploy cpanel
 
 let setBaseUrl = ''
