@@ -161,6 +161,16 @@ class CampaignController extends Controller
 
         $collaborators = CampaignDetail::with('users')->where("campaign_id", $id)->get();
 
+        $collaboratorData = [];
+        if(!count($campaign->$collaborators)) {
+          $listIdCollab = $campaign->$collaborators;
+          for($x=0;$x<count($listIdCollab);$x++) {
+            // Searching For Collaborator
+            $getDataUser = User::find($listIdCollab[$x]);
+            array_push($collaboratorData, $getDataUser);
+          }
+        }
+
         //get data donation by campaign
         $payments = Payment::with('user')->where('campaign_id', $campaign->id)->where('status', 'success')->latest()->get();
 
@@ -170,7 +180,7 @@ class CampaignController extends Controller
                 'success'       => true,
                 'message'       => 'Detail Data Campaign : '. $campaign->title,
                 'data'          => $campaign,
-                'collaborators' => $collaborators,
+                'collaborators' => $collaboratorData,
                 'payments'      => $payments
             ], 200);
         }
@@ -233,8 +243,8 @@ class CampaignController extends Controller
                 $checkCollaboratorExist = CampaignDetail::where("campaign_id", $campaign->id)
                 ->where("users_id", $collab)
                 ->first();
-                
-                
+
+
                 // **  Jika ada collaborator baru, insert new
                 if(empty($checkCollaboratorExist)) {
                     $newCollaborator = new CampaignDetail;
@@ -242,7 +252,7 @@ class CampaignController extends Controller
                     $newCollaborator->users_id = $collab;
                     $newCollaborator->status = "pending";
                     $newCollaborator->save();
-                    
+
                     // ** Create notification for each collaborators
                     $notif = new Notifications;
                     $notif->title   = "Invitation from ".auth()->guard('api')->user()->name;
@@ -251,7 +261,7 @@ class CampaignController extends Controller
                     $notif->content = "You have been invited to join in ".$request->title." campaign.";
                     $notif->is_read = '0';
                     $notif->save();
-                }                
+                }
             }
         }
         else {
@@ -291,8 +301,8 @@ class CampaignController extends Controller
                 $checkCollaboratorExist = CampaignDetail::where("campaign_id", $campaign->id)
                 ->where("users_id", $collab)
                 ->first();
-                
-                
+
+
                 // **  Jika ada collaborator baru, insert new
                 if(empty($checkCollaboratorExist)) {
                     $newCollaborator = new CampaignDetail;
@@ -300,7 +310,7 @@ class CampaignController extends Controller
                     $newCollaborator->users_id = $collab;
                     $newCollaborator->status = "pending";
                     $newCollaborator->save();
-                }                
+                }
             }
         }
 

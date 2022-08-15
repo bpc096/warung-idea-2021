@@ -1,13 +1,13 @@
 <template>
   <div class="project-detail-page">
     <loading
-        :active="isLoading"
-        :can-cancel="false"
-        :lock-scroll="true"
-        :is-full-page="true"
-        :height="125"
-        :width="125"
-      />
+      :active="isLoading"
+      :can-cancel="false"
+      :lock-scroll="true"
+      :is-full-page="true"
+      :height="125"
+      :width="125"
+    />
     <transition name="fade" appear>
       <div class="modal-overlay"
         v-if="showRewardModal"

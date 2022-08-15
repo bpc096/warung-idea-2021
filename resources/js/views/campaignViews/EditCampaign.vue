@@ -1,5 +1,13 @@
 <template>
   <div class="user-profile-edit-page">
+    <loading
+      :active="isLoading"
+      :can-cancel="false"
+      :lock-scroll="true"
+      :is-full-page="true"
+      :height="125"
+      :width="125"
+    />
     <div class="title-page">
       EDIT CAMPAIGN
     </div>
@@ -142,6 +150,10 @@
 </template>
 
 <script>
+// Loading Component
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 import { mapGetters } from 'vuex'
 import MultiselectIde from '../../components/Multiselect.vue'
 
@@ -149,9 +161,11 @@ export default {
   name: 'EditCampaign',
   components: {
     MultiselectIde,
+    Loading,
   },
   data: () => {
     return {
+      isLoading: true,
       image: null,
       title: '',
       categoryId: 0,
@@ -200,12 +214,15 @@ export default {
       })
       .catch(err => {
         console.log(err)
+        this.isLoading = false
         this.$swal({
           icon: 'error',
           title: 'Oops...',
           text: err,
         })
       })
+
+    this.isLoading = false
   },
   computed: {
     ...mapGetters({
@@ -248,16 +265,12 @@ export default {
       })
     },
     removeNewUser (userId) {
-      console.log(userId)
-      console.log("selected", this.selectedCollaborator)
       const index = this.selectedCollaborator.findIndex(v => v.userId == userId)
-      console.log('index', index)
       if(index>-1) this.selectedCollaborator.splice(index,1)
     },
     editCampaign() {
       const campaignId = this.$route.params.projectId || 1
       const listCollaborator = this.$refs.multiselect.$data.value
-      let collaborators = []
       let data = new FormData()
       data.append('image', this.image)
       data.append('title', this.title)
@@ -267,17 +280,28 @@ export default {
       data.append('description', this.description)
       data.append('short_description', this.shortDesc)
       data.append('project_plan', this.projectPlan)
-      for(let x=0;x<listCollaborator.length;x++) {
-        collaborators.push(listCollaborator[x].userId)
+
+      if(listCollaborator.length === 0) {
+        data.append('collaborators[]', [])
+      } else {
+        for(let x=0;x<listCollaborator.length;x++) {
+          data.append('collaborators[]', listCollaborator[x].userId)
+        }
       }
-      data.append('collaborators', JSON.stringify(collaborators))
 
       let param = {campaignId, data}
       this.$store
         .dispatch('updateCampaign', param)
         .then(() => {
-          this.$router.push({
-            name: 'HistoryCampaign'
+          this.$swal({
+            icon: 'success',
+            title: 'Sukses!',
+            text: 'Data Campaign Berhasil Di Update!',
+            allowOutsideClick: false,
+          }).then((res) => {
+            this.$router.push({
+              name: 'HistoryCampaign'
+            })
           })
         })
         .catch(err => {
