@@ -275,6 +275,8 @@ export default {
     editCampaign() {
       const campaignId = this.$route.params.projectId || 1
       const listCollaborator = this.$refs.multiselect.$data.value
+      // let collaborators = []
+
       let data = new FormData()
       data.append('image', this.image)
       data.append('title', this.title)
@@ -284,6 +286,13 @@ export default {
       data.append('description', this.description)
       data.append('short_description', this.shortDesc)
       data.append('project_plan', this.projectPlan)
+
+      /*
+      for(let x=0;x<listCollaborator.length;x++) {
+        collaborators.push(listCollaborator[x].userId)
+      }
+      data.append('collaborators', JSON.stringify(collaborators))
+      */
 
       if(listCollaborator.length === 0) {
         data.append('collaborators[]', [])

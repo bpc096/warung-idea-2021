@@ -206,6 +206,18 @@ class CampaignController extends Controller
          //check jika image kosong
         if(empty($request->file('image'))) {
             //update data tanpa image
+
+            $isCollabEmpty = false;
+            $newDataCollab = [];
+
+            if(empty($request->collaborators[0])) {
+              $isCollabEmpty = true;
+            }
+
+            if(!$isCollabEmpty) {
+              $newDataCollab = $request->collaborators;
+            }
+
             $campaign = Campaign::findOrFail($campaign->id);
             $campaign->update([
                 'title'              => $request->title,
@@ -216,20 +228,20 @@ class CampaignController extends Controller
                 'max_date'           => $request->max_date,
                 'description'        => $request->description,
                 'project_plan'       => $request->project_plan,
-                'collaborators'      => $request->collaborators,
+                'collaborators'      => $newDataCollab,
                 'users_id'           => auth()->guard('api')->user()->id,
             ]);
 
             // ** Jika collaborator dihapus
             $getCurrentCollab = CampaignDetail::where("campaign_id", $campaign->id)->get();
             foreach($getCurrentCollab as $data) {
-                if(!in_array($data->users_id, json_decode($request->collaborators))) {
-                    CampaignDetail::where("users_id", $data->users_id)->delete();
-                }
+              if(!in_array($data->users_id, $newDataCollab)) {
+                CampaignDetail::where("users_id", $data->users_id)->delete();
+              }
             }
 
             // ** Update collaborator
-            foreach(json_decode($request->collaborators) as $collab) {
+            foreach($newDataCollab as $collab) {
                 $checkCollaboratorExist = CampaignDetail::where("campaign_id", $campaign->id)
                 ->where("users_id", $collab)
                 ->first();
@@ -262,6 +274,17 @@ class CampaignController extends Controller
             $image = $request->file('image');
             $image->storeAs('public/campaigns', $image->hashName());
 
+            $isCollabEmpty = false;
+            $newDataCollab = [];
+
+            if(empty($request->collaborators[0])) {
+              $isCollabEmpty = true;
+            }
+
+            if(!$isCollabEmpty) {
+              $newDataCollab = $request->collaborators;
+            }
+
             //update dengan image baru
             $campaign = Campaign::findOrFail($campaign->id);
             $campaign->update([
@@ -273,7 +296,7 @@ class CampaignController extends Controller
                 'max_date'           => $request->max_date,
                 'description'        => $request->description,
                 'project_plan'       => $request->project_plan,
-                'collaborators'      => $request->collaborators,
+                'collaborators'      => $newDataCollab,
                 'users_id'           => auth()->guard('api')->user()->id,
                 'image'              => $image->hashName()
             ]);
@@ -281,13 +304,13 @@ class CampaignController extends Controller
             // ** Jika collaborator dihapus
             $getCurrentCollab = CampaignDetail::where("campaign_id", $campaign->id)->get();
             foreach($getCurrentCollab as $data) {
-                if(!in_array($data->users_id, json_decode($request->collaborators))) {
+                if(!in_array($data->users_id, $newDataCollab)) {
                     CampaignDetail::where("users_id", $data->users_id)->delete();
                 }
             }
 
             // ** Update collaborator
-            foreach(json_decode($request->collaborators) as $collab) {
+            foreach($newDataCollab as $collab) {
                 $checkCollaboratorExist = CampaignDetail::where("campaign_id", $campaign->id)
                 ->where("users_id", $collab)
                 ->first();
