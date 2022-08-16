@@ -53,7 +53,7 @@ Route::get('/category/{id}', [CategoryController::class, 'show']);
  */
 Route::prefix('campaign')->group(function() {
     Route::get('/', [CampaignController::class, 'index']);
-    Route::get('/search', [CampaignController::class, 'search']);
+    Route::get('/search/{title}', [CampaignController::class, 'search']);
     Route::get('/get_campaign/{id}', [CampaignController::class, 'show']);
     Route::get('/users/{users_id}', [CampaignController::class, 'index_user'])->middleware('auth:api');
     Route::post('/', [CampaignController::class, 'store'])->middleware('auth:api');

@@ -580,9 +580,24 @@ class CampaignController extends Controller
     }
 
     // Search Campaign
-    public function search(Request $request)
+    public function search($search)
     {
-        $search = $request->get('q');
-        return Campaign::where('title', 'like', '%'.$search.'%')->get();
+        $result = Campaign::where('title', 'like', '%'.$search.'%')->get();
+        
+        if(count($result)){
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Campaign Ditemukan!',
+                'data'    => $result
+            ], 200);
+        } 
+        else{
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Campaign Tidak Ditemukan!',
+                'data'    => []
+            ], 200);
+        }
+        
     }
 }
