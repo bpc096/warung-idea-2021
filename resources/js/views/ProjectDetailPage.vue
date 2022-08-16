@@ -397,7 +397,6 @@ export default {
 
     .project-detail-section{
       width: 100%;
-      height: 50vh;
       text-align: left;
       margin: 3rem 0 3rem 7rem;
       font-size: 1.5rem;
@@ -479,6 +478,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      align-self: center;
       .image {
         width: 80%;
         height: 80%;
