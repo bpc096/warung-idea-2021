@@ -578,4 +578,11 @@ class CampaignController extends Controller
         'message' => 'Campaign Unlike Successfully!'
       ], 200);
     }
+
+    // Search Campaign
+    public function search(Request $request)
+    {
+        $search = $request->get('q');
+        return Campaign::where('title', 'like', '%'.$search.'%')->get();
+    }
 }
