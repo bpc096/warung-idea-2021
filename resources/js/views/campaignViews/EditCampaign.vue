@@ -209,7 +209,11 @@ export default {
           this.maxDate = this.projectDetail.max_date
           this.shortDesc = this.projectDetail.short_description
           this.projectPlan = this.projectDetail.project_plan
-          this.selectedCollaborator = res.collaborators.map((val) => ({ name: val.users[0].name, userId: val.users[0].id }))
+          if(res.collaborators.length > 0) {
+            this.selectedCollaborator = res.collaborators.map((val) => ({ name: val.users[0].name, userId: val.users[0].id }))
+          } else {
+            this.selectedCollaborator = []
+          }
         }
       })
       .catch(err => {

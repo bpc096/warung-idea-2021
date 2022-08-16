@@ -170,6 +170,7 @@ class CampaignController extends Controller
                 'success'       => true,
                 'message'       => 'Detail Data Campaign : '. $campaign->title,
                 'data'          => $campaign,
+                'collaborators' => $collaborators,
                 'payments'      => $payments
             ], 200);
         }
