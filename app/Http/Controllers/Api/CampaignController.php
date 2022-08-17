@@ -601,4 +601,36 @@ class CampaignController extends Controller
         'message' => 'Campaign Unlike Successfully!'
       ], 200);
     }
+
+    // Search Campaign
+    public function search($search)
+    {
+        if(empty($search)) {
+          return response()->json([
+            'success' => true,
+            'message' => 'No Campaign Found!',
+            'data' => []
+          ], 200);
+        }
+
+        $result = Campaign::where('title', 'like', '%'.$search.'%')
+        ->where("is_approved", '1')
+        ->where("deleted_at", null)
+        ->get();
+
+        if(count($result)){
+          return response()->json([
+            'success' => true,
+            'message' => 'Data Campaign Ditemukan!',
+            'data'    => $result
+          ], 200);
+        } else{
+          return response()->json([
+            'success' => true,
+            'message' => 'Data Campaign Tidak Ditemukan!',
+            'data'    => []
+          ], 200);
+        }
+
+    }
 }

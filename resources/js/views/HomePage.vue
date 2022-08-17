@@ -8,27 +8,7 @@
       :height="125"
       :width="125"
     />
-
     <div class="section">
-      <div
-        class="row d-flex justify-content-center my-5"
-        :style="{width: '60%'}"
-      >
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control mr-2 text-center border border-dark"
-            placeholder="Searh Campaign Here..."
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-            style="border-radius: 19px;"
-          >
-          <button class="ml-2 btn btn-info">
-              <i class="fa fa-search" aria-hidden="true"></i>
-              Search
-          </button>
-        </div>
-      </div>
       <div class="feature-section">
         <div class="project-feature-list">
           <div v-for="project in projectFeatureList" :key="project.id">

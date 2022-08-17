@@ -19,7 +19,7 @@ export default {
   name: 'AboutUsPage',
   data() {
     return {
-      appVersion: '5.0.1'
+      appVersion: '6.0.1'
     }
   }
 }
