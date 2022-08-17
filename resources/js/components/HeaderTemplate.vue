@@ -46,6 +46,9 @@
           <router-link to="/campaign/collaboration" class="dropdown-item item-click-menu">
             🏨 Collaborated Campaign
           </router-link>
+          <router-link to="/campaign/search" class="dropdown-item item-click-menu">
+            🔍 Search Campaign
+          </router-link>
         </div>
       </div>
       <div class="dropdown">

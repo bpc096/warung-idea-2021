@@ -254,7 +254,6 @@ export default {
   },
   methods: {
     async goToChatPage (receiverId, paramCampaignId) {
-      console.log('go to chat page with receiver ' + receiverId)
       const senderId = this.user.id || 1
       const campaignId = paramCampaignId ? paramCampaignId : 1
       try {

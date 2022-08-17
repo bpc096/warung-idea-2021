@@ -11,7 +11,6 @@ import CategoryPage from '../views/CategoryPage.vue'
 import ProjectDetailPage from '../views/ProjectDetailPage.vue'
 import CheckoutPage from '../views/CheckoutPage.vue'
 
-
 // Views Auth User
 import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
@@ -23,6 +22,7 @@ import EditCampaign from '../views/campaignViews/EditCampaign.vue'
 import HistoryCampaign from '../views/campaignViews/HistoryCampaign.vue'
 import HistoryDonationCampaign from '../views/campaignViews/HistoryDonationCampaign.vue'
 import CampaignCollaboration from '../views/campaignViews/CampaignCollaboration.vue'
+import SearchCampaign from '../views/campaignViews/SearchCampaign.vue'
 
 
 // Views Updates
@@ -177,6 +177,11 @@ const routes = [
     path: '/campaign/create',
     name: 'CreateCampaign',
     component: CreateCampaign,
+  },
+  {
+    path: '/campaign/search',
+    name: 'SearchCampaign',
+    component: SearchCampaign,
   },
   {
     path: '/campaign/history',
