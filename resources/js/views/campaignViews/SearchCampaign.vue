@@ -6,9 +6,7 @@
           v-model="searchInput"
           type="text"
           class="form-control mr-2 text-center border border-dark"
-          placeholder="Searh Campaign Here..."
-          aria-label="Recipient's username"
-          aria-describedby="basic-addon2"
+          placeholder="Search Campaign Here..."
           style="border-radius: 19px;"
         >
       </div>
