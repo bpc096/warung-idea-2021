@@ -613,7 +613,10 @@ class CampaignController extends Controller
           ], 200);
         }
 
-        $result = Campaign::where('title', 'like', '%'.$search.'%')->get();
+        $result = Campaign::where('title', 'like', '%'.$search.'%')
+        ->where("is_approved", '1')
+        ->where("deleted_at", null)
+        ->get();
 
         if(count($result)){
           return response()->json([
