@@ -122,6 +122,13 @@ export default {
     margin-bottom: 2rem;
   }
 
+  .default-state {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .empty-state {
     display: flex;
     flex-direction: column;
