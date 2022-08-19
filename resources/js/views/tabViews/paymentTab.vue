@@ -73,12 +73,19 @@ export default {
       }
       this.listData = mockData
     },
+    mappingDataSuccessDonation(listDonation) {
+      let successDonatur = []
+      if(listDonation && listDonation.length > 0) {
+        successDonatur = listDonation.filter(data => data.status === 'success')
+      }
+      return successDonatur
+    },
     async fetchingPaymentListData() {
       const campaignId = this.$route.params.projectId
       try {
         const req = await axios.get(`payment/get_payment_by_campaign/${campaignId}`)
         const res = req.data
-        this.listData = res.data.data
+        this.listData = this.mappingDataSuccessDonation(res.data.data)
       } catch(e) {
         console.error("Failed to get payment", e)
       }
