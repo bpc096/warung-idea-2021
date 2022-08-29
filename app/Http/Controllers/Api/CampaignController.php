@@ -155,7 +155,7 @@ class CampaignController extends Controller
     {
         //get detail data campaign
         $campaign = Campaign::with('user')
-        // ->with('sumPayment')
+        ->with('sumPayment')
         // ->with('likeCounter')
         ->where('id', $id)->first();
 

@@ -47,21 +47,17 @@ export default {
       searchInput: '',
       listResultData: [],
       isNotFound: false,
+      debounce: null
     }
   },
   watch: {
     searchInput(newWord, oldWord) {
-      /*
-      this.listResultData = []
-      this.isNotFound = false
-
-      if(newWord !== "") {
+      clearTimeout(this.debounce)
+      this.debounce = setTimeout(() => {
+        this.listResultData = []
+        this.isNotFound = false
         this.searchCampaign(newWord)
-      }
-      */
-      this.listResultData = []
-      this.isNotFound = false
-      this.searchCampaign(newWord)
+      }, 600)
     }
   },
   computed: {
